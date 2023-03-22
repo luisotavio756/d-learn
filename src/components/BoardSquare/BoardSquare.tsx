@@ -11,24 +11,30 @@ export interface BoardSquareProps extends Square {
   isInColumn?: boolean;
 }
 
-const BoardSquare: React.FC<BoardSquareProps> = (props) => {
-  const icons = useMemo(() => ({
-    [SquareTypes.ArchDecisions]: ArchDecisionIcon,
-    [SquareTypes.QualityAttributes]: QualityAttrIcon,
-    [SquareTypes.ArchPattern]: ArchPatternsIcon,
-    [SquareTypes.LuckOrBackLuck]: QualityAttrIcon
-  }), []);
+const BoardSquare: React.FC<BoardSquareProps> = ({
+  players,
+  type,
+  isInColumn,
+}) => {
+  const icons = useMemo(
+    () => ({
+      [SquareTypes.ArchDecisions]: ArchDecisionIcon,
+      [SquareTypes.QualityAttributes]: QualityAttrIcon,
+      [SquareTypes.ArchPattern]: ArchPatternsIcon,
+      [SquareTypes.LuckOrBackLuck]: QualityAttrIcon,
+    }),
+    [],
+  );
 
-  if (props.type === SquareTypes.Start) {
+  if (type === SquareTypes.Start) {
     return <StartSquare />;
   }
 
   return (
-    <Container isInColumn={!!props.isInColumn}>
-      <img src={icons[props.type]} alt="" />
+    <Container type={type} isInColumn={!!isInColumn}>
+      <img src={icons[type]} alt="" />
     </Container>
-  )
-
-}
+  );
+};
 
 export default BoardSquare;

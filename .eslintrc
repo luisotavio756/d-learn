@@ -55,7 +55,8 @@
         "tsx": "never"
       }
     ],
-    "import/no-extraneous-dependencies": "off"
+    "import/no-extraneous-dependencies": "off",
+    "no-restricted-exports": "off"
   },
   "settings": {
     "import/resolver": {
