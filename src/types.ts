@@ -3,11 +3,11 @@ export enum SquareTypes {
   ArchDecisions,
   QualityAttributes,
   ArchPattern,
-  LuckOrBackLuck
+  LuckOrBackLuck,
 }
 
 export interface Player {
-  id: string;
+  id: number;
   name: string;
   score: number;
   color: string;
@@ -16,5 +16,5 @@ export interface Player {
 export interface Square {
   id: string;
   players: Player[];
-  type: SquareTypes
+  type: SquareTypes;
 }
