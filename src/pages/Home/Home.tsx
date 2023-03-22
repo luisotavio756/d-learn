@@ -6,6 +6,8 @@ import INITIAL_BOARD from '../../initialBoard';
 import { Square } from '../../types';
 import { Board, Container } from './Home.styles';
 
+import LogoImg from '../../assets/logo.jpeg';
+
 function Home() {
   const [board, setBoard] = useState<Square[]>(INITIAL_BOARD);
 
@@ -35,7 +37,7 @@ function Home() {
             ))}
           </div>
           <div className="content-main">
-            <div className="logo" />
+            <img src={LogoImg} alt="" />
             <div className="cards">
               <div className="queue" />
               <div className="queue" />

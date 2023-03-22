@@ -1,13 +1,13 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  margin: 0 auto;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: -2px 6px 20px #666;
 `;
 
 export const Board = styled.div`
   background-color: #fff;
-  margin: 0 auto;
-  height: 100vh;
   display: flex;
   flex-direction: column;
 
@@ -24,7 +24,6 @@ export const Board = styled.div`
   .main {
     display: flex;
     justify-content: space-between;
-    height: calc(100vh - (6.5rem * 2));
 
     .column1,
     .column2 {
@@ -34,6 +33,13 @@ export const Board = styled.div`
 
     .column1 {
       flex-direction: column-reverse;
+    }
+
+    .content-main {
+      img {
+        width: 700px;
+        height: auto;
+      }
     }
   }
 `;

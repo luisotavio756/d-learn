@@ -1,6 +1,7 @@
 import styled, { css } from 'styled-components';
 
 import StartSquareImg from '../../assets/start-square.png';
+import LuckSquareImg from '../../assets/luck-square.png';
 import PlayerImg from '../../assets/player.png';
 import { Player, SquareTypes } from '../../types';
 
@@ -23,38 +24,38 @@ export const Container = styled.div<BoardSquareProps>`
   position: relative;
 
   ${props =>
-    props.isInColumn &&
-    css`
-      height: 120px;
-    `}
-
-  ${props =>
     props.type === SquareTypes.ArchDecisions &&
     css`
-      background: var(--red-500);
+      background: var(--red-600);
     `}
 
   ${props =>
     props.type === SquareTypes.ArchPattern &&
     css`
-      background: var(--blue-500);
+      background: var(--blue-600);
     `}
 
   ${props =>
     props.type === SquareTypes.QualityAttributes &&
     css`
-      background: var(--yellow-400);
+      background: var(--yellow-500);
     `}
-`;
 
-export const StartSquare = styled.div`
-  width: 114px;
-  height: 114px;
-  border: 1px solid black;
+  ${props =>
+    props.type === SquareTypes.Start &&
+    css`
+      background-image: url(${StartSquareImg});
+      background-repeat: no-repeat;
+      background-size: contain;
+    `}
 
-  background-image: url(${StartSquareImg});
-  background-repeat: no-repeat;
-  background-size: contain;
+  ${props =>
+    props.type === SquareTypes.LuckOrBackLuck &&
+    css`
+      background-image: url(${LuckSquareImg});
+      background-repeat: no-repeat;
+      background-size: contain;
+    `}
 `;
 
 export const PlayerPin = styled.div<PlayerPinProps>`
@@ -67,6 +68,8 @@ export const PlayerPin = styled.div<PlayerPinProps>`
   background-repeat: no-repeat;
   background-position: center;
   position: absolute;
+  transition: all 0.2s;
+  cursor: pointer;
 
   ${props =>
     props.playerId === 1 &&
@@ -95,4 +98,8 @@ export const PlayerPin = styled.div<PlayerPinProps>`
       bottom: 8px;
       right: 8px;
     `}
+
+  &:hover {
+    filter: brightness(90%);
+  }
 `;

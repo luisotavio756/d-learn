@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import { Square, SquareTypes } from '../../types';
 
-import { Container, PlayerPin, StartSquare } from './BoardSquare.styles';
+import { Container, PlayerPin } from './BoardSquare.styles';
 
 import ArchDecisionIcon from '../../assets/arch_decisions_icon.png';
 import QualityAttrIcon from '../../assets/quality_attr_icon.png';
@@ -22,17 +22,15 @@ const BoardSquare: React.FC<BoardSquareProps> = ({
       [SquareTypes.QualityAttributes]: QualityAttrIcon,
       [SquareTypes.ArchPattern]: ArchPatternsIcon,
       [SquareTypes.LuckOrBackLuck]: QualityAttrIcon,
+      [SquareTypes.Start]: undefined,
+      [SquareTypes.LuckOrBackLuck]: undefined,
     }),
     [],
   );
 
-  if (type === SquareTypes.Start) {
-    return <StartSquare />;
-  }
-
   return (
     <Container type={type} isInColumn={!!isInColumn}>
-      <img src={icons[type]} alt="" />
+      {icons[type] && <img src={icons[type]} alt="" />}
       <div className="players">
         {players.map(item => (
           <PlayerPin
@@ -41,6 +39,7 @@ const BoardSquare: React.FC<BoardSquareProps> = ({
             name={item.name}
             color={item.color}
             score={item.score}
+            title={item.name}
           />
         ))}
       </div>

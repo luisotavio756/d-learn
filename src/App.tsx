@@ -9,12 +9,12 @@ const App: React.FC = () => {
     <>
       <BrowserRouter>
         <Routes>
-          <Route path='/' element={<Home />} />
+          <Route path="/" element={<Home />} />
         </Routes>
       </BrowserRouter>
       <GlobalStyles />
     </>
   );
-}
+};
 
 export default App;
