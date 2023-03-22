@@ -1,18 +1,19 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-
+  margin: 0 auto;
 `;
 
 export const Board = styled.div`
   background-color: #fff;
   margin: 0 auto;
-  width: calc(13*114px);
+  width: calc(13 * 114px);
   height: 100vh;
   display: flex;
   flex-direction: column;
 
-  .top, .bottom {
+  .top,
+  .bottom {
     display: flex;
     /* border: 1px solid black; */
   }
@@ -26,11 +27,11 @@ export const Board = styled.div`
     justify-content: space-between;
     height: calc(100vh - (6.5rem * 2));
 
-    .column1, .column2 {
+    .column1,
+    .column2 {
       display: flex;
       flex-direction: column;
     }
-
 
     .column1 {
       flex-direction: column-reverse;

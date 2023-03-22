@@ -35,14 +35,12 @@ function Home() {
             ))}
           </div>
           <div className="content-main">
-            <div className="logo">
-
-            </div>
+            <div className="logo" />
             <div className="cards">
-              <div className="queue"></div>
-              <div className="queue"></div>
-              <div className="queue"></div>
-              <div className="queue"></div>
+              <div className="queue" />
+              <div className="queue" />
+              <div className="queue" />
+              <div className="queue" />
             </div>
           </div>
           <div className="column2">
@@ -69,7 +67,7 @@ function Home() {
         </div>
       </Board>
     </Container>
-  )
+  );
 }
 
-export default Home
+export default Home;
