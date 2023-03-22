@@ -13,7 +13,7 @@ function Home() {
     <Container>
       <Board>
         <div className="top">
-          {board.slice(0, 13).map((item, i) => (
+          {board.slice(0, 14).map((item, i) => (
             <BoardSquare
               key={item.id}
               id={item.id}
@@ -24,7 +24,7 @@ function Home() {
         </div>
         <div className="main">
           <div className="column1">
-            {board.slice(33, 40).map(item => (
+            {board.slice(34, 40).map(item => (
               <BoardSquare
                 key={item.id}
                 id={item.id}
@@ -44,7 +44,7 @@ function Home() {
             </div>
           </div>
           <div className="column2">
-            {board.slice(13, 20).map(item => (
+            {board.slice(14, 20).map(item => (
               <BoardSquare
                 key={item.id}
                 id={item.id}
@@ -56,7 +56,7 @@ function Home() {
           </div>
         </div>
         <div className="bottom">
-          {board.slice(21, 34).map(item => (
+          {board.slice(20, 34).map(item => (
             <BoardSquare
               key={item.id}
               id={item.id}

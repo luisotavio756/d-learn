@@ -7,7 +7,6 @@ export const Container = styled.div`
 export const Board = styled.div`
   background-color: #fff;
   margin: 0 auto;
-  width: calc(13 * 104px);
   height: 100vh;
   display: flex;
   flex-direction: column;

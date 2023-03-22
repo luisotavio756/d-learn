@@ -14,8 +14,8 @@ type PlayerPinProps = Omit<Player, 'id'> & {
 };
 
 export const Container = styled.div<BoardSquareProps>`
-  width: 104px;
-  height: 104px;
+  width: 114px;
+  height: 114px;
 
   display: flex;
   justify-content: center;
@@ -25,7 +25,7 @@ export const Container = styled.div<BoardSquareProps>`
   ${props =>
     props.isInColumn &&
     css`
-      height: 108px;
+      height: 120px;
     `}
 
   ${props =>
@@ -48,8 +48,8 @@ export const Container = styled.div<BoardSquareProps>`
 `;
 
 export const StartSquare = styled.div`
-  width: 104px;
-  height: 104px;
+  width: 114px;
+  height: 114px;
   border: 1px solid black;
 
   background-image: url(${StartSquareImg});
