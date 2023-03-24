@@ -56,7 +56,8 @@
       }
     ],
     "import/no-extraneous-dependencies": "off",
-    "no-restricted-exports": "off"
+    "no-restricted-exports": "off",
+    "jsx-a11y/label-has-associated-control": "off"
   },
   "settings": {
     "import/resolver": {

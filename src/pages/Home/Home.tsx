@@ -8,8 +8,11 @@ import { Board, Container } from './Home.styles';
 
 import LogoImg from '../../assets/logo.jpeg';
 import CardsQueue from '../../components/CardsQueue';
+import { useModal } from '../../hooks/useModal';
+import ModalStartGame from '../../components/ModalStartGame';
 
 function Home() {
+  const { isOpen, toggleModal } = useModal();
   const [board, setBoard] = useState<Square[]>(INITIAL_BOARD);
 
   return (
@@ -69,6 +72,7 @@ function Home() {
           ))}
         </div>
       </Board>
+      <ModalStartGame isOpen setIsOpen={toggleModal} />
     </Container>
   );
 }

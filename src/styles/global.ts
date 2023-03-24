@@ -94,7 +94,7 @@ export default createGlobalStyle`
     -webkit-font-smoothing: antialiased;
   }
 
-  strong, h1, h2, h3, h4, h5, h6 {
+  label, strong, h1, h2, h3, h4, h5, h6 {
     font-family: 'Fredoka', sans-serif;
   }
 
