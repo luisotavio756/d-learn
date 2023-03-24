@@ -36,9 +36,19 @@ export const Board = styled.div`
     }
 
     .content-main {
-      img {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      > img {
         width: 700px;
         height: auto;
+      }
+
+      .cards {
+        margin-top: 64px;
+        display: flex;
+        gap: 32px;
       }
     }
   }

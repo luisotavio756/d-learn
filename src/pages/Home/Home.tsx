@@ -3,10 +3,11 @@ import { useState } from 'react';
 import BoardSquare from '../../components/BoardSquare';
 import INITIAL_BOARD from '../../initialBoard';
 
-import { Square } from '../../types';
+import { Square, SquareTypes } from '../../types';
 import { Board, Container } from './Home.styles';
 
 import LogoImg from '../../assets/logo.jpeg';
+import CardsQueue from '../../components/CardsQueue';
 
 function Home() {
   const [board, setBoard] = useState<Square[]>(INITIAL_BOARD);
@@ -39,10 +40,10 @@ function Home() {
           <div className="content-main">
             <img src={LogoImg} alt="" />
             <div className="cards">
-              <div className="queue" />
-              <div className="queue" />
-              <div className="queue" />
-              <div className="queue" />
+              <CardsQueue type={SquareTypes.ArchDecisions} enabled />
+              <CardsQueue type={SquareTypes.QualityAttributes} enabled />
+              <CardsQueue type={SquareTypes.ArchPattern} enabled />
+              <CardsQueue type={SquareTypes.LuckOrBackLuck} enabled />
             </div>
           </div>
           <div className="column2">

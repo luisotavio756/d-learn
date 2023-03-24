@@ -31,6 +31,7 @@ export default createGlobalStyle`
     --blue-100: #BEE3F8;
 
     --ice-500: #E7FAEB;
+    --ice-700: #c4f3ce;
 
     --green-900: #1C4532;
     --green-800: #22543D;
@@ -91,6 +92,10 @@ export default createGlobalStyle`
   body {
     color: #fff;
     -webkit-font-smoothing: antialiased;
+  }
+
+  strong, h1, h2, h3, h4, h5, h6 {
+    font-family: 'Fredoka', sans-serif;
   }
 
   body, button, input, textarea {
