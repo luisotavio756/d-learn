@@ -94,13 +94,8 @@ export default createGlobalStyle`
     -webkit-font-smoothing: antialiased;
   }
 
-  label, strong, h1, h2, h3, h4, h5, h6 {
-    font-family: 'Fredoka', sans-serif;
-  }
-
-  body, button, input, textarea {
-    font-family: 'Roboto Slab', sans-serif;
-    font-size: 1rem;
+  label, strong, h1, h2, h3, h4, h5, h6, button, input, textarea {
+    font-family: ${props => props.theme.fontFamily.sans};
   }
 
   button {
