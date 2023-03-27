@@ -34,7 +34,9 @@ export const Container = styled.div`
   }
 
   .button-group {
+    margin-top: 12px;
     display: flex;
+    justify-content: flex-end;
 
     button + button {
       margin-left: 8px;

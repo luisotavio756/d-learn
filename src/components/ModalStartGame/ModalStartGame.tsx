@@ -1,9 +1,14 @@
 import React, { useCallback, useState } from 'react';
 import { v4 as uuid } from 'uuid';
 import { useForm } from 'react-hook-form';
-import Modal from '../Modal/Modal';
+import { FiCheck, FiUserMinus, FiUserPlus } from 'react-icons/fi';
+import { useTheme } from 'styled-components';
+
+import Modal from '../Modal';
+import Button from '../Button';
 
 import { Container } from './ModalStartGame.styles';
+import { Player } from '../../types';
 
 interface IModalStartGameProps {
   isOpen: boolean;
@@ -18,12 +23,27 @@ const ModalStartGame: React.FC<IModalStartGameProps> = ({
   isOpen,
   setIsOpen,
 }) => {
+  const theme = useTheme();
   const [players, setPlayers] = useState(1);
 
   const { register, handleSubmit } = useForm<FormData>();
 
   const onSubmit = handleSubmit(data => {
-    console.log(data);
+    const colors = {
+      0: theme.colors.cyan[500],
+      1: theme.colors.green[500],
+      2: theme.colors.gray[700],
+      3: theme.colors.blue[300],
+    };
+
+    const players = Object.values(data).map<Player>((name, index) => ({
+      id: index + 1,
+      name,
+      score: 0,
+      color: colors[index as 0 | 1 | 2 | 3],
+    }));
+
+    console.log(players);
   });
 
   const addPlayer = useCallback(() => {
@@ -66,17 +86,19 @@ const ModalStartGame: React.FC<IModalStartGameProps> = ({
           ))}
           <div className="button-group">
             {players > 1 && (
-              <button type="button" onClick={removePlayer}>
-                Remover ultimo
-              </button>
+              <Button size="sm" variant="red-outline" onClick={removePlayer}>
+                <FiUserMinus /> Remover ultimo
+              </Button>
             )}
             {players < 4 && (
-              <button type="button" onClick={addPlayer}>
-                Adicionar jogador
-              </button>
+              <Button size="sm" variant="blue-outline" onClick={addPlayer}>
+                <FiUserPlus /> Adicionar jogador
+              </Button>
             )}
           </div>
-          <input type="submit" />
+          <Button marginTop={1} width="full" type="submit">
+            <FiCheck /> Iniciar jogo
+          </Button>
         </form>
       </Container>
     </Modal>
