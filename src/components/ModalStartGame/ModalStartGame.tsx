@@ -1,4 +1,5 @@
 import React, { useCallback, useState } from 'react';
+import { v4 as uuid } from 'uuid';
 import { useForm } from 'react-hook-form';
 import Modal from '../Modal/Modal';
 
@@ -53,7 +54,7 @@ const ModalStartGame: React.FC<IModalStartGameProps> = ({
         </div>
         <form onSubmit={onSubmit}>
           {Array.from({ length: players }).map((_, i) => (
-            <div key={i + 1} className="input-form">
+            <div key={uuid()} className="input-form">
               <label htmlFor={`player${i}`}>Jogador {i + 1}</label>
               <input
                 id={`player${i}`}
