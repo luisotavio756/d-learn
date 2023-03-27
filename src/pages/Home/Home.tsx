@@ -1,31 +1,22 @@
-import { useState } from 'react';
-
 import BoardSquare from '../../components/BoardSquare';
-import INITIAL_BOARD from '../../initialBoard';
 
-import { Square, SquareTypes } from '../../types';
+import { SquareTypes } from '../../types';
 import { Board, Container } from './Home.styles';
 
 import LogoImg from '../../assets/logo.jpeg';
 import CardsQueue from '../../components/CardsQueue';
-import { useModal } from '../../hooks/useModal';
 import ModalStartGame from '../../components/ModalStartGame';
+import { useGame } from '../../hooks/useGame.hook';
 
 function Home() {
-  const { isOpen, toggleModal } = useModal();
-  const [board, setBoard] = useState<Square[]>(INITIAL_BOARD);
+  const { board } = useGame();
 
   return (
     <Container>
       <Board>
         <div className="top">
           {board.slice(0, 14).map((item, i) => (
-            <BoardSquare
-              key={item.id}
-              id={item.id}
-              players={item.players}
-              type={item.type}
-            />
+            <BoardSquare key={item.id} id={item.id} type={item.type} />
           ))}
         </div>
         <div className="main">
@@ -34,7 +25,6 @@ function Home() {
               <BoardSquare
                 key={item.id}
                 id={item.id}
-                players={item.players}
                 type={item.type}
                 isInColumn
               />
@@ -54,7 +44,6 @@ function Home() {
               <BoardSquare
                 key={item.id}
                 id={item.id}
-                players={item.players}
                 type={item.type}
                 isInColumn
               />
@@ -63,16 +52,11 @@ function Home() {
         </div>
         <div className="bottom">
           {board.slice(20, 34).map(item => (
-            <BoardSquare
-              key={item.id}
-              id={item.id}
-              players={item.players}
-              type={item.type}
-            />
+            <BoardSquare key={item.id} id={item.id} type={item.type} />
           ))}
         </div>
       </Board>
-      <ModalStartGame isOpen setIsOpen={toggleModal} />
+      <ModalStartGame />
     </Container>
   );
 }

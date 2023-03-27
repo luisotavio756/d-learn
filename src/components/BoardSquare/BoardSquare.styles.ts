@@ -10,7 +10,7 @@ type BoardSquareProps = {
   isInColumn: boolean;
 };
 
-type PlayerPinProps = Omit<Player, 'id'> & {
+type PlayerPinProps = Omit<Player, 'id' | 'square_id'> & {
   playerId: number;
 };
 

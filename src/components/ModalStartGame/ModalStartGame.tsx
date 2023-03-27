@@ -10,26 +10,27 @@ import Button from '../Button';
 import { Container } from './ModalStartGame.styles';
 import { Player } from '../../types';
 import InputForm from '../InputForm';
+import { useGame } from '../../hooks/useGame.hook';
 
 interface IModalStartGameProps {
   isOpen: boolean;
-  setIsOpen: () => void;
+  toggleModal: () => void;
 }
 
 type FormData = {
   [key: string]: string;
 };
 
-const ModalStartGame: React.FC<IModalStartGameProps> = ({
-  isOpen,
-  setIsOpen,
-}) => {
+const ModalStartGame: React.FC = () => {
   const theme = useTheme();
   const [players, setPlayers] = useState(1);
 
   const { register, handleSubmit } = useForm<FormData>();
+  const { gameStarted, board, startGame } = useGame();
 
   const onSubmit = handleSubmit(data => {
+    const startSquare = board[0];
+
     const colors = {
       0: theme.colors.cyan[500],
       1: theme.colors.green[500],
@@ -42,9 +43,10 @@ const ModalStartGame: React.FC<IModalStartGameProps> = ({
       name,
       score: 0,
       color: colors[index as 0 | 1 | 2 | 3],
+      square_id: startSquare.id,
     }));
 
-    console.log(players);
+    startGame(players);
   });
 
   const addPlayer = useCallback(() => {
@@ -62,9 +64,10 @@ const ModalStartGame: React.FC<IModalStartGameProps> = ({
   return (
     <Modal
       width="454px"
-      isOpen={isOpen}
+      isOpen={!gameStarted}
       title="Iniciar jogo"
-      setIsOpen={setIsOpen}
+      showCloseButton={false}
+      toggleModal={() => null}
     >
       <Container>
         <div className="welcome">

@@ -1,29 +1,29 @@
 import React, { useState, useEffect } from 'react';
 import { FiX } from 'react-icons/fi';
 import ReactModal, { Props } from 'react-modal';
-import { useTheme } from 'styled-components';
 import { CloseContainer } from './Modal.styles';
 
 interface IModalProps extends Props {
   children: React.ReactNode;
   isOpen: boolean;
-  setIsOpen: () => void;
   title: string | React.ReactNode;
   width?: string;
   height?: string;
+  showCloseButton?: boolean;
+  toggleModal: () => void;
 }
 
 const Modal: React.FC<IModalProps> = ({
   children,
   isOpen,
   title,
-  setIsOpen,
   width = '754px',
   height = '698px',
+  showCloseButton = true,
+  toggleModal,
   ...rest
 }) => {
   const [modalStatus, setModalStatus] = useState(isOpen);
-  const theme = useTheme();
 
   useEffect(() => {
     setModalStatus(isOpen);
@@ -32,7 +32,7 @@ const Modal: React.FC<IModalProps> = ({
   return (
     <ReactModal
       shouldCloseOnOverlayClick={false}
-      onRequestClose={setIsOpen}
+      onRequestClose={toggleModal}
       isOpen={modalStatus}
       ariaHideApp={false}
       style={{
@@ -58,12 +58,14 @@ const Modal: React.FC<IModalProps> = ({
       }}
       {...rest}
     >
-      <CloseContainer>
-        <h1>{title}</h1>
-        <button type="button" onClick={() => setIsOpen()}>
-          <FiX />
-        </button>
-      </CloseContainer>
+      {showCloseButton && (
+        <CloseContainer>
+          <h1>{title}</h1>
+          <button type="button" onClick={() => toggleModal()}>
+            <FiX />
+          </button>
+        </CloseContainer>
+      )}
       {children}
     </ReactModal>
   );

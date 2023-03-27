@@ -11,10 +11,10 @@ export interface Player {
   name: string;
   score: number;
   color: string;
+  square_id?: string;
 }
 
 export interface Square {
   id: string;
-  players: Player[];
   type: SquareTypes;
 }
