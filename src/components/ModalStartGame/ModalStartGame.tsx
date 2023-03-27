@@ -9,6 +9,7 @@ import Button from '../Button';
 
 import { Container } from './ModalStartGame.styles';
 import { Player } from '../../types';
+import InputForm from '../InputForm';
 
 interface IModalStartGameProps {
   isOpen: boolean;
@@ -74,15 +75,15 @@ const ModalStartGame: React.FC<IModalStartGameProps> = ({
         </div>
         <form onSubmit={onSubmit}>
           {Array.from({ length: players }).map((_, i) => (
-            <div key={uuid()} className="input-form">
-              <label htmlFor={`player${i}`}>Jogador {i + 1}</label>
-              <input
-                id={`player${i}`}
-                type="text"
-                placeholder="Digite um nome"
-                {...register(`player${i}`)}
-              />
-            </div>
+            <InputForm
+              key={uuid()}
+              type="text"
+              id={`player${i}`}
+              label={`Player ${i + 1}`}
+              placeholder="Digite um nome"
+              name={`player${i}`}
+              register={register}
+            />
           ))}
           <div className="button-group">
             {players > 1 && (
