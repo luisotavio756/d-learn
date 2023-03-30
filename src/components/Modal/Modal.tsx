@@ -58,14 +58,15 @@ const Modal: React.FC<IModalProps> = ({
       }}
       {...rest}
     >
-      {showCloseButton && (
-        <CloseContainer>
-          <h1>{title}</h1>
+      <CloseContainer>
+        <h1>{title}</h1>
+        {showCloseButton && (
           <button type="button" onClick={() => toggleModal()}>
             <FiX />
           </button>
-        </CloseContainer>
-      )}
+        )}
+      </CloseContainer>
+
       {children}
     </ReactModal>
   );
