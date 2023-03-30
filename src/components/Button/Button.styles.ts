@@ -49,13 +49,13 @@ export const Container = styled.button<ButtonProps>`
   display: flex;
   align-items: center;
   justify-content: center;
-  font-weight: ${props => props.theme.fontWeight.medium};
+  font-weight: ${props => props.theme.fontWeight.semiBold};
   background: ${props => colors[props?.variant || 'blue'].background};
   color: ${props => colors[props?.variant || 'blue'].color};
 
   border: ${props => colors[props?.variant || 'blue'].border};
   margin-top: ${props => props.marginTop}rem;
-  transition: all 0.2s;
+  transition: filter 0.2s;
 
   svg {
     margin-right: 6px;
@@ -64,6 +64,12 @@ export const Container = styled.button<ButtonProps>`
   &:hover {
     filter: brightness(90%);
   }
+
+  ${props =>
+    props.width === 'flex-fit' &&
+    css`
+      flex: 1;
+    `}
 
   ${props =>
     props.width === 'full' &&
@@ -80,7 +86,7 @@ export const Container = styled.button<ButtonProps>`
       border-radius: 0.625rem;
     `}
 
-    ${props =>
+  ${props =>
     props.size === 'md' &&
     css`
       height: 2.5rem; // 40px

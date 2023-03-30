@@ -1,12 +1,13 @@
 import BoardSquare from '../../components/BoardSquare';
 
-import { SquareTypes } from '../../types';
+import { CardTypes, SquareTypes } from '../../types';
 import { Board, Container } from './Home.styles';
 
 import LogoImg from '../../assets/logo.jpeg';
 import CardsQueue from '../../components/CardsQueue';
 import ModalStartGame from '../../components/ModalStartGame';
 import { useGame } from '../../hooks/useGame.hook';
+import ModalCard from '../../components/ModalCard';
 
 function Home() {
   const { board } = useGame();
@@ -57,6 +58,11 @@ function Home() {
         </div>
       </Board>
       <ModalStartGame />
+      <ModalCard
+        isOpen
+        toggleModal={() => null}
+        type={CardTypes.ArchDecisions}
+      />
     </Container>
   );
 }

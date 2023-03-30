@@ -18,3 +18,10 @@ export interface Square {
   id: string;
   type: SquareTypes;
 }
+
+export enum CardTypes {
+  ArchDecisions,
+  QualityAttributes,
+  ArchPattern,
+  LuckOrBackLuck,
+}

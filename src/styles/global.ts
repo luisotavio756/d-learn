@@ -98,6 +98,10 @@ export default createGlobalStyle`
     font-family: ${props => props.theme.fontFamily.sans};
   }
 
+  p, span {
+    font-family: ${props => props.theme.fontFamily.mono};
+  }
+
   button {
     cursor: pointer;
   }

@@ -16,7 +16,7 @@ export type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
     | 'yellow-outline'
     | 'green'
     | 'green-outline';
-  width?: 'full' | 'fit-content';
+  width?: 'full' | 'fit-content' | 'flex-fit';
 };
 
 const Button: React.FC<ButtonProps> = ({
