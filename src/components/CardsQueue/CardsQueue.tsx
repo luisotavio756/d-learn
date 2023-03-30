@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import { SquareTypes } from '../../types';
+import { CardTypes } from '../../types';
 
 import { Container } from './CardsQueue.styles';
 
@@ -9,33 +9,39 @@ import ArchPatternsIcon from '../../assets/arch_patterns_icon.png';
 import LuckIcon from '../../assets/luck-icon.svg';
 
 interface CardsQueueProps {
-  type: SquareTypes;
+  type: CardTypes;
   enabled: boolean;
+  onClick(type: CardTypes): void;
 }
 
-const CardsQueue: React.FC<CardsQueueProps> = ({ enabled, type }) => {
+const CardsQueue: React.FC<CardsQueueProps> = ({ enabled, type, onClick }) => {
   const icons = useMemo(
     () => ({
-      [SquareTypes.ArchDecisions]: ArchDecisionIcon,
-      [SquareTypes.QualityAttributes]: QualityAttrIcon,
-      [SquareTypes.ArchPattern]: ArchPatternsIcon,
-      [SquareTypes.LuckOrBackLuck]: LuckIcon,
+      [CardTypes.ArchDecisions]: ArchDecisionIcon,
+      [CardTypes.QualityAttributes]: QualityAttrIcon,
+      [CardTypes.ArchPattern]: ArchPatternsIcon,
+      [CardTypes.LuckOrBackLuck]: LuckIcon,
     }),
     [],
   );
 
   const text = useMemo(
     () => ({
-      [SquareTypes.ArchDecisions]: 'Decisões arquiteturais',
-      [SquareTypes.QualityAttributes]: 'Atributos de qualidade',
-      [SquareTypes.ArchPattern]: 'Padrões arquiteturais',
-      [SquareTypes.LuckOrBackLuck]: 'Sorte ou revés',
+      [CardTypes.ArchDecisions]: 'Decisões arquiteturais',
+      [CardTypes.QualityAttributes]: 'Atributos de qualidade',
+      [CardTypes.ArchPattern]: 'Padrões arquiteturais',
+      [CardTypes.LuckOrBackLuck]: 'Sorte ou revés',
     }),
     [],
   );
 
   return (
-    <Container type={type} enabled={enabled}>
+    <Container
+      type={type}
+      enabled={enabled}
+      onClick={() => onClick(type)}
+      aria-hidden="true"
+    >
       <div className="icon">
         {icons[type] && <img src={icons[type]} alt="" />}
       </div>

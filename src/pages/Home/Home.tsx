@@ -1,6 +1,6 @@
 import BoardSquare from '../../components/BoardSquare';
 
-import { CardTypes, SquareTypes } from '../../types';
+import { CardTypes } from '../../types';
 import { Board, Container } from './Home.styles';
 
 import LogoImg from '../../assets/logo.jpeg';
@@ -10,7 +10,19 @@ import { useGame } from '../../hooks/useGame.hook';
 import ModalCard from '../../components/ModalCard';
 
 function Home() {
-  const { board } = useGame();
+  const { cards, board, turnOf, activeCard, chooseCard } = useGame();
+
+  function handleChooseCard(type: CardTypes) {
+    const card = cards.find(item => item.type === type && !item.used);
+
+    // console.log(type, card, turnOf);
+
+    if (card && turnOf) {
+      chooseCard(turnOf, card);
+    }
+  }
+
+  console.log(activeCard?.type);
 
   return (
     <Container>
@@ -34,10 +46,26 @@ function Home() {
           <div className="content-main">
             <img src={LogoImg} alt="" />
             <div className="cards">
-              <CardsQueue type={SquareTypes.ArchDecisions} enabled />
-              <CardsQueue type={SquareTypes.QualityAttributes} enabled />
-              <CardsQueue type={SquareTypes.ArchPattern} enabled />
-              <CardsQueue type={SquareTypes.LuckOrBackLuck} enabled />
+              <CardsQueue
+                onClick={handleChooseCard}
+                type={CardTypes.ArchDecisions}
+                enabled
+              />
+              <CardsQueue
+                onClick={handleChooseCard}
+                type={CardTypes.QualityAttributes}
+                enabled
+              />
+              <CardsQueue
+                onClick={handleChooseCard}
+                type={CardTypes.ArchPattern}
+                enabled
+              />
+              <CardsQueue
+                onClick={handleChooseCard}
+                type={CardTypes.LuckOrBackLuck}
+                enabled
+              />
             </div>
           </div>
           <div className="column2">
@@ -59,9 +87,9 @@ function Home() {
       </Board>
       <ModalStartGame />
       <ModalCard
-        isOpen
+        isOpen={!!activeCard}
         toggleModal={() => null}
-        type={CardTypes.ArchDecisions}
+        type={activeCard?.type || 0}
       />
     </Container>
   );

@@ -6,6 +6,13 @@ export enum SquareTypes {
   LuckOrBackLuck,
 }
 
+export enum CardTypes {
+  ArchDecisions,
+  QualityAttributes,
+  ArchPattern,
+  LuckOrBackLuck,
+}
+
 export interface Player {
   id: number;
   name: string;
@@ -19,9 +26,13 @@ export interface Square {
   type: SquareTypes;
 }
 
-export enum CardTypes {
-  ArchDecisions,
-  QualityAttributes,
-  ArchPattern,
-  LuckOrBackLuck,
+export interface Card {
+  id: string;
+  type: CardTypes;
+  description: string;
+  question: string;
+  stars: number;
+  solution: 'V' | 'F';
+  solutionText: string;
+  used: boolean;
 }

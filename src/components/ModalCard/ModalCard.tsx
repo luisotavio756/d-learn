@@ -1,5 +1,6 @@
-import React from 'react';
-import { CardTypes } from '../../types';
+import React, { useCallback, useMemo, useState } from 'react';
+import { useGame } from '../../hooks/useGame.hook';
+import { Card, CardTypes } from '../../types';
 import Button from '../Button';
 import ButtonGroup from '../ButtonGroup';
 import Modal from '../Modal';
@@ -18,8 +19,46 @@ const ModalCard: React.FC<IModalCardProps> = ({
   type,
   toggleModal,
 }) => {
-  const answered = true;
-  const answeredCorrectly = false;
+  const [answered, setAnswered] = useState(false);
+  const [answeredCorrectly, setAnsweredCorrectly] = useState(false);
+
+  const { activeCard, turnOf, answer, passTurnToNextPlayer } = useGame();
+
+  const { id, description, question, solution, solutionText, stars } = useMemo(
+    () => (activeCard || {}) as Card,
+    [activeCard],
+  );
+
+  const cardsTitle = useMemo(
+    () => ({
+      [CardTypes.ArchDecisions]: 'Decisões arquiteturais',
+      [CardTypes.QualityAttributes]: 'Atributos de qualidade',
+      [CardTypes.ArchPattern]: 'Padrões arquiteturais',
+      [CardTypes.LuckOrBackLuck]: 'Sorte ou revés',
+    }),
+    [],
+  );
+
+  const handleAnswer = useCallback(
+    (solution: string) => {
+      if (turnOf) {
+        const response = answer(turnOf, solution);
+
+        if (response) {
+          setAnsweredCorrectly(true);
+        } else {
+          setAnsweredCorrectly(false);
+        }
+
+        setAnswered(true);
+      }
+    },
+    [turnOf, answer],
+  );
+
+  // console.log(type);
+
+  if (!activeCard) return null;
 
   return (
     <Modal
@@ -37,53 +76,50 @@ const ModalCard: React.FC<IModalCardProps> = ({
     >
       <Container type={type}>
         <div className="header">
-          <h4>Sorte ou revés</h4>
+          <h4>{cardsTitle[type]}</h4>
         </div>
         <div className="body">
           <div>
             <div className="description">
               <strong>Descrição:</strong>
-              <p>
-                Define quais as tecnologias disponíveis para realizar as demais
-                decisões arquiteturais.
-              </p>
+              <p>{description}</p>
             </div>
             <div className="question">
-              <p>
-                [V ou F] A escolha da tecnologia é realizada apenas pelo
-                arquiteto pois é a pessoa com mais experiência no time de
-                projeto.
-              </p>
+              <p>{question}</p>
             </div>
             <div className="stars">
-              <Stars value={5} size="lg" />
+              <Stars value={stars} size="lg" />
             </div>
             {answered && answeredCorrectly && (
               <div className="answer correctly">
                 <h3>Parabéns, você acertou! 🎉</h3>
-                <p>
-                  R: Falso, a escolha da tecnologia pode ser feita tanto pelo
-                  arquiteto de software como por terceiros.
-                </p>
+                <p>{solutionText}</p>
               </div>
             )}
             {answered && !answeredCorrectly && (
               <div className="answer wrong">
                 <h3>Poxa, você errou! 😕</h3>
-                <p>
-                  R: Falso, a escolha da tecnologia pode ser feita tanto pelo
-                  arquiteto de software como por terceiros.
-                </p>
+                <p>{solutionText}</p>
               </div>
             )}
           </div>
           <div className="actions">
             {!answered && (
               <ButtonGroup justifyContent="center" gap={10}>
-                <Button variant="red" size="sm" width="flex-fit">
+                <Button
+                  variant="red"
+                  size="sm"
+                  width="flex-fit"
+                  onClick={() => handleAnswer('F')}
+                >
                   Falso
                 </Button>
-                <Button variant="green" size="sm" width="flex-fit">
+                <Button
+                  variant="green"
+                  size="sm"
+                  width="flex-fit"
+                  onClick={() => handleAnswer('V')}
+                >
                   Verdadeiro
                 </Button>
               </ButtonGroup>

@@ -1,8 +1,8 @@
 import styled, { css } from 'styled-components';
-import { SquareTypes } from '../../types';
+import { CardTypes } from '../../types';
 
 interface ContainerProps {
-  type: SquareTypes;
+  type: CardTypes;
   enabled: boolean;
 }
 
@@ -32,25 +32,25 @@ export const Container = styled.div<ContainerProps>`
   }
 
   ${props =>
-    props.type === SquareTypes.ArchDecisions &&
+    props.type === CardTypes.ArchDecisions &&
     css`
       background: var(--red-600);
     `}
 
   ${props =>
-    props.type === SquareTypes.ArchPattern &&
+    props.type === CardTypes.ArchPattern &&
     css`
       background: var(--blue-600);
     `}
 
   ${props =>
-    props.type === SquareTypes.QualityAttributes &&
+    props.type === CardTypes.QualityAttributes &&
     css`
       background: var(--yellow-500);
     `}
 
   ${props =>
-    props.type === SquareTypes.LuckOrBackLuck &&
+    props.type === CardTypes.LuckOrBackLuck &&
     css`
       background: var(--ice-700);
 
