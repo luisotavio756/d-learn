@@ -18,7 +18,7 @@ const headerStyles: Record<CardTypes, HeaderStyle> = {
   },
   [CardTypes.QualityAttributes]: {
     background: theme.colors.yellow.actual,
-    color: '#fff',
+    color: theme.colors.gray[800],
   },
   [CardTypes.ArchPattern]: {
     background: theme.colors.blue[900],

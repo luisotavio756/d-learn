@@ -1,5 +1,4 @@
 import React from 'react';
-import { FiSmile } from 'react-icons/fi';
 import { CardTypes } from '../../types';
 import Button from '../Button';
 import ButtonGroup from '../ButtonGroup';
@@ -59,7 +58,7 @@ const ModalCard: React.FC<IModalCardProps> = ({
             <div className="stars">
               <Stars value={5} size="lg" />
             </div>
-            {answeredCorrectly && (
+            {answered && answeredCorrectly && (
               <div className="answer correctly">
                 <h3>Parabéns, você acertou! 🎉</h3>
                 <p>
@@ -81,23 +80,27 @@ const ModalCard: React.FC<IModalCardProps> = ({
           <div className="actions">
             {!answered && (
               <ButtonGroup justifyContent="center" gap={10}>
-                <Button variant="red" size="sm" width="full">
+                <Button variant="red" size="sm" width="flex-fit">
                   Falso
                 </Button>
-                <Button variant="green" size="sm" width="full">
+                <Button variant="green" size="sm" width="flex-fit">
                   Verdadeiro
                 </Button>
               </ButtonGroup>
             )}
             {answered && answeredCorrectly && (
-              <Button variant="green" size="sm" width="full">
-                <FiSmile /> Avançar 2 casas
-              </Button>
+              <ButtonGroup justifyContent="flex-end">
+                <Button variant="green" size="md" width="fit-content">
+                  Avançar 2 casas
+                </Button>
+              </ButtonGroup>
             )}
             {answered && !answeredCorrectly && (
-              <Button variant="red" size="sm" width="full">
-                Fechar
-              </Button>
+              <ButtonGroup justifyContent="flex-end">
+                <Button variant="red" size="md" width="fit-content">
+                  Fechar
+                </Button>
+              </ButtonGroup>
             )}
           </div>
         </div>
