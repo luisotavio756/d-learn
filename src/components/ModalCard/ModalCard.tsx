@@ -19,7 +19,7 @@ const ModalCard: React.FC<IModalCardProps> = ({
   toggleModal,
 }) => {
   const answered = true;
-  const answeredCorrectly = true;
+  const answeredCorrectly = false;
 
   return (
     <Modal

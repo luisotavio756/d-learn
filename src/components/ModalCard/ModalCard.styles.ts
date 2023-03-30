@@ -84,18 +84,25 @@ export const Container = styled.div<ContainerProps>`
 
       p {
         margin-top: 0.5rem;
-        color: ${props => props.theme.colors.gray[700]};
       }
 
       &.correctly {
         h3 {
           color: ${props => props.theme.colors.green[500]};
         }
+
+        p {
+          color: ${props => props.theme.colors.green[700]};
+        }
       }
 
       &.wrong {
         h3 {
           color: ${props => props.theme.colors.red[500]};
+        }
+
+        p {
+          color: ${props => props.theme.colors.red[700]};
         }
       }
     }
