@@ -10,9 +10,13 @@ import ModalStartGame from '../../components/ModalStartGame';
 import { useGame } from '../../hooks/useGame.hook';
 import ModalCard from '../../components/ModalCard';
 import PlayerPin from '../../components/PlayerPin';
+import ModalRanking from '../../components/ModalRanking';
+import { useModal } from '../../hooks/useModal';
 
 function Home() {
   const { cards, board, turnOf, activeCard, chooseCard } = useGame();
+  const { isOpen: modalRankingIsOpen, toggleModal: toggleModalRanking } =
+    useModal();
 
   const playerSquare = useMemo(() => {
     const findSquare = board.find(item => item.id === turnOf?.square_id);
@@ -124,6 +128,10 @@ function Home() {
         isOpen={!!activeCard}
         toggleModal={() => null}
         type={activeCard?.type || 0}
+      />
+      <ModalRanking
+        isOpen={modalRankingIsOpen}
+        toggleModal={() => toggleModalRanking()}
       />
     </Container>
   );

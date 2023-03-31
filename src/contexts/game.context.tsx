@@ -14,12 +14,14 @@ interface GameContextData {
   activeCard: Card | null;
   players: Player[];
   gameStarted: boolean;
+  gameEnd: boolean;
   turnOf: Player | null;
   startGame(data: Player[]): void;
   chooseCard(card: Card): void;
   answer(solution: string): boolean;
   passTurnToNextPlayer(): void;
   endPlay(card: Card, isCorrect: boolean): void;
+  restartGame(type: 'soft' | 'hard'): void;
 }
 
 export const GameContext = createContext({} as GameContextData);
@@ -43,6 +45,7 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
   ]);
   const [turnOf, setTurnOff] = useState<Player | null>(players[0] || null);
   const [gameStarted, setGameStarted] = useState(true);
+  const [gameEnd, setGameEnd] = useState(false);
   const [board, setBoard] = useState<Square[]>(INITIAL_BOARD);
   const [cards, setCards] = useState<Card[]>(INITIAL_CARDS);
   const [activeCard, setActiveCard] = useState<Card | null>(null);
@@ -138,8 +141,8 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
 
           addPlayersToSquare([turnOf], nextSquare.id);
           setActiveCard(null);
+          setGameEnd(true);
 
-          alert('JOGO FINALIZADO');
           // TODO: FInish game
         } else {
           const nextSquare = board[nextSquareIndex];
@@ -156,10 +159,23 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
     [board, turnOf, addPlayersToSquare, passTurnToNextPlayer],
   );
 
+  const restartGame = useCallback((type: 'soft' | 'hard') => {
+    if (type === 'hard') {
+      setPlayers([]);
+      setTurnOff(null);
+      setGameEnd(false);
+      setCards(INITIAL_CARDS);
+      setBoard(INITIAL_BOARD);
+      setActiveCard(null);
+      setGameStarted(false);
+    }
+  }, []);
+
   const value = useMemo(
     () => ({
       players,
       gameStarted,
+      gameEnd,
       turnOf,
       board,
       cards,
@@ -169,10 +185,12 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
       chooseCard,
       answer,
       endPlay,
+      restartGame,
     }),
     [
       players,
       gameStarted,
+      gameEnd,
       turnOf,
       board,
       cards,
@@ -182,6 +200,7 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
       chooseCard,
       answer,
       endPlay,
+      restartGame,
     ],
   );
 
