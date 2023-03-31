@@ -8,6 +8,7 @@ import CardsQueue from '../../components/CardsQueue';
 import ModalStartGame from '../../components/ModalStartGame';
 import { useGame } from '../../hooks/useGame.hook';
 import ModalCard from '../../components/ModalCard';
+import PlayerPin from '../../components/PlayerPin';
 
 function Home() {
   const { cards, board, turnOf, activeCard, chooseCard } = useGame();
@@ -15,14 +16,10 @@ function Home() {
   function handleChooseCard(type: CardTypes) {
     const card = cards.find(item => item.type === type && !item.used);
 
-    // console.log(type, card, turnOf);
-
     if (card && turnOf) {
-      chooseCard(turnOf, card);
+      chooseCard(card);
     }
   }
-
-  console.log(activeCard?.type);
 
   return (
     <Container>
@@ -45,6 +42,24 @@ function Home() {
           </div>
           <div className="content-main">
             <img src={LogoImg} alt="" />
+            <div className="info">
+              {turnOf && (
+                <div className="turnOf">
+                  <PlayerPin
+                    playerId={turnOf.id}
+                    color={turnOf.color}
+                    name={turnOf.name}
+                    score={turnOf.score}
+                  />
+
+                  <span>vez de </span>
+                  <h2>
+                    <b>{turnOf?.name}</b>
+                  </h2>
+                </div>
+              )}
+              <p>Escolha uma carta abaixo</p>
+            </div>
             <div className="cards">
               <CardsQueue
                 onClick={handleChooseCard}

@@ -45,8 +45,34 @@ export const Board = styled.div`
         height: auto;
       }
 
+      .info {
+        width: 100%;
+
+        .turnOf {
+          display: flex;
+          align-items: center;
+          color: ${props => props.theme.colors.gray[900]};
+
+          > div {
+            margin-right: 4px;
+          }
+
+          span {
+            margin-right: 4px;
+            font-size: ${props => props.theme.fontSize.lg};
+            font-family: ${props => props.theme.fontFamily.sans};
+          }
+        }
+
+        p {
+          font-family: ${props => props.theme.fontFamily.sans};
+          font-size: ${props => props.theme.fontSize.sm};
+          color: ${props => props.theme.colors.gray[600]};
+        }
+      }
+
       .cards {
-        margin-top: 64px;
+        margin-top: 1rem;
         display: flex;
         gap: 32px;
       }

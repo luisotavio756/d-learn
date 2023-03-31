@@ -16,9 +16,10 @@ interface GameContextData {
   gameStarted: boolean;
   turnOf: Player | null;
   startGame(data: Player[]): void;
-  chooseCard(player: Player, card: Card): void;
-  answer(player: Player, solution: string): boolean;
+  chooseCard(card: Card): void;
+  answer(solution: string): boolean;
   passTurnToNextPlayer(): void;
+  endPlay(card: Card, isCorrect: boolean): void;
 }
 
 export const GameContext = createContext({} as GameContextData);
@@ -65,17 +66,17 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
   );
 
   const passTurnToNextPlayer = useCallback(() => {
-    const actualPlayerId = turnOf?.id;
+    const actualPlayerIndex = players.findIndex(item => item.id === turnOf?.id);
 
-    if (actualPlayerId) {
-      const nextPlayerid = players[actualPlayerId + 1];
+    if (actualPlayerIndex !== -1) {
+      const nextPlayer = players[actualPlayerIndex + 1];
 
-      if (!nextPlayerid) {
+      if (!nextPlayer) {
         const firstPlayer = players[0];
 
         setTurnOff(firstPlayer);
       } else {
-        setTurnOff(nextPlayerid);
+        setTurnOff(nextPlayer);
       }
     }
   }, [turnOf, players]);
@@ -87,9 +88,9 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
   }, []);
 
   const chooseCard = useCallback(
-    (player: Player, card: Card) => {
-      if (turnOf?.id !== player.id) {
-        alert('Não é sua vez!');
+    (card: Card) => {
+      if (!turnOf?.id) {
+        alert('Não há jogador ativo!');
 
         return;
       }
@@ -106,9 +107,9 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
   );
 
   const answer = useCallback(
-    (player: Player, solution: string) => {
-      if (turnOf?.id !== player.id) {
-        alert('Não é sua vez!');
+    (solution: string) => {
+      if (!turnOf?.id) {
+        alert('Não há jogador ativo!');
 
         return false;
       }
@@ -124,6 +125,38 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
     [turnOf, activeCard],
   );
 
+  const endPlay = useCallback(
+    (card: Card, isCorrect: boolean) => {
+      if (isCorrect && turnOf) {
+        const actualPlayerSquareIndex = board.findIndex(
+          item => item.id === turnOf.square_id,
+        );
+        const nextSquareIndex = actualPlayerSquareIndex + card.stars;
+
+        if (nextSquareIndex >= board.length - 1) {
+          const nextSquare = board[board.length - 1];
+
+          addPlayersToSquare([turnOf], nextSquare.id);
+          setActiveCard(null);
+
+          alert('JOGO FINALIZADO');
+          // TODO: FInish game
+        } else {
+          console.log('here 22');
+          const nextSquare = board[nextSquareIndex];
+
+          addPlayersToSquare([turnOf], nextSquare.id);
+          passTurnToNextPlayer();
+          setActiveCard(null);
+        }
+      } else if (!isCorrect && turnOf) {
+        passTurnToNextPlayer();
+        setActiveCard(null);
+      }
+    },
+    [board, turnOf, addPlayersToSquare, passTurnToNextPlayer],
+  );
+
   const value = useMemo(
     () => ({
       players,
@@ -136,6 +169,7 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
       startGame,
       chooseCard,
       answer,
+      endPlay,
     }),
     [
       players,
@@ -148,6 +182,7 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
       startGame,
       chooseCard,
       answer,
+      endPlay,
     ],
   );
 

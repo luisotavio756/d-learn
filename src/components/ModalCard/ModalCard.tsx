@@ -22,9 +22,9 @@ const ModalCard: React.FC<IModalCardProps> = ({
   const [answered, setAnswered] = useState(false);
   const [answeredCorrectly, setAnsweredCorrectly] = useState(false);
 
-  const { activeCard, turnOf, answer, passTurnToNextPlayer } = useGame();
+  const { activeCard, answer, endPlay } = useGame();
 
-  const { id, description, question, solution, solutionText, stars } = useMemo(
+  const { description, question, solutionText, stars } = useMemo(
     () => (activeCard || {}) as Card,
     [activeCard],
   );
@@ -41,22 +41,29 @@ const ModalCard: React.FC<IModalCardProps> = ({
 
   const handleAnswer = useCallback(
     (solution: string) => {
-      if (turnOf) {
-        const response = answer(turnOf, solution);
+      const response = answer(solution);
 
-        if (response) {
-          setAnsweredCorrectly(true);
-        } else {
-          setAnsweredCorrectly(false);
-        }
-
-        setAnswered(true);
+      if (response) {
+        setAnsweredCorrectly(true);
+      } else {
+        setAnsweredCorrectly(false);
       }
+
+      setAnswered(true);
     },
-    [turnOf, answer],
+    [answer],
   );
 
-  // console.log(type);
+  const handleEndPlay = useCallback(() => {
+    const isAnsweredCorrectly = answered && answeredCorrectly;
+
+    if (activeCard) {
+      endPlay(activeCard, isAnsweredCorrectly);
+
+      setAnswered(false);
+      setAnsweredCorrectly(false);
+    }
+  }, [answered, answeredCorrectly, activeCard, endPlay]);
 
   if (!activeCard) return null;
 
@@ -126,14 +133,24 @@ const ModalCard: React.FC<IModalCardProps> = ({
             )}
             {answered && answeredCorrectly && (
               <ButtonGroup justifyContent="flex-end">
-                <Button variant="green" size="md" width="fit-content">
+                <Button
+                  variant="green"
+                  size="md"
+                  width="fit-content"
+                  onClick={handleEndPlay}
+                >
                   Avançar 2 casas
                 </Button>
               </ButtonGroup>
             )}
             {answered && !answeredCorrectly && (
               <ButtonGroup justifyContent="flex-end">
-                <Button variant="red" size="md" width="fit-content">
+                <Button
+                  variant="red"
+                  size="md"
+                  width="fit-content"
+                  onClick={handleEndPlay}
+                >
                   Fechar
                 </Button>
               </ButtonGroup>
