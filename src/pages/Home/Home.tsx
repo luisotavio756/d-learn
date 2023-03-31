@@ -1,6 +1,7 @@
+import { useMemo } from 'react';
 import BoardSquare from '../../components/BoardSquare';
 
-import { CardTypes } from '../../types';
+import { CardTypes, SquareTypes } from '../../types';
 import { Board, Container } from './Home.styles';
 
 import LogoImg from '../../assets/logo.jpeg';
@@ -12,6 +13,12 @@ import PlayerPin from '../../components/PlayerPin';
 
 function Home() {
   const { cards, board, turnOf, activeCard, chooseCard } = useGame();
+
+  const playerSquare = useMemo(() => {
+    const findSquare = board.find(item => item.id === turnOf?.square_id);
+
+    return findSquare;
+  }, [board, turnOf]);
 
   function handleChooseCard(type: CardTypes) {
     const card = cards.find(item => item.type === type && !item.used);
@@ -64,22 +71,34 @@ function Home() {
               <CardsQueue
                 onClick={handleChooseCard}
                 type={CardTypes.ArchDecisions}
-                enabled
+                enabled={
+                  playerSquare?.type === SquareTypes.ArchDecisions ||
+                  playerSquare?.type === SquareTypes.Start
+                }
               />
               <CardsQueue
                 onClick={handleChooseCard}
                 type={CardTypes.QualityAttributes}
-                enabled
+                enabled={
+                  playerSquare?.type === SquareTypes.QualityAttributes ||
+                  playerSquare?.type === SquareTypes.Start
+                }
               />
               <CardsQueue
                 onClick={handleChooseCard}
                 type={CardTypes.ArchPattern}
-                enabled
+                enabled={
+                  playerSquare?.type === SquareTypes.ArchPattern ||
+                  playerSquare?.type === SquareTypes.Start
+                }
               />
               <CardsQueue
                 onClick={handleChooseCard}
                 type={CardTypes.LuckOrBackLuck}
-                enabled
+                enabled={
+                  playerSquare?.type === SquareTypes.LuckOrBackLuck ||
+                  playerSquare?.type === SquareTypes.Start
+                }
               />
             </div>
           </div>

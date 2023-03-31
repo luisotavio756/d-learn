@@ -39,7 +39,7 @@ const CardsQueue: React.FC<CardsQueueProps> = ({ enabled, type, onClick }) => {
     <Container
       type={type}
       enabled={enabled}
-      onClick={() => onClick(type)}
+      onClick={() => enabled && onClick(type)}
       aria-hidden="true"
     >
       <div className="icon">

@@ -142,7 +142,6 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
           alert('JOGO FINALIZADO');
           // TODO: FInish game
         } else {
-          console.log('here 22');
           const nextSquare = board[nextSquareIndex];
 
           addPlayersToSquare([turnOf], nextSquare.id);

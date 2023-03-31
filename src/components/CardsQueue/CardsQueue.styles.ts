@@ -59,11 +59,19 @@ export const Container = styled.div<ContainerProps>`
       }
     `}
 
-  &:hover {
-    filter: brightness(90%);
-  }
+  ${props =>
+    props.enabled &&
+    css`
+      &:hover {
+        filter: brightness(90%);
+      }
+    `}
 
-  /* &::before,
+  ${props =>
+    !props.enabled &&
+    css`
+      filter: brightness(40%);
+    `} /* &::before,
   &::after {
     box-shadow: 2px 1px 1px rgba(0, 0, 0, 0.15);
   }
