@@ -29,7 +29,11 @@ const LuckCardBody: React.FC = () => {
           {luckType === 'luck' ? <FiSmile size={60} /> : <FiMeh size={60} />}
         </div>
         <div className="description">
-          <strong>Você teve sorte dessa vez!</strong>
+          <strong>
+            {luckType === 'luck'
+              ? 'Você teve sorte dessa vez! 🎉'
+              : '😅 Poxa que azar!'}
+          </strong>
         </div>
         <div className="info">
           <strong>{description}</strong>
