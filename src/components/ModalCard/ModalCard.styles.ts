@@ -1,9 +1,10 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { theme } from '../../styles/theme';
 import { CardTypes } from '../../types';
 
 type ContainerProps = {
   type: CardTypes;
+  isFlipped: boolean;
 };
 
 type LuckCardBodyContainerProps = {
@@ -37,6 +38,8 @@ const headerStyles: Record<CardTypes, HeaderStyle> = {
 export const Container = styled.div<ContainerProps>`
   display: flex;
   min-height: 490px;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
 
   .header {
     display: flex;
@@ -62,10 +65,19 @@ export const Container = styled.div<ContainerProps>`
   .front,
   .back {
     flex: 1;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
   }
 
-  .front {
+  .back {
+    transform: rotateY(180deg);
   }
+
+  ${props =>
+    props.isFlipped &&
+    css`
+      transform: rotateY(180deg);
+    `}
 `;
 
 export const NormalCardBodyContainer = styled.div`

@@ -69,8 +69,12 @@ const ModalCard: React.FC<IModalCardProps> = ({
         },
       }}
     >
-      <Container type={type}>
-        {!isFlipped && <CardFront type={type} />}
+      <Container isFlipped={isFlipped} type={type}>
+        {!isFlipped && (
+          <Row className="front">
+            <CardFront type={type} />
+          </Row>
+        )}
         {isFlipped && (
           <Row flexDirection="column" className="back">
             <div className="header">
