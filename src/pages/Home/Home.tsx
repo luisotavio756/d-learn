@@ -19,7 +19,7 @@ import Button from '../../components/Button/Button';
 import ButtonGroup from '../../components/ButtonGroup/ButtonGroup';
 
 function Home() {
-  const { cards, board, turnOf, activeCard, chooseCard } = useGame();
+  const { board, turnOf, activeCard, chooseCard, getCardOfType } = useGame();
   const { isOpen: modalRankingIsOpen, toggleModal: toggleModalRanking } =
     useModal();
 
@@ -30,7 +30,7 @@ function Home() {
   }, [board, turnOf]);
 
   function handleChooseCard(type: CardTypes) {
-    const card = cards.find(item => item.type === type && !item.used);
+    const card = getCardOfType(type);
 
     if (card && turnOf) {
       chooseCard(card);
@@ -66,6 +66,7 @@ function Home() {
                     color={turnOf.color}
                     name={turnOf.name}
                     score={turnOf.score}
+                    active={turnOf.active}
                   />
 
                   <span>vez de </span>

@@ -1,6 +1,6 @@
 import { createContext, useCallback, useMemo, useState } from 'react';
 
-import { Card, CardTypes, Player, Square } from '../types';
+import { Card, CardTypes, Player, Square, SquareTypes } from '../types';
 import INITIAL_BOARD from '../initialBoard';
 import INITIAL_CARDS from '../cards';
 
@@ -15,7 +15,8 @@ interface GameContextData {
   players: Player[];
   gameStarted: boolean;
   gameEnd: boolean;
-  turnOf: Player | null;
+  turnOf: Player | undefined;
+  getCardOfType(type: CardTypes): Card | undefined;
   startGame(data: Player[]): void;
   chooseCard(card: Card): void;
   answer(solution: string): boolean;
@@ -28,27 +29,44 @@ export const GameContext = createContext({} as GameContextData);
 
 export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
   const [players, setPlayers] = useState<Player[]>([
-    {
-      id: 1,
-      name: 'Luis',
-      score: 0,
-      color: '#00B5D8',
-      square_id: '7',
-    },
-    {
-      id: 2,
-      name: 'Bia',
-      score: 0,
-      color: 'red',
-      square_id: '1',
-    },
+    // {
+    //   id: 1,
+    //   name: 'Luis',
+    //   score: 0,
+    //   color: '#00B5D8',
+    //   square_id: '1',
+    //   active: true,
+    // },
+    // {
+    //   id: 2,
+    //   name: 'Bia',
+    //   score: 0,
+    //   color: 'red',
+    //   square_id: '1',
+    //   active: false,
+    // },
   ]);
-  const [turnOf, setTurnOff] = useState<Player | null>(players[0] || null);
-  const [gameStarted, setGameStarted] = useState(true);
+  const [gameStarted, setGameStarted] = useState(false);
   const [gameEnd, setGameEnd] = useState(false);
   const [board, setBoard] = useState<Square[]>(INITIAL_BOARD);
   const [cards, setCards] = useState<Card[]>(INITIAL_CARDS);
   const [activeCard, setActiveCard] = useState<Card | null>(null);
+
+  const turnOf = useMemo(() => players.find(item => item.active), [players]);
+
+  const setActivePlayer = useCallback(
+    (player: Player | null) => {
+      const playerIndex = players.findIndex(item => item.id === player?.id);
+
+      setPlayers(oldState =>
+        oldState.map((item, i) => ({
+          ...item,
+          active: i === playerIndex,
+        })),
+      );
+    },
+    [players],
+  );
 
   const addPlayersToSquare = useCallback(
     (playersList: Player[], square_id: string) => {
@@ -69,26 +87,37 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
   );
 
   const passTurnToNextPlayer = useCallback(() => {
-    const actualPlayerIndex = players.findIndex(item => item.id === turnOf?.id);
+    const actualPlayerIndex = players.findIndex(item => item.active);
 
-    if (actualPlayerIndex !== -1) {
-      const nextPlayer = players[actualPlayerIndex + 1];
+    if (actualPlayerIndex === -1) return;
 
-      if (!nextPlayer) {
-        const firstPlayer = players[0];
+    const nextPlayerIndex = actualPlayerIndex + 1;
 
-        setTurnOff(firstPlayer);
-      } else {
-        setTurnOff(nextPlayer);
-      }
+    if (nextPlayerIndex >= players.length) {
+      setActivePlayer(players[0]);
+    } else {
+      setActivePlayer(players[nextPlayerIndex]);
     }
-  }, [turnOf, players]);
+  }, [players, setActivePlayer]);
 
   const startGame = useCallback((data: Player[]) => {
-    setPlayers(data);
+    const playersWithActivePlayer = data.map((item, i) => ({
+      ...item,
+      active: i === 0,
+    }));
+
+    setPlayers(playersWithActivePlayer);
     setGameStarted(true);
-    setTurnOff(data[0]);
   }, []);
+
+  const getCardOfType = useCallback(
+    (type: CardTypes) => {
+      const card = cards.find(item => item.type === type && !item.used);
+
+      return card;
+    },
+    [cards],
+  );
 
   const chooseCard = useCallback(
     (card: Card) => {
@@ -160,14 +189,24 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
 
         // TODO: FInish game
       } else {
+        const card = getCardOfType(CardTypes.LuckOrBackLuck);
         const nextSquare = board[nextSquareIndex];
 
-        addPlayersToSquare([player], nextSquare.id);
-        passTurnToNextPlayer();
-        setActiveCard(null);
+        if (nextSquare.type === SquareTypes.LuckOrBackLuck && card) {
+          addPlayersToSquare([player], nextSquare.id);
+          setActiveCard(null);
+
+          setTimeout(() => {
+            setActiveCard(card);
+          }, 1000);
+        } else {
+          addPlayersToSquare([player], nextSquare.id);
+          setActiveCard(null);
+          passTurnToNextPlayer();
+        }
       }
     },
-    [board, addPlayersToSquare, passTurnToNextPlayer],
+    [board, getCardOfType, addPlayersToSquare, passTurnToNextPlayer],
   );
 
   const endPlay = useCallback(
@@ -202,17 +241,20 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
     ],
   );
 
-  const restartGame = useCallback((type: 'soft' | 'hard') => {
-    if (type === 'hard') {
-      setPlayers([]);
-      setTurnOff(null);
-      setGameEnd(false);
-      setCards(INITIAL_CARDS);
-      setBoard(INITIAL_BOARD);
-      setActiveCard(null);
-      setGameStarted(false);
-    }
-  }, []);
+  const restartGame = useCallback(
+    (type: 'soft' | 'hard') => {
+      if (type === 'hard') {
+        setPlayers([]);
+        setActivePlayer(null);
+        setGameEnd(false);
+        setCards(INITIAL_CARDS);
+        setBoard(INITIAL_BOARD);
+        setActiveCard(null);
+        setGameStarted(false);
+      }
+    },
+    [setActivePlayer],
+  );
 
   const value = useMemo(
     () => ({
@@ -229,6 +271,7 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
       answer,
       endPlay,
       restartGame,
+      getCardOfType,
     }),
     [
       players,
@@ -244,6 +287,7 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
       answer,
       endPlay,
       restartGame,
+      getCardOfType,
     ],
   );
 

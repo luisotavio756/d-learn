@@ -18,6 +18,7 @@ export interface Player {
   name: string;
   score: number;
   color: string;
+  active: boolean;
   square_id?: string;
 }
 

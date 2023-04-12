@@ -100,7 +100,7 @@ const NormalCardBody: React.FC = () => {
               width="fit-content"
               onClick={handleEndPlay}
             >
-              Avançar 2 casas
+              Avançar {stars} casas
             </Button>
           </ButtonGroup>
         )}

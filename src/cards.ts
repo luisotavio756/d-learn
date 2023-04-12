@@ -11,7 +11,7 @@ const cards: Card[] = [
     solution: 'F',
     solutionText:
       'A escolha da tecnologia pode ser feita tanto pelo arquiteto de software como por terceiros.',
-    stars: 3,
+    stars: 6,
     type: CardTypes.ArchDecisions,
     used: false,
   },
