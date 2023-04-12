@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { KeyboardEvent, useCallback, useEffect, useState } from 'react';
 import { v4 as uuid } from 'uuid';
 import { useForm } from 'react-hook-form';
 import { FiCheck, FiUserMinus, FiUserPlus } from 'react-icons/fi';
@@ -44,6 +44,7 @@ const ModalStartGame: React.FC = () => {
       score: 0,
       color: colors[index as 0 | 1 | 2 | 3],
       square_id: startSquare.id,
+      active: false,
     }));
 
     startGame(players);
@@ -59,6 +60,22 @@ const ModalStartGame: React.FC = () => {
 
   const removePlayer = useCallback(() => {
     setPlayers(oldState => oldState - 1);
+  }, []);
+
+  useEffect(() => {
+    window.addEventListener('keypress', event => {
+      if (event.key === 'Enter') {
+        event.preventDefault();
+      }
+    });
+
+    return () => {
+      window.removeEventListener('keypress', event => {
+        if (event.key === 'Enter') {
+          event.preventDefault();
+        }
+      });
+    };
   }, []);
 
   return (
