@@ -1,6 +1,6 @@
 import { createContext, useCallback, useMemo, useState } from 'react';
 
-import { Card, Player, Square } from '../types';
+import { Card, CardTypes, Player, Square } from '../types';
 import INITIAL_BOARD from '../initialBoard';
 import INITIAL_CARDS from '../cards';
 
@@ -20,7 +20,7 @@ interface GameContextData {
   chooseCard(card: Card): void;
   answer(solution: string): boolean;
   passTurnToNextPlayer(): void;
-  endPlay(card: Card, isCorrect: boolean): void;
+  endPlay(card: Card, isCorrect?: boolean): void;
   restartGame(type: 'soft' | 'hard'): void;
 }
 
@@ -33,7 +33,7 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
       name: 'Luis',
       score: 0,
       color: '#00B5D8',
-      square_id: '1',
+      square_id: '7',
     },
     {
       id: 2,
@@ -128,35 +128,78 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
     [turnOf, activeCard],
   );
 
-  const endPlay = useCallback(
-    (card: Card, isCorrect: boolean) => {
-      if (isCorrect && turnOf) {
-        const actualPlayerSquareIndex = board.findIndex(
-          item => item.id === turnOf.square_id,
-        );
-        const nextSquareIndex = actualPlayerSquareIndex + card.stars;
+  const handleEndPlayFromLuckCard = useCallback(
+    (card: Card, player: Player, actualSquare: number) => {
+      let nextSquareIndex;
 
-        if (nextSquareIndex >= board.length - 1) {
-          const nextSquare = board[board.length - 1];
+      if (card.luckType === 'luck') {
+        nextSquareIndex = actualSquare + card.stars;
+      } else {
+        nextSquareIndex = actualSquare - card.stars;
+      }
 
-          addPlayersToSquare([turnOf], nextSquare.id);
-          setActiveCard(null);
-          setGameEnd(true);
+      const nextSquare = board[nextSquareIndex];
 
-          // TODO: FInish game
-        } else {
-          const nextSquare = board[nextSquareIndex];
+      addPlayersToSquare([player], nextSquare.id);
+      passTurnToNextPlayer();
+      setActiveCard(null);
+    },
+    [board, addPlayersToSquare, passTurnToNextPlayer],
+  );
 
-          addPlayersToSquare([turnOf], nextSquare.id);
-          passTurnToNextPlayer();
-          setActiveCard(null);
-        }
-      } else if (!isCorrect && turnOf) {
+  const handleEndPlayFromNormalCard = useCallback(
+    (card: Card, player: Player, actualSquare: number) => {
+      const nextSquareIndex = actualSquare + card.stars;
+
+      if (nextSquareIndex >= board.length - 1) {
+        const nextSquare = board[board.length - 1];
+
+        addPlayersToSquare([player], nextSquare.id);
+        setActiveCard(null);
+        setGameEnd(true);
+
+        // TODO: FInish game
+      } else {
+        const nextSquare = board[nextSquareIndex];
+
+        addPlayersToSquare([player], nextSquare.id);
         passTurnToNextPlayer();
         setActiveCard(null);
       }
     },
-    [board, turnOf, addPlayersToSquare, passTurnToNextPlayer],
+    [board, addPlayersToSquare, passTurnToNextPlayer],
+  );
+
+  const endPlay = useCallback(
+    (card: Card, isCorrect?: boolean) => {
+      if (!turnOf) {
+        return;
+      }
+
+      const actualPlayerSquareIndex = board.findIndex(
+        item => item.id === turnOf?.square_id,
+      );
+
+      switch (true) {
+        case card.type === CardTypes.LuckOrBackLuck:
+          handleEndPlayFromLuckCard(card, turnOf, actualPlayerSquareIndex);
+          break;
+        case isCorrect:
+          handleEndPlayFromNormalCard(card, turnOf, actualPlayerSquareIndex);
+          break;
+        default:
+          passTurnToNextPlayer();
+          setActiveCard(null);
+          break;
+      }
+    },
+    [
+      turnOf,
+      board,
+      passTurnToNextPlayer,
+      handleEndPlayFromLuckCard,
+      handleEndPlayFromNormalCard,
+    ],
   );
 
   const restartGame = useCallback((type: 'soft' | 'hard') => {

@@ -30,9 +30,10 @@ export interface Card {
   id: string;
   type: CardTypes;
   description: string;
-  question: string;
   stars: number;
-  solution: 'V' | 'F';
-  solutionText: string;
   used: boolean;
+  question?: string;
+  solution?: 'V' | 'F';
+  solutionText?: string;
+  luckType?: 'luck' | 'bad-luck';
 }

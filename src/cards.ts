@@ -48,6 +48,14 @@ const cards: Card[] = [
     type: CardTypes.ArchPattern,
     used: false,
   },
+  {
+    id: uuid(),
+    description: 'Avance três casas no tabuleiro!',
+    type: CardTypes.LuckOrBackLuck,
+    luckType: 'luck',
+    used: false,
+    stars: 3,
+  },
 ];
 
 export default cards;
