@@ -70,7 +70,7 @@ const Modal: React.FC<IModalProps> = ({
       style={styles}
       {...rest}
     >
-      <CloseContainer>
+      <CloseContainer hasTitle={!!title}>
         {title && <h1>{title}</h1>}
         {showCloseButton && (
           <button type="button" onClick={() => toggleModal()}>

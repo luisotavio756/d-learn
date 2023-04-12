@@ -1,6 +1,6 @@
 import React from 'react';
 import { FiRefreshCw, FiUsers } from 'react-icons/fi';
-import { GiCrownedHeart } from 'react-icons/gi';
+import { RiNumbersFill } from 'react-icons/ri';
 import { useGame } from '../../hooks/useGame.hook';
 import Button from '../Button';
 import ButtonGroup from '../ButtonGroup';
@@ -25,7 +25,7 @@ const ModalRanking: React.FC<ModalRankingProps> = ({ isOpen, toggleModal }) => {
     >
       <Container>
         <div className="title">
-          <GiCrownedHeart size={28} />
+          <RiNumbersFill size={28} />
           <h2>Ranking do jogo</h2>
         </div>
         <table>

@@ -1,10 +1,14 @@
 import styled from 'styled-components';
 
-export const CloseContainer = styled.div`
+interface CloseContainerProps {
+  hasTitle: boolean;
+}
+
+export const CloseContainer = styled.div<CloseContainerProps>`
   width: 100%;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: ${props => (props.hasTitle ? 'space-between' : 'flex-end')};
 
   h1 {
     display: flex;

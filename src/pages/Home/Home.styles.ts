@@ -22,6 +22,7 @@ export const Board = styled.div`
   }
 
   .main {
+    position: relative;
     display: flex;
     justify-content: space-between;
 
@@ -75,6 +76,31 @@ export const Board = styled.div`
         margin-top: 1rem;
         display: flex;
         gap: 32px;
+      }
+
+      .controls {
+        top: 1rem;
+        right: 8rem;
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+
+        .ranking,
+        .info {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          border-radius: 50%;
+          border: 1px solid ${props => props.theme.colors.blue[500]};
+          width: 2rem;
+          height: 2rem;
+
+          svg {
+            color: ${props => props.theme.colors.blue[500]};
+          }
+        }
       }
     }
   }

@@ -1,10 +1,13 @@
 import { useMemo } from 'react';
+import { FiInfo } from 'react-icons/fi';
+import { RiNumbersFill } from 'react-icons/ri';
 import BoardSquare from '../../components/BoardSquare';
 
 import { CardTypes, SquareTypes } from '../../types';
 import { Board, Container } from './Home.styles';
 
 import LogoImg from '../../assets/logo.jpeg';
+
 import CardsQueue from '../../components/CardsQueue';
 import ModalStartGame from '../../components/ModalStartGame';
 import { useGame } from '../../hooks/useGame.hook';
@@ -12,6 +15,8 @@ import ModalCard from '../../components/ModalCard';
 import PlayerPin from '../../components/PlayerPin';
 import ModalRanking from '../../components/ModalRanking';
 import { useModal } from '../../hooks/useModal';
+import Button from '../../components/Button/Button';
+import ButtonGroup from '../../components/ButtonGroup/ButtonGroup';
 
 function Home() {
   const { cards, board, turnOf, activeCard, chooseCard } = useGame();
@@ -104,6 +109,21 @@ function Home() {
                   playerSquare?.type === SquareTypes.Start
                 }
               />
+            </div>
+            <div className="controls">
+              <ButtonGroup gap={4}>
+                <Button
+                  size="sm"
+                  variant="blue-outline"
+                  onClick={toggleModalRanking}
+                >
+                  <RiNumbersFill />
+                  Ranking
+                </Button>
+                <Button size="sm" variant="blue-outline" justIcon>
+                  <FiInfo />
+                </Button>
+              </ButtonGroup>
             </div>
           </div>
           <div className="column2">

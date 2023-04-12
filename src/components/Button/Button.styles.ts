@@ -57,9 +57,13 @@ export const Container = styled.button<ButtonProps>`
   margin-top: ${props => props.marginTop}rem;
   transition: filter 0.2s;
 
-  svg {
-    margin-right: 6px;
-  }
+  ${props =>
+    !props.justIcon &&
+    css`
+      svg {
+        margin-right: 6px;
+      }
+    `}
 
   &:hover {
     filter: brightness(90%);
