@@ -6,6 +6,7 @@ export interface RowProps {
   shouldShow?: boolean;
   children: React.ReactNode;
   gap?: number;
+  className?: string;
   flexDirection?: 'row' | 'column';
   alignItems?: 'center' | 'flex-start' | 'flex-end';
   justifyContent?: 'center' | 'space-between' | 'flex-start' | 'flex-end';

@@ -35,6 +35,9 @@ const headerStyles: Record<CardTypes, HeaderStyle> = {
 };
 
 export const Container = styled.div<ContainerProps>`
+  display: flex;
+  min-height: 490px;
+
   .header {
     display: flex;
     align-items: center;
@@ -46,14 +49,22 @@ export const Container = styled.div<ContainerProps>`
   }
 
   .body {
+    flex: 1;
     background: #fff;
     padding: 2.5rem 1rem;
-    min-height: 440px;
     display: flex;
 
     .actions {
       margin-top: 1.5rem;
     }
+  }
+
+  .front,
+  .back {
+    flex: 1;
+  }
+
+  .front {
   }
 `;
 
