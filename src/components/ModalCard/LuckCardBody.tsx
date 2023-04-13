@@ -7,6 +7,7 @@ import { Flex } from '../Layout';
 import { LuckCardBodyContainer } from './ModalCard.styles';
 import { Card } from '../../types';
 import { useGame } from '../../hooks/useGame.hook';
+import { Text } from '../UI';
 
 const LuckCardBody: React.FC = () => {
   const { activeCard, endPlay } = useGame();
@@ -29,14 +30,19 @@ const LuckCardBody: React.FC = () => {
           {luckType === 'luck' ? <FiSmile size={60} /> : <FiMeh size={60} />}
         </div>
         <div className="description">
-          <strong>
+          <Text size="lg" type="text" weight="heavy">
             {luckType === 'luck'
               ? 'Você teve sorte dessa vez! 🎉'
               : '😅 Poxa que azar!'}
-          </strong>
+          </Text>
         </div>
         <div className="info">
-          <strong>{description}</strong>
+          <Text
+            weight="medium"
+            type={luckType === 'luck' ? 'success' : 'danger'}
+          >
+            {description}
+          </Text>
         </div>
 
         <div className="actions">

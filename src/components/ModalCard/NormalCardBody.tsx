@@ -10,6 +10,7 @@ import { useGame } from '../../hooks/useGame.hook';
 
 import imgUrl from '../../assets/cards-images/card-1.png';
 import { Flex } from '../Layout';
+import { Headline, Text } from '../UI';
 
 const NormalCardBody: React.FC = () => {
   const [answered, setAnswered] = useState(false);
@@ -55,11 +56,15 @@ const NormalCardBody: React.FC = () => {
           <img src={imgUrl} alt={title} />
         </Flex>
         <Flex className="description">
-          <strong>Descrição:</strong>
-          <p>{description}</p>
+          <Text size="lg" weight="heavy">
+            Descrição:
+          </Text>
+          <Text family="mono">{description}</Text>
         </Flex>
         <Flex className="question">
-          <p>{question}</p>
+          <Text weight="medium" family="mono">
+            {question}
+          </Text>
         </Flex>
         <Flex justifyContent="center" className="stars">
           <Stars value={stars} size="lg" />
@@ -70,8 +75,12 @@ const NormalCardBody: React.FC = () => {
             flexDirection="column"
             className="answer correctly"
           >
-            <h3>Parabéns, você acertou! 🎉</h3>
-            <p>{solutionText}</p>
+            <Headline size="sm" type="success">
+              Parabéns, você acertou! 🎉
+            </Headline>
+            <Text type="success" family="mono">
+              {solutionText}
+            </Text>
           </Flex>
         )}
         {answered && !answeredCorrectly && (
@@ -80,8 +89,12 @@ const NormalCardBody: React.FC = () => {
             flexDirection="column"
             className="answer wrong"
           >
-            <h3>Poxa, você errou! 😕</h3>
-            <p>{solutionText}</p>
+            <Headline size="sm" type="danger">
+              Poxa, você errou! 😕
+            </Headline>
+            <Text type="danger" family="mono">
+              {solutionText}
+            </Text>
           </Flex>
         )}
       </div>

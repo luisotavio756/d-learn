@@ -96,24 +96,17 @@ export const NormalCardBodyContainer = styled.div`
   .description {
     margin-top: 1rem;
 
-    strong {
+    p:first-of-type {
       width: 90px;
-      color: ${props => props.theme.colors.gray[900]};
     }
 
-    p {
+    p:last-of-type {
       flex: 1;
-      color: ${props => props.theme.colors.gray[900]};
     }
   }
 
   .question {
     margin-top: 2rem;
-
-    p {
-      font-weight: ${props => props.theme.fontWeight.medium};
-      color: ${props => props.theme.colors.gray[900]};
-    }
   }
 
   .stars {
@@ -123,30 +116,6 @@ export const NormalCardBodyContainer = styled.div`
   .answer {
     margin-top: 2rem;
     text-align: center;
-
-    p {
-      margin-top: 0.5rem;
-    }
-
-    &.correctly {
-      h3 {
-        color: ${props => props.theme.colors.green[500]};
-      }
-
-      p {
-        color: ${props => props.theme.colors.green[700]};
-      }
-    }
-
-    &.wrong {
-      h3 {
-        color: ${props => props.theme.colors.red[500]};
-      }
-
-      p {
-        color: ${props => props.theme.colors.red[700]};
-      }
-    }
   }
 `;
 
@@ -157,17 +126,6 @@ export const LuckCardBodyContainer = styled.div<LuckCardBodyContainerProps>`
   justify-content: center;
 
   .icon {
-    color: ${props =>
-      props.luckType === 'luck'
-        ? props.theme.colors.green[600]
-        : props.theme.colors.red[600]};
-  }
-
-  .description {
-    color: ${props => props.theme.colors.gray[900]};
-  }
-
-  .info {
     color: ${props =>
       props.luckType === 'luck'
         ? props.theme.colors.green[600]

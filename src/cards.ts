@@ -54,10 +54,10 @@ const cards: Card[] = [
   },
   {
     id: uuid(),
-    title: 'Sorte',
+    title: 'Azar',
     description: 'Avance três casas no tabuleiro!',
     type: CardTypes.LuckOrBackLuck,
-    luckType: 'luck',
+    luckType: 'bad-luck',
     used: false,
     stars: 3,
   },

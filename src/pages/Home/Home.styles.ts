@@ -14,7 +14,6 @@ export const Board = styled.div`
   .top,
   .bottom {
     display: flex;
-    /* border: 1px solid black; */
   }
 
   .bottom {
@@ -60,25 +59,6 @@ export const Board = styled.div`
         top: 1rem;
         right: 8rem;
         position: absolute;
-        display: flex;
-        flex-direction: column;
-        gap: 8px;
-
-        .ranking,
-        .info {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-
-          border-radius: 50%;
-          border: 1px solid ${props => props.theme.colors.blue[500]};
-          width: 2rem;
-          height: 2rem;
-
-          svg {
-            color: ${props => props.theme.colors.blue[500]};
-          }
-        }
       }
     }
   }
