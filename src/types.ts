@@ -30,6 +30,7 @@ export interface Square {
 export interface Card {
   id: string;
   type: CardTypes;
+  title: string;
   description: string;
   stars: number;
   used: boolean;

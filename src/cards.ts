@@ -4,6 +4,7 @@ import { Card, CardTypes } from './types';
 const cards: Card[] = [
   {
     id: uuid(),
+    title: 'Divisão em camadas',
     description:
       'Define quais as tecnologias disponíveis para realizar as demais decisões arquiteturais.',
     question:
@@ -17,6 +18,7 @@ const cards: Card[] = [
   },
   {
     id: uuid(),
+    title: 'Titulo de teste',
     description: 'teste 2',
     question: '[V ou F] resposta V',
     solution: 'V',
@@ -29,6 +31,7 @@ const cards: Card[] = [
   {
     id: uuid(),
     description: 'teste 3',
+    title: 'Titulo de teste',
     question: '[V ou F] resposta F',
     solution: 'F',
     solutionText:
@@ -40,6 +43,7 @@ const cards: Card[] = [
   {
     id: uuid(),
     description: 'teste 4',
+    title: 'Titulo de teste',
     question: '[V ou F] resposta V',
     solution: 'V',
     solutionText:
@@ -50,6 +54,7 @@ const cards: Card[] = [
   },
   {
     id: uuid(),
+    title: 'Sorte',
     description: 'Avance três casas no tabuleiro!',
     type: CardTypes.LuckOrBackLuck,
     luckType: 'luck',

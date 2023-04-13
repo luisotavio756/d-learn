@@ -78,7 +78,7 @@ const ModalCard: React.FC<IModalCardProps> = ({
         {isFlipped && (
           <Row flexDirection="column" className="back">
             <div className="header">
-              <h4>{text[type]}</h4>
+              <h4>{activeCard.title}</h4>
             </div>
             <div className="body">
               {type === CardTypes.LuckOrBackLuck ? (
