@@ -1,9 +1,10 @@
 import React from 'react';
 import { FiRefreshCw, FiUsers } from 'react-icons/fi';
 import { RiNumbersFill } from 'react-icons/ri';
+
 import { useGame } from '../../hooks/useGame.hook';
-import Button from '../Button';
-import ButtonGroup from '../ButtonGroup';
+
+import { ButtonGroup, Button } from '../UI';
 import Modal from '../Modal';
 
 import { Container } from './ModalRanking.styles';

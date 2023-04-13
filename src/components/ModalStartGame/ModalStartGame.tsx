@@ -1,16 +1,16 @@
-import React, { KeyboardEvent, useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { v4 as uuid } from 'uuid';
 import { useForm } from 'react-hook-form';
 import { FiCheck, FiUserMinus, FiUserPlus } from 'react-icons/fi';
 import { useTheme } from 'styled-components';
 
 import Modal from '../Modal';
-import Button from '../Button';
 
 import { Container } from './ModalStartGame.styles';
 import { Player } from '../../types';
 import InputForm from '../InputForm';
 import { useGame } from '../../hooks/useGame.hook';
+import { Button } from '../UI';
 
 interface IModalStartGameProps {
   isOpen: boolean;

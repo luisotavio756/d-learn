@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 import { ButtonProps } from './Button';
-import { theme } from '../../styles/theme';
+import { theme } from '../../../styles/theme';
 
 const colors = {
   blue: {

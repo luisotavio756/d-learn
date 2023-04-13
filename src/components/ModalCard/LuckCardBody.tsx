@@ -1,13 +1,12 @@
 import React, { useCallback, useMemo } from 'react';
 
 import { FiMeh, FiSmile } from 'react-icons/fi';
-import Button from '../Button';
 import { Flex } from '../Layout';
 
 import { LuckCardBodyContainer } from './ModalCard.styles';
 import { Card } from '../../types';
 import { useGame } from '../../hooks/useGame.hook';
-import { Text } from '../UI';
+import { Text, Button } from '../UI';
 
 const LuckCardBody: React.FC = () => {
   const { activeCard, endPlay } = useGame();

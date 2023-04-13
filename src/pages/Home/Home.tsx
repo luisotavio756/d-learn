@@ -15,9 +15,7 @@ import ModalCard from '../../components/ModalCard';
 import PlayerPin from '../../components/PlayerPin';
 import ModalRanking from '../../components/ModalRanking';
 import { useModal } from '../../hooks/useModal';
-import Button from '../../components/Button/Button';
-import ButtonGroup from '../../components/ButtonGroup/ButtonGroup';
-import { Headline, Text } from '../../components/UI';
+import { Headline, Text, Button, ButtonGroup } from '../../components/UI';
 import { Flex } from '../../components/Layout';
 
 function Home() {

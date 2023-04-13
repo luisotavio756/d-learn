@@ -44,6 +44,10 @@ export const Container = styled.div<ContainerProps>`
   .header {
     height: 55px;
     background: ${props => headerStyles[props.type].background};
+
+    p {
+      color: ${props => headerStyles[props.type].color};
+    }
   }
 
   .body {

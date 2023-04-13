@@ -1,8 +1,6 @@
 import React, { useCallback, useMemo, useState } from 'react';
 
 import Stars from '../Stars/Stars';
-import ButtonGroup from '../ButtonGroup';
-import Button from '../Button';
 
 import { NormalCardBodyContainer } from './ModalCard.styles';
 import { Card } from '../../types';
@@ -10,7 +8,7 @@ import { useGame } from '../../hooks/useGame.hook';
 
 import imgUrl from '../../assets/cards-images/card-1.png';
 import { Flex } from '../Layout';
-import { Headline, Text } from '../UI';
+import { Headline, Text, Button, ButtonGroup } from '../UI';
 
 const NormalCardBody: React.FC = () => {
   const [answered, setAnswered] = useState(false);
