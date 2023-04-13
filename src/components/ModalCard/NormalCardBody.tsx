@@ -8,13 +8,16 @@ import { NormalCardBodyContainer } from './ModalCard.styles';
 import { Card } from '../../types';
 import { useGame } from '../../hooks/useGame.hook';
 
+import imgUrl from '../../assets/cards-images/card-1.png';
+import { Flex } from '../Layout';
+
 const NormalCardBody: React.FC = () => {
   const [answered, setAnswered] = useState(false);
   const [answeredCorrectly, setAnsweredCorrectly] = useState(false);
 
   const { activeCard, answer, endPlay } = useGame();
 
-  const { description, question, solutionText, stars } = useMemo(
+  const { id, title, description, question, solutionText, stars } = useMemo(
     () => (activeCard || {}) as Card,
     [activeCard],
   );
@@ -48,27 +51,38 @@ const NormalCardBody: React.FC = () => {
   return (
     <NormalCardBodyContainer>
       <div>
-        <div className="description">
+        <Flex justifyContent="center" className="img">
+          <img src={imgUrl} alt={title} />
+        </Flex>
+        <Flex className="description">
           <strong>Descrição:</strong>
           <p>{description}</p>
-        </div>
-        <div className="question">
+        </Flex>
+        <Flex className="question">
           <p>{question}</p>
-        </div>
-        <div className="stars">
+        </Flex>
+        <Flex justifyContent="center" className="stars">
           <Stars value={stars} size="lg" />
-        </div>
+        </Flex>
         {answered && answeredCorrectly && (
-          <div className="answer correctly">
+          <Flex
+            alignItems="center"
+            flexDirection="column"
+            className="answer correctly"
+          >
             <h3>Parabéns, você acertou! 🎉</h3>
             <p>{solutionText}</p>
-          </div>
+          </Flex>
         )}
         {answered && !answeredCorrectly && (
-          <div className="answer wrong">
+          <Flex
+            alignItems="center"
+            flexDirection="column"
+            className="answer wrong"
+          >
             <h3>Poxa, você errou! 😕</h3>
             <p>{solutionText}</p>
-          </div>
+          </Flex>
         )}
       </div>
       <div className="actions">

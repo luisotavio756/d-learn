@@ -54,7 +54,7 @@ export const Container = styled.div<ContainerProps>`
   .body {
     flex: 1;
     background: #fff;
-    padding: 2.5rem 1rem;
+    padding: 1rem;
     display: flex;
 
     .actions {
@@ -86,8 +86,15 @@ export const NormalCardBodyContainer = styled.div`
   flex-direction: column;
   justify-content: space-between;
 
+  .img {
+    img {
+      object-fit: cover;
+      height: 84px;
+    }
+  }
+
   .description {
-    display: flex;
+    margin-top: 1rem;
 
     strong {
       width: 90px;
@@ -111,8 +118,6 @@ export const NormalCardBodyContainer = styled.div`
 
   .stars {
     margin-top: 1.5rem;
-    display: flex;
-    justify-content: center;
   }
 
   .answer {

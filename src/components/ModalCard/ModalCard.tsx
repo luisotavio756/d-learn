@@ -8,7 +8,7 @@ import { Container } from './ModalCard.styles';
 import LuckCardBody from './LuckCardBody';
 import NormalCardBody from './NormalCardBody';
 
-import { Row } from '../Layout';
+import { Flex } from '../Layout';
 import CardFront from '../CardFront/CardFront';
 
 interface IModalCardProps {
@@ -71,12 +71,12 @@ const ModalCard: React.FC<IModalCardProps> = ({
     >
       <Container isFlipped={isFlipped} type={type}>
         {!isFlipped && (
-          <Row className="front">
+          <Flex className="front">
             <CardFront type={type} />
-          </Row>
+          </Flex>
         )}
         {isFlipped && (
-          <Row flexDirection="column" className="back">
+          <Flex flexDirection="column" className="back">
             <div className="header">
               <h4>{activeCard.title}</h4>
             </div>
@@ -87,7 +87,7 @@ const ModalCard: React.FC<IModalCardProps> = ({
                 <NormalCardBody />
               )}
             </div>
-          </Row>
+          </Flex>
         )}
       </Container>
     </Modal>

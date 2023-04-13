@@ -2,7 +2,7 @@ import React, { useCallback, useMemo } from 'react';
 
 import { FiMeh, FiSmile } from 'react-icons/fi';
 import Button from '../Button';
-import { Row } from '../Layout';
+import { Flex } from '../Layout';
 
 import { LuckCardBodyContainer } from './ModalCard.styles';
 import { Card } from '../../types';
@@ -24,7 +24,7 @@ const LuckCardBody: React.FC = () => {
 
   return (
     <LuckCardBodyContainer luckType={luckType}>
-      <Row flexDirection="column" alignItems="center">
+      <Flex flexDirection="column" alignItems="center">
         <div className="icon">
           {luckType === 'luck' ? <FiSmile size={60} /> : <FiMeh size={60} />}
         </div>
@@ -49,7 +49,7 @@ const LuckCardBody: React.FC = () => {
             Continuar
           </Button>
         </div>
-      </Row>
+      </Flex>
     </LuckCardBodyContainer>
   );
 };

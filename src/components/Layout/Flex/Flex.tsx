@@ -1,8 +1,8 @@
 import React from 'react';
 
-import { Container } from './Row.styles';
+import { Container } from './Flex.styles';
 
-export interface RowProps {
+export interface FlexProps {
   shouldShow?: boolean;
   children: React.ReactNode;
   gap?: number;
@@ -12,10 +12,14 @@ export interface RowProps {
   justifyContent?: 'center' | 'space-between' | 'flex-start' | 'flex-end';
 }
 
-const Row: React.FC<RowProps> = ({ children, shouldShow = true, ...rest }) => {
+const Flex: React.FC<FlexProps> = ({
+  children,
+  shouldShow = true,
+  ...rest
+}) => {
   if (!shouldShow) return null;
 
   return <Container {...rest}>{children}</Container>;
 };
 
-export default Row;
+export default Flex;

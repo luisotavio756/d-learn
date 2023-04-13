@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
-import { RowProps } from './Row';
+import { FlexProps } from './Flex';
 
-export const Container = styled.div<RowProps>`
+export const Container = styled.div<FlexProps>`
   display: flex;
   flex-direction: ${props => props.flexDirection ?? 'row'};
 
