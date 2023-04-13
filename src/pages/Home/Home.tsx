@@ -17,6 +17,8 @@ import ModalRanking from '../../components/ModalRanking';
 import { useModal } from '../../hooks/useModal';
 import Button from '../../components/Button/Button';
 import ButtonGroup from '../../components/ButtonGroup/ButtonGroup';
+import { Headline, Text } from '../../components/UI';
+import { Flex } from '../../components/Layout';
 
 function Home() {
   const { board, turnOf, activeCard, chooseCard, getCardOfType } = useGame();
@@ -58,9 +60,9 @@ function Home() {
           </div>
           <div className="content-main">
             <img src={LogoImg} alt="" />
-            <div className="info">
+            <Flex flexDirection="column" className="info">
               {turnOf && (
-                <div className="turnOf">
+                <Flex alignItems="center" gap={4} className="turnOf">
                   <PlayerPin
                     playerId={turnOf.id}
                     color={turnOf.color}
@@ -69,14 +71,14 @@ function Home() {
                     active={turnOf.active}
                   />
 
-                  <span>vez de </span>
-                  <h2>
-                    <b>{turnOf?.name}</b>
-                  </h2>
-                </div>
+                  <Headline weight="light" size="sm">
+                    vez de
+                  </Headline>
+                  <Headline>{turnOf?.name}</Headline>
+                </Flex>
               )}
-              <p>Escolha uma carta abaixo</p>
-            </div>
+              <Text type="neutral">Escolha uma carta abaixo</Text>
+            </Flex>
             <div className="cards">
               <CardsQueue
                 onClick={handleChooseCard}

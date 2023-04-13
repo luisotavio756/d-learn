@@ -29,24 +29,24 @@ export const GameContext = createContext({} as GameContextData);
 
 export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
   const [players, setPlayers] = useState<Player[]>([
-    // {
-    //   id: 1,
-    //   name: 'Luis',
-    //   score: 0,
-    //   color: '#00B5D8',
-    //   square_id: '1',
-    //   active: true,
-    // },
-    // {
-    //   id: 2,
-    //   name: 'Bia',
-    //   score: 0,
-    //   color: 'red',
-    //   square_id: '1',
-    //   active: false,
-    // },
+    {
+      id: 1,
+      name: 'Luis',
+      score: 0,
+      color: '#00B5D8',
+      square_id: '1',
+      active: true,
+    },
+    {
+      id: 2,
+      name: 'Bia',
+      score: 0,
+      color: 'red',
+      square_id: '1',
+      active: false,
+    },
   ]);
-  const [gameStarted, setGameStarted] = useState(false);
+  const [gameStarted, setGameStarted] = useState(true);
   const [gameEnd, setGameEnd] = useState(false);
   const [board, setBoard] = useState<Square[]>(INITIAL_BOARD);
   const [cards, setCards] = useState<Card[]>(INITIAL_CARDS);

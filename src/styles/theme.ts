@@ -58,6 +58,17 @@ export const theme = {
       100: '#BEE3F8',
       50: '#EBF8FF',
     },
+    orange: {
+      50: '#FFF5ED',
+      100: '#FFE8D5',
+      200: '#FED0AA',
+      300: '#FDB274',
+      400: '#FB923C',
+      600: '#EA700C',
+      700: '#C25E0C',
+      800: '#9A4F12',
+      900: '#7C4212',
+    },
     ice: {
       500: '#E7FAEB',
       700: '#c4f3ce',
@@ -102,11 +113,19 @@ export const theme = {
     4: '1rem', // 16px
     5: '1.25rem', // 20px
     6: '1.5rem', // 24px
+    7: '1.75rem', // 28px
+    8: '2.5rem', // 40px
   },
   radii: {
     sm: '4px',
     md: '8px',
     lg: '16px',
+  },
+  shadows: {
+    100: '0px 2px 8px rgba(0, 0, 0, 0.12)',
+    200: '0px 4px 12px rgba(0, 0, 0, 0.16)',
+    300: '0px 8px 16px rgba(0, 0, 0, 0.12)',
+    400: '0px 8px 32px rgba(0, 0, 0, 0.16)',
   },
 } as const;
 
