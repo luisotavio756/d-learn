@@ -10,6 +10,7 @@ import NormalCardBody from './NormalCardBody';
 
 import { Flex } from '../Layout';
 import CardFront from '../CardFront/CardFront';
+import { Text } from '../UI';
 
 interface IModalCardProps {
   isOpen: boolean;
@@ -77,9 +78,15 @@ const ModalCard: React.FC<IModalCardProps> = ({
         )}
         {isFlipped && (
           <Flex flexDirection="column" className="back">
-            <div className="header">
-              <h4>{activeCard.title}</h4>
-            </div>
+            <Flex
+              alignItems="center"
+              justifyContent="center"
+              className="header"
+            >
+              <Text size="lg" weight="heavy">
+                {activeCard.title}
+              </Text>
+            </Flex>
             <div className="body">
               {type === CardTypes.LuckOrBackLuck ? (
                 <LuckCardBody />

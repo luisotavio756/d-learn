@@ -42,13 +42,8 @@ export const Container = styled.div<ContainerProps>`
   transform-style: preserve-3d;
 
   .header {
-    display: flex;
-    align-items: center;
-    justify-content: center;
     height: 55px;
-
     background: ${props => headerStyles[props.type].background};
-    color: ${props => headerStyles[props.type].color};
   }
 
   .body {
