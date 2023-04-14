@@ -6,7 +6,6 @@ import { NormalCardBodyContainer } from './ModalCard.styles';
 import { Card } from '../../types';
 import { useGame } from '../../hooks/useGame.hook';
 
-import imgUrl from '../../assets/cards-images/card-1.png';
 import { Flex } from '../Layout';
 import { Headline, Text, Button, ButtonGroup } from '../UI';
 
@@ -16,10 +15,8 @@ const NormalCardBody: React.FC = () => {
 
   const { activeCard, answer, endPlay } = useGame();
 
-  const { id, title, description, question, solutionText, stars } = useMemo(
-    () => (activeCard || {}) as Card,
-    [activeCard],
-  );
+  const { id, title, description, question, solutionText, stars, imgUrl } =
+    useMemo(() => (activeCard || {}) as Card, [activeCard]);
 
   const handleAnswer = useCallback(
     (solution: string) => {
@@ -51,7 +48,7 @@ const NormalCardBody: React.FC = () => {
     <NormalCardBodyContainer>
       <div>
         <Flex justifyContent="center" className="img">
-          <img src={imgUrl} alt={title} />
+          <img src={`src/assets/cards-images/${imgUrl}`} alt={title} />
         </Flex>
         <Flex className="description">
           <Text size="lg" weight="heavy">
