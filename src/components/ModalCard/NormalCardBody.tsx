@@ -92,7 +92,7 @@ const NormalCardBody: React.FC = () => {
               Parabéns, você acertou! 🎉
             </Headline>
             <Text type="success" family="mono">
-              {solutionText}
+              R: {solutionText}
             </Text>
           </Flex>
         )}
@@ -106,7 +106,7 @@ const NormalCardBody: React.FC = () => {
               Poxa, você errou! 😕
             </Headline>
             <Text type="danger" family="mono">
-              {solutionText}
+              R: {solutionText}
             </Text>
           </Flex>
         )}
