@@ -80,14 +80,6 @@ function Home() {
             <div className="cards">
               <CardsQueue
                 onClick={handleChooseCard}
-                type={CardTypes.ArchDecisions}
-                enabled={
-                  playerSquare?.type === SquareTypes.ArchDecisions ||
-                  playerSquare?.type === SquareTypes.Start
-                }
-              />
-              <CardsQueue
-                onClick={handleChooseCard}
                 type={CardTypes.QualityAttributes}
                 enabled={
                   playerSquare?.type === SquareTypes.QualityAttributes ||
@@ -99,6 +91,14 @@ function Home() {
                 type={CardTypes.ArchPattern}
                 enabled={
                   playerSquare?.type === SquareTypes.ArchPattern ||
+                  playerSquare?.type === SquareTypes.Start
+                }
+              />
+              <CardsQueue
+                onClick={handleChooseCard}
+                type={CardTypes.ArchDecisions}
+                enabled={
+                  playerSquare?.type === SquareTypes.ArchDecisions ||
                   playerSquare?.type === SquareTypes.Start
                 }
               />

@@ -3,9 +3,9 @@ import { Square, SquareTypes } from '../../types';
 
 import { Container, PlayerPin } from './BoardSquare.styles';
 
-import ArchDecisionIcon from '../../assets/arch_decisions_icon.png';
+import ArchDecisionIcon from '../../assets/arch_decision_icon.png';
 import QualityAttrIcon from '../../assets/quality_attr_icon.png';
-import ArchPatternsIcon from '../../assets/arch_patterns_icon.png';
+import ArchPatternsIcon from '../../assets/arch_pattern_icon.png';
 import { useGame } from '../../hooks/useGame.hook';
 
 export interface BoardSquareProps extends Square {
@@ -44,6 +44,7 @@ const BoardSquare: React.FC<BoardSquareProps> = ({ id, type, isInColumn }) => {
             color={item.color}
             score={item.score}
             title={item.name}
+            active
           />
         ))}
       </div>

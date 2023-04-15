@@ -31,13 +31,13 @@ export const Container = styled.div<ContainerProps>`
   ${props =>
     props.type === CardTypes.ArchDecisions &&
     css`
-      background: var(--red-600);
+      background: var(--blue-600);
     `}
 
   ${props =>
     props.type === CardTypes.ArchPattern &&
     css`
-      background: var(--blue-600);
+      background: var(--red-600);
     `}
 
   ${props =>

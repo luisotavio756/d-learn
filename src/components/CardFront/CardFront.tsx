@@ -2,9 +2,9 @@ import React, { useMemo } from 'react';
 
 import { Container } from './CardFront.styles';
 
-import ArchDecisionIcon from '../../assets/arch_decisions_icon.png';
+import ArchDecisionIcon from '../../assets/arch_decision_icon.png';
 import QualityAttrIcon from '../../assets/quality_attr_icon.png';
-import ArchPatternsIcon from '../../assets/arch_patterns_icon.png';
+import ArchPatternsIcon from '../../assets/arch_pattern_icon.png';
 import LuckIcon from '../../assets/luck-icon.svg';
 
 import { CardTypes } from '../../types';

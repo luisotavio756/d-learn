@@ -26,13 +26,13 @@ export const Container = styled.div<BoardSquareProps>`
   ${props =>
     props.type === SquareTypes.ArchDecisions &&
     css`
-      background: var(--red-600);
+      background: var(--blue-600);
     `}
 
   ${props =>
     props.type === SquareTypes.ArchPattern &&
     css`
-      background: var(--blue-600);
+      background: var(--red-600);
     `}
 
   ${props =>
