@@ -29,7 +29,7 @@ const headerStyles: Record<CardTypes, HeaderStyle> = {
     background: theme.colors.blue[900],
     color: '#fff',
   },
-  [CardTypes.LuckOrBackLuck]: {
+  [CardTypes.LuckOrBadLuck]: {
     background: theme.colors.ice[700],
     color: theme.colors.gray[900],
   },

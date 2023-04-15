@@ -20,9 +20,9 @@ const BoardSquare: React.FC<BoardSquareProps> = ({ id, type, isInColumn }) => {
       [SquareTypes.ArchDecisions]: ArchDecisionIcon,
       [SquareTypes.QualityAttributes]: QualityAttrIcon,
       [SquareTypes.ArchPattern]: ArchPatternsIcon,
-      [SquareTypes.LuckOrBackLuck]: QualityAttrIcon,
+      [SquareTypes.LuckOrBadLuck]: QualityAttrIcon,
       [SquareTypes.Start]: undefined,
-      [SquareTypes.LuckOrBackLuck]: undefined,
+      [SquareTypes.LuckOrBadLuck]: undefined,
     }),
     [],
   );

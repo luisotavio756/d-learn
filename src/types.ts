@@ -3,14 +3,14 @@ export enum SquareTypes {
   ArchDecisions,
   QualityAttributes,
   ArchPattern,
-  LuckOrBackLuck,
+  LuckOrBadLuck,
 }
 
 export enum CardTypes {
   ArchDecisions,
   QualityAttributes,
   ArchPattern,
-  LuckOrBackLuck,
+  LuckOrBadLuck,
 }
 
 export interface Player {

@@ -104,8 +104,8 @@ function Home() {
               />
               <CardsQueue
                 onClick={handleChooseCard}
-                type={CardTypes.LuckOrBackLuck}
-                enabled={playerSquare?.type === SquareTypes.LuckOrBackLuck}
+                type={CardTypes.LuckOrBadLuck}
+                enabled={playerSquare?.type === SquareTypes.LuckOrBadLuck}
               />
             </div>
             <div className="controls">

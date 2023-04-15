@@ -189,10 +189,10 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
 
         // TODO: FInish game
       } else {
-        const card = getCardOfType(CardTypes.LuckOrBackLuck);
+        const card = getCardOfType(CardTypes.LuckOrBadLuck);
         const nextSquare = board[nextSquareIndex];
 
-        if (nextSquare.type === SquareTypes.LuckOrBackLuck && card) {
+        if (nextSquare.type === SquareTypes.LuckOrBadLuck && card) {
           addPlayersToSquare([player], nextSquare.id);
           setActiveCard(null);
 
@@ -220,7 +220,7 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
       );
 
       switch (true) {
-        case card.type === CardTypes.LuckOrBackLuck:
+        case card.type === CardTypes.LuckOrBadLuck:
           handleEndPlayFromLuckCard(card, turnOf, actualPlayerSquareIndex);
           break;
         case isCorrect:

@@ -60,7 +60,7 @@ const board: Square[] = [
   {
     id: uuid(),
     players: [],
-    type: SquareTypes.LuckOrBackLuck,
+    type: SquareTypes.LuckOrBadLuck,
   },
   {
     id: uuid(),
@@ -105,57 +105,7 @@ const board: Square[] = [
   {
     id: uuid(),
     players: [],
-    type: SquareTypes.LuckOrBackLuck,
-  },
-  {
-    id: uuid(),
-    players: [],
-    type: SquareTypes.ArchPattern,
-  },
-  {
-    id: uuid(),
-    players: [],
-    type: SquareTypes.QualityAttributes,
-  },
-  {
-    id: uuid(),
-    players: [],
-    type: SquareTypes.ArchDecisions,
-  },
-  {
-    id: uuid(),
-    players: [],
-    type: SquareTypes.QualityAttributes,
-  },
-  {
-    id: uuid(),
-    players: [],
-    type: SquareTypes.ArchDecisions,
-  },
-  {
-    id: uuid(),
-    players: [],
-    type: SquareTypes.QualityAttributes,
-  },
-  {
-    id: uuid(),
-    players: [],
-    type: SquareTypes.ArchDecisions,
-  },
-  {
-    id: uuid(),
-    players: [],
-    type: SquareTypes.QualityAttributes,
-  },
-  {
-    id: uuid(),
-    players: [],
-    type: SquareTypes.ArchDecisions,
-  },
-  {
-    id: uuid(),
-    players: [],
-    type: SquareTypes.LuckOrBackLuck,
+    type: SquareTypes.LuckOrBadLuck,
   },
   {
     id: uuid(),
@@ -205,7 +155,57 @@ const board: Square[] = [
   {
     id: uuid(),
     players: [],
-    type: SquareTypes.LuckOrBackLuck,
+    type: SquareTypes.LuckOrBadLuck,
+  },
+  {
+    id: uuid(),
+    players: [],
+    type: SquareTypes.ArchPattern,
+  },
+  {
+    id: uuid(),
+    players: [],
+    type: SquareTypes.QualityAttributes,
+  },
+  {
+    id: uuid(),
+    players: [],
+    type: SquareTypes.ArchDecisions,
+  },
+  {
+    id: uuid(),
+    players: [],
+    type: SquareTypes.QualityAttributes,
+  },
+  {
+    id: uuid(),
+    players: [],
+    type: SquareTypes.ArchDecisions,
+  },
+  {
+    id: uuid(),
+    players: [],
+    type: SquareTypes.QualityAttributes,
+  },
+  {
+    id: uuid(),
+    players: [],
+    type: SquareTypes.ArchDecisions,
+  },
+  {
+    id: uuid(),
+    players: [],
+    type: SquareTypes.QualityAttributes,
+  },
+  {
+    id: uuid(),
+    players: [],
+    type: SquareTypes.ArchDecisions,
+  },
+  {
+    id: uuid(),
+    players: [],
+    type: SquareTypes.LuckOrBadLuck,
   },
   {
     id: uuid(),

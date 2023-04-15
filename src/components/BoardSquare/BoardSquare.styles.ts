@@ -50,7 +50,7 @@ export const Container = styled.div<BoardSquareProps>`
     `}
 
   ${props =>
-    props.type === SquareTypes.LuckOrBackLuck &&
+    props.type === SquareTypes.LuckOrBadLuck &&
     css`
       background-image: url(${LuckSquareImg});
       background-repeat: no-repeat;

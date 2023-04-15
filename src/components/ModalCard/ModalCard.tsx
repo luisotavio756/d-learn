@@ -31,7 +31,7 @@ const ModalCard: React.FC<IModalCardProps> = ({
       [CardTypes.ArchDecisions]: 'Decisões arquiteturais',
       [CardTypes.QualityAttributes]: 'Atributos de qualidade',
       [CardTypes.ArchPattern]: 'Padrões arquiteturais',
-      [CardTypes.LuckOrBackLuck]: 'Sorte ou revés',
+      [CardTypes.LuckOrBadLuck]: 'Sorte ou revés',
     }),
     [],
   );
@@ -88,7 +88,7 @@ const ModalCard: React.FC<IModalCardProps> = ({
               </Text>
             </Flex>
             <div className="body">
-              {type === CardTypes.LuckOrBackLuck ? (
+              {type === CardTypes.LuckOrBadLuck ? (
                 <LuckCardBody />
               ) : (
                 <NormalCardBody />

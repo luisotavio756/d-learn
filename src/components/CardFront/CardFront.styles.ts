@@ -47,7 +47,7 @@ export const Container = styled.div<ContainerProps>`
     `}
 
   ${props =>
-    props.type === CardTypes.LuckOrBackLuck &&
+    props.type === CardTypes.LuckOrBadLuck &&
     css`
       background: var(--ice-700);
 

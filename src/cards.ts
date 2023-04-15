@@ -1,18 +1,14 @@
-import { v4 as uuid } from 'uuid';
-import { Card, CardTypes } from './types';
+import { Card } from './types';
 import archDecisionsCards from './cards/archDecisions';
+import qualityAttributesCards from './cards/qualityAttributes';
+import archPatternCards from './cards/archPattern';
+import luckOrBadLuckCards from './cards/luckOrBadLuck';
 
 const cards: Card[] = [
   ...archDecisionsCards,
-  {
-    id: uuid(),
-    title: 'Azar',
-    description: 'Avance três casas no tabuleiro!',
-    type: CardTypes.LuckOrBackLuck,
-    luckType: 'bad-luck',
-    used: false,
-    stars: 3,
-  },
+  ...qualityAttributesCards,
+  ...archPatternCards,
+  ...luckOrBadLuckCards,
 ];
 
 export default cards;

@@ -19,7 +19,7 @@ const CardFront: React.FC<CardFrontProps> = ({ type }) => {
       [CardTypes.ArchDecisions]: ArchDecisionIcon,
       [CardTypes.QualityAttributes]: QualityAttrIcon,
       [CardTypes.ArchPattern]: ArchPatternsIcon,
-      [CardTypes.LuckOrBackLuck]: LuckIcon,
+      [CardTypes.LuckOrBadLuck]: LuckIcon,
     }),
     [],
   );
@@ -29,7 +29,7 @@ const CardFront: React.FC<CardFrontProps> = ({ type }) => {
       [CardTypes.ArchDecisions]: 'Decisões arquiteturais',
       [CardTypes.QualityAttributes]: 'Atributos de qualidade',
       [CardTypes.ArchPattern]: 'Padrões arquiteturais',
-      [CardTypes.LuckOrBackLuck]: 'Sorte ou revés',
+      [CardTypes.LuckOrBadLuck]: 'Sorte ou revés',
     }),
     [],
   );
