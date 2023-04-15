@@ -19,7 +19,14 @@ import { Headline, Text, Button, ButtonGroup } from '../../components/UI';
 import { Flex } from '../../components/Layout';
 
 function Home() {
-  const { board, turnOf, activeCard, chooseCard, getCardOfType } = useGame();
+  const {
+    board,
+    turnOf,
+    activeCard,
+    gameIsBlocked,
+    chooseCard,
+    getCardOfType,
+  } = useGame();
   const { isOpen: modalRankingIsOpen, toggleModal: toggleModalRanking } =
     useModal();
 
@@ -35,6 +42,16 @@ function Home() {
     if (card && turnOf) {
       chooseCard(card);
     }
+  }
+
+  function isQueueEnabled(queueType: SquareTypes) {
+    const playerSquareType = playerSquare?.type;
+
+    return (
+      (playerSquareType === queueType ||
+        playerSquareType === SquareTypes.Start) &&
+      !gameIsBlocked
+    );
   }
 
   return (
@@ -81,31 +98,25 @@ function Home() {
               <CardsQueue
                 onClick={handleChooseCard}
                 type={CardTypes.QualityAttributes}
-                enabled={
-                  playerSquare?.type === SquareTypes.QualityAttributes ||
-                  playerSquare?.type === SquareTypes.Start
-                }
+                enabled={isQueueEnabled(SquareTypes.QualityAttributes)}
               />
               <CardsQueue
                 onClick={handleChooseCard}
                 type={CardTypes.ArchPattern}
-                enabled={
-                  playerSquare?.type === SquareTypes.ArchPattern ||
-                  playerSquare?.type === SquareTypes.Start
-                }
+                enabled={isQueueEnabled(SquareTypes.ArchPattern)}
               />
               <CardsQueue
                 onClick={handleChooseCard}
                 type={CardTypes.ArchDecisions}
-                enabled={
-                  playerSquare?.type === SquareTypes.ArchDecisions ||
-                  playerSquare?.type === SquareTypes.Start
-                }
+                enabled={isQueueEnabled(SquareTypes.ArchDecisions)}
               />
               <CardsQueue
                 onClick={handleChooseCard}
                 type={CardTypes.LuckOrBadLuck}
-                enabled={playerSquare?.type === SquareTypes.LuckOrBadLuck}
+                enabled={
+                  playerSquare?.type === SquareTypes.LuckOrBadLuck &&
+                  !gameIsBlocked
+                }
               />
             </div>
             <div className="controls">

@@ -16,6 +16,7 @@ interface GameContextData {
   gameStarted: boolean;
   gameEnd: boolean;
   turnOf: Player | undefined;
+  gameIsBlocked: boolean;
   getCardOfType(type: CardTypes): Card | undefined;
   startGame(data: Player[]): void;
   chooseCard(card: Card): void;
@@ -34,7 +35,7 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
       name: 'Luis',
       score: 0,
       color: '#00B5D8',
-      square_id: '1',
+      square_id: '20',
       active: true,
     },
     {
@@ -42,10 +43,12 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
       name: 'Bia',
       score: 0,
       color: 'red',
-      square_id: '1',
+      square_id: '20',
       active: false,
     },
   ]);
+
+  const [gameIsBlocked, setGameIsBlocked] = useState(false);
   const [gameStarted, setGameStarted] = useState(true);
   const [gameEnd, setGameEnd] = useState(false);
   const [board, setBoard] = useState<Square[]>(INITIAL_BOARD);
@@ -211,9 +214,11 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
         if (nextSquare.type === SquareTypes.LuckOrBadLuck && card) {
           addPlayersToSquare([player], nextSquare.id);
           setActiveCard(null);
+          setGameIsBlocked(true);
 
           setTimeout(() => {
             setActiveCard(card);
+            setGameIsBlocked(false);
           }, 1000);
         } else {
           addPlayersToSquare([player], nextSquare.id);
@@ -284,6 +289,7 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
       board,
       cards,
       activeCard,
+      gameIsBlocked,
       passTurnToNextPlayer,
       startGame,
       chooseCard,
@@ -300,6 +306,7 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
       board,
       cards,
       activeCard,
+      gameIsBlocked,
       passTurnToNextPlayer,
       startGame,
       chooseCard,
