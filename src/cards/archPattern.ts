@@ -105,7 +105,7 @@ const archPatternCards: Card[] = [
     id: uuid(),
     title: 'Piper-and-filter',
     description:
-      'Desenvolvimento de sistemas que processa ou transforma um ‘’stream’’de dados.',
+      'Desenvolvimento de sistemas que processa ou transforma um stream de dados.',
     question:
       '[V ou F] Com o piper-and-filter, dados são processados paralelamente por meio de condutores (pipers) e filtros (filters).',
     solution: 'F',
@@ -119,7 +119,7 @@ const archPatternCards: Card[] = [
     id: uuid(),
     title: 'Publish-Subscribe',
     description:
-      ': Consiste na criação e publicação de dados por Publishers e no consumo desses dados por Subscribe.',
+      'Consiste na criação e publicação de dados por Publishers e no consumo desses dados por Subscribe.',
     question:
       '[V ou F] Para receberem informações, os Subscribes precisam se conectar a um broker e se inscrever em tópicos disponibilizados por Publishers.',
     solution: 'V',

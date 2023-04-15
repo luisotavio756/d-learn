@@ -18,7 +18,7 @@ type HeaderStyle = {
 
 const headerStyles: Record<CardTypes, HeaderStyle> = {
   [CardTypes.ArchDecisions]: {
-    background: theme.colors.red[900],
+    background: theme.colors.blue[900],
     color: '#fff',
   },
   [CardTypes.QualityAttributes]: {
@@ -26,7 +26,7 @@ const headerStyles: Record<CardTypes, HeaderStyle> = {
     color: theme.colors.gray[800],
   },
   [CardTypes.ArchPattern]: {
-    background: theme.colors.blue[900],
+    background: theme.colors.red[900],
     color: '#fff',
   },
   [CardTypes.LuckOrBadLuck]: {
