@@ -54,6 +54,22 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
 
   const turnOf = useMemo(() => players.find(item => item.active), [players]);
 
+  const setCardAsUsed = useCallback(
+    (card: Card) => {
+      const updatedCards = cards.map(item =>
+        item.id === card.id
+          ? {
+              ...item,
+              used: true,
+            }
+          : item,
+      );
+
+      setCards(updatedCards);
+    },
+    [cards],
+  );
+
   const setActivePlayer = useCallback(
     (player: Player | null) => {
       const playerIndex = players.findIndex(item => item.id === player?.id);
@@ -231,10 +247,13 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
           setActiveCard(null);
           break;
       }
+
+      setCardAsUsed(card);
     },
     [
       turnOf,
       board,
+      setCardAsUsed,
       passTurnToNextPlayer,
       handleEndPlayFromLuckCard,
       handleEndPlayFromNormalCard,
