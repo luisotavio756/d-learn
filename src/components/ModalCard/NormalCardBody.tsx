@@ -3,7 +3,7 @@ import React, { useCallback, useMemo, useState } from 'react';
 import Stars from '../Stars/Stars';
 
 import { NormalCardBodyContainer } from './ModalCard.styles';
-import { Card } from '../../types';
+import { Card, CardTypes } from '../../types';
 import { useGame } from '../../hooks/useGame.hook';
 
 import { Flex } from '../Layout';
@@ -15,8 +15,10 @@ const NormalCardBody: React.FC = () => {
 
   const { activeCard, answer, endPlay } = useGame();
 
-  const { id, title, description, question, solutionText, stars, imgUrl } =
-    useMemo(() => (activeCard || {}) as Card, [activeCard]);
+  const { title, description, question, solutionText, stars, imgUrl } = useMemo(
+    () => (activeCard || {}) as Card,
+    [activeCard],
+  );
 
   const handleAnswer = useCallback(
     (solution: string) => {
@@ -44,11 +46,27 @@ const NormalCardBody: React.FC = () => {
     }
   }, [answered, answeredCorrectly, activeCard, endPlay]);
 
+  const getCardImage = useCallback(
+    (card: Card) => {
+      switch (card.type) {
+        case CardTypes.ArchDecisions:
+          return `src/assets/cards-images/arch-decision/${imgUrl}`;
+        case CardTypes.ArchPattern:
+          return `src/assets/cards-images/arch-pattern/${imgUrl}`;
+        case CardTypes.QualityAttributes:
+          return `src/assets/cards-images/quality-attr/${imgUrl}`;
+        default:
+          return '';
+      }
+    },
+    [imgUrl],
+  );
+
   return (
     <NormalCardBodyContainer>
       <div>
-        <Flex justifyContent="center" className="img">
-          <img src={`src/assets/cards-images/${imgUrl}`} alt={title} />
+        <Flex shouldShow={!!imgUrl} justifyContent="center" className="img">
+          <img src={getCardImage(activeCard as Card)} alt={title} />
         </Flex>
         <Flex className="description">
           <Text size="lg" weight="heavy">

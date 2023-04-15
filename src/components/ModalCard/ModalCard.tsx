@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { useGame } from '../../hooks/useGame.hook';
 import { CardTypes } from '../../types';
@@ -25,16 +25,6 @@ const ModalCard: React.FC<IModalCardProps> = ({
 }) => {
   const [isFlipped, setIsFlipped] = useState(false);
   const { activeCard } = useGame();
-
-  const text = useMemo(
-    () => ({
-      [CardTypes.ArchDecisions]: 'Decisões arquiteturais',
-      [CardTypes.QualityAttributes]: 'Atributos de qualidade',
-      [CardTypes.ArchPattern]: 'Padrões arquiteturais',
-      [CardTypes.LuckOrBadLuck]: 'Sorte ou revés',
-    }),
-    [],
-  );
 
   useEffect(() => {
     let timeout: NodeJS.Timeout | null = null;
