@@ -21,7 +21,7 @@ const Stars: React.FC<StarsProps> = ({ value, size = 'md' }) => {
 
   return (
     <Container>
-      {Array.from({ length: 5 }, (_, i) => {
+      {Array.from({ length: 6 }, (_, i) => {
         return (
           <FiStar
             size={sizeEnum[size]}
