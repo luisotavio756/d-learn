@@ -14,6 +14,8 @@ interface IModalProps extends Props {
   toggleModal: () => void;
 }
 
+ReactModal.setAppElement('#root');
+
 const Modal: React.FC<IModalProps> = ({
   children,
   isOpen,
