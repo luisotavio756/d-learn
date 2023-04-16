@@ -3,6 +3,7 @@ import { createContext, useCallback, useMemo, useState } from 'react';
 import { Card, CardTypes, Player, Square, SquareTypes } from '../types';
 import INITIAL_BOARD from '../initialBoard';
 import INITIAL_CARDS from '../cards';
+import { getRestoredCards } from '../utils/cards';
 
 interface GameProviderProps {
   children: React.ReactNode;
@@ -35,7 +36,7 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
       name: 'Luis',
       score: 0,
       color: '#00B5D8',
-      square_id: '20',
+      square_id: '1',
       active: true,
     },
     {
@@ -43,7 +44,7 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
       name: 'Bia',
       score: 0,
       color: 'red',
-      square_id: '20',
+      square_id: '1',
       active: false,
     },
   ]);
@@ -57,10 +58,10 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
 
   const turnOf = useMemo(() => players.find(item => item.active), [players]);
 
-  const setCardAsUsed = useCallback(
-    (card: Card) => {
+  const updateCardsAfterEndPlay = useCallback(
+    (lastUsedCard: Card) => {
       const updatedCards = cards.map(item =>
-        item.id === card.id
+        item.id === lastUsedCard.id
           ? {
               ...item,
               used: true,
@@ -68,7 +69,17 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
           : item,
       );
 
-      setCards(updatedCards);
+      const isAllCardsUsed = updatedCards
+        .filter(item => item.type === lastUsedCard.type)
+        .every(item => item.used);
+
+      if (!isAllCardsUsed) {
+        setCards(updatedCards);
+      } else {
+        const restoredCards = getRestoredCards(cards);
+
+        setCards(restoredCards);
+      }
     },
     [cards],
   );
@@ -253,12 +264,12 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
           break;
       }
 
-      setCardAsUsed(card);
+      updateCardsAfterEndPlay(card);
     },
     [
       turnOf,
       board,
-      setCardAsUsed,
+      updateCardsAfterEndPlay,
       passTurnToNextPlayer,
       handleEndPlayFromLuckCard,
       handleEndPlayFromNormalCard,
