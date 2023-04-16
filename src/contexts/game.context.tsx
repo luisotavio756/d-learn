@@ -215,9 +215,11 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
 
         addPlayersToSquare([player], nextSquare.id);
         setActiveCard(null);
-        setGameEnd(true);
 
-        // TODO: FInish game
+        setTimeout(() => {
+          setGameEnd(true);
+          setGameIsBlocked(false);
+        }, 1000);
       } else {
         const card = getCardOfType(CardTypes.LuckOrBadLuck);
         const nextSquare = board[nextSquareIndex];
