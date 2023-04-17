@@ -98,16 +98,46 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
     [players],
   );
 
+  const removeCustomCalcFromPlayer = useCallback((player: Player) => {
+    if (!player.customStarsCalc) return;
+
+    setPlayers(oldState =>
+      oldState.map(item =>
+        item.id === player.id
+          ? Object.assign(item, {
+              customStarsCalc: undefined,
+            })
+          : item,
+      ),
+    );
+  }, []);
+
+  const addCustomCalcFromPlayer = useCallback(
+    (player: Player, card: Card) => {
+      if (!card.starsCalc) return;
+
+      const updatedPlayers = players.map(item =>
+        item.id === player.id
+          ? Object.assign(item, {
+              customStarsCalc: card.starsCalc,
+            })
+          : item,
+      );
+
+      setPlayers(updatedPlayers);
+    },
+    [players],
+  );
+
   const addPlayersToSquare = useCallback(
     (playersList: Player[], square_id: string) => {
       const playersIds = playersList.map(item => item.id);
 
       const updatedPlayers = players.map(player =>
         playersIds.includes(player.id)
-          ? {
-              ...player,
+          ? Object.assign(player, {
               square_id,
-            }
+            })
           : player,
       );
 
@@ -207,8 +237,11 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
   );
 
   const handleEndPlayFromNormalCard = useCallback(
-    (card: Card, player: Player, actualSquare: number) => {
-      const nextSquareIndex = actualSquare + card.stars;
+    (card: Card, player: Player, actualSquareIndex: number) => {
+      const stars = player.customStarsCalc
+        ? player.customStarsCalc(card.stars)
+        : card.stars;
+      const nextSquareIndex = actualSquareIndex + stars;
 
       if (nextSquareIndex >= board.length - 1) {
         const nextSquare = board[board.length - 1];
@@ -255,14 +288,18 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
 
       switch (true) {
         case card.type === CardTypes.LuckOrBadLuck:
+          addCustomCalcFromPlayer(turnOf, card);
           handleEndPlayFromLuckCard(card, turnOf, actualPlayerSquareIndex);
           break;
         case isCorrect:
           handleEndPlayFromNormalCard(card, turnOf, actualPlayerSquareIndex);
+          removeCustomCalcFromPlayer(turnOf);
           break;
         default:
           passTurnToNextPlayer();
           setActiveCard(null);
+
+          removeCustomCalcFromPlayer(turnOf);
           break;
       }
 
@@ -275,6 +312,8 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
       passTurnToNextPlayer,
       handleEndPlayFromLuckCard,
       handleEndPlayFromNormalCard,
+      addCustomCalcFromPlayer,
+      removeCustomCalcFromPlayer,
     ],
   );
 
