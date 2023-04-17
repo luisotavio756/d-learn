@@ -13,11 +13,21 @@ const NormalCardBody: React.FC = () => {
   const [answered, setAnswered] = useState(false);
   const [answeredCorrectly, setAnsweredCorrectly] = useState(false);
 
-  const { activeCard, answer, endPlay } = useGame();
+  const { activeCard, turnOf, answer, endPlay } = useGame();
 
-  const { title, description, question, solutionText, stars, imgUrl } = useMemo(
-    () => (activeCard || {}) as Card,
-    [activeCard],
+  const {
+    title,
+    description,
+    question,
+    solution,
+    solutionText,
+    stars,
+    imgUrl,
+  } = useMemo(() => (activeCard || {}) as Card, [activeCard]);
+
+  const absoluteStars = useMemo(
+    () => (turnOf?.customStarsCalc ? turnOf.customStarsCalc(stars) : stars),
+    [turnOf, stars],
   );
 
   const handleAnswer = useCallback(
@@ -140,7 +150,7 @@ const NormalCardBody: React.FC = () => {
               width="fit-content"
               onClick={handleEndPlay}
             >
-              🚀 Avançar {stars} casas
+              🚀 Avançar {absoluteStars} casas
             </Button>
           </ButtonGroup>
         )}
