@@ -20,6 +20,7 @@ export interface Player {
   color: string;
   active: boolean;
   square_id?: string;
+  customStarsCalc?(stars: number): number;
 }
 
 export interface Square {
@@ -39,4 +40,5 @@ export interface Card {
   solutionText?: string;
   luckType?: 'luck' | 'bad-luck';
   imgUrl?: string;
+  starsCalc?(stars: number): number;
 }
