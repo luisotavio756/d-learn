@@ -11,7 +11,7 @@ import { useAudio } from '../../hooks/useAudio';
 
 const LuckCardBody: React.FC = () => {
   const { activeCard, endPlay } = useGame();
-  const { audio: luckAudio } = useAudio('luck.mp3');
+  const { audio: luckAudio } = useAudio('luck.flac');
   const { audio: badLuckAudio } = useAudio('bad-luck.mp3');
 
   const { description, luckType } = useMemo(
