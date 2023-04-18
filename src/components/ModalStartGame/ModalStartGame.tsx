@@ -32,7 +32,7 @@ const ModalStartGame: React.FC = () => {
     const startSquare = board[0];
 
     const colors = {
-      0: theme.colors.cyan[500],
+      0: theme.colors.red[500],
       1: theme.colors.green[500],
       2: theme.colors.gray[700],
       3: theme.colors.blue[300],
