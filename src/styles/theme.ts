@@ -79,6 +79,8 @@ export const theme = {
       400: '#ECC94B',
       500: '#D69E2E',
       600: '#B7791F',
+      700: '#975A16',
+      900: '#5F370E',
     },
     black: '#1A1A1A',
     white: '#fff',

@@ -34,7 +34,7 @@ const CardFront: React.FC<CardFrontProps> = ({ type }) => {
     [],
   );
   return (
-    <Container type={type}>
+    <Container className="card-front" type={type}>
       <div className="icon">
         {icons[type] && <img src={icons[type]} alt="" />}
       </div>
