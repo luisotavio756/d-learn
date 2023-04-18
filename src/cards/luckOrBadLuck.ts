@@ -15,7 +15,7 @@ const luckOrBadLuckCards: Card[] = [
     id: uuid(),
     title: 'Sorte',
     description:
-      'Com esta carta você pode consultar algum material antes de responder a uma pergunta! Avance uma casa!',
+      'Com esta carta você pode consultar algum material antes de responder a uma pergunta!\nAvance uma casa!',
     type: CardTypes.LuckOrBadLuck,
     luckType: 'luck',
     used: false,
@@ -51,11 +51,15 @@ const luckOrBadLuckCards: Card[] = [
   {
     id: uuid(),
     title: 'Azar',
-    description: 'Volte uma casa no tabuleiro!',
+    description:
+      'A sua próxima pergunta valerá metade das estrelas! \nVolte uma casa!',
     type: CardTypes.LuckOrBadLuck,
     luckType: 'bad-luck',
     used: false,
     stars: 1,
+    starsCalc(stars) {
+      return Math.ceil(stars / 2);
+    },
   },
   {
     id: uuid(),
@@ -65,6 +69,28 @@ const luckOrBadLuckCards: Card[] = [
     luckType: 'bad-luck',
     used: false,
     stars: 2,
+  },
+  {
+    id: uuid(),
+    title: 'Azar',
+    description: 'Volte uma casa no tabuleiro!',
+    type: CardTypes.LuckOrBadLuck,
+    luckType: 'bad-luck',
+    used: false,
+    stars: 1,
+  },
+  {
+    id: uuid(),
+    title: 'Sorte',
+    description:
+      'A sua próxima pergunta valerá o dobro das estrelas! \nAvance uma casa',
+    type: CardTypes.LuckOrBadLuck,
+    luckType: 'luck',
+    used: false,
+    stars: 1,
+    starsCalc(stars) {
+      return stars * 2;
+    },
   },
 ];
 
