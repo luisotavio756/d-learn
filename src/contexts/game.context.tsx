@@ -4,6 +4,7 @@ import { Card, CardTypes, Player, Square, SquareTypes } from '../types';
 import INITIAL_BOARD from '../initialBoard';
 import INITIAL_CARDS from '../cards';
 import { getRestoredCards } from '../utils/cards';
+import { useAudio } from '../hooks/useAudio';
 
 interface GameProviderProps {
   children: React.ReactNode;
@@ -30,6 +31,8 @@ interface GameContextData {
 export const GameContext = createContext({} as GameContextData);
 
 export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
+  const { audio: endGameSound } = useAudio('end-game.mp3');
+
   const [players, setPlayers] = useState<Player[]>([
     {
       id: 1,
@@ -244,6 +247,8 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
       const nextSquareIndex = actualSquareIndex + stars;
 
       if (nextSquareIndex >= board.length - 1) {
+        endGameSound.play();
+
         const nextSquare = board[board.length - 1];
 
         addPlayersToSquare([player], nextSquare.id);
@@ -273,7 +278,13 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
         }
       }
     },
-    [board, getCardOfType, addPlayersToSquare, passTurnToNextPlayer],
+    [
+      board,
+      endGameSound,
+      getCardOfType,
+      addPlayersToSquare,
+      passTurnToNextPlayer,
+    ],
   );
 
   const endPlay = useCallback(

@@ -8,12 +8,15 @@ import { useGame } from '../../hooks/useGame.hook';
 
 import { Flex } from '../Layout';
 import { Headline, Text, Button, ButtonGroup } from '../UI';
+import { useAudio } from '../../hooks/useAudio';
 
 const NormalCardBody: React.FC = () => {
   const [answered, setAnswered] = useState(false);
   const [answeredCorrectly, setAnsweredCorrectly] = useState(false);
 
   const { activeCard, turnOf, answer, endPlay } = useGame();
+  const { audio: incorrectAudio } = useAudio('incorrect.mp3');
+  const { audio: successAudio } = useAudio('success.mp3');
 
   const {
     title,
@@ -35,14 +38,16 @@ const NormalCardBody: React.FC = () => {
       const response = answer(solution);
 
       if (response) {
+        successAudio.play();
         setAnsweredCorrectly(true);
       } else {
+        incorrectAudio.play();
         setAnsweredCorrectly(false);
       }
 
       setAnswered(true);
     },
-    [answer],
+    [answer, incorrectAudio, successAudio],
   );
 
   const handleEndPlay = useCallback(() => {
