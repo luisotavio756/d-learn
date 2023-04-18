@@ -204,6 +204,4 @@ const board: Square[] = [
   },
 ].map((item, i) => Object.assign(item, { id: String(i + 1) }));
 
-window.initialBoard = board;
-
 export default board;

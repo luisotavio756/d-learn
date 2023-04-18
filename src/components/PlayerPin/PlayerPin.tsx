@@ -12,6 +12,7 @@ const PlayerPin: React.FC<PlayerPinProps> = ({
   color,
   name,
   score,
+  active,
 }) => {
   return (
     <Container
@@ -20,6 +21,7 @@ const PlayerPin: React.FC<PlayerPinProps> = ({
       color={color}
       score={score}
       title={name}
+      active={active}
     />
   );
 };

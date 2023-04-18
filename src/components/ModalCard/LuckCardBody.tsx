@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo } from 'react';
+import React, { useCallback, useEffect, useMemo } from 'react';
 
 import { FiMeh, FiSmile } from 'react-icons/fi';
 import { Flex } from '../Layout';
@@ -7,9 +7,12 @@ import { LuckCardBodyContainer } from './ModalCard.styles';
 import { Card } from '../../types';
 import { useGame } from '../../hooks/useGame.hook';
 import { Text, Button } from '../UI';
+import { useAudio } from '../../hooks/useAudio';
 
 const LuckCardBody: React.FC = () => {
   const { activeCard, endPlay } = useGame();
+  const { audio: luckAudio } = useAudio('luck.mp3');
+  const { audio: badLuckAudio } = useAudio('bad-luck.mp3');
 
   const { description, luckType } = useMemo(
     () => (activeCard || {}) as Card,
@@ -21,6 +24,14 @@ const LuckCardBody: React.FC = () => {
       endPlay(activeCard);
     }
   }, [activeCard, endPlay]);
+
+  useEffect(() => {
+    if (luckType === 'luck') {
+      luckAudio.play();
+    } else {
+      badLuckAudio.play();
+    }
+  }, [luckType, luckAudio, badLuckAudio]);
 
   return (
     <LuckCardBodyContainer luckType={luckType}>
