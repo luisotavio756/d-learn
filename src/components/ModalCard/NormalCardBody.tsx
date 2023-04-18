@@ -1,3 +1,5 @@
+/* eslint-disable global-require */
+/* eslint-disable import/no-dynamic-require */
 import React, { useCallback, useMemo, useState } from 'react';
 
 import Stars from '../Stars/Stars';
@@ -61,18 +63,19 @@ const NormalCardBody: React.FC = () => {
     }
   }, [answered, answeredCorrectly, activeCard, endPlay]);
 
-  const getCardImage = useCallback(
+  const getCardImageSource = useCallback(
     (card: Card) => {
-      switch (card.type) {
-        case CardTypes.ArchDecisions:
-          return `src/assets/cards-images/arch-decision/${imgUrl}`;
-        case CardTypes.ArchPattern:
-          return `src/assets/cards-images/arch-pattern/${imgUrl}`;
-        case CardTypes.QualityAttributes:
-          return `src/assets/cards-images/quality-attr/${imgUrl}`;
-        default:
-          return '';
-      }
+      const folderNameByType = {
+        [CardTypes.ArchDecisions]: 'arch-decision',
+        [CardTypes.ArchPattern]: 'arch-pattern',
+        [CardTypes.QualityAttributes]: 'quality-attr',
+        [CardTypes.LuckOrBadLuck]: '',
+      };
+
+      const imageUrl = `${folderNameByType[card.type]}/${imgUrl}`;
+
+      return new URL(`/src/assets/cards-images/${imageUrl}`, import.meta.url)
+        .href;
     },
     [imgUrl],
   );
@@ -81,7 +84,7 @@ const NormalCardBody: React.FC = () => {
     <NormalCardBodyContainer>
       <div>
         <Flex shouldShow={!!imgUrl} justifyContent="center" className="img">
-          <img src={getCardImage(activeCard as Card)} alt={title} />
+          <img src={getCardImageSource(activeCard as Card)} alt={title} />
         </Flex>
         <Flex className="description">
           <Text size="lg" weight="heavy">
