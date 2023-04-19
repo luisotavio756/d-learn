@@ -34,26 +34,26 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
   const { audio: endGameSound } = useAudio('end-game.mp3');
 
   const [players, setPlayers] = useState<Player[]>([
-    {
-      id: 1,
-      name: 'Luis',
-      score: 0,
-      color: '#00B5D8',
-      square_id: '1',
-      active: true,
-    },
-    {
-      id: 2,
-      name: 'Bia',
-      score: 0,
-      color: 'red',
-      square_id: '1',
-      active: false,
-    },
+    // {
+    //   id: 1,
+    //   name: 'Luis',
+    //   score: 0,
+    //   color: '#00B5D8',
+    //   square_id: '1',
+    //   active: true,
+    // },
+    // {
+    //   id: 2,
+    //   name: 'Bia',
+    //   score: 0,
+    //   color: 'red',
+    //   square_id: '1',
+    //   active: false,
+    // },
   ]);
 
   const [gameIsBlocked, setGameIsBlocked] = useState(false);
-  const [gameStarted, setGameStarted] = useState(true);
+  const [gameStarted, setGameStarted] = useState(false);
   const [gameEnd, setGameEnd] = useState(false);
   const [board, setBoard] = useState<Square[]>(INITIAL_BOARD);
   const [cards, setCards] = useState<Card[]>(INITIAL_CARDS);
