@@ -59,9 +59,10 @@ export const Container = styled.div<BoardSquareProps>`
 `;
 
 export const PlayerPin = styled.div<PlayerPinProps>`
-  width: 22px;
-  height: 22px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
+  border: 2px solid ${props => props.theme.colors.gray[100]};
 
   background-image: url(${PlayerImg});
   background-color: ${props => props.color};
