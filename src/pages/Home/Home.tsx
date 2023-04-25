@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { FiInfo } from 'react-icons/fi';
+import { FiArchive } from 'react-icons/fi';
 import { RiNumbersFill } from 'react-icons/ri';
 import BoardSquare from '../../components/BoardSquare';
 
@@ -26,6 +26,7 @@ function Home() {
     gameIsBlocked,
     chooseCard,
     getCardOfType,
+    forceEndGame,
   } = useGame();
   const { isOpen: modalRankingIsOpen, toggleModal: toggleModalRanking } =
     useModal();
@@ -125,12 +126,19 @@ function Home() {
                   size="sm"
                   variant="blue-outline"
                   onClick={toggleModalRanking}
+                  disabled={gameIsBlocked}
                 >
                   <RiNumbersFill />
                   Ranking
                 </Button>
-                <Button size="sm" variant="blue-outline" justIcon>
-                  <FiInfo />
+                <Button
+                  size="sm"
+                  variant="red-outline"
+                  onClick={forceEndGame}
+                  disabled={gameIsBlocked}
+                >
+                  <FiArchive />
+                  Finalizar jogo
                 </Button>
               </ButtonGroup>
             </div>

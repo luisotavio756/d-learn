@@ -26,6 +26,7 @@ interface GameContextData {
   passTurnToNextPlayer(): void;
   endPlay(card: Card, isCorrect?: boolean): void;
   restartGame(type: 'soft' | 'hard'): void;
+  forceEndGame(): void;
 }
 
 export const GameContext = createContext({} as GameContextData);
@@ -85,6 +86,21 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
       }
     },
     [cards],
+  );
+
+  const updatePlayerScore = useCallback(
+    (player: Player, scoreToIncrement = 0) => {
+      const updatedPlayers = players.map(item =>
+        item.id === player.id
+          ? Object.assign(item, {
+              score: item.score + scoreToIncrement,
+            })
+          : item,
+      );
+
+      setPlayers(updatedPlayers);
+    },
+    [players],
   );
 
   const setActivePlayer = useCallback(
@@ -277,10 +293,13 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
           passTurnToNextPlayer();
         }
       }
+
+      updatePlayerScore(player, card.stars);
     },
     [
       board,
       endGameSound,
+      updatePlayerScore,
       getCardOfType,
       addPlayersToSquare,
       passTurnToNextPlayer,
@@ -343,6 +362,13 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
     [setActivePlayer],
   );
 
+  const forceEndGame = useCallback(() => {
+    endGameSound.play();
+
+    setGameEnd(true);
+    setGameIsBlocked(false);
+  }, [endGameSound]);
+
   const value = useMemo(
     () => ({
       players,
@@ -360,6 +386,7 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
       endPlay,
       restartGame,
       getCardOfType,
+      forceEndGame,
     }),
     [
       players,
@@ -377,6 +404,7 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
       endPlay,
       restartGame,
       getCardOfType,
+      forceEndGame,
     ],
   );
 

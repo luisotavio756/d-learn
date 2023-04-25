@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { FiRefreshCw, FiUsers } from 'react-icons/fi';
 import { RiNumbersFill } from 'react-icons/ri';
 
@@ -17,6 +17,11 @@ interface ModalRankingProps {
 const ModalRanking: React.FC<ModalRankingProps> = ({ isOpen, toggleModal }) => {
   const { players, gameEnd, restartGame } = useGame();
 
+  const orderedPlayers = useMemo(
+    () => [...players].sort((a, b) => b.score - a.score),
+    [players],
+  );
+
   return (
     <Modal
       width="454px"
@@ -32,13 +37,13 @@ const ModalRanking: React.FC<ModalRankingProps> = ({ isOpen, toggleModal }) => {
         <table>
           <thead>
             <tr>
-              <th style={{ width: 80 }}>Posição</th>
+              <th style={{ width: 40 }}>#</th>
               <th>Nome</th>
               <th style={{ width: 80 }}>Score</th>
             </tr>
           </thead>
           <tbody>
-            {players.map((item, index) => (
+            {orderedPlayers.map((item, index) => (
               <tr key={item.id}>
                 <td>{item.id}</td>
                 <td>
