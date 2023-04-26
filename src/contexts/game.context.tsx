@@ -5,9 +5,18 @@ import INITIAL_BOARD from '../initialBoard';
 import INITIAL_CARDS from '../cards';
 import { getRestoredCards } from '../utils/cards';
 import { useAudio } from '../hooks/useAudio';
+import { useLocalStorage } from '../hooks/useLocalstorage';
 
 interface GameProviderProps {
   children: React.ReactNode;
+}
+
+interface GameInfo {
+  players: Player[];
+  cards: Card[];
+  activeCard: Card | null;
+  startedAt: Date;
+  endAt?: Date | null;
 }
 
 interface GameContextData {
@@ -33,25 +42,12 @@ export const GameContext = createContext({} as GameContextData);
 
 export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
   const { audio: endGameSound } = useAudio('end-game.mp3');
+  const { value: gameInfo, setValue: setGameInfo } = useLocalStorage<GameInfo>(
+    'DLEARN@GAMEINFO',
+    {} as GameInfo,
+  );
 
-  const [players, setPlayers] = useState<Player[]>([
-    // {
-    //   id: 1,
-    //   name: 'Luis',
-    //   score: 0,
-    //   color: '#00B5D8',
-    //   square_id: '1',
-    //   active: true,
-    // },
-    // {
-    //   id: 2,
-    //   name: 'Bia',
-    //   score: 0,
-    //   color: 'red',
-    //   square_id: '1',
-    //   active: false,
-    // },
-  ]);
+  const [players, setPlayers] = useState<Player[]>([]);
 
   const [gameIsBlocked, setGameIsBlocked] = useState(false);
   const [gameStarted, setGameStarted] = useState(false);
@@ -59,6 +55,8 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
   const [board, setBoard] = useState<Square[]>(INITIAL_BOARD);
   const [cards, setCards] = useState<Card[]>(INITIAL_CARDS);
   const [activeCard, setActiveCard] = useState<Card | null>(null);
+  const [startedAt, setStartedAt] = useState<Date | null>(null);
+  const [endAt, setEndAt] = useState<Date | null>(null);
 
   const turnOf = useMemo(() => players.find(item => item.active), [players]);
 
@@ -90,17 +88,17 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
 
   const updatePlayerScore = useCallback(
     (player: Player, scoreToIncrement = 0) => {
-      const updatedPlayers = players.map(item =>
-        item.id === player.id
-          ? Object.assign(item, {
-              score: item.score + scoreToIncrement,
-            })
-          : item,
+      setPlayers(oldState =>
+        oldState.map(item =>
+          item.id === player.id
+            ? Object.assign(item, {
+                score: item.score + scoreToIncrement,
+              })
+            : item,
+        ),
       );
-
-      setPlayers(updatedPlayers);
     },
-    [players],
+    [],
   );
 
   const setActivePlayer = useCallback(
@@ -187,6 +185,7 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
 
     setPlayers(playersWithActivePlayer);
     setGameStarted(true);
+    setStartedAt(new Date());
   }, []);
 
   const getCardOfType = useCallback(
@@ -271,6 +270,7 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
         setActiveCard(null);
 
         setTimeout(() => {
+          setEndAt(new Date());
           setGameEnd(true);
           setGameIsBlocked(false);
         }, 1000);
@@ -367,6 +367,7 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
 
     setGameEnd(true);
     setGameIsBlocked(false);
+    setEndAt(new Date());
   }, [endGameSound]);
 
   const value = useMemo(
