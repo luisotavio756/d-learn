@@ -17,6 +17,7 @@ import ModalRanking from '../../components/ModalRanking';
 import { useModal } from '../../hooks/useModal';
 import { Headline, Text, Button, ButtonGroup } from '../../components/UI';
 import { Flex } from '../../components/Layout';
+import { useAlert } from '../../hooks/useAlert';
 
 function Home() {
   const {
@@ -30,6 +31,7 @@ function Home() {
   } = useGame();
   const { isOpen: modalRankingIsOpen, toggleModal: toggleModalRanking } =
     useModal();
+  const { showAlert } = useAlert();
 
   const playerSquare = useMemo(() => {
     const findSquare = board.find(item => item.id === turnOf?.square_id);
@@ -53,6 +55,18 @@ function Home() {
         playerSquareType === SquareTypes.Start) &&
       !gameIsBlocked
     );
+  }
+
+  function handleEndGame() {
+    showAlert({
+      title: 'Cancelar jogo',
+      message: 'Tem certeza que deseja encerrar o jogo agora?',
+      confirmAction: closeModal => {
+        forceEndGame();
+        closeModal();
+      },
+      cancelAction: closeModal => closeModal(),
+    });
   }
 
   return (
@@ -134,7 +148,7 @@ function Home() {
                 <Button
                   size="sm"
                   variant="red-outline"
-                  onClick={forceEndGame}
+                  onClick={handleEndGame}
                   disabled={gameIsBlocked}
                 >
                   <FiArchive />

@@ -6,16 +6,19 @@ import { GameProvider } from './contexts/game.context';
 import Home from './pages/Home';
 import GlobalStyles from './styles/global';
 import { theme } from './styles/theme';
+import { AlertProvider } from './contexts/alert.context';
 
 const App: React.FC = () => {
   return (
     <GameProvider>
       <ThemeProvider theme={theme}>
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<Home />} />
-          </Routes>
-        </BrowserRouter>
+        <AlertProvider>
+          <BrowserRouter>
+            <Routes>
+              <Route path="/" element={<Home />} />
+            </Routes>
+          </BrowserRouter>
+        </AlertProvider>
         <GlobalStyles />
       </ThemeProvider>
     </GameProvider>
