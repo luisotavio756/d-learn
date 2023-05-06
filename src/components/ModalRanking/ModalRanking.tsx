@@ -45,7 +45,7 @@ const ModalRanking: React.FC<ModalRankingProps> = ({ isOpen, toggleModal }) => {
           <tbody>
             {orderedPlayers.map((item, index) => (
               <tr key={item.id}>
-                <td>{item.id}</td>
+                <td>{index + 1}</td>
                 <td>
                   {['🥇', '🥈', '🥉', ''][index]}
                   {item.name}
