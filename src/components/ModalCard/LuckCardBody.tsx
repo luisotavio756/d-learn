@@ -3,14 +3,15 @@ import React, { useCallback, useEffect, useMemo } from 'react';
 import { FiMeh, FiSmile } from 'react-icons/fi';
 import { Flex } from '../Layout';
 
+import PlayerPin from '../PlayerPin';
 import { LuckCardBodyContainer } from './ModalCard.styles';
-import { Card } from '../../types';
+import { Card, Player } from '../../types';
 import { useGame } from '../../hooks/useGame.hook';
 import { Text, Button } from '../UI';
 import { useAudio } from '../../hooks/useAudio';
 
 const LuckCardBody: React.FC = () => {
-  const { activeCard, endPlay } = useGame();
+  const { activeCard, turnOf, endPlay } = useGame();
   const { audio: luckAudio } = useAudio('luck.flac');
   const { audio: badLuckAudio } = useAudio('bad-luck.mp3');
 
@@ -50,20 +51,30 @@ const LuckCardBody: React.FC = () => {
           <Text
             weight="medium"
             type={luckType === 'luck' ? 'success' : 'danger'}
+            align="center"
           >
             {description}
           </Text>
         </div>
 
         <div className="actions">
-          <Button
-            variant={luckType === 'luck' ? 'green' : 'red'}
-            size="md"
-            width="fit-content"
-            onClick={handleEndPlay}
-          >
-            Continuar
-          </Button>
+          <Flex gap={16} flexDirection="column">
+            <Flex justifyContent="center" gap={4}>
+              <PlayerPin
+                playerId={turnOf?.id as number}
+                {...(turnOf as Player)}
+              />
+              <Text weight="medium">{turnOf?.name}</Text>
+            </Flex>
+            <Button
+              variant={luckType === 'luck' ? 'green' : 'red'}
+              size="md"
+              width="fit-content"
+              onClick={handleEndPlay}
+            >
+              Continuar
+            </Button>
+          </Flex>
         </div>
       </Flex>
     </LuckCardBodyContainer>
