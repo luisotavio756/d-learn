@@ -70,11 +70,11 @@ const ModalRanking: React.FC<ModalRankingProps> = ({ isOpen, toggleModal }) => {
               </a>
             </p>
             <ButtonGroup gap={8}>
-              <Button variant="blue" size="sm">
+              {/* <Button variant="blue" size="sm">
                 <FiUsers /> Reiniciar com os mesmos jogadores
-              </Button>
+              </Button> */}
               <Button
-                variant="blue-outline"
+                variant="blue"
                 size="sm"
                 onClick={() => restartGame('hard')}
               >
