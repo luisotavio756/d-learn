@@ -1,4 +1,5 @@
 import React from 'react';
+import { FiUser } from 'react-icons/fi';
 import { Player } from '../../types';
 
 import { Container } from './PlayerPin.styles';
@@ -22,7 +23,9 @@ const PlayerPin: React.FC<PlayerPinProps> = ({
       score={score}
       title={name}
       active={active}
-    />
+    >
+      <FiUser strokeWidth={3} />
+    </Container>
   );
 };
 

@@ -2,7 +2,6 @@ import styled, { css } from 'styled-components';
 
 import StartSquareImg from '../../assets/start-square.png';
 import LuckSquareImg from '../../assets/luck-square.png';
-import PlayerImg from '../../assets/player.png';
 import { Player, SquareTypes } from '../../types';
 
 type BoardSquareProps = {
@@ -23,22 +22,27 @@ export const Container = styled.div<BoardSquareProps>`
   align-items: center;
   position: relative;
 
+  > svg {
+    width: 3.25rem;
+    height: 3.25rem;
+  }
+
   ${props =>
     props.type === SquareTypes.ArchDecisions &&
     css`
-      background: var(--blue-600);
+      background: ${props.theme.colors.blue[600]};
     `}
 
   ${props =>
     props.type === SquareTypes.ArchPattern &&
     css`
-      background: var(--red-600);
+      background: ${props.theme.colors.red[600]};
     `}
 
   ${props =>
     props.type === SquareTypes.QualityAttributes &&
     css`
-      background: var(--yellow-500);
+      background: ${props.theme.colors.yellow[500]};
     `}
 
   ${props =>
@@ -59,15 +63,16 @@ export const Container = styled.div<BoardSquareProps>`
 `;
 
 export const PlayerPin = styled.div<PlayerPinProps>`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   width: 30px;
   height: 30px;
   border-radius: 50%;
   border: 2px solid ${props => props.theme.colors.gray[100]};
 
-  background-image: url(${PlayerImg});
   background-color: ${props => props.color};
-  background-repeat: no-repeat;
-  background-position: center;
   position: absolute;
   transition: all 0.2s;
   cursor: pointer;
