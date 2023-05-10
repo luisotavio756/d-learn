@@ -14,8 +14,8 @@ type PlayerPinProps = Omit<Player, 'id' | 'square_id'> & {
 };
 
 export const Container = styled.div<BoardSquareProps>`
-  width: 114px;
-  height: 114px;
+  width: 7.125rem;
+  height: 7.125rem;
 
   display: flex;
   justify-content: center;
@@ -25,6 +25,24 @@ export const Container = styled.div<BoardSquareProps>`
   > svg {
     width: 3.25rem;
     height: 3.25rem;
+  }
+
+  .star {
+    position: absolute;
+    right: 4px;
+    top: 4px;
+    z-index: 0;
+
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+    background: #fff;
+
+    svg {
+      font-size: ${props => props.theme.fontSize.xs};
+      color: ${props => props.theme.colors.blue[600]};
+      fill: ${props => props.theme.colors.blue[600]};
+    }
   }
 
   ${props =>
@@ -74,6 +92,7 @@ export const PlayerPin = styled.div<PlayerPinProps>`
 
   background-color: ${props => props.color};
   position: absolute;
+  z-index: 1;
   transition: all 0.2s;
   cursor: pointer;
 

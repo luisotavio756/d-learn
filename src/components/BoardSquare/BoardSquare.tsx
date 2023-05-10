@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import { FiUser } from 'react-icons/fi';
+import { FiStar, FiUser } from 'react-icons/fi';
 import { Square, SquareTypes } from '../../types';
 
 import { Container, PlayerPin } from './BoardSquare.styles';
@@ -8,6 +8,7 @@ import { ReactComponent as ArchDecisionIcon } from '../../assets/cards-icons/arc
 import { ReactComponent as QualityAttrIcon } from '../../assets/cards-icons/quality_attr.svg';
 import { ReactComponent as ArchPatternsIcon } from '../../assets/cards-icons/arch_pattern.svg';
 import { useGame } from '../../hooks/useGame.hook';
+import { Flex } from '../Layout';
 
 export interface BoardSquareProps extends Square {
   isInColumn?: boolean;
@@ -51,6 +52,9 @@ const BoardSquare: React.FC<BoardSquareProps> = ({ id, type, isInColumn }) => {
           </PlayerPin>
         ))}
       </div>
+      <Flex alignItems="center" justifyContent="center" className="star">
+        <FiStar />
+      </Flex>
     </Container>
   );
 };
