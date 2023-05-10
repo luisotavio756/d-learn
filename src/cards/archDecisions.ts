@@ -204,4 +204,4 @@ const archDecisionsCards: Card[] = [
   },
 ];
 
-export default archDecisionsCards.slice(0, 3);
+export default archDecisionsCards;
