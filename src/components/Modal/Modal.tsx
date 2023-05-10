@@ -48,6 +48,7 @@ const Modal: React.FC<IModalProps> = ({
 
     const baseOverlayStyles = {
       backgroundColor: '#232129d9',
+      zIndex: '9999',
     };
 
     Object.assign(baseContentStyles, { ...(style?.content || {}) });

@@ -2,10 +2,10 @@ import React, { useMemo } from 'react';
 
 import { Container } from './CardFront.styles';
 
-import ArchDecisionIcon from '../../assets/arch_decision_icon.png';
-import QualityAttrIcon from '../../assets/quality_attr_icon.png';
-import ArchPatternsIcon from '../../assets/arch_pattern_icon.png';
-import LuckIcon from '../../assets/luck-icon.svg';
+import { ReactComponent as ArchDecisionIcon } from '../../assets/cards-icons/arch_decision.svg';
+import { ReactComponent as QualityAttrIcon } from '../../assets/cards-icons/quality_attr.svg';
+import { ReactComponent as ArchPatternsIcon } from '../../assets/cards-icons/arch_pattern.svg';
+import { ReactComponent as LuckIcon } from '../../assets/luck-icon.svg';
 
 import { CardTypes } from '../../types';
 
@@ -16,10 +16,10 @@ interface CardFrontProps {
 const CardFront: React.FC<CardFrontProps> = ({ type }) => {
   const icons = useMemo(
     () => ({
-      [CardTypes.ArchDecisions]: ArchDecisionIcon,
-      [CardTypes.QualityAttributes]: QualityAttrIcon,
-      [CardTypes.ArchPattern]: ArchPatternsIcon,
-      [CardTypes.LuckOrBadLuck]: LuckIcon,
+      [CardTypes.ArchDecisions]: <ArchDecisionIcon />,
+      [CardTypes.QualityAttributes]: <QualityAttrIcon />,
+      [CardTypes.ArchPattern]: <ArchPatternsIcon />,
+      [CardTypes.LuckOrBadLuck]: <LuckIcon />,
     }),
     [],
   );
@@ -35,9 +35,7 @@ const CardFront: React.FC<CardFrontProps> = ({ type }) => {
   );
   return (
     <Container className="card-front" type={type}>
-      <div className="icon">
-        {icons[type] && <img src={icons[type]} alt="" />}
-      </div>
+      <div className="icon">{icons[type]}</div>
       <div className="text">
         <strong>{text[type]}</strong>
       </div>

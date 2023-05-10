@@ -1,12 +1,14 @@
 import React, { useMemo } from 'react';
+import { FiStar, FiUser } from 'react-icons/fi';
 import { Square, SquareTypes } from '../../types';
 
 import { Container, PlayerPin } from './BoardSquare.styles';
 
-import ArchDecisionIcon from '../../assets/arch_decision_icon.png';
-import QualityAttrIcon from '../../assets/quality_attr_icon.png';
-import ArchPatternsIcon from '../../assets/arch_pattern_icon.png';
+import { ReactComponent as ArchDecisionIcon } from '../../assets/cards-icons/arch_decision.svg';
+import { ReactComponent as QualityAttrIcon } from '../../assets/cards-icons/quality_attr.svg';
+import { ReactComponent as ArchPatternsIcon } from '../../assets/cards-icons/arch_pattern.svg';
 import { useGame } from '../../hooks/useGame.hook';
+import { Flex } from '../Layout';
 
 export interface BoardSquareProps extends Square {
   isInColumn?: boolean;
@@ -17,10 +19,10 @@ const BoardSquare: React.FC<BoardSquareProps> = ({ id, type, isInColumn }) => {
 
   const icons = useMemo(
     () => ({
-      [SquareTypes.ArchDecisions]: ArchDecisionIcon,
-      [SquareTypes.QualityAttributes]: QualityAttrIcon,
-      [SquareTypes.ArchPattern]: ArchPatternsIcon,
-      [SquareTypes.LuckOrBadLuck]: QualityAttrIcon,
+      [SquareTypes.ArchDecisions]: <ArchDecisionIcon color="#fff" />,
+      [SquareTypes.QualityAttributes]: <QualityAttrIcon />,
+      [SquareTypes.ArchPattern]: <ArchPatternsIcon />,
+      [SquareTypes.LuckOrBadLuck]: <QualityAttrIcon />,
       [SquareTypes.Start]: undefined,
       [SquareTypes.LuckOrBadLuck]: undefined,
     }),
@@ -34,7 +36,7 @@ const BoardSquare: React.FC<BoardSquareProps> = ({ id, type, isInColumn }) => {
 
   return (
     <Container type={type} isInColumn={!!isInColumn}>
-      {icons[type] && <img src={icons[type]} alt="" />}
+      {icons[type]}
       <div className="players">
         {playersOnSquare.map(item => (
           <PlayerPin
@@ -45,9 +47,23 @@ const BoardSquare: React.FC<BoardSquareProps> = ({ id, type, isInColumn }) => {
             score={item.score}
             title={item.name}
             active
-          />
+          >
+            <FiUser strokeWidth={3} />
+          </PlayerPin>
         ))}
       </div>
+      <Flex
+        shouldShow={
+          type === SquareTypes.ArchDecisions ||
+          type === SquareTypes.ArchPattern ||
+          type === SquareTypes.QualityAttributes
+        }
+        alignItems="center"
+        justifyContent="center"
+        className="star"
+      >
+        <FiStar />
+      </Flex>
     </Container>
   );
 };

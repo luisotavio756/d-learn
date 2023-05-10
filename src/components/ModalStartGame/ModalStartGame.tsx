@@ -91,7 +91,7 @@ const ModalStartGame: React.FC = () => {
         <Flex flexDirection="column" className="welcome">
           <Text size="lg">
             Bem vindo ao D-LEARN Board Game. Adicione os jogadores para iniciar
-            o jogo agora mesmo!
+            o jogo!
           </Text>
           <Text size="md" type="warning" weight="medium">
             <FiInfo /> Máximo de 4 jogadores

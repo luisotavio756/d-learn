@@ -2,7 +2,6 @@ import styled, { css } from 'styled-components';
 
 import StartSquareImg from '../../assets/start-square.png';
 import LuckSquareImg from '../../assets/luck-square.png';
-import PlayerImg from '../../assets/player.png';
 import { Player, SquareTypes } from '../../types';
 
 type BoardSquareProps = {
@@ -15,30 +14,58 @@ type PlayerPinProps = Omit<Player, 'id' | 'square_id'> & {
 };
 
 export const Container = styled.div<BoardSquareProps>`
-  width: 114px;
-  height: 114px;
+  width: 7.125rem;
+  height: 7.125rem;
 
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
 
+  > svg {
+    width: 3.25rem;
+    height: 3.25rem;
+  }
+
+  ${props =>
+    props.type !== SquareTypes.Start &&
+    props.type !== SquareTypes.LuckOrBadLuck &&
+    css`
+      .star {
+        position: absolute;
+        right: 4px;
+        top: 4px;
+        z-index: 0;
+
+        width: 1rem;
+        height: 1rem;
+        border-radius: 50%;
+        background: #fff;
+
+        svg {
+          font-size: ${props => props.theme.fontSize.xs};
+          color: ${props => props.theme.colors.blue[600]};
+          fill: ${props => props.theme.colors.blue[600]};
+        }
+      }
+    `}
+
   ${props =>
     props.type === SquareTypes.ArchDecisions &&
     css`
-      background: var(--blue-600);
+      background: ${props.theme.colors.blue[600]};
     `}
 
   ${props =>
     props.type === SquareTypes.ArchPattern &&
     css`
-      background: var(--red-600);
+      background: ${props.theme.colors.red[600]};
     `}
 
   ${props =>
     props.type === SquareTypes.QualityAttributes &&
     css`
-      background: var(--yellow-500);
+      background: ${props.theme.colors.yellow[500]};
     `}
 
   ${props =>
@@ -59,16 +86,18 @@ export const Container = styled.div<BoardSquareProps>`
 `;
 
 export const PlayerPin = styled.div<PlayerPinProps>`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   width: 30px;
   height: 30px;
   border-radius: 50%;
   border: 2px solid ${props => props.theme.colors.gray[100]};
 
-  background-image: url(${PlayerImg});
   background-color: ${props => props.color};
-  background-repeat: no-repeat;
-  background-position: center;
   position: absolute;
+  z-index: 1;
   transition: all 0.2s;
   cursor: pointer;
 
