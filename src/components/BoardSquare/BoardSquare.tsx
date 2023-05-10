@@ -52,7 +52,16 @@ const BoardSquare: React.FC<BoardSquareProps> = ({ id, type, isInColumn }) => {
           </PlayerPin>
         ))}
       </div>
-      <Flex alignItems="center" justifyContent="center" className="star">
+      <Flex
+        shouldShow={
+          type === SquareTypes.ArchDecisions ||
+          type === SquareTypes.ArchPattern ||
+          type === SquareTypes.QualityAttributes
+        }
+        alignItems="center"
+        justifyContent="center"
+        className="star"
+      >
         <FiStar />
       </Flex>
     </Container>

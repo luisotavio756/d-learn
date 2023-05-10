@@ -27,23 +27,28 @@ export const Container = styled.div<BoardSquareProps>`
     height: 3.25rem;
   }
 
-  .star {
-    position: absolute;
-    right: 4px;
-    top: 4px;
-    z-index: 0;
+  ${props =>
+    props.type !== SquareTypes.Start &&
+    props.type !== SquareTypes.LuckOrBadLuck &&
+    css`
+      .star {
+        position: absolute;
+        right: 4px;
+        top: 4px;
+        z-index: 0;
 
-    width: 1rem;
-    height: 1rem;
-    border-radius: 50%;
-    background: #fff;
+        width: 1rem;
+        height: 1rem;
+        border-radius: 50%;
+        background: #fff;
 
-    svg {
-      font-size: ${props => props.theme.fontSize.xs};
-      color: ${props => props.theme.colors.blue[600]};
-      fill: ${props => props.theme.colors.blue[600]};
-    }
-  }
+        svg {
+          font-size: ${props => props.theme.fontSize.xs};
+          color: ${props => props.theme.colors.blue[600]};
+          fill: ${props => props.theme.colors.blue[600]};
+        }
+      }
+    `}
 
   ${props =>
     props.type === SquareTypes.ArchDecisions &&
