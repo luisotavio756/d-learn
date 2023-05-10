@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { v4 as uuid } from 'uuid';
 import { useForm } from 'react-hook-form';
-import { FiCheck, FiUserMinus, FiUserPlus } from 'react-icons/fi';
+import { FiCheck, FiInfo, FiUserMinus, FiUserPlus } from 'react-icons/fi';
 import { useTheme } from 'styled-components';
 
 import Modal from '../Modal';
@@ -10,12 +10,8 @@ import { Container } from './ModalStartGame.styles';
 import { Player } from '../../types';
 import InputForm from '../InputForm';
 import { useGame } from '../../hooks/useGame.hook';
-import { Button } from '../UI';
-
-interface IModalStartGameProps {
-  isOpen: boolean;
-  toggleModal: () => void;
-}
+import { Button, Text } from '../UI';
+import { Flex } from '../Layout';
 
 type FormData = {
   [key: string]: string;
@@ -23,12 +19,16 @@ type FormData = {
 
 const ModalStartGame: React.FC = () => {
   const theme = useTheme();
-  const [players, setPlayers] = useState(1);
+  const [playersQuantity, setPlayersQuantity] = useState(1);
 
-  const { register, handleSubmit } = useForm<FormData>();
+  const { register, unregister, handleSubmit } = useForm<FormData>();
   const { gameStarted, board, startGame } = useGame();
 
   const onSubmit = handleSubmit(data => {
+    if (Object.values(data).every(item => !item)) {
+      return;
+    }
+
     const startSquare = board[0];
 
     const colors = {
@@ -38,7 +38,7 @@ const ModalStartGame: React.FC = () => {
       3: theme.colors.blue[300],
     };
 
-    const players = Object.values(data).map<Player>((name, index) => ({
+    const updatedPlayers = Object.values(data).map<Player>((name, index) => ({
       id: index + 1,
       name,
       score: 0,
@@ -47,20 +47,21 @@ const ModalStartGame: React.FC = () => {
       active: false,
     }));
 
-    startGame(players);
+    startGame(updatedPlayers);
   });
 
   const addPlayer = useCallback(() => {
-    if (players >= 4) {
+    if (playersQuantity >= 4) {
       return;
     }
 
-    setPlayers(oldState => oldState + 1);
-  }, [players]);
+    setPlayersQuantity(oldState => oldState + 1);
+  }, [playersQuantity]);
 
   const removePlayer = useCallback(() => {
-    setPlayers(oldState => oldState - 1);
-  }, []);
+    unregister(`player${playersQuantity - 1}`);
+    setPlayersQuantity(oldState => oldState - 1);
+  }, [unregister, playersQuantity]);
 
   useEffect(() => {
     window.addEventListener('keypress', event => {
@@ -87,14 +88,17 @@ const ModalStartGame: React.FC = () => {
       toggleModal={() => null}
     >
       <Container>
-        <div className="welcome">
-          <p>
+        <Flex flexDirection="column" className="welcome">
+          <Text size="lg">
             Bem vindo ao D-LEARN Board Game. Adicione os jogadores para iniciar
             o jogo agora mesmo!
-          </p>
-        </div>
+          </Text>
+          <Text size="md" type="warning" weight="medium">
+            <FiInfo /> Máximo de 4 jogadores
+          </Text>
+        </Flex>
         <form onSubmit={onSubmit}>
-          {Array.from({ length: players }).map((_, i) => (
+          {Array.from({ length: playersQuantity }).map((_, i) => (
             <InputForm
               key={uuid()}
               type="text"
@@ -106,12 +110,12 @@ const ModalStartGame: React.FC = () => {
             />
           ))}
           <div className="button-group">
-            {players > 1 && (
+            {playersQuantity > 1 && (
               <Button size="sm" variant="red-outline" onClick={removePlayer}>
                 <FiUserMinus /> Remover ultimo
               </Button>
             )}
-            {players < 4 && (
+            {playersQuantity < 4 && (
               <Button size="sm" variant="blue-outline" onClick={addPlayer}>
                 <FiUserPlus /> Adicionar jogador
               </Button>

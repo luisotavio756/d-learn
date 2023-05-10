@@ -4,8 +4,9 @@ import React, { useCallback, useMemo, useState } from 'react';
 
 import Stars from '../Stars/Stars';
 
+import PlayerPin from '../PlayerPin';
 import { NormalCardBodyContainer } from './ModalCard.styles';
-import { Card, CardTypes } from '../../types';
+import { Card, CardTypes, Player } from '../../types';
 import { useGame } from '../../hooks/useGame.hook';
 
 import { Flex } from '../Layout';
@@ -100,37 +101,43 @@ const NormalCardBody: React.FC = () => {
         <Flex justifyContent="center" className="stars">
           <Stars value={stars} size="lg" />
         </Flex>
-        {answered && answeredCorrectly && (
-          <Flex
-            alignItems="center"
-            flexDirection="column"
-            className="answer correctly"
-          >
-            <Headline size="sm" type="success">
-              Parabéns, você acertou! 🎉
-            </Headline>
-            <Text type="success" family="mono">
-              R: {solutionText}
-            </Text>
-          </Flex>
-        )}
-        {answered && !answeredCorrectly && (
-          <Flex
-            alignItems="center"
-            flexDirection="column"
-            className="answer wrong"
-          >
-            <Headline size="sm" type="danger">
-              Poxa, você errou! 😕
-            </Headline>
-            <Text type="danger" family="mono">
-              R: {solutionText}
-            </Text>
-          </Flex>
-        )}
+        <Flex
+          shouldShow={answered && answeredCorrectly}
+          alignItems="center"
+          flexDirection="column"
+          className="answer correctly"
+        >
+          <Headline size="sm" type="success">
+            Parabéns, você acertou! 🎉
+          </Headline>
+          <Text type="success" family="mono" align="center">
+            R: {solutionText}
+          </Text>
+        </Flex>
+
+        <Flex
+          shouldShow={answered && !answeredCorrectly}
+          alignItems="center"
+          flexDirection="column"
+          className="answer wrong"
+        >
+          <Headline size="sm" type="danger">
+            Poxa, você errou! 😕
+          </Headline>
+          <Text type="danger" family="mono" align="center">
+            R: {solutionText}
+          </Text>
+        </Flex>
       </div>
       <div className="actions">
-        {!answered && (
+        <Flex gap={16} shouldShow={!answered} flexDirection="column">
+          <Flex justifyContent="center" gap={4}>
+            <PlayerPin
+              playerId={turnOf?.id as number}
+              {...(turnOf as Player)}
+            />
+            <Text weight="medium">{turnOf?.name}</Text>
+          </Flex>
           <ButtonGroup justifyContent="center" gap={10}>
             <Button
               variant="red"
@@ -149,7 +156,7 @@ const NormalCardBody: React.FC = () => {
               Verdadeiro
             </Button>
           </ButtonGroup>
-        )}
+        </Flex>
         {answered && answeredCorrectly && (
           <ButtonGroup justifyContent="flex-end">
             <Button

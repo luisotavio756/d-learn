@@ -33,11 +33,55 @@ const luckOrBadLuckCards: Card[] = [
   {
     id: uuid(),
     title: 'Sorte',
+    description:
+      'A sua próxima pergunta valerá o dobro das estrelas! \nAvance uma casa',
+    type: CardTypes.LuckOrBadLuck,
+    luckType: 'luck',
+    used: false,
+    stars: 1,
+    starsCalc(stars) {
+      return stars * 2;
+    },
+  },
+  {
+    id: uuid(),
+    title: 'Sorte',
     description: 'Avance uma casa no tabuleiro!',
     type: CardTypes.LuckOrBadLuck,
     luckType: 'luck',
     used: false,
     stars: 1,
+  },
+  {
+    id: uuid(),
+    title: 'Sorte',
+    description:
+      'Com esta carta você pode consultar algum material antes de responder a uma pergunta!\nAvance uma casa!',
+    type: CardTypes.LuckOrBadLuck,
+    luckType: 'luck',
+    used: false,
+    stars: 1,
+  },
+  {
+    id: uuid(),
+    title: 'Sorte',
+    description: 'Avance duas casas no tabuleiro!',
+    type: CardTypes.LuckOrBadLuck,
+    luckType: 'luck',
+    used: false,
+    stars: 2,
+  },
+  {
+    id: uuid(),
+    title: 'Sorte',
+    description: 'A sua próxima pergunta valerá o dobro das estrelas!',
+    type: CardTypes.LuckOrBadLuck,
+    luckType: 'luck',
+    used: false,
+    stars: 0,
+    starsCalc(stars) {
+      return stars * 2;
+    },
   },
   {
     id: uuid(),
@@ -78,19 +122,6 @@ const luckOrBadLuckCards: Card[] = [
     luckType: 'bad-luck',
     used: false,
     stars: 1,
-  },
-  {
-    id: uuid(),
-    title: 'Sorte',
-    description:
-      'A sua próxima pergunta valerá o dobro das estrelas! \nAvance uma casa',
-    type: CardTypes.LuckOrBadLuck,
-    luckType: 'luck',
-    used: false,
-    stars: 1,
-    starsCalc(stars) {
-      return stars * 2;
-    },
   },
 ];
 

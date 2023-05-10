@@ -19,6 +19,7 @@ export interface TextStylesProps {
   size?: TextSizes;
   weight?: TextWeights;
   family?: TextFamilies;
+  align?: 'center' | 'justify' | 'right' | 'left';
 }
 
 const TextSizeList: Record<TextSizes, string> = {
@@ -62,6 +63,8 @@ export const Container = styled.p<TextStylesProps>`
   font-family: ${props => TextFamilyList[props.family ?? 'sans']};
   color: ${props => TextColorsList[props.type ?? 'text']};
   line-height: ${props => TextLineHeighList[props.size ?? 'md']};
+  text-align: ${props => props.align ?? 'left'};
+
   display: flex;
   align-items: center;
 
@@ -76,6 +79,7 @@ export const ContainerWithSlot = styled(Slot)<TextStylesProps>`
   font-family: ${props => TextFamilyList[props.family ?? 'sans']};
   color: ${props => TextColorsList[props.type ?? 'text']};
   line-height: ${props => TextLineHeighList[props.size ?? 'md']};
+  text-align: ${props => props.align ?? 'left'};
 
   display: flex;
   align-items: center;

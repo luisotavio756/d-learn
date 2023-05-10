@@ -59,15 +59,22 @@ const ModalRanking: React.FC<ModalRankingProps> = ({ isOpen, toggleModal }) => {
           <div className="play-again">
             <h3>Obrigado por jogarem o D-LEARN !</h3>
             <p>
-              Vamos adorar seu feedback. Você pode deixá-lo clicando{' '}
-              <a href="test">aqui</a>
+              Por favor, responda essa pequena pesquisa para nos ajudar a
+              melhorar o jogo ainda mais{' '}
+              <a
+                href="https://forms.gle/JzX6VLx3et8jwcgT7"
+                target="_blank"
+                rel="noreferrer"
+              >
+                aqui
+              </a>
             </p>
             <ButtonGroup gap={8}>
-              <Button variant="blue" size="sm">
+              {/* <Button variant="blue" size="sm">
                 <FiUsers /> Reiniciar com os mesmos jogadores
-              </Button>
+              </Button> */}
               <Button
-                variant="blue-outline"
+                variant="blue"
                 size="sm"
                 onClick={() => restartGame('hard')}
               >
