@@ -18,7 +18,7 @@ export const Container = styled.div<ContainerProps>`
   box-shadow: 2px 1px 1px rgba(0, 0, 0, 0.15);
 
   .icon {
-    img {
+    svg {
       width: 64px;
       height: 64px;
     }
@@ -31,28 +31,28 @@ export const Container = styled.div<ContainerProps>`
   ${props =>
     props.type === CardTypes.ArchDecisions &&
     css`
-      background: var(--blue-600);
+      background: ${props.theme.colors.blue[600]};
     `}
 
   ${props =>
     props.type === CardTypes.ArchPattern &&
     css`
-      background: var(--red-600);
+      background: ${props.theme.colors.red[600]};
     `}
 
   ${props =>
     props.type === CardTypes.QualityAttributes &&
     css`
-      background: var(--yellow-500);
+      background: ${props.theme.colors.yellow[500]};
     `}
 
   ${props =>
     props.type === CardTypes.LuckOrBadLuck &&
     css`
-      background: var(--ice-700);
+      background: ${props.theme.colors.ice[700]};
 
       .text {
-        color: var(--gray-900);
+        color: ${props.theme.colors.gray[900]};
       }
     `}
 `;
