@@ -74,11 +74,12 @@ const luckOrBadLuckCards: Card[] = [
   {
     id: uuid(),
     title: 'Sorte',
-    description: 'A sua próxima pergunta valerá o dobro das estrelas!',
+    description:
+      'A sua próxima pergunta valerá o dobro das estrelas! Avance uma casa',
     type: CardTypes.LuckOrBadLuck,
     luckType: 'luck',
     used: false,
-    stars: 0,
+    stars: 1,
     starsCalc(stars) {
       return stars * 2;
     },
