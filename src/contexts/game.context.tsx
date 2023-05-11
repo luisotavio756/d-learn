@@ -262,6 +262,7 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
       const nextSquareIndex = actualSquareIndex + stars;
 
       if (nextSquareIndex >= board.length - 1) {
+        setGameIsBlocked(true);
         endGameSound.play();
 
         const nextSquare = board[board.length - 1];
