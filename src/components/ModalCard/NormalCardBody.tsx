@@ -89,7 +89,7 @@ const NormalCardBody: React.FC = () => {
         </Flex>
         <Flex className="description">
           <Text size="lg" weight="heavy">
-            Descrição:
+            Descrição: {solution}
           </Text>
           <Text family="mono">{description}</Text>
         </Flex>
