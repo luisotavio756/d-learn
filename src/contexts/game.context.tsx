@@ -240,8 +240,12 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
       let nextSquareIndex;
 
       if (card.luckType === 'luck') {
+        updatePlayerScore(player, card.stars);
+
         nextSquareIndex = actualSquare + card.stars;
       } else {
+        updatePlayerScore(player, -card.stars);
+
         nextSquareIndex = actualSquare - card.stars;
       }
 
@@ -251,7 +255,7 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
       passTurnToNextPlayer();
       setActiveCard(null);
     },
-    [board, addPlayersToSquare, passTurnToNextPlayer],
+    [board, updatePlayerScore, addPlayersToSquare, passTurnToNextPlayer],
   );
 
   const handleEndPlayFromNormalCard = useCallback(
