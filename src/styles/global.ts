@@ -75,9 +75,9 @@ export default createGlobalStyle`
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100vh;
+    /* height: 100vh;
     width: 100vw;
-    background-image: url(${BackgroundImage});
+    background-image: url(${BackgroundImage}); */
   }
 
   html {
@@ -90,7 +90,7 @@ export default createGlobalStyle`
   }
 
   body {
-    color: #fff;
+    background-color: ${props => props.theme.colors.background};
     -webkit-font-smoothing: antialiased;
   }
 

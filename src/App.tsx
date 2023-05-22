@@ -7,6 +7,7 @@ import Home from './pages/Home';
 import GlobalStyles from './styles/global';
 import { theme } from './styles/theme';
 import { AlertProvider } from './contexts/alert.context';
+import SignIn from './pages/SignIn/SignIn';
 
 const App: React.FC = () => {
   return (
@@ -15,6 +16,7 @@ const App: React.FC = () => {
         <AlertProvider>
           <BrowserRouter>
             <Routes>
+              <Route path="/sys/login" element={<SignIn />} />
               <Route path="/" element={<Home />} />
             </Routes>
           </BrowserRouter>
