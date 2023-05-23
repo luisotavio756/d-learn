@@ -4,10 +4,10 @@ import { ThemeProvider } from 'styled-components';
 import { GameProvider } from './contexts/game.context';
 
 import Home from './pages/Home';
+import Admin from './pages/Admin';
 import GlobalStyles from './styles/global';
 import { theme } from './styles/theme';
 import { AlertProvider } from './contexts/alert.context';
-import SignIn from './pages/SignIn/SignIn';
 
 const App: React.FC = () => {
   return (
@@ -16,7 +16,7 @@ const App: React.FC = () => {
         <AlertProvider>
           <BrowserRouter>
             <Routes>
-              <Route path="/sys/login" element={<SignIn />} />
+              <Route path="/admin/*" element={<Admin />} />
               <Route path="/" element={<Home />} />
             </Routes>
           </BrowserRouter>

@@ -42,3 +42,8 @@ export interface Card {
   imgUrl?: string;
   starsCalc?(stars: number): number;
 }
+
+export interface User {
+  name: string;
+  login: string;
+}
