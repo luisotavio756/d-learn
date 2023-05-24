@@ -100,4 +100,24 @@ export default createGlobalStyle`
   button {
     cursor: pointer;
   }
+
+  .loaderContent {
+    margin: 48px auto;
+    width: 4em;
+    height: 4em;
+    border: .5em solid rgba(0, 0, 0, 0.2);
+    border-left: .5em solid ${props => props.theme.colors.blue[500]};
+    border-radius: 50%;
+    animation: loaderKeyFrame 1.1s infinite linear;
+    transition: opacity 0.3s;
+  }
+
+  @keyframes loaderKeyFrame {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
 `;

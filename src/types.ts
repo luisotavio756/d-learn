@@ -47,3 +47,12 @@ export interface User {
   name: string;
   login: string;
 }
+
+export interface History {
+  _id: string;
+  winnerName: string;
+  winnerScore: number;
+  startedAt: string;
+  endAt: string;
+  ownerName: string;
+}

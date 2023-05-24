@@ -10,7 +10,7 @@ const Admin: React.FC = () => {
     <AuthAdminProvider>
       <Routes>
         <Route path="/login" element={<SignIn />} />
-        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/*" element={<Dashboard />} />
       </Routes>
     </AuthAdminProvider>
   );
