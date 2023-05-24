@@ -1,15 +1,25 @@
 import styled from 'styled-components';
 
+import BackgroundImage from '../../assets/background.jpg';
+
 export const Container = styled.div`
-  border-radius: 16px;
-  overflow: hidden;
-  box-shadow: -2px 6px 20px #666;
+  height: 100%;
+  width: 100%;
+  background-image: url(${BackgroundImage});
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 export const Board = styled.div`
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: -2px 6px 20px #666;
   background-color: #fff;
   display: flex;
   flex-direction: column;
+  width: fit-content;
 
   .top,
   .bottom {

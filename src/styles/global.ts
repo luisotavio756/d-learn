@@ -1,7 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
 
-import BackgroundImage from '../assets/background.jpg';
-
 export default createGlobalStyle`
   :root {
     /* Color styles */
@@ -72,13 +70,7 @@ export default createGlobalStyle`
   }
 
   #root {
-    display: flex;
-    align-items: center;
-    justify-content: center;
     height: 100vh;
-    /*
-    width: 100vw;
-    background-image: url(${BackgroundImage}); */
   }
 
   html {
@@ -92,6 +84,7 @@ export default createGlobalStyle`
 
   body {
     background-color: ${props => props.theme.colors.background};
+    color: #fff;
     -webkit-font-smoothing: antialiased;
   }
 
