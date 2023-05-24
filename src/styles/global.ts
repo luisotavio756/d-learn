@@ -70,6 +70,7 @@ export default createGlobalStyle`
   }
 
   #root {
+    display: flex;
     height: 100vh;
   }
 
