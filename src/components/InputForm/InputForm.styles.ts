@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  margin-top: 12px;
   display: flex;
   flex-direction: column;
 
@@ -11,7 +10,7 @@ export const Container = styled.div`
   }
 
   input {
-    font-size: 0.875rem;
+    font-size: 1rem;
     margin-top: 4px;
     padding: 12px 6px;
     height: 46px;
