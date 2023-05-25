@@ -8,9 +8,8 @@ import Modal from '../Modal';
 
 import { Container } from './ModalStartGame.styles';
 import { Player } from '../../types';
-import InputForm from '../InputForm';
 import { useGame } from '../../hooks/useGame.hook';
-import { Button, Text } from '../UI';
+import { Button, Text, Input } from '../UI';
 import { Flex } from '../Layout';
 
 type FormData = {
@@ -99,7 +98,7 @@ const ModalStartGame: React.FC = () => {
         </Flex>
         <form onSubmit={onSubmit}>
           {Array.from({ length: playersQuantity }).map((_, i) => (
-            <InputForm
+            <Input
               key={uuid()}
               type="text"
               id={`player${i}`}
