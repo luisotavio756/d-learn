@@ -8,19 +8,22 @@ import Admin from './pages/Admin';
 import GlobalStyles from './styles/global';
 import { theme } from './styles/theme';
 import { AlertProvider } from './contexts/alert.context';
+import { ToastProvider } from './contexts/toast.context';
 
 const App: React.FC = () => {
   return (
     <GameProvider>
       <ThemeProvider theme={theme}>
-        <AlertProvider>
-          <BrowserRouter>
-            <Routes>
-              <Route path="/admin/*" element={<Admin />} />
-              <Route path="/" element={<Home />} />
-            </Routes>
-          </BrowserRouter>
-        </AlertProvider>
+        <ToastProvider>
+          <AlertProvider>
+            <BrowserRouter>
+              <Routes>
+                <Route path="/admin/*" element={<Admin />} />
+                <Route path="/" element={<Home />} />
+              </Routes>
+            </BrowserRouter>
+          </AlertProvider>
+        </ToastProvider>
         <GlobalStyles />
       </ThemeProvider>
     </GameProvider>
