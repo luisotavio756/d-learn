@@ -10,14 +10,22 @@ import { Text, Button, Headline } from '../UI';
 
 export type CloseModalCallback = () => void;
 
+export type ToggleLoadingCallback = () => void;
+
 interface IAlertModalProps {
   title: string | React.ReactNode;
   message: string | React.ReactNode;
   closeText?: string;
   isOpen: boolean;
   setIsOpen: () => void;
-  confirmAction?(closeModal: CloseModalCallback): void;
-  cancelAction?(closeModal: CloseModalCallback): void;
+  confirmAction?(
+    closeModal: CloseModalCallback,
+    toggleLoading: ToggleLoadingCallback,
+  ): void;
+  cancelAction?(
+    closeModal: CloseModalCallback,
+    toggleLoading: ToggleLoadingCallback,
+  ): void;
 }
 
 const AlertModal: React.FC<IAlertModalProps> = ({
@@ -29,8 +37,11 @@ const AlertModal: React.FC<IAlertModalProps> = ({
   confirmAction,
   cancelAction,
 }) => {
+  const [isLoading, setIsLoading] = useState(false);
   const [modalStatus, setModalStatus] = useState(isOpen);
   const theme = useTheme();
+
+  const toggleLoading = () => setIsLoading(oldState => !oldState);
 
   const handleConfirm = useCallback(() => {
     if (!confirmAction) return;
@@ -38,7 +49,7 @@ const AlertModal: React.FC<IAlertModalProps> = ({
     try {
       confirmAction(() => {
         setIsOpen();
-      });
+      }, toggleLoading);
     } catch (error) {
       console.error(error);
     }
@@ -50,7 +61,7 @@ const AlertModal: React.FC<IAlertModalProps> = ({
     try {
       cancelAction(() => {
         setIsOpen();
-      });
+      }, toggleLoading);
     } catch (error) {
       console.error(error);
     }
@@ -87,12 +98,26 @@ const AlertModal: React.FC<IAlertModalProps> = ({
         </Text>
         <ButtonGroup gap={8} justifyContent="flex-end">
           {!!cancelAction && (
-            <Button size="md" variant="blue" onClick={handleCancel}>
-              <FiX /> {closeText || 'Cancelar'}
+            <Button
+              size="md"
+              variant="blue"
+              onClick={handleCancel}
+              loading={isLoading}
+              loadingText="Aguarde..."
+              disabled={isLoading}
+            >
+              <FiX /> {closeText ?? 'Cancelar'}
             </Button>
           )}
           {!!confirmAction && (
-            <Button size="md" variant="blue-outline" onClick={handleConfirm}>
+            <Button
+              size="md"
+              variant="blue-outline"
+              onClick={handleConfirm}
+              loading={isLoading}
+              loadingText="Aguarde..."
+              disabled={isLoading}
+            >
               <FiCheck /> Confirmar
             </Button>
           )}

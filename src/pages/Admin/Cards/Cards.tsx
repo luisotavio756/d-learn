@@ -1,17 +1,62 @@
-import React from 'react';
+import React, { useCallback } from 'react';
+import { FiEdit, FiEye, FiPlus, FiTrash } from 'react-icons/fi';
 
-import { FiPlus } from 'react-icons/fi';
-import { Container } from './Cards.styles';
-import { Button, Headline } from '../../../components/UI';
-import { Flex } from '../../../components/Layout';
-import { useCardsQuery } from '../../../queries/useCards';
 import ModalCreateCard from '../../../components/ModalCreateCard/ModalCreateCard';
+import { Button, ButtonGroup, Headline, Text } from '../../../components/UI';
+import { Flex } from '../../../components/Layout';
+import { Container } from './Cards.styles';
+
+import api from '../../../services/api';
+import { useCardsQuery } from '../../../queries/useCards';
 import { useModal } from '../../../hooks/useModal';
+import { useAlert } from '../../../hooks/useAlert';
+import { useToast } from '../../../hooks/useToast';
+import { queryClient } from '../../../services/queryClient';
 
 const Cards: React.FC = () => {
   const { data: cards = [], isFetching } = useCardsQuery();
   const { isOpen: modalCreateCardIsOpen, toggleModal: toggleModalCreateCard } =
     useModal();
+  const { showAlert } = useAlert();
+  const { addToast } = useToast();
+
+  const handleDeleteCard = useCallback(
+    (id: string) => {
+      showAlert({
+        title: 'Deletar carta',
+        message:
+          'Tem certeza que deseja deletar esta carta? Esta ação é irreversivel',
+        cancelAction: closeAlert => closeAlert(),
+        confirmAction: (closeAlert, toggleLoading) => {
+          toggleLoading();
+
+          api
+            .delete(`/cards/${id}`)
+            .then(async () => {
+              await queryClient.invalidateQueries(['cards']);
+
+              addToast({
+                title: 'Sucesso!',
+                description: 'Carta deletada com sucesso!',
+              });
+            })
+            .catch(() => {
+              addToast({
+                title: 'Erro',
+                description:
+                  'Ocorreu um erro ao tentar deletar a carta, tente novamente mais tarde',
+                type: 'error',
+              });
+            })
+            .finally(() => {
+              toggleLoading();
+              closeAlert();
+            });
+        },
+      });
+    },
+    [showAlert, addToast],
+  );
 
   return (
     <Container flexDirection="column" gap={24}>
@@ -41,7 +86,7 @@ const Cards: React.FC = () => {
               <th>Estrelas</th>
               <th>Pergunta</th>
               <th>Solução</th>
-              <th>Texto da solução</th>
+              <th>Ações</th>
             </tr>
           </thead>
           <tbody>
@@ -61,11 +106,33 @@ const Cards: React.FC = () => {
                 <td>{item.stars}</td>
                 <td>{item.question}</td>
                 <td>{item.solution}</td>
-                <td>{item.solutionText}</td>
+                <td>
+                  <ButtonGroup gap={6}>
+                    <Button
+                      size="sm"
+                      variant="red-outline"
+                      justIcon
+                      onClick={() => handleDeleteCard(item._id)}
+                    >
+                      <FiTrash />
+                    </Button>
+                    <Button size="sm" variant="yellow" justIcon>
+                      <FiEdit />
+                    </Button>
+                    <Button size="sm" justIcon>
+                      <FiEye />
+                    </Button>
+                  </ButtonGroup>
+                </td>
               </tr>
             ))}
           </tbody>
         </table>
+      </Flex>
+      <Flex shouldShow={!cards.length} justifyContent="center">
+        <Text family="mono" size="lg">
+          Não há cartas cadastradas
+        </Text>
       </Flex>
       <ModalCreateCard
         isOpen={modalCreateCardIsOpen}
