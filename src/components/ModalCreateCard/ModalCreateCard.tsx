@@ -1,7 +1,7 @@
-import React, { ChangeEvent, useCallback, useState } from 'react';
-
+import React, { ChangeEvent, useCallback, useMemo, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { FiCamera, FiCheck, FiInfo, FiX } from 'react-icons/fi';
+import { ZodError, z } from 'zod';
 
 import Modal from '../Modal';
 
@@ -11,6 +11,9 @@ import { Flex } from '../Layout';
 import { CardTypes } from '../../types';
 
 import defaultImg from '../../assets/default-banner.jpg';
+import { useToast } from '../../hooks/useToast';
+import api from '../../services/api';
+import { queryClient } from '../../services/queryClient';
 
 type FormData = {
   [key: string]: string;
@@ -25,19 +28,84 @@ const ModalCreateCard: React.FC<IModalCreateCardProps> = ({
   isOpen,
   toggleModal,
 }) => {
-  const [selectedImg, setSelectedImg] = useState<string | null>(null);
+  const [selectedImg, setSelectedImg] = useState<File | null>(null);
   const { register, handleSubmit } = useForm<FormData>();
+  const { addToast } = useToast();
 
-  const onSubmit = handleSubmit(data => {
+  const previewUrl = useMemo(
+    () => (selectedImg ? URL.createObjectURL(selectedImg) : defaultImg),
+    [selectedImg],
+  );
+
+  const onSubmit = handleSubmit(async data => {
     console.log(data);
+
+    const Card = z.object({
+      type: z.string(),
+      title: z.string(),
+      description: z.string().min(1),
+      question: z.string().min(1),
+      solution: z.string().min(1),
+      solutionText: z.string().min(1),
+      stars: z.string(),
+    });
+
+    try {
+      Card.parse(data);
+
+      const {
+        type,
+        title,
+        description,
+        question,
+        solution,
+        solutionText,
+        stars,
+      } = data;
+
+      const formData = new FormData();
+
+      formData.append('type', type);
+      formData.append('title', title);
+      formData.append('description', description);
+      formData.append('question', question);
+      formData.append('solution', solution);
+      formData.append('solutionText', solutionText);
+      formData.append('stars', stars);
+
+      if (selectedImg) {
+        formData.append('img', selectedImg);
+      }
+
+      await api.post('/cards', formData);
+      await queryClient.invalidateQueries(['cards']);
+
+      toggleModal();
+
+      addToast({
+        title: 'Sucesso!',
+        description: 'Carta criada com sucesso!',
+        type: 'success',
+      });
+    } catch (error) {
+      console.log(error);
+
+      if (error instanceof ZodError) {
+        addToast({
+          title: 'Dados inválidos',
+          description:
+            'Por favor, garanta que todos os campos estão preenchidos e tente novamente',
+          type: 'error',
+        });
+      }
+    }
   });
 
   const handleAvatarChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
       const file = e.target.files[0];
-      const fileUrl = URL.createObjectURL(file);
 
-      setSelectedImg(fileUrl);
+      setSelectedImg(file);
     }
   }, []);
 
@@ -53,7 +121,7 @@ const ModalCreateCard: React.FC<IModalCreateCardProps> = ({
           <Text size="sm" type="warning">
             <FiInfo /> Sugestão: 180px x 84px
           </Text>
-          <img src={selectedImg ?? defaultImg} alt="Avatar img" />
+          <img src={previewUrl} alt="Avatar img" />
 
           <label htmlFor="avatar">
             <FiCamera />
@@ -145,7 +213,7 @@ const ModalCreateCard: React.FC<IModalCreateCardProps> = ({
               type="number"
               label="Estrelas"
               placeholder="Selecione uma quantidade de estrelas"
-              name="start"
+              name="stars"
               register={register}
               min={1}
               max={6}

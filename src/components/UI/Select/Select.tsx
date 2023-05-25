@@ -23,9 +23,9 @@ const Select: React.FC<SelectProps> = ({
 }) => {
   const selectElement = useMemo(
     () => (
-      <SelectElement defaultValue="-1" {...rest} {...register(rest.name)}>
+      <SelectElement defaultValue={-1} {...rest} {...register(rest.name)}>
         {rest.placeholder && (
-          <option value="-1" disabled>
+          <option value={-1} disabled>
             {rest.placeholder}
           </option>
         )}

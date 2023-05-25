@@ -10,7 +10,7 @@ async function getCards() {
 }
 
 export function useCardsQuery() {
-  return useQuery<Card[]>('history', async () => getCards(), {
+  return useQuery<Card[]>('cards', async () => getCards(), {
     staleTime: 1000 * 60 * 30, // half hour,
   });
 }
