@@ -3,8 +3,7 @@ import { FiLogIn } from 'react-icons/fi';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 
-import { Button, Headline } from '../../../components/UI';
-import InputForm from '../../../components/InputForm/InputForm';
+import { Button, Headline, Input } from '../../../components/UI';
 
 import { Container } from './SignIn.styles';
 import { Flex } from '../../../components/Layout';
@@ -48,7 +47,7 @@ const SignIn: React.FC = () => {
           <Flex flexDirection="column" gap={16}>
             <Headline type="neutral">Faça seu login</Headline>
 
-            <InputForm
+            <Input
               label="Login"
               name="login"
               type="text"
@@ -56,7 +55,7 @@ const SignIn: React.FC = () => {
               register={register}
             />
 
-            <InputForm
+            <Input
               label="Senha"
               name="password"
               type="password"

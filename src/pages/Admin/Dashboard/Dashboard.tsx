@@ -3,9 +3,11 @@ import React from 'react';
 import { FiAward, FiLogOut, FiTablet } from 'react-icons/fi';
 import { Route, Routes, useNavigate } from 'react-router-dom';
 import { Container, Sidebar, Content, Header, Main } from './Dashboard.styles';
-import { Headline, Text } from '../../../components/UI';
+import { Text } from '../../../components/UI';
 import { useAuthAdmin } from '../../../hooks/useAdminAuth';
+
 import History from '../History';
+import Cards from '../Cards';
 
 const Dashboard: React.FC = () => {
   const { signOut } = useAuthAdmin();
@@ -45,7 +47,7 @@ const Dashboard: React.FC = () => {
         <Header />
         <Main>
           <Routes>
-            <Route path="/cards" element={<Headline>Cartas</Headline>} />
+            <Route path="/cards" element={<Cards />} />
             <Route path="/history" element={<History />} />
           </Routes>
         </Main>
