@@ -1,14 +1,16 @@
-import React from 'react';
+import React, { ChangeEvent, useCallback, useState } from 'react';
 
 import { useForm } from 'react-hook-form';
-import { FiCheck, FiInfo } from 'react-icons/fi';
+import { FiCamera, FiCheck, FiInfo, FiX } from 'react-icons/fi';
 
 import Modal from '../Modal';
 
-import { Container } from './ModalCreateCard.styles';
+import { Container, FileInput } from './ModalCreateCard.styles';
 import { Button, Text, Input, TextArea, Select } from '../UI';
 import { Flex } from '../Layout';
 import { CardTypes } from '../../types';
+
+import defaultImg from '../../assets/default-banner.jpg';
 
 type FormData = {
   [key: string]: string;
@@ -23,31 +25,58 @@ const ModalCreateCard: React.FC<IModalCreateCardProps> = ({
   isOpen,
   toggleModal,
 }) => {
+  const [selectedImg, setSelectedImg] = useState<string | null>(null);
   const { register, handleSubmit } = useForm<FormData>();
 
   const onSubmit = handleSubmit(data => {
     console.log(data);
   });
 
+  const handleAvatarChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files) {
+      const file = e.target.files[0];
+      const fileUrl = URL.createObjectURL(file);
+
+      setSelectedImg(fileUrl);
+    }
+  }, []);
+
   return (
     <Modal
       width="540px"
       isOpen={isOpen}
-      title="Iniciar jogo"
+      title="Nova carta"
       toggleModal={toggleModal}
     >
       <Container>
-        <Flex flexDirection="column" className="welcome">
-          <Text size="lg">
-            Bem vindo ao D-LEARN Board Game. Adicione os jogadores para iniciar
-            o jogo!
+        <FileInput flexDirection="column">
+          <Text size="sm" type="warning">
+            <FiInfo /> Sugestão: 180px x 84px
           </Text>
-          <Text size="md" type="warning" weight="medium">
-            <FiInfo /> Máximo de 4 jogadores
-          </Text>
-        </Flex>
+          <img src={selectedImg ?? defaultImg} alt="Avatar img" />
+
+          <label htmlFor="avatar">
+            <FiCamera />
+            <input
+              id="avatar"
+              type="file"
+              name=""
+              onChange={handleAvatarChange}
+              accept="image/*"
+            />
+          </label>
+          {selectedImg && (
+            <Button
+              size="sm"
+              variant="text"
+              onClick={() => setSelectedImg(null)}
+            >
+              <FiX /> remover
+            </Button>
+          )}
+        </FileInput>
         <form onSubmit={onSubmit}>
-          <Flex flexDirection="column" gap={8}>
+          <Flex flexDirection="column" gap={16}>
             <Select
               label="Tipo"
               placeholder="Selecione um tipo"
