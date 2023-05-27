@@ -28,7 +28,7 @@ const SignIn: React.FC = () => {
     try {
       await signIn(data as ISignInCredentials);
 
-      navigate('/admin/dashboard');
+      navigate('/admin/cards');
     } catch (error) {
       console.log(error);
     }
