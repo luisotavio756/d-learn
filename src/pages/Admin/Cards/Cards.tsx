@@ -220,7 +220,10 @@ const Cards: React.FC = () => {
           </tbody>
         </table>
       </Flex>
-      <Flex shouldShow={!filteredCards.length} justifyContent="center">
+      <Flex
+        shouldShow={!filteredCards.length && !isFetching}
+        justifyContent="center"
+      >
         <Text family="mono" size="lg">
           Não há cartas cadastradas
         </Text>
