@@ -1,15 +1,24 @@
 import React, { createContext, useCallback, useMemo, useEffect } from 'react';
 
 import AlertModal from '../components/AlertModal';
-import { CloseModalCallback } from '../components/AlertModal/AlertModal';
+import {
+  CloseModalCallback,
+  ToggleLoadingCallback,
+} from '../components/AlertModal/AlertModal';
 import { useModal } from '../hooks/useModal';
 
 type ShowAlertData = {
   title: string;
   message: string;
   closeText?: string;
-  confirmAction?(closeModal: CloseModalCallback): void;
-  cancelAction?(closeModal: CloseModalCallback): void;
+  confirmAction?(
+    closeModal: CloseModalCallback,
+    toggleLoading: ToggleLoadingCallback,
+  ): void;
+  cancelAction?(
+    closeModal: CloseModalCallback,
+    toggleLoading: ToggleLoadingCallback,
+  ): void;
 };
 
 interface AlertContextData {

@@ -43,6 +43,11 @@ const colors = {
     color: theme.colors.green[600],
     border: `1px solid ${theme.colors.green[600]}`,
   },
+  text: {
+    background: 'transparent',
+    color: theme.colors.gray[600],
+    border: '1px solid transparent',
+  },
 };
 
 export const Container = styled.button<ButtonProps>`

@@ -3,7 +3,7 @@ import { Card, CardTypes } from '../types';
 
 const luckOrBadLuckCards: Card[] = [
   {
-    id: uuid(),
+    _id: uuid(),
     title: 'Sorte',
     description: 'Avance três casas no tabuleiro!',
     type: CardTypes.LuckOrBadLuck,
@@ -12,7 +12,7 @@ const luckOrBadLuckCards: Card[] = [
     stars: 3,
   },
   {
-    id: uuid(),
+    _id: uuid(),
     title: 'Sorte',
     description:
       'Com esta carta você pode consultar algum material antes de responder a uma pergunta!\nAvance uma casa!',
@@ -22,7 +22,7 @@ const luckOrBadLuckCards: Card[] = [
     stars: 1,
   },
   {
-    id: uuid(),
+    _id: uuid(),
     title: 'Sorte',
     description: 'Avance duas casas no tabuleiro!',
     type: CardTypes.LuckOrBadLuck,
@@ -31,7 +31,7 @@ const luckOrBadLuckCards: Card[] = [
     stars: 2,
   },
   {
-    id: uuid(),
+    _id: uuid(),
     title: 'Sorte',
     description:
       'A sua próxima pergunta valerá o dobro das estrelas! \nAvance uma casa',
@@ -44,7 +44,7 @@ const luckOrBadLuckCards: Card[] = [
     },
   },
   {
-    id: uuid(),
+    _id: uuid(),
     title: 'Sorte',
     description: 'Avance uma casa no tabuleiro!',
     type: CardTypes.LuckOrBadLuck,
@@ -53,7 +53,7 @@ const luckOrBadLuckCards: Card[] = [
     stars: 1,
   },
   {
-    id: uuid(),
+    _id: uuid(),
     title: 'Sorte',
     description:
       'Com esta carta você pode consultar algum material antes de responder a uma pergunta!\nAvance uma casa!',
@@ -63,7 +63,7 @@ const luckOrBadLuckCards: Card[] = [
     stars: 1,
   },
   {
-    id: uuid(),
+    _id: uuid(),
     title: 'Sorte',
     description: 'Avance duas casas no tabuleiro!',
     type: CardTypes.LuckOrBadLuck,
@@ -72,7 +72,7 @@ const luckOrBadLuckCards: Card[] = [
     stars: 2,
   },
   {
-    id: uuid(),
+    _id: uuid(),
     title: 'Sorte',
     description:
       'A sua próxima pergunta valerá o dobro das estrelas! Avance uma casa',
@@ -85,7 +85,7 @@ const luckOrBadLuckCards: Card[] = [
     },
   },
   {
-    id: uuid(),
+    _id: uuid(),
     title: 'Azar',
     description: 'Volte três casas no tabuleiro!',
     type: CardTypes.LuckOrBadLuck,
@@ -94,7 +94,7 @@ const luckOrBadLuckCards: Card[] = [
     stars: 3,
   },
   {
-    id: uuid(),
+    _id: uuid(),
     title: 'Azar',
     description:
       'A sua próxima pergunta valerá metade das estrelas! \nVolte uma casa!',
@@ -107,7 +107,7 @@ const luckOrBadLuckCards: Card[] = [
     },
   },
   {
-    id: uuid(),
+    _id: uuid(),
     title: 'Azar',
     description: 'Volte duas casas no tabuleiro!',
     type: CardTypes.LuckOrBadLuck,
@@ -116,7 +116,7 @@ const luckOrBadLuckCards: Card[] = [
     stars: 2,
   },
   {
-    id: uuid(),
+    _id: uuid(),
     title: 'Azar',
     description: 'Volte uma casa no tabuleiro!',
     type: CardTypes.LuckOrBadLuck,

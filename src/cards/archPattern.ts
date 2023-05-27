@@ -3,7 +3,7 @@ import { Card, CardTypes } from '../types';
 
 const archPatternCards: Card[] = [
   {
-    id: uuid(),
+    _id: uuid(),
     title: 'Divisão em camadas',
     description:
       'Estruturas de aplicações que podem ser decompostas em subáreas (camadas).',
@@ -17,7 +17,7 @@ const archPatternCards: Card[] = [
     imgUrl: 'arch-pattern-1.png',
   },
   {
-    id: uuid(),
+    _id: uuid(),
     title: 'Broker',
     description:
       'Estruturação de sistemas distribuíbos que precisam interagir através de invocação remota de serviços.',
@@ -31,7 +31,7 @@ const archPatternCards: Card[] = [
     imgUrl: 'arch-pattern-2.png',
   },
   {
-    id: uuid(),
+    _id: uuid(),
     title: 'Model-View-Controller',
     description:
       'Aplicações divididas em três componentes: Model, View e Controller.',
@@ -45,7 +45,7 @@ const archPatternCards: Card[] = [
     imgUrl: 'arch-pattern-3.png',
   },
   {
-    id: uuid(),
+    _id: uuid(),
     title: 'Cliente - Servidor',
     description:
       'Baseado em programas clientes que estabelecem conexões e programas servidores que executam serviços.',
@@ -59,7 +59,7 @@ const archPatternCards: Card[] = [
     imgUrl: 'arch-pattern-4.png',
   },
   {
-    id: uuid(),
+    _id: uuid(),
     title: 'Blackboard',
     description:
       'Coleções de programas independentes que trabalham cooperativamente numa estrutura de dados comum.',
@@ -73,7 +73,7 @@ const archPatternCards: Card[] = [
     imgUrl: 'arch-pattern-5.png',
   },
   {
-    id: uuid(),
+    _id: uuid(),
     title: 'Ponto-a-ponto (P2P)',
     description:
       'Conecta um conjunto de entidades computacionais por meio de um protocolo comum.',
@@ -87,7 +87,7 @@ const archPatternCards: Card[] = [
     imgUrl: 'arch-pattern-6.png',
   },
   {
-    id: uuid(),
+    _id: uuid(),
     title: 'Repositório',
     description:
       'Subsistemas manipulam uma mesma base de dados compartilhados.',
@@ -102,7 +102,7 @@ const archPatternCards: Card[] = [
     imgUrl: 'arch-pattern-7.png',
   },
   {
-    id: uuid(),
+    _id: uuid(),
     title: 'Piper-and-filter',
     description:
       'Desenvolvimento de sistemas que processa ou transforma um stream de dados.',
@@ -116,7 +116,7 @@ const archPatternCards: Card[] = [
     imgUrl: 'arch-pattern-8.png',
   },
   {
-    id: uuid(),
+    _id: uuid(),
     title: 'Publish-Subscribe',
     description:
       'Consiste na criação e publicação de dados por Publishers e no consumo desses dados por Subscribe.',
@@ -130,7 +130,7 @@ const archPatternCards: Card[] = [
     imgUrl: 'arch-pattern-9.png',
   },
   {
-    id: uuid(),
+    _id: uuid(),
     title: 'Map-Reduce',
     description:
       'Permite realizar uma ordenação distribuída e paralela de um grande volume de dados.',
@@ -144,7 +144,7 @@ const archPatternCards: Card[] = [
     imgUrl: 'arch-pattern-10.png',
   },
   {
-    id: uuid(),
+    _id: uuid(),
     title: 'Arquitetura Orientada a serviços',
     description:
       'Promove a integração do negócio com a tecnologia da informação por meio de componentes de serviços.',
@@ -158,7 +158,7 @@ const archPatternCards: Card[] = [
     imgUrl: 'arch-pattern-11.png',
   },
   /* {
-    id: uuid(),
+    _id: uuid(),
     title: '',
     description: '',
     question: '',
@@ -170,7 +170,7 @@ const archPatternCards: Card[] = [
     imgUrl: 'arch-pattern-12.png',
   },
   {
-    id: uuid(),
+    _id: uuid(),
     title: '',
     description: '',
     question: '',
@@ -182,7 +182,7 @@ const archPatternCards: Card[] = [
     imgUrl: 'arch-pattern-13.png',
   },
   {
-    id: uuid(),
+    _id: uuid(),
     title: '',
     description: '',
     question: '',

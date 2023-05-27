@@ -3,7 +3,7 @@ import { Card, CardTypes } from '../types';
 
 const archDecisionsCards: Card[] = [
   {
-    id: uuid(),
+    _id: uuid(),
     title: 'Escolha da Tecnologia',
     description:
       'Define quais as tecnologias disponíveis para realizar as demais decisões arquiteturais.',
@@ -18,7 +18,7 @@ const archDecisionsCards: Card[] = [
     imgUrl: 'arch-decision-1.png',
   },
   {
-    id: uuid(),
+    _id: uuid(),
     title: 'Escolha da Tecnologia',
     description:
       'Define quais as tecnologias disponíveis para realizar as demais decisões arquiteturais.',
@@ -32,7 +32,7 @@ const archDecisionsCards: Card[] = [
     imgUrl: 'arch-decision-2.png',
   },
   {
-    id: uuid(),
+    _id: uuid(),
     title: 'Modelo de dados',
     description:
       'Representa a coleção de dados de interesse e como eles são interpretados.',
@@ -47,7 +47,7 @@ const archDecisionsCards: Card[] = [
     imgUrl: 'arch-decision-3.png',
   },
   {
-    id: uuid(),
+    _id: uuid(),
     title: 'Modelo de dados',
     description:
       'Representa a coleção de dados de interesse e como eles são interpretados.',
@@ -62,7 +62,7 @@ const archDecisionsCards: Card[] = [
     imgUrl: 'arch-decision-4.png',
   },
   {
-    id: uuid(),
+    _id: uuid(),
     title: 'Mapeamento entre elementos',
     description: 'Representa o mapeamento dos elementos de uma arquitetura.',
     question:
@@ -76,7 +76,7 @@ const archDecisionsCards: Card[] = [
     imgUrl: 'arch-decision-5.png',
   },
   {
-    id: uuid(),
+    _id: uuid(),
     title: 'Mapeamento entre elementos',
     description: 'Representa o mapeamento dos elementos de uma arquitetura.',
     question:
@@ -89,7 +89,7 @@ const archDecisionsCards: Card[] = [
     imgUrl: 'arch-decision-6.png',
   },
   {
-    id: uuid(),
+    _id: uuid(),
     title: 'Binding Time',
     description:
       'Introduzem faixas de variações permitidas sobre decisões arquiteturais.',
@@ -103,7 +103,7 @@ const archDecisionsCards: Card[] = [
     imgUrl: 'arch-decision-7.png',
   },
   {
-    id: uuid(),
+    _id: uuid(),
     title: 'Binding Time',
     description:
       'Introduzem faixas de variações permitidas sobre decisões arquiteturais.',
@@ -117,7 +117,7 @@ const archDecisionsCards: Card[] = [
     imgUrl: 'arch-decision-8.png',
   },
   {
-    id: uuid(),
+    _id: uuid(),
     title: 'Gerenciamento de recursos',
     description:
       'Refere-se a utilização de recursos compartilhados na arquitetura.',
@@ -132,7 +132,7 @@ const archDecisionsCards: Card[] = [
     imgUrl: 'arch-decision-9.png',
   },
   {
-    id: uuid(),
+    _id: uuid(),
     title: 'Gerenciamento de recursos',
     description:
       'Refere-se a utilização de recursos compartilhados na arquitetura.',
@@ -146,7 +146,7 @@ const archDecisionsCards: Card[] = [
     imgUrl: 'arch-decision-10.png',
   },
   {
-    id: uuid(),
+    _id: uuid(),
     title: 'Alocação de responsabilidades',
     description:
       'Referem-se às decisões que incluem a decomposição funcional, modelagem de objetos do mundo real e agrupamento.',
@@ -160,7 +160,7 @@ const archDecisionsCards: Card[] = [
     imgUrl: 'arch-decision-11.png',
   },
   {
-    id: uuid(),
+    _id: uuid(),
     title: 'Alocação de responsabilidades',
     description:
       'Referem-se às decisões que incluem a decomposição funcional, modelagem de objetos do mundo real e agrupamento.',
@@ -175,7 +175,7 @@ const archDecisionsCards: Card[] = [
     imgUrl: 'arch-decision-12.png',
   },
   {
-    id: uuid(),
+    _id: uuid(),
     title: 'Modelo de coordenação',
     description: 'Compreende os mecanismos de comunicação entre os elementos.',
     question:
@@ -189,7 +189,7 @@ const archDecisionsCards: Card[] = [
     imgUrl: 'arch-decision-13.png',
   },
   {
-    id: uuid(),
+    _id: uuid(),
     title: 'Modelo de coordenação',
     description: 'Compreende os mecanismos de comunicação entre os elementos.',
     question:

@@ -29,17 +29,18 @@ export interface Square {
 }
 
 export interface Card {
-  id: string;
+  _id: string;
   type: CardTypes;
   title: string;
   description: string;
   stars: number;
-  used: boolean;
+  used?: boolean;
   question?: string;
   solution?: 'V' | 'F';
   solutionText?: string;
   luckType?: 'luck' | 'bad-luck';
   imgUrl?: string;
+  starsCalcType?: number;
   starsCalc?(stars: number): number;
 }
 
