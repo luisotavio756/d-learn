@@ -58,9 +58,10 @@ export const Content = styled.div`
   overflow-x: auto;
 `;
 
-export const Header = styled.header`
+export const Header = styled(Flex)`
   width: 100%;
   height: 64px;
+  padding: 0 2rem;
 
   background: ${props => props.theme.colors.blue[900]};
 `;

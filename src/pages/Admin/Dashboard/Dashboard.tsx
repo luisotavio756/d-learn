@@ -3,14 +3,15 @@ import React from 'react';
 import { FiAward, FiLogOut, FiTablet } from 'react-icons/fi';
 import { Route, Routes, useNavigate } from 'react-router-dom';
 import { Container, Sidebar, Content, Header, Main } from './Dashboard.styles';
-import { Text } from '../../../components/UI';
+import { Headline, Text } from '../../../components/UI';
 import { useAuthAdmin } from '../../../hooks/useAdminAuth';
 
 import History from '../History';
 import Cards from '../Cards';
+import { Flex } from '../../../components/Layout';
 
 const Dashboard: React.FC = () => {
-  const { signOut } = useAuthAdmin();
+  const { signOut, user } = useAuthAdmin();
   const navigate = useNavigate();
 
   function handleLogout() {
@@ -44,7 +45,15 @@ const Dashboard: React.FC = () => {
         </ul>
       </Sidebar>
       <Content>
-        <Header />
+        <Header alignItems="center" justifyContent="space-between">
+          <Headline type="light">D-LEARN</Headline>
+          <Flex gap={4}>
+            <Text type="light">Bem vindo,</Text>
+            <Text type="light" weight="heavy">
+              {user.name}
+            </Text>
+          </Flex>
+        </Header>
         <Main>
           <Routes>
             <Route path="/cards" element={<Cards />} />
