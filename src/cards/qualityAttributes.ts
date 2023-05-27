@@ -3,7 +3,7 @@ import { Card, CardTypes } from '../types';
 
 const qualityAttributesCards: Card[] = [
   {
-    id: uuid(),
+    _id: uuid(),
     title: 'Disponibilidade',
     description:
       'Refere-se a capacidade de um sistema para mascarar um período de interrupção do serviço num intervalo de tempo.',
@@ -18,7 +18,7 @@ const qualityAttributesCards: Card[] = [
     imgUrl: 'quality-attr-1.png',
   },
   {
-    id: uuid(),
+    _id: uuid(),
     title: 'Disponibilidade',
     description:
       'Refere-se a capacidade de um sistema para mascarar um período de interrupção do serviço num intervalo de tempo.',
@@ -32,7 +32,7 @@ const qualityAttributesCards: Card[] = [
     imgUrl: 'quality-attr-2.png',
   },
   {
-    id: uuid(),
+    _id: uuid(),
     title: 'Interoperabilidade',
     description:
       'Refere-se ao grau em que dois ou mais sistemas podem trocar informações úteis através de interfaces em um contexto específico.',
@@ -47,7 +47,7 @@ const qualityAttributesCards: Card[] = [
     imgUrl: 'quality-attr-3.png',
   },
   {
-    id: uuid(),
+    _id: uuid(),
     title: 'Interoperabilidade',
     description:
       'Refere-se ao grau em que dois ou mais sistemas podem trocar informações úteis através de interfaces em um contexto específico.',
@@ -61,7 +61,7 @@ const qualityAttributesCards: Card[] = [
     imgUrl: 'quality-attr-4.png',
   },
   {
-    id: uuid(),
+    _id: uuid(),
     title: 'Modificabilidade',
     description:
       'Refere-se à mudança, no custo e nos riscos de fazer alterações no sistema.',
@@ -75,7 +75,7 @@ const qualityAttributesCards: Card[] = [
     imgUrl: 'quality-attr-5.png',
   },
   {
-    id: uuid(),
+    _id: uuid(),
     title: 'Modificabilidade',
     description:
       'Refere-se à mudança, no custo e nos riscos de fazer alterações no sistema.',
@@ -89,7 +89,7 @@ const qualityAttributesCards: Card[] = [
     imgUrl: 'quality-attr-6.png',
   },
   {
-    id: uuid(),
+    _id: uuid(),
     title: 'Desempenho',
     description:
       'Refere-se ao tempo e à capacidade do sistema de atender aos requisitos de tempo.',
@@ -103,7 +103,7 @@ const qualityAttributesCards: Card[] = [
     imgUrl: 'quality-attr-7.png',
   },
   {
-    id: uuid(),
+    _id: uuid(),
     title: 'Desempenho',
     description:
       'Refere-se ao tempo e à capacidade do sistema de atender aos requisitos de tempo.',
@@ -118,7 +118,7 @@ const qualityAttributesCards: Card[] = [
     imgUrl: 'quality-attr-8.png',
   },
   {
-    id: uuid(),
+    _id: uuid(),
     title: 'Segurança',
     description:
       'Refere-se a uma medida da capacidade do sistema de proteger dados e informações contra acessos não autorizados.',
@@ -132,7 +132,7 @@ const qualityAttributesCards: Card[] = [
     imgUrl: 'quality-attr-9.png',
   },
   {
-    id: uuid(),
+    _id: uuid(),
     title: 'Segurança',
     description:
       'Refere-se a uma medida da capacidade do sistema de proteger dados e informações contra acessos não autorizados.',
@@ -146,7 +146,7 @@ const qualityAttributesCards: Card[] = [
     imgUrl: 'quality-attr-10.png',
   },
   {
-    id: uuid(),
+    _id: uuid(),
     title: 'Testabilidade',
     description:
       'Refere-se à facilidade com que o software pode ser feito para demonstrar suas falhas.',
@@ -161,7 +161,7 @@ const qualityAttributesCards: Card[] = [
     imgUrl: 'quality-attr-11.png',
   },
   {
-    id: uuid(),
+    _id: uuid(),
     title: 'Testabilidade',
     description:
       'Refere-se à facilidade com que o software pode ser feito para demonstrar suas falhas.',
@@ -175,7 +175,7 @@ const qualityAttributesCards: Card[] = [
     imgUrl: 'quality-attr-12.png',
   },
   {
-    id: uuid(),
+    _id: uuid(),
     title: 'Usabilidade',
     description:
       'Refere-se à facilidade com que o usuário realiza uma tarefa desejada e com o tipo de suporte que o sistema oferece.',
@@ -190,7 +190,7 @@ const qualityAttributesCards: Card[] = [
     imgUrl: 'quality-attr-13.png',
   },
   {
-    id: uuid(),
+    _id: uuid(),
     title: 'Usabilidade',
     description:
       'Refere-se à facilidade com que o usuário realiza uma tarefa desejada e com o tipo de suporte que o sistema oferece.',

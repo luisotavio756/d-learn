@@ -63,7 +63,7 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
   const updateCardsAfterEndPlay = useCallback(
     (lastUsedCard: Card) => {
       const updatedCards = cards.map(item =>
-        item.id === lastUsedCard.id
+        item._id === lastUsedCard._id
           ? {
               ...item,
               used: true,
