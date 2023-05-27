@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { FiLogIn } from 'react-icons/fi';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
@@ -9,6 +9,7 @@ import { Container } from './SignIn.styles';
 import { Flex } from '../../../components/Layout';
 
 import { useAuthAdmin } from '../../../hooks/useAdminAuth';
+import { useToast } from '../../../hooks/useToast';
 
 interface ISignInCredentials {
   login: string;
@@ -16,21 +17,42 @@ interface ISignInCredentials {
 }
 
 const SignIn: React.FC = () => {
+  const [isLoading, setIsLoading] = useState(false);
+
   const { signIn } = useAuthAdmin();
   const { register, handleSubmit } = useForm();
+  const { addToast } = useToast();
+
   const navigate = useNavigate();
 
   const onSubmit = handleSubmit(async (data: any) => {
     if (!data.login || !data.password) {
+      addToast({
+        title: 'Erro',
+        description: 'Verifique as credenciais e tente novamente',
+        type: 'error',
+      });
+
       return;
     }
+
+    setIsLoading(true);
 
     try {
       await signIn(data as ISignInCredentials);
 
       navigate('/admin/cards');
     } catch (error) {
+      addToast({
+        title: 'Erro',
+        description:
+          'Erro ao logar, verifique as credenciais e tente novamente',
+        type: 'error',
+      });
+
       console.log(error);
+    } finally {
+      setIsLoading(false);
     }
   });
 
@@ -63,7 +85,13 @@ const SignIn: React.FC = () => {
               register={register}
             />
 
-            <Button type="submit" width="full">
+            <Button
+              type="submit"
+              width="full"
+              loading={isLoading}
+              disabled={isLoading}
+              loadingText="Aguarde..."
+            >
               <FiLogIn /> Entrar
             </Button>
           </Flex>
