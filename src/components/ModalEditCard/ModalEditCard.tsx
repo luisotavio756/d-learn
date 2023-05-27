@@ -1,54 +1,64 @@
-import React, { ChangeEvent, useCallback, useMemo, useState } from 'react';
+import React, {
+  ChangeEvent,
+  useCallback,
+  useEffect,
+  useMemo,
+  useState,
+} from 'react';
 import { useForm } from 'react-hook-form';
 import { FiCamera, FiCheck, FiInfo, FiX } from 'react-icons/fi';
 import { ZodError, z } from 'zod';
 
 import Modal from '../Modal';
-
-import { Container, FileInput } from './ModalCreateCard.styles';
+import { Container, FileInput } from './ModalEditCard.styles';
 import { Button, Text, Input, TextArea, Select } from '../UI';
 import { Flex } from '../Layout';
-import { CardTypes } from '../../types';
+import { Card, CardTypes } from '../../types';
 
+import api from '../../services/api';
 import defaultImg from '../../assets/default-banner.jpg';
 import { useToast } from '../../hooks/useToast';
-import api from '../../services/api';
 import { queryClient } from '../../services/queryClient';
 
 type FormData = {
   [key: string]: string;
 };
 
-interface IModalCreateCardProps {
+interface IModalEditCardProps {
+  card: Card;
   isOpen: boolean;
   toggleModal(): void;
 }
 
-const ModalCreateCard: React.FC<IModalCreateCardProps> = ({
+const ModalEditCard: React.FC<IModalEditCardProps> = ({
   isOpen,
+  card,
   toggleModal,
 }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [selectedImg, setSelectedImg] = useState<File | null>(null);
-  const { register, handleSubmit } = useForm<FormData>();
+  const { register, handleSubmit, reset } = useForm<FormData>();
   const { addToast } = useToast();
 
-  const previewUrl = useMemo(
-    () => (selectedImg ? URL.createObjectURL(selectedImg) : defaultImg),
-    [selectedImg],
-  );
+  const previewUrl = useMemo(() => {
+    if (selectedImg) return URL.createObjectURL(selectedImg);
+
+    if (card.imgUrl) return card.imgUrl;
+
+    return defaultImg;
+  }, [card, selectedImg]);
 
   const onSubmit = handleSubmit(async data => {
     setIsLoading(true);
 
     const Card = z.object({
-      type: z.string(),
+      type: z.union([z.number(), z.string()]),
       title: z.string(),
       description: z.string().min(1),
       question: z.string().min(1),
       solution: z.string().min(1),
       solutionText: z.string().min(1),
-      stars: z.string(),
+      stars: z.union([z.number(), z.string()]),
     });
 
     try {
@@ -78,14 +88,14 @@ const ModalCreateCard: React.FC<IModalCreateCardProps> = ({
         formData.append('img', selectedImg);
       }
 
-      await api.post('/cards', formData);
+      await api.put(`/cards/${card._id}`, formData);
       await queryClient.invalidateQueries(['cards']);
 
       toggleModal();
 
       addToast({
         title: 'Sucesso!',
-        description: 'Carta criada com sucesso!',
+        description: 'Carta editada com sucesso!',
         type: 'success',
       });
     } catch (error) {
@@ -112,11 +122,17 @@ const ModalCreateCard: React.FC<IModalCreateCardProps> = ({
     }
   }, []);
 
+  useEffect(() => {
+    if (Object.keys(card).length) {
+      reset(card as any);
+    }
+  }, [card, reset]);
+
   return (
     <Modal
       width="540px"
       isOpen={isOpen}
-      title="Nova carta"
+      title="Editar carta"
       toggleModal={toggleModal}
     >
       <Container>
@@ -142,7 +158,7 @@ const ModalCreateCard: React.FC<IModalCreateCardProps> = ({
               variant="text"
               onClick={() => setSelectedImg(null)}
             >
-              <FiX /> remover
+              <FiX /> desfazer
             </Button>
           )}
         </FileInput>
@@ -231,7 +247,7 @@ const ModalCreateCard: React.FC<IModalCreateCardProps> = ({
             loadingText="Aguarde..."
             disabled={isLoading}
           >
-            <FiCheck /> Criar carta
+            <FiCheck /> Editar carta
           </Button>
         </form>
       </Container>
@@ -239,4 +255,4 @@ const ModalCreateCard: React.FC<IModalCreateCardProps> = ({
   );
 };
 
-export default ModalCreateCard;
+export default ModalEditCard;

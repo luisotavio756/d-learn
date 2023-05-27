@@ -12,11 +12,21 @@ import { useModal } from '../../../hooks/useModal';
 import { useAlert } from '../../../hooks/useAlert';
 import { useToast } from '../../../hooks/useToast';
 import { queryClient } from '../../../services/queryClient';
+import { Card } from '../../../types';
+import ModalEditCard from '../../../components/ModalEditCard/ModalEditCard';
 
 const Cards: React.FC = () => {
   const { data: cards = [], isFetching } = useCardsQuery();
   const { isOpen: modalCreateCardIsOpen, toggleModal: toggleModalCreateCard } =
     useModal();
+
+  const {
+    isOpen: modalEditCardIsOpen,
+    toggleModal: toggleModalEditCard,
+    data: selectedCard,
+    setData: setSelectedCard,
+  } = useModal<Card>();
+
   const { showAlert } = useAlert();
   const { addToast } = useToast();
 
@@ -58,6 +68,14 @@ const Cards: React.FC = () => {
     [showAlert, addToast],
   );
 
+  const handleEditCard = useCallback(
+    (card: Card) => {
+      setSelectedCard(card);
+      toggleModalEditCard();
+    },
+    [setSelectedCard, toggleModalEditCard],
+  );
+
   return (
     <Container flexDirection="column" gap={24}>
       <Headline family="mono" weight="light">
@@ -94,12 +112,7 @@ const Cards: React.FC = () => {
               <tr key={item._id}>
                 <td>{i + 1}</td>
                 <td>
-                  <img
-                    src={`${import.meta.env.VITE_API_URL}/files/uploads/${
-                      item.imgUrl
-                    }`}
-                    alt="Img"
-                  />
+                  <img src={item.imgUrl} alt="Img" />
                 </td>
                 <td>{item.type}</td>
                 <td>{item.title}</td>
@@ -116,7 +129,12 @@ const Cards: React.FC = () => {
                     >
                       <FiTrash />
                     </Button>
-                    <Button size="sm" variant="yellow" justIcon>
+                    <Button
+                      size="sm"
+                      variant="yellow"
+                      justIcon
+                      onClick={() => handleEditCard(item)}
+                    >
                       <FiEdit />
                     </Button>
                     <Button size="sm" justIcon>
@@ -137,6 +155,11 @@ const Cards: React.FC = () => {
       <ModalCreateCard
         isOpen={modalCreateCardIsOpen}
         toggleModal={toggleModalCreateCard}
+      />
+      <ModalEditCard
+        isOpen={modalEditCardIsOpen}
+        toggleModal={toggleModalEditCard}
+        card={selectedCard ?? ({} as Card)}
       />
     </Container>
   );

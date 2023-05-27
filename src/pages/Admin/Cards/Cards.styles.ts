@@ -12,6 +12,7 @@ export const Container = styled(Flex)`
     border-spacing: 0;
     width: 100%;
     border: 1px solid #ddd;
+    background: #fff;
 
     thead {
       th {
@@ -34,6 +35,12 @@ export const Container = styled(Flex)`
     td {
       text-align: left;
       padding: 8px;
+
+      img {
+        width: 150px;
+        height: 84px;
+        object-fit: contain;
+      }
     }
 
     tr {
