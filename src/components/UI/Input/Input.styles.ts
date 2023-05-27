@@ -18,5 +18,4 @@ export const InputElement = styled.input`
   border-radius: 4px;
   border: 1px solid ${props => props.theme.colors.gray[400]};
   color: ${props => props.theme.colors.gray[800]};
-  font-family: ;
 `;

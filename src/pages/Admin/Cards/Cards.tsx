@@ -22,6 +22,7 @@ import { queryClient } from '../../../services/queryClient';
 import { Card, CardTypes } from '../../../types';
 
 import LuckSquareImg from '../../../assets/luck-square.png';
+import ModalCardDetails from '../../../components/ModalCardDetails/ModalCardDetails';
 
 const Cards: React.FC = () => {
   const [selectedCardType, setSelectedCardType] = useState<CardTypes | string>(
@@ -37,6 +38,13 @@ const Cards: React.FC = () => {
     toggleModal: toggleModalEditCard,
     data: selectedCard,
     setData: setSelectedCard,
+  } = useModal<Card>();
+
+  const {
+    isOpen: modalCardDetailsIsOpen,
+    toggleModal: toggleModalCardDetails,
+    data: modalCardDetailsData,
+    setData: setModalCardDetailsData,
   } = useModal<Card>();
 
   const { showAlert } = useAlert();
@@ -86,6 +94,14 @@ const Cards: React.FC = () => {
       toggleModalEditCard();
     },
     [setSelectedCard, toggleModalEditCard],
+  );
+
+  const handleOpenCardDetails = useCallback(
+    (card: Card) => {
+      setModalCardDetailsData(card);
+      toggleModalCardDetails();
+    },
+    [setModalCardDetailsData, toggleModalCardDetails],
   );
 
   const handleOnChangeType = useCallback((type: string) => {
@@ -188,28 +204,30 @@ const Cards: React.FC = () => {
                 <td>{item.solution}</td>
                 <td>
                   <ButtonGroup gap={6}>
+                    {item.type !== CardTypes.LuckOrBadLuck && (
+                      <>
+                        <Button
+                          size="sm"
+                          variant="red-outline"
+                          justIcon
+                          onClick={() => handleDeleteCard(item._id)}
+                        >
+                          <FiTrash />
+                        </Button>
+                        <Button
+                          size="sm"
+                          variant="yellow"
+                          justIcon
+                          onClick={() => handleEditCard(item)}
+                        >
+                          <FiEdit />
+                        </Button>
+                      </>
+                    )}
                     <Button
                       size="sm"
-                      variant="red-outline"
                       justIcon
-                      onClick={() => handleDeleteCard(item._id)}
-                      disabled={selectedCardType === CardTypes.LuckOrBadLuck}
-                    >
-                      <FiTrash />
-                    </Button>
-                    <Button
-                      size="sm"
-                      variant="yellow"
-                      justIcon
-                      onClick={() => handleEditCard(item)}
-                      disabled={selectedCardType === CardTypes.LuckOrBadLuck}
-                    >
-                      <FiEdit />
-                    </Button>
-                    <Button
-                      size="sm"
-                      justIcon
-                      disabled={selectedCardType === CardTypes.LuckOrBadLuck}
+                      onClick={() => handleOpenCardDetails(item)}
                     >
                       <FiEye />
                     </Button>
@@ -236,6 +254,11 @@ const Cards: React.FC = () => {
         isOpen={modalEditCardIsOpen}
         toggleModal={toggleModalEditCard}
         card={selectedCard ?? ({} as Card)}
+      />
+      <ModalCardDetails
+        isOpen={modalCardDetailsIsOpen}
+        toggleModal={toggleModalCardDetails}
+        card={modalCardDetailsData ?? ({} as Card)}
       />
     </Container>
   );
