@@ -69,4 +69,6 @@ export const Header = styled(Flex)`
 export const Main = styled.main`
   width: 100%;
   padding: 2rem 1rem;
+  max-height: calc(100vh - 64px);
+  overflow: auto;
 `;

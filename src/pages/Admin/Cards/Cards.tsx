@@ -1,7 +1,8 @@
 import React, { useCallback, useMemo, useState } from 'react';
-import { FiEdit, FiEye, FiPlus, FiTrash } from 'react-icons/fi';
+import { FiEdit, FiEye, FiInfo, FiPlus, FiTrash } from 'react-icons/fi';
 
 import ModalCreateCard from '../../../components/ModalCreateCard/ModalCreateCard';
+import ModalEditCard from '../../../components/ModalEditCard/ModalEditCard';
 import {
   Button,
   ButtonGroup,
@@ -19,7 +20,8 @@ import { useAlert } from '../../../hooks/useAlert';
 import { useToast } from '../../../hooks/useToast';
 import { queryClient } from '../../../services/queryClient';
 import { Card, CardTypes } from '../../../types';
-import ModalEditCard from '../../../components/ModalEditCard/ModalEditCard';
+
+import LuckSquareImg from '../../../assets/luck-square.png';
 
 const Cards: React.FC = () => {
   const [selectedCardType, setSelectedCardType] = useState<CardTypes | string>(
@@ -129,6 +131,10 @@ const Cards: React.FC = () => {
                 label: 'Atributos de qualidade',
                 value: CardTypes.QualityAttributes,
               },
+              {
+                label: 'Sorte ou revés',
+                value: CardTypes.LuckOrBadLuck,
+              },
             ]}
           />
         </form>
@@ -143,7 +149,18 @@ const Cards: React.FC = () => {
       <Flex shouldShow={isFetching}>
         <div className="loaderContent" />
       </Flex>
-      <Flex shouldShow={!isFetching} className="cards-container">
+      <Flex
+        shouldShow={!isFetching}
+        className="cards-container"
+        flexDirection="column"
+        gap={4}
+      >
+        <Flex shouldShow={selectedCardType === CardTypes.LuckOrBadLuck}>
+          <Text type="warning">
+            <FiInfo /> As cartas de sorte ou revés não podem ser editadas por
+            aqui. Solicite ao desenvolvedor a alteração
+          </Text>
+        </Flex>
         <table>
           <thead>
             <tr>
@@ -162,7 +179,7 @@ const Cards: React.FC = () => {
               <tr key={item._id}>
                 <td>{i + 1}</td>
                 <td>
-                  <img src={item.imgUrl} alt="Img" />
+                  <img src={item.imgUrl ?? LuckSquareImg} alt="Img" />
                 </td>
                 <td>{item.type}</td>
                 <td>{item.title}</td>
@@ -176,6 +193,7 @@ const Cards: React.FC = () => {
                       variant="red-outline"
                       justIcon
                       onClick={() => handleDeleteCard(item._id)}
+                      disabled={selectedCardType === CardTypes.LuckOrBadLuck}
                     >
                       <FiTrash />
                     </Button>
@@ -184,10 +202,15 @@ const Cards: React.FC = () => {
                       variant="yellow"
                       justIcon
                       onClick={() => handleEditCard(item)}
+                      disabled={selectedCardType === CardTypes.LuckOrBadLuck}
                     >
                       <FiEdit />
                     </Button>
-                    <Button size="sm" justIcon>
+                    <Button
+                      size="sm"
+                      justIcon
+                      disabled={selectedCardType === CardTypes.LuckOrBadLuck}
+                    >
                       <FiEye />
                     </Button>
                   </ButtonGroup>
