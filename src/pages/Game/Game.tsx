@@ -4,7 +4,7 @@ import { RiNumbersFill } from 'react-icons/ri';
 import BoardSquare from '../../components/BoardSquare';
 
 import { CardTypes, SquareTypes } from '../../types';
-import { Board, Container } from './Home.styles';
+import { Board, Container } from './Game.styles';
 
 import LogoImg from '../../assets/logo.jpeg';
 
@@ -19,7 +19,7 @@ import { Headline, Text, Button, ButtonGroup } from '../../components/UI';
 import { Flex } from '../../components/Layout';
 import { useAlert } from '../../hooks/useAlert';
 
-function Home() {
+function Game() {
   const {
     board,
     turnOf,
@@ -188,4 +188,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default Game;
