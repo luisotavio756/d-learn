@@ -8,7 +8,7 @@ type Option = {
 };
 
 export type SelectProps = SelectHTMLAttributes<HTMLSelectElement> & {
-  register: UseFormRegister<any>;
+  register?: UseFormRegister<any>;
   name: string;
   label?: string;
   options: Option[];
@@ -23,7 +23,11 @@ const Select: React.FC<SelectProps> = ({
 }) => {
   const selectElement = useMemo(
     () => (
-      <SelectElement defaultValue={-1} {...rest} {...register(rest.name)}>
+      <SelectElement
+        defaultValue={-1}
+        {...rest}
+        {...(register ? register(rest.name) : {})}
+      >
         {rest.placeholder && (
           <option value={-1} disabled>
             {rest.placeholder}

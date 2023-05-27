@@ -1,8 +1,14 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 import { FiEdit, FiEye, FiPlus, FiTrash } from 'react-icons/fi';
 
 import ModalCreateCard from '../../../components/ModalCreateCard/ModalCreateCard';
-import { Button, ButtonGroup, Headline, Text } from '../../../components/UI';
+import {
+  Button,
+  ButtonGroup,
+  Headline,
+  Select,
+  Text,
+} from '../../../components/UI';
 import { Flex } from '../../../components/Layout';
 import { Container } from './Cards.styles';
 
@@ -12,10 +18,14 @@ import { useModal } from '../../../hooks/useModal';
 import { useAlert } from '../../../hooks/useAlert';
 import { useToast } from '../../../hooks/useToast';
 import { queryClient } from '../../../services/queryClient';
-import { Card } from '../../../types';
+import { Card, CardTypes } from '../../../types';
 import ModalEditCard from '../../../components/ModalEditCard/ModalEditCard';
 
 const Cards: React.FC = () => {
+  const [selectedCardType, setSelectedCardType] = useState<CardTypes | string>(
+    'ALL',
+  );
+
   const { data: cards = [], isFetching } = useCardsQuery();
   const { isOpen: modalCreateCardIsOpen, toggleModal: toggleModalCreateCard } =
     useModal();
@@ -76,12 +86,52 @@ const Cards: React.FC = () => {
     [setSelectedCard, toggleModalEditCard],
   );
 
+  const handleOnChangeType = useCallback((type: string) => {
+    const value = type !== 'ALL' ? parseInt(type, 10) : type;
+
+    setSelectedCardType(value);
+  }, []);
+
+  const filteredCards = useMemo(
+    () =>
+      selectedCardType !== 'ALL'
+        ? cards.filter(item => item.type === selectedCardType)
+        : cards,
+    [selectedCardType, cards],
+  );
+
   return (
     <Container flexDirection="column" gap={24}>
       <Headline family="mono" weight="light">
         Cartas
       </Headline>
-      <Flex justifyContent="flex-end">
+      <Flex alignItems="flex-end" justifyContent="space-between">
+        <form action="">
+          <Select
+            label="Tipo"
+            placeholder="Selecione um tipo"
+            name="type"
+            onChange={e => handleOnChangeType(e.target.value)}
+            options={[
+              {
+                label: 'Todos',
+                value: 'ALL',
+              },
+              {
+                label: 'Padrões arquiteturais',
+                value: CardTypes.ArchPattern,
+              },
+              {
+                label: 'Decisões arquiteturais',
+                value: CardTypes.ArchDecisions,
+              },
+              {
+                label: 'Atributos de qualidade',
+                value: CardTypes.QualityAttributes,
+              },
+            ]}
+          />
+        </form>
         <Button
           size="sm"
           variant="blue-outline"
@@ -108,7 +158,7 @@ const Cards: React.FC = () => {
             </tr>
           </thead>
           <tbody>
-            {cards?.map((item, i) => (
+            {filteredCards?.map((item, i) => (
               <tr key={item._id}>
                 <td>{i + 1}</td>
                 <td>
@@ -147,7 +197,7 @@ const Cards: React.FC = () => {
           </tbody>
         </table>
       </Flex>
-      <Flex shouldShow={!cards.length} justifyContent="center">
+      <Flex shouldShow={!filteredCards.length} justifyContent="center">
         <Text family="mono" size="lg">
           Não há cartas cadastradas
         </Text>
