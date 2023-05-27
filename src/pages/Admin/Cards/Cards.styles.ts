@@ -51,4 +51,11 @@ export const Container = styled(Flex)`
       background-color: #f2f2f2;
     }
   }
+
+  form {
+    select {
+      height: 1.875rem; // 30px
+      padding: 4px 6px;
+    }
+  }
 `;
