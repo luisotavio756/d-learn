@@ -16,7 +16,11 @@ type FormData = {
   [key: string]: string;
 };
 
-const ModalStartGame: React.FC = () => {
+interface IModalStartGameProps {
+  isLoading: boolean;
+}
+
+const ModalStartGame: React.FC<IModalStartGameProps> = ({ isLoading }) => {
   const theme = useTheme();
   const [playersQuantity, setPlayersQuantity] = useState(1);
 
@@ -86,7 +90,13 @@ const ModalStartGame: React.FC = () => {
       showCloseButton={false}
       toggleModal={() => null}
     >
-      <Container>
+      <Flex shouldShow={isLoading} flexDirection="column" alignItems="center">
+        <div className="loaderContent" />
+        <Text align="center" size="lg">
+          Aguarde um momento enquanto carregamos os recursos do jogo...
+        </Text>
+      </Flex>
+      <Container shouldShow={!isLoading} flexDirection="column">
         <Flex flexDirection="column" className="welcome">
           <Text size="lg">
             Bem vindo ao D-LEARN Board Game. Adicione os jogadores para iniciar

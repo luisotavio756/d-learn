@@ -1,6 +1,7 @@
 import styled from 'styled-components';
+import { Flex } from '../Layout';
 
-export const Container = styled.div`
+export const Container = styled(Flex)`
   .welcome {
     padding-bottom: 1.25rem;
   }
@@ -13,5 +14,9 @@ export const Container = styled.div`
     button + button {
       margin-left: 8px;
     }
+  }
+
+  .loaderContent {
+    margin: 1rem auto;
   }
 `;

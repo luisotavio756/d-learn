@@ -18,6 +18,7 @@ import { useModal } from '../../hooks/useModal';
 import { Headline, Text, Button, ButtonGroup } from '../../components/UI';
 import { Flex } from '../../components/Layout';
 import { useAlert } from '../../hooks/useAlert';
+import { useCardsQuery } from '../../queries/useCards';
 
 function Game() {
   const {
@@ -32,6 +33,7 @@ function Game() {
   const { isOpen: modalRankingIsOpen, toggleModal: toggleModalRanking } =
     useModal();
   const { showAlert } = useAlert();
+  const { isFetching } = useCardsQuery();
 
   const playerSquare = useMemo(() => {
     const findSquare = board.find(item => item.id === turnOf?.square_id);
@@ -174,11 +176,11 @@ function Game() {
           ))}
         </div>
       </Board>
-      <ModalStartGame />
+      <ModalStartGame isLoading={isFetching} />
       <ModalCard
         isOpen={!!activeCard}
         toggleModal={() => null}
-        type={activeCard?.type || 0}
+        type={activeCard?.type ?? 0}
       />
       <ModalRanking
         isOpen={modalRankingIsOpen}
