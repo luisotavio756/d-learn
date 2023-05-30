@@ -106,6 +106,7 @@ const PlayerProvider = ({ children }: PlayerProviderProps) => {
     localStorage.removeItem('@dlearn-player:history');
 
     setData({} as IAuthState);
+    setMode(PlayerMode.NoChoosen);
   }, []);
 
   const contextValue = useMemo(
