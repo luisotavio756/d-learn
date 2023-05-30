@@ -7,10 +7,11 @@ import { useTheme } from 'styled-components';
 import Modal from '../Modal';
 
 import { Container } from './ModalStartGame.styles';
-import { Player } from '../../types';
+import { Player, PlayerMode } from '../../types';
 import { useGame } from '../../hooks/useGame.hook';
 import { Button, Text, Input } from '../UI';
 import { Flex } from '../Layout';
+import { usePlayerAuth } from '../../hooks/usePlayerAuth';
 
 type FormData = {
   [key: string]: string;
@@ -26,6 +27,7 @@ const ModalStartGame: React.FC<IModalStartGameProps> = ({ isLoading }) => {
 
   const { register, unregister, handleSubmit } = useForm<FormData>();
   const { gameStarted, board, startGame } = useGame();
+  const { mode } = usePlayerAuth();
 
   const onSubmit = handleSubmit(data => {
     if (Object.values(data).every(item => !item)) {
@@ -82,10 +84,15 @@ const ModalStartGame: React.FC<IModalStartGameProps> = ({ isLoading }) => {
     };
   }, []);
 
+  console.log(mode);
+
   return (
     <Modal
       width="454px"
-      isOpen={!gameStarted}
+      isOpen={
+        !gameStarted &&
+        ![PlayerMode.NoChoosen, PlayerMode.Authenticated].includes(mode)
+      }
       title="Iniciar jogo"
       showCloseButton={false}
       toggleModal={() => null}

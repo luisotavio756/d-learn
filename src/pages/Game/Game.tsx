@@ -19,6 +19,7 @@ import { Headline, Text, Button, ButtonGroup } from '../../components/UI';
 import { Flex } from '../../components/Layout';
 import { useAlert } from '../../hooks/useAlert';
 import { useCardsQuery } from '../../queries/useCards';
+import { ModalPlayerAuth } from '../../components/ModalPlayerAuth';
 
 function Game() {
   const {
@@ -177,6 +178,7 @@ function Game() {
         </div>
       </Board>
       <ModalStartGame isLoading={isFetching} />
+      <ModalPlayerAuth isLoading={isFetching} />
       <ModalCard
         isOpen={!!activeCard}
         toggleModal={() => null}

@@ -57,3 +57,10 @@ export interface History {
   endAt: string;
   ownerName: string;
 }
+
+export enum PlayerMode {
+  NoChoosen,
+  Authenticated,
+  NoAuth,
+  Ok,
+}
