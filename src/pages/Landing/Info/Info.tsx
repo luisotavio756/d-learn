@@ -4,8 +4,13 @@ import { Flex } from '../../../components/Layout';
 import { Headline, Text } from '../../../components/UI';
 
 import { Container } from './Info.styles';
+import { useCardsQuery } from '../../../queries/useCards';
+import { useHistoryQuery } from '../../../queries/useHistoryQuery';
 
 const Info: React.FC = () => {
+  const { data = [] } = useCardsQuery();
+  const { data: history = [] } = useHistoryQuery();
+
   return (
     <Container
       alignItems="center"
@@ -20,7 +25,7 @@ const Info: React.FC = () => {
       <Flex alignItems="center" flexDirection="column" gap={8}>
         <FiTablet />
         <Headline weight="heavy" type="light" size="md">
-          51 cartas
+          {data.length || 51} cartas
         </Headline>
         <Text align="center" type="light" size="lg">
           As cartas são de atributos de qualidade, padrões arquiteturais,
@@ -39,7 +44,7 @@ const Info: React.FC = () => {
       <Flex alignItems="center" flexDirection="column" gap={8}>
         <FiBox />
         <Headline weight="heavy" type="light" size="md">
-          56 partidas jogadas
+          {history.length} partidas jogadas
         </Headline>
         <Text align="center" type="light" size="lg">
           Esse é a quantidade de partidas jogadas no D-LEARN
@@ -48,7 +53,7 @@ const Info: React.FC = () => {
       <Flex alignItems="center" flexDirection="column" gap={8}>
         <FiUsers />
         <Headline weight="heavy" type="light" size="md">
-          1020 jogadores
+          Aprox. {history.length * 3} jogadores
         </Headline>
         <Text align="center" type="light" size="lg">
           Passaram pelo D-LEARN e tiverem a experiência de jogar o jogo
