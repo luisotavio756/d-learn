@@ -10,7 +10,9 @@ async function getCards() {
 
   const response = await api.get<Card[]>(`/cards`);
 
-  return [...response.data, ...LUCK_AND_BAD_LUCK_CARDS];
+  return [...getShuffledCards(response.data), ...LUCK_AND_BAD_LUCK_CARDS].map(
+    item => Object.assign(item, { used: false }),
+  );
 }
 
 export function useCardsQuery() {

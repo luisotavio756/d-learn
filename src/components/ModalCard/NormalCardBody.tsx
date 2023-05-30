@@ -6,7 +6,7 @@ import Stars from '../Stars/Stars';
 
 import PlayerPin from '../PlayerPin';
 import { NormalCardBodyContainer } from './ModalCard.styles';
-import { Card, CardTypes, Player } from '../../types';
+import { Card, Player } from '../../types';
 import { useGame } from '../../hooks/useGame.hook';
 
 import { Flex } from '../Layout';
@@ -64,28 +64,11 @@ const NormalCardBody: React.FC = () => {
     }
   }, [answered, answeredCorrectly, activeCard, endPlay]);
 
-  const getCardImageSource = useCallback(
-    (card: Card) => {
-      const folderNameByType = {
-        [CardTypes.ArchDecisions]: 'arch-decision',
-        [CardTypes.ArchPattern]: 'arch-pattern',
-        [CardTypes.QualityAttributes]: 'quality-attr',
-        [CardTypes.LuckOrBadLuck]: '',
-      };
-
-      const imageUrl = `${folderNameByType[card.type]}/${imgUrl}`;
-
-      return new URL(`/src/assets/cards-images/${imageUrl}`, import.meta.url)
-        .href;
-    },
-    [imgUrl],
-  );
-
   return (
     <NormalCardBodyContainer>
       <div>
         <Flex shouldShow={!!imgUrl} justifyContent="center" className="img">
-          <img src={getCardImageSource(activeCard as Card)} alt={title} />
+          <img src={activeCard?.imgUrl} alt={title} />
         </Flex>
         <Flex className="description">
           <Text size="lg" weight="heavy">

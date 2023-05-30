@@ -1,11 +1,17 @@
-import { createContext, useCallback, useMemo, useState } from 'react';
+import {
+  createContext,
+  useCallback,
+  useEffect,
+  useMemo,
+  useState,
+} from 'react';
 
 import { Card, CardTypes, Player, Square, SquareTypes } from '../types';
 import INITIAL_BOARD from '../initialBoard';
 import INITIAL_CARDS from '../cards';
 import { getRestoredCards } from '../utils/cards';
 import { useAudio } from '../hooks/useAudio';
-import { useLocalStorage } from '../hooks/useLocalstorage';
+import { useCardsQuery } from '../queries/useCards';
 
 interface GameProviderProps {
   children: React.ReactNode;
@@ -42,11 +48,6 @@ export const GameContext = createContext({} as GameContextData);
 
 export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
   const { audio: endGameSound } = useAudio('end-game.mp3');
-  const { value: gameInfo, setValue: setGameInfo } = useLocalStorage<GameInfo>(
-    'DLEARN@GAMEINFO',
-    {} as GameInfo,
-  );
-
   const [players, setPlayers] = useState<Player[]>([]);
 
   const [gameIsBlocked, setGameIsBlocked] = useState(false);
@@ -57,6 +58,9 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
   const [activeCard, setActiveCard] = useState<Card | null>(null);
   const [startedAt, setStartedAt] = useState<Date | null>(null);
   const [endAt, setEndAt] = useState<Date | null>(null);
+
+  const { data: cardsFromServer = [], isFetching: isFetchingCards } =
+    useCardsQuery();
 
   const turnOf = useMemo(() => players.find(item => item.active), [players]);
 
@@ -413,6 +417,12 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
       forceEndGame,
     ],
   );
+
+  useEffect(() => {
+    if (!isFetchingCards && cardsFromServer.length) {
+      setCards(cardsFromServer);
+    }
+  }, [isFetchingCards, cardsFromServer]);
 
   return <GameContext.Provider value={value}>{children}</GameContext.Provider>;
 };
