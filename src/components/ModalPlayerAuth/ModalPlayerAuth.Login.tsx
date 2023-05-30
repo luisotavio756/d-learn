@@ -3,11 +3,12 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { FiLogIn } from 'react-icons/fi';
 
-import { PlayerMode } from '../../types';
 import { Button, Input, Headline } from '../UI';
+import { Flex } from '../Layout';
+
 import { usePlayerAuth } from '../../hooks/usePlayerAuth';
 import { useToast } from '../../hooks/useToast';
-import { Flex } from '../Layout';
+import { PlayerMode } from '../../types';
 
 type FormData = {
   nickname: string;

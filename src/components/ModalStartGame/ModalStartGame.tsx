@@ -1,16 +1,23 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { v4 as uuid } from 'uuid';
 import { useForm } from 'react-hook-form';
-import { FiCheck, FiInfo, FiUserMinus, FiUserPlus } from 'react-icons/fi';
+import {
+  FiCheck,
+  FiInfo,
+  FiLogIn,
+  FiUserMinus,
+  FiUserPlus,
+} from 'react-icons/fi';
 import { useTheme } from 'styled-components';
 
 import Modal from '../Modal';
 
 import { Container } from './ModalStartGame.styles';
-import { Player, PlayerMode } from '../../types';
-import { useGame } from '../../hooks/useGame.hook';
 import { Button, Text, Input } from '../UI';
 import { Flex } from '../Layout';
+
+import { Player, PlayerMode } from '../../types';
+import { useGame } from '../../hooks/useGame.hook';
 import { usePlayerAuth } from '../../hooks/usePlayerAuth';
 
 type FormData = {
@@ -23,11 +30,12 @@ interface IModalStartGameProps {
 
 const ModalStartGame: React.FC<IModalStartGameProps> = ({ isLoading }) => {
   const theme = useTheme();
+
   const [playersQuantity, setPlayersQuantity] = useState(1);
 
   const { register, unregister, handleSubmit } = useForm<FormData>();
   const { gameStarted, board, startGame } = useGame();
-  const { mode } = usePlayerAuth();
+  const { mode, isLogged, setMode } = usePlayerAuth();
 
   const onSubmit = handleSubmit(data => {
     if (Object.values(data).every(item => !item)) {
@@ -68,6 +76,10 @@ const ModalStartGame: React.FC<IModalStartGameProps> = ({ isLoading }) => {
     setPlayersQuantity(oldState => oldState - 1);
   }, [unregister, playersQuantity]);
 
+  const goToAuth = useCallback(() => {
+    setMode(PlayerMode.NoChoosen);
+  }, [setMode]);
+
   useEffect(() => {
     window.addEventListener('keypress', event => {
       if (event.key === 'Enter') {
@@ -83,8 +95,6 @@ const ModalStartGame: React.FC<IModalStartGameProps> = ({ isLoading }) => {
       });
     };
   }, []);
-
-  console.log(mode);
 
   return (
     <Modal
@@ -114,17 +124,19 @@ const ModalStartGame: React.FC<IModalStartGameProps> = ({ isLoading }) => {
           </Text>
         </Flex>
         <form onSubmit={onSubmit}>
-          {Array.from({ length: playersQuantity }).map((_, i) => (
-            <Input
-              key={uuid()}
-              type="text"
-              id={`player${i}`}
-              label={`Player ${i + 1}`}
-              placeholder="Digite um nome"
-              name={`player${i}`}
-              register={register}
-            />
-          ))}
+          <Flex flexDirection="column" gap={8}>
+            {Array.from({ length: playersQuantity }).map((_, i) => (
+              <Input
+                key={uuid()}
+                type="text"
+                id={`player${i}`}
+                label={`Player ${i + 1}`}
+                placeholder="Digite um nome"
+                name={`player${i}`}
+                register={register}
+              />
+            ))}
+          </Flex>
           <div className="button-group">
             {playersQuantity > 1 && (
               <Button size="sm" variant="red-outline" onClick={removePlayer}>
@@ -141,6 +153,11 @@ const ModalStartGame: React.FC<IModalStartGameProps> = ({ isLoading }) => {
             <FiCheck /> Iniciar jogo
           </Button>
         </form>
+        {!isLogged && (
+          <Button variant="text" onClick={goToAuth}>
+            <FiLogIn /> Autenticar
+          </Button>
+        )}
       </Container>
     </Modal>
   );
