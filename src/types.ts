@@ -60,6 +60,7 @@ export interface History {
 
 export enum PlayerMode {
   NoChoosen,
+  CreateAccount,
   Authenticated,
   NoAuth,
   Ok,

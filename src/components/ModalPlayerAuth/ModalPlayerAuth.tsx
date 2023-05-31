@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 
 import Modal from '../Modal';
 
@@ -7,6 +7,7 @@ import { Button, Text } from '../UI';
 import { Flex } from '../Layout';
 import { usePlayerAuth } from '../../hooks/usePlayerAuth';
 import PlayerLogin from './ModalPlayerAuth.Login';
+import PlayerSignUp from './ModalPlayerAuth.SignUp';
 
 interface IModalPlayerAuthProps {
   isLoading: boolean;
@@ -15,14 +16,28 @@ interface IModalPlayerAuthProps {
 const ModalPlayerAuth: React.FC<IModalPlayerAuthProps> = ({ isLoading }) => {
   const { isLogged, mode, setMode } = usePlayerAuth();
 
+  const titleByMode = useMemo(
+    () => ({
+      [PlayerMode.Authenticated]: 'Faça seu login',
+      [PlayerMode.CreateAccount]: 'Criar conta',
+      [PlayerMode.NoChoosen]: 'Como deseja entrar?',
+      [PlayerMode.NoAuth]: null,
+      [PlayerMode.Ok]: null,
+    }),
+    [],
+  );
+
   return (
     <Modal
       width="454px"
       isOpen={
-        [PlayerMode.NoChoosen, PlayerMode.Authenticated].includes(mode) &&
-        !isLogged
+        [
+          PlayerMode.NoChoosen,
+          PlayerMode.Authenticated,
+          PlayerMode.CreateAccount,
+        ].includes(mode) && !isLogged
       }
-      title="Iniciar jogo"
+      title={titleByMode[mode] ?? 'Iniciar jogo'}
       showCloseButton={false}
       toggleModal={() => null}
     >
@@ -37,9 +52,6 @@ const ModalPlayerAuth: React.FC<IModalPlayerAuthProps> = ({ isLoading }) => {
         flexDirection="column"
         gap={8}
       >
-        <Text align="center" size="lg">
-          Como desejar jogar?
-        </Text>
         <Flex flexDirection="column" gap={8}>
           <Button onClick={() => setMode(PlayerMode.Authenticated)}>
             Quero me autenticar
@@ -58,6 +70,13 @@ const ModalPlayerAuth: React.FC<IModalPlayerAuthProps> = ({ isLoading }) => {
         gap={16}
       >
         <PlayerLogin />
+      </Flex>
+      <Flex
+        shouldShow={!isLoading && mode === PlayerMode.CreateAccount}
+        flexDirection="column"
+        gap={16}
+      >
+        <PlayerSignUp />
       </Flex>
     </Modal>
   );

@@ -101,7 +101,11 @@ const ModalStartGame: React.FC<IModalStartGameProps> = ({ isLoading }) => {
       width="454px"
       isOpen={
         !gameStarted &&
-        ![PlayerMode.NoChoosen, PlayerMode.Authenticated].includes(mode)
+        ![
+          PlayerMode.NoChoosen,
+          PlayerMode.Authenticated,
+          PlayerMode.CreateAccount,
+        ].includes(mode)
       }
       title="Iniciar jogo"
       showCloseButton={false}
@@ -139,12 +143,22 @@ const ModalStartGame: React.FC<IModalStartGameProps> = ({ isLoading }) => {
           </Flex>
           <div className="button-group">
             {playersQuantity > 1 && (
-              <Button size="sm" variant="red-outline" onClick={removePlayer}>
+              <Button
+                width="fit-content"
+                size="sm"
+                variant="red-outline"
+                onClick={removePlayer}
+              >
                 <FiUserMinus /> Remover ultimo
               </Button>
             )}
             {playersQuantity < 4 && (
-              <Button size="sm" variant="blue-outline" onClick={addPlayer}>
+              <Button
+                width="fit-content"
+                size="sm"
+                variant="blue-outline"
+                onClick={addPlayer}
+              >
                 <FiUserPlus /> Adicionar jogador
               </Button>
             )}
@@ -154,8 +168,8 @@ const ModalStartGame: React.FC<IModalStartGameProps> = ({ isLoading }) => {
           </Button>
         </form>
         {!isLogged && (
-          <Button variant="text" onClick={goToAuth}>
-            <FiLogIn /> Autenticar
+          <Button marginTop={0.5} size="md" variant="text" onClick={goToAuth}>
+            <FiLogIn /> Quero me autenticar
           </Button>
         )}
       </Container>

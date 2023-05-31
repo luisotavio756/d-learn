@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
 
 import { useForm } from 'react-hook-form';
-import { FiLogIn } from 'react-icons/fi';
+import { FiLogIn, FiUserMinus } from 'react-icons/fi';
 
-import { Button, Input, Headline } from '../UI';
+import { Button, Input, ButtonGroup } from '../UI';
 import { Flex } from '../Layout';
 
 import { usePlayerAuth } from '../../hooks/usePlayerAuth';
 import { useToast } from '../../hooks/useToast';
 import { PlayerMode } from '../../types';
+import { FormContainer } from './ModalPlayerAuth.styles';
 
 type FormData = {
   nickname: string;
@@ -50,38 +51,55 @@ const PlayerLogin: React.FC = () => {
   });
 
   return (
-    <>
-      <Headline type="neutral">Faça seu login</Headline>
-      <form onSubmit={onSubmit}>
-        <Flex gap={8} flexDirection="column">
-          <Input
-            label="Nickname"
-            name="nickname"
-            type="text"
-            placeholder="Nickname"
-            register={register}
-          />
+    <FormContainer onSubmit={onSubmit}>
+      <Flex gap={8} flexDirection="column">
+        <Input
+          label="Nickname"
+          name="nickname"
+          type="text"
+          placeholder="Nickname"
+          register={register}
+        />
 
-          <Input
-            label="Senha"
-            name="password"
-            type="password"
-            placeholder="Senha"
-            register={register}
-          />
+        <Input
+          label="Senha"
+          name="password"
+          type="password"
+          placeholder="Senha"
+          register={register}
+        />
 
+        <Button
+          marginTop={1}
+          type="submit"
+          width="full"
+          loading={isLogging}
+          disabled={isLogging}
+          loadingText="Aguarde..."
+        >
+          <FiLogIn /> Entrar
+        </Button>
+
+        <ButtonGroup>
           <Button
+            size="md"
+            variant="text"
             type="submit"
-            width="full"
-            loading={isLogging}
-            disabled={isLogging}
-            loadingText="Aguarde..."
+            onClick={() => setMode(PlayerMode.CreateAccount)}
           >
-            <FiLogIn /> Entrar
+            <FiLogIn /> Não tem uma conta? Cadastre-se!
           </Button>
-        </Flex>
-      </form>
-    </>
+          <Button
+            size="md"
+            variant="text"
+            type="submit"
+            onClick={() => setMode(PlayerMode.Ok)}
+          >
+            <FiUserMinus /> Jogar como Guest
+          </Button>
+        </ButtonGroup>
+      </Flex>
+    </FormContainer>
   );
 };
 

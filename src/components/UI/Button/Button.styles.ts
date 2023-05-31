@@ -55,12 +55,12 @@ export const Container = styled.button<ButtonProps>`
   align-items: center;
   justify-content: center;
   font-weight: ${props => props.theme.fontWeight.semiBold};
-  background: ${props => colors[props?.variant || 'blue'].background};
-  color: ${props => colors[props?.variant || 'blue'].color};
+  background: ${props => colors[props?.variant ?? 'blue'].background};
+  color: ${props => colors[props?.variant ?? 'blue'].color};
 
-  border: ${props => colors[props?.variant || 'blue'].border};
+  border: ${props => colors[props?.variant ?? 'blue'].border};
   margin-top: ${props => props.marginTop}rem;
-  transition: filter 0.2s;
+  transition: filter, text-decoration 0.2s;
 
   ${props =>
     !props.justIcon &&
@@ -72,6 +72,12 @@ export const Container = styled.button<ButtonProps>`
 
   &:hover {
     filter: brightness(90%);
+
+    ${props =>
+      props.variant === 'text' &&
+      css`
+        text-decoration: underline;
+      `}
   }
 
   ${props =>
@@ -84,6 +90,12 @@ export const Container = styled.button<ButtonProps>`
     props.width === 'full' &&
     css`
       width: 100%;
+    `}
+
+  ${props =>
+    props.width === 'fit-content' &&
+    css`
+      width: fit-content;
     `}
 
   ${props =>
