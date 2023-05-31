@@ -1,13 +1,15 @@
 import React, { useMemo } from 'react';
-import { FiRefreshCw, FiUsers } from 'react-icons/fi';
+import { FiRefreshCw } from 'react-icons/fi';
 import { RiNumbersFill } from 'react-icons/ri';
 
 import { useGame } from '../../hooks/useGame.hook';
 
-import { ButtonGroup, Button } from '../UI';
+import { ButtonGroup, Button, Text, Headline } from '../UI';
 import Modal from '../Modal';
 
 import { Container } from './ModalRanking.styles';
+import { usePlayerAuth } from '../../hooks/usePlayerAuth';
+import { Flex } from '../Layout';
 
 interface ModalRankingProps {
   isOpen: boolean;
@@ -16,6 +18,7 @@ interface ModalRankingProps {
 
 const ModalRanking: React.FC<ModalRankingProps> = ({ isOpen, toggleModal }) => {
   const { players, gameEnd, restartGame } = useGame();
+  const { isLogged } = usePlayerAuth();
 
   const orderedPlayers = useMemo(
     () => [...players].sort((a, b) => b.score - a.score),
@@ -55,34 +58,42 @@ const ModalRanking: React.FC<ModalRankingProps> = ({ isOpen, toggleModal }) => {
             ))}
           </tbody>
         </table>
-        {gameEnd && (
-          <div className="play-again">
-            <h3>Obrigado por jogarem o D-LEARN !</h3>
-            <p>
-              Por favor, responda essa pequena pesquisa para nos ajudar a
-              melhorar o jogo ainda mais{' '}
-              <a
-                href="https://forms.gle/JzX6VLx3et8jwcgT7"
-                target="_blank"
-                rel="noreferrer"
-              >
-                aqui
-              </a>
-            </p>
-            <ButtonGroup gap={8}>
-              {/* <Button variant="blue" size="sm">
-                <FiUsers /> Reiniciar com os mesmos jogadores
-              </Button> */}
-              <Button
-                variant="blue"
-                size="sm"
-                onClick={() => restartGame('hard')}
-              >
-                <FiRefreshCw /> Reiniciar jogo
-              </Button>
-            </ButtonGroup>
-          </div>
-        )}
+        <Flex
+          shouldShow={gameEnd}
+          flexDirection="column"
+          alignItems="center"
+          justifyContent="center"
+          className="play-again"
+          gap={8}
+        >
+          <Headline>Obrigado por jogarem o D-LEARN!</Headline>
+          {isLogged && (
+            <Text align="center" type="success">
+              O log do jogo foi armazenado em nossos servidores, você pode
+              consultar clicando em Ranking Global
+            </Text>
+          )}
+          <Text>
+            Dê seu feedback clicando{' '}
+            <a
+              href="https://forms.gle/JzX6VLx3et8jwcgT7"
+              target="_blank"
+              rel="noreferrer"
+            >
+              aqui
+            </a>
+          </Text>
+          <ButtonGroup gap={8}>
+            <Button
+              marginTop={1}
+              variant="blue"
+              size="sm"
+              onClick={() => restartGame('hard')}
+            >
+              <FiRefreshCw /> Reiniciar jogo
+            </Button>
+          </ButtonGroup>
+        </Flex>
       </Container>
     </Modal>
   );

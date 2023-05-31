@@ -50,7 +50,7 @@ export interface User {
 }
 
 export interface History {
-  _id: string;
+  _id?: string;
   winnerName: string;
   winnerScore: number;
   startedAt: string;
