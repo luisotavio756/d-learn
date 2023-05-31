@@ -16,16 +16,21 @@ interface IModalPlayerAuthProps {
 const ModalPlayerAuth: React.FC<IModalPlayerAuthProps> = ({ isLoading }) => {
   const { isLogged, mode, setMode } = usePlayerAuth();
 
-  const titleByMode = useMemo(
-    () => ({
+  const modalTitle = useMemo(() => {
+    const titlesByMode = {
       [PlayerMode.Authenticated]: 'Faça seu login',
       [PlayerMode.CreateAccount]: 'Criar conta',
       [PlayerMode.NoChoosen]: 'Como deseja entrar?',
       [PlayerMode.NoAuth]: null,
       [PlayerMode.Ok]: null,
-    }),
-    [],
-  );
+    };
+
+    if (isLoading) {
+      return 'Iniciar jogo';
+    }
+
+    return titlesByMode[mode];
+  }, [isLoading, mode]);
 
   return (
     <Modal
@@ -37,7 +42,7 @@ const ModalPlayerAuth: React.FC<IModalPlayerAuthProps> = ({ isLoading }) => {
           PlayerMode.CreateAccount,
         ].includes(mode) && !isLogged
       }
-      title={titleByMode[mode] ?? 'Iniciar jogo'}
+      title={modalTitle}
       showCloseButton={false}
       toggleModal={() => null}
     >

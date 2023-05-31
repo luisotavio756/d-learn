@@ -15,7 +15,7 @@ import { Flex } from '../../components/Layout';
 import { ModalPlayerAuth } from '../../components/ModalPlayerAuth';
 import { Board, Container } from './Game.styles';
 
-import { CardTypes, SquareTypes } from '../../types';
+import { CardTypes, PlayerMode, SquareTypes } from '../../types';
 import { useModal } from '../../hooks/useModal';
 import { useAlert } from '../../hooks/useAlert';
 import { useCardsQuery } from '../../queries/useCards';
@@ -36,7 +36,7 @@ function Game() {
     useModal();
   const { showAlert } = useAlert();
   const { isFetching } = useCardsQuery();
-  const { isLogged, signOut } = usePlayerAuth();
+  const { isLogged, mode, signOut } = usePlayerAuth();
 
   const playerSquare = useMemo(() => {
     const findSquare = board.find(item => item.id === turnOf?.square_id);
@@ -88,7 +88,11 @@ function Game() {
 
   return (
     <Container>
-      <Board>
+      <Board
+        shouldShow={
+          !isFetching && [PlayerMode.NoAuth, PlayerMode.Ok].includes(mode)
+        }
+      >
         <div className="top">
           {board.slice(0, 14).map((item, i) => (
             <BoardSquare key={item.id} id={item.id} type={item.type} />
@@ -154,6 +158,7 @@ function Game() {
             <div className="controls">
               <ButtonGroup gap={4}>
                 <Button
+                  width="fit-content"
                   size="sm"
                   variant="blue-outline"
                   onClick={toggleModalRanking}
@@ -163,6 +168,7 @@ function Game() {
                   Ranking
                 </Button>
                 <Button
+                  width="fit-content"
                   size="sm"
                   variant="red-outline"
                   onClick={handleEndGame}
@@ -173,6 +179,7 @@ function Game() {
                 </Button>
                 {isLogged && (
                   <Button
+                    width="fit-content"
                     size="sm"
                     variant="red-outline"
                     onClick={handleLogout}

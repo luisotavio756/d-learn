@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 import BackgroundImage from '../../assets/background.jpg';
+import { Box } from '../../components/Layout';
 
 export const Container = styled.div`
   height: 100%;
@@ -12,7 +13,7 @@ export const Container = styled.div`
   justify-content: center;
 `;
 
-export const Board = styled.div`
+export const Board = styled(Box)`
   border-radius: 16px;
   overflow: hidden;
   box-shadow: -2px 6px 20px #666;
