@@ -1,18 +1,10 @@
 import React from 'react';
 
-import { Container } from './Flex.styles';
+import { Container, FlexProps, FlexStyledProps } from './Flex.styles';
 
-export interface FlexProps {
-  shouldShow?: boolean;
-  children: React.ReactNode;
-  gap?: number;
-  className?: string;
-  flexDirection?: 'row' | 'column';
-  alignItems?: 'center' | 'flex-start' | 'flex-end';
-  justifyContent?: 'center' | 'space-between' | 'flex-start' | 'flex-end';
-}
+type FullFlexProps = FlexProps & FlexStyledProps;
 
-const Flex: React.FC<FlexProps> = ({
+const Flex: React.FC<FullFlexProps> = ({
   children,
   shouldShow = true,
   ...rest

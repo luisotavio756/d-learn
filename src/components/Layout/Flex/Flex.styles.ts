@@ -1,5 +1,14 @@
-import styled, { css } from 'styled-components';
-import { FlexProps } from './Flex';
+import styled, { StyledComponentPropsWithRef, css } from 'styled-components';
+
+export interface FlexProps {
+  shouldShow?: boolean;
+  children: React.ReactNode;
+  gap?: number;
+  className?: string;
+  flexDirection?: 'row' | 'column';
+  alignItems?: 'center' | 'flex-start' | 'flex-end';
+  justifyContent?: 'center' | 'space-between' | 'flex-start' | 'flex-end';
+}
 
 export const Container = styled.div<FlexProps>`
   display: flex;
@@ -23,3 +32,5 @@ export const Container = styled.div<FlexProps>`
       gap: ${props.gap}px;
     `};
 `;
+
+export type FlexStyledProps = StyledComponentPropsWithRef<typeof Container>;
