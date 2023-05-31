@@ -6,23 +6,24 @@ import {
   useState,
 } from 'react';
 
-import { Card, CardTypes, Player, Square, SquareTypes } from '../types';
+import {
+  Card,
+  CardTypes,
+  History,
+  Player,
+  Square,
+  SquareTypes,
+} from '../types';
 import INITIAL_BOARD from '../initialBoard';
 import INITIAL_CARDS from '../cards';
 import { getRestoredCards } from '../utils/cards';
 import { useAudio } from '../hooks/useAudio';
 import { useCardsQuery } from '../queries/useCards';
+import { usePlayerAuth } from '../hooks/usePlayerAuth';
+import api from '../services/api';
 
 interface GameProviderProps {
   children: React.ReactNode;
-}
-
-interface GameInfo {
-  players: Player[];
-  cards: Card[];
-  activeCard: Card | null;
-  startedAt: Date;
-  endAt?: Date | null;
 }
 
 interface GameContextData {
@@ -61,6 +62,7 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
 
   const { data: cardsFromServer = [], isFetching: isFetchingCards } =
     useCardsQuery();
+  const { isLogged, player: loggedUser } = usePlayerAuth();
 
   const turnOf = useMemo(() => players.find(item => item.active), [players]);
 
@@ -192,6 +194,32 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
     setStartedAt(new Date());
   }, []);
 
+  const sendGameInfoReport = useCallback(() => {
+    if (!isLogged) return;
+
+    const { name = 'Guest', score } = [...players].sort(
+      (a, b) => b.score - a.score,
+    )[0];
+
+    const gameInfo = {
+      winnerName: name,
+      winnerScore: score,
+      startedAt: startedAt?.toISOString(),
+      endAt: new Date().toISOString(),
+      ownerName: loggedUser.nickname,
+      ownerId: loggedUser._id,
+    } as History;
+
+    api
+      .post('/history', gameInfo)
+      .then(() => {
+        console.log('Log do jogo salvo com sucesso!');
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }, [players, loggedUser, startedAt, isLogged]);
+
   const getCardOfType = useCallback(
     (type: CardTypes) => {
       const card = cards.find(item => item.type === type && !item.used);
@@ -277,9 +305,9 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
 
         addPlayersToSquare([player], nextSquare.id);
         setActiveCard(null);
+        sendGameInfoReport();
 
         setTimeout(() => {
-          setEndAt(new Date());
           setGameEnd(true);
           setGameIsBlocked(false);
         }, 1000);
@@ -312,6 +340,7 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
       getCardOfType,
       addPlayersToSquare,
       passTurnToNextPlayer,
+      sendGameInfoReport,
     ],
   );
 
@@ -376,8 +405,9 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
 
     setGameEnd(true);
     setGameIsBlocked(false);
-    setEndAt(new Date());
-  }, [endGameSound]);
+
+    sendGameInfoReport();
+  }, [endGameSound, sendGameInfoReport]);
 
   const value = useMemo(
     () => ({

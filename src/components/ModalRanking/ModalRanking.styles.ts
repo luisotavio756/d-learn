@@ -39,23 +39,5 @@ export const Container = styled.div`
 
   .play-again {
     margin-top: 6rem;
-
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-
-    h3 {
-      color: ${props => props.theme.colors.gray[800]};
-    }
-
-    p {
-      text-align: center;
-      font-size: ${props => props.theme.fontSize.sm};
-      color: ${props => props.theme.colors.gray[600]};
-    }
-
-    button {
-      margin-top: 1.5rem;
-    }
   }
 `;

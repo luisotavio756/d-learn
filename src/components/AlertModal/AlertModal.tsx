@@ -99,6 +99,7 @@ const AlertModal: React.FC<IAlertModalProps> = ({
         <ButtonGroup gap={8} justifyContent="flex-end">
           {!!cancelAction && (
             <Button
+              width="fit-content"
               size="md"
               variant="blue"
               onClick={handleCancel}
@@ -111,6 +112,7 @@ const AlertModal: React.FC<IAlertModalProps> = ({
           )}
           {!!confirmAction && (
             <Button
+              width="fit-content"
               size="md"
               variant="blue-outline"
               onClick={handleConfirm}

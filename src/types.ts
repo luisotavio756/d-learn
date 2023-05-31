@@ -50,10 +50,18 @@ export interface User {
 }
 
 export interface History {
-  _id: string;
+  _id?: string;
   winnerName: string;
   winnerScore: number;
   startedAt: string;
   endAt: string;
   ownerName: string;
+}
+
+export enum PlayerMode {
+  NoChoosen,
+  CreateAccount,
+  Authenticated,
+  NoAuth,
+  Ok,
 }

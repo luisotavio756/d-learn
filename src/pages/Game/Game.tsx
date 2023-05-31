@@ -1,24 +1,26 @@
 import { useMemo } from 'react';
-import { FiArchive } from 'react-icons/fi';
+import { FiArchive, FiLogOut } from 'react-icons/fi';
 import { RiNumbersFill } from 'react-icons/ri';
-import BoardSquare from '../../components/BoardSquare';
-
-import { CardTypes, SquareTypes } from '../../types';
-import { Board, Container } from './Game.styles';
 
 import LogoImg from '../../assets/logo.jpeg';
 
+import BoardSquare from '../../components/BoardSquare';
 import CardsQueue from '../../components/CardsQueue';
 import ModalStartGame from '../../components/ModalStartGame';
-import { useGame } from '../../hooks/useGame.hook';
 import ModalCard from '../../components/ModalCard';
 import PlayerPin from '../../components/PlayerPin';
 import ModalRanking from '../../components/ModalRanking';
-import { useModal } from '../../hooks/useModal';
 import { Headline, Text, Button, ButtonGroup } from '../../components/UI';
 import { Flex } from '../../components/Layout';
+import { ModalPlayerAuth } from '../../components/ModalPlayerAuth';
+import { Board, Container } from './Game.styles';
+
+import { CardTypes, PlayerMode, SquareTypes } from '../../types';
+import { useModal } from '../../hooks/useModal';
 import { useAlert } from '../../hooks/useAlert';
 import { useCardsQuery } from '../../queries/useCards';
+import { usePlayerAuth } from '../../hooks/usePlayerAuth';
+import { useGame } from '../../hooks/useGame.hook';
 
 function Game() {
   const {
@@ -34,6 +36,7 @@ function Game() {
     useModal();
   const { showAlert } = useAlert();
   const { isFetching } = useCardsQuery();
+  const { isLogged, mode, signOut } = usePlayerAuth();
 
   const playerSquare = useMemo(() => {
     const findSquare = board.find(item => item.id === turnOf?.square_id);
@@ -71,9 +74,25 @@ function Game() {
     });
   }
 
+  function handleLogout() {
+    showAlert({
+      title: 'Logout',
+      message: 'Deseja realmente deslogar da aplicação?',
+      cancelAction: closeAlert => closeAlert(),
+      confirmAction: closeAlert => {
+        signOut();
+        closeAlert();
+      },
+    });
+  }
+
   return (
     <Container>
-      <Board>
+      <Board
+        shouldShow={
+          !isFetching && [PlayerMode.NoAuth, PlayerMode.Ok].includes(mode)
+        }
+      >
         <div className="top">
           {board.slice(0, 14).map((item, i) => (
             <BoardSquare key={item.id} id={item.id} type={item.type} />
@@ -139,6 +158,7 @@ function Game() {
             <div className="controls">
               <ButtonGroup gap={4}>
                 <Button
+                  width="fit-content"
                   size="sm"
                   variant="blue-outline"
                   onClick={toggleModalRanking}
@@ -148,6 +168,7 @@ function Game() {
                   Ranking
                 </Button>
                 <Button
+                  width="fit-content"
                   size="sm"
                   variant="red-outline"
                   onClick={handleEndGame}
@@ -156,6 +177,18 @@ function Game() {
                   <FiArchive />
                   Finalizar jogo
                 </Button>
+                {isLogged && (
+                  <Button
+                    width="fit-content"
+                    size="sm"
+                    variant="red-outline"
+                    onClick={handleLogout}
+                    disabled={gameIsBlocked}
+                  >
+                    <FiLogOut />
+                    Sair
+                  </Button>
+                )}
               </ButtonGroup>
             </div>
           </div>
@@ -177,6 +210,7 @@ function Game() {
         </div>
       </Board>
       <ModalStartGame isLoading={isFetching} />
+      <ModalPlayerAuth isLoading={isFetching} />
       <ModalCard
         isOpen={!!activeCard}
         toggleModal={() => null}

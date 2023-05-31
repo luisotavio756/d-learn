@@ -28,7 +28,7 @@ const Button: React.FC<ButtonProps> = ({
   marginTop = 0,
   size = 'lg',
   variant = 'blue',
-  width = 'fit-content',
+  width = 'full',
   ...rest
 }) => (
   <Container

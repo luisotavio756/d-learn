@@ -68,9 +68,7 @@ export const Container = styled.p<TextStylesProps>`
   display: flex;
   align-items: center;
 
-  svg {
-    margin-right: 2px;
-  }
+  gap: 4px;
 `;
 
 export const ContainerWithSlot = styled(Slot)<TextStylesProps>`
@@ -84,9 +82,7 @@ export const ContainerWithSlot = styled(Slot)<TextStylesProps>`
   display: flex;
   align-items: center;
 
-  svg {
-    margin-right: 2px;
-  }
+  gap: 4px;
 `;
 
 export type TextStyledProps = StyledComponentPropsWithRef<typeof Container>;
