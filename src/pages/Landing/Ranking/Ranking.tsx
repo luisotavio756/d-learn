@@ -11,8 +11,8 @@ const Ranking: React.FC = () => {
       <Flex flexDirection="column">
         <Headline size="lg">🔥 Ranking global</Headline>
         <Text size="lg">
-          Ao fim de cada jogo, armazenos o Log do jogo em nossos servidores,
-          para incentivar os jogares a buscarem o topo
+          Ao fim de cada jogo, armazenamos o Log do jogo em nossos servidores,
+          para incentivar os jogares a buscarem o topo do ranking
         </Text>
       </Flex>
       <HistoryTable />
