@@ -70,7 +70,8 @@ const ModalRanking: React.FC<ModalRankingProps> = ({ isOpen, toggleModal }) => {
           {isLogged && (
             <Text align="center" type="success">
               O log do jogo foi armazenado em nossos servidores, você pode
-              consultar clicando em Ranking Global
+              consultar sua posição no Ranking Global na Landing Page, na seção
+              Ranking.
             </Text>
           )}
           <Text>

@@ -50,6 +50,16 @@ export default function Header() {
                 DAR FEEDBACK
               </Text>
             </li>
+            <li
+              onClick={() => {
+                window.location.href = '/#ranking';
+              }}
+              aria-hidden="true"
+            >
+              <Text align="center" type="light">
+                RANKING GLOBAL
+              </Text>
+            </li>
           </ul>
           <button onClick={() => setMenuIsOpen(false)} type="button">
             &times;
