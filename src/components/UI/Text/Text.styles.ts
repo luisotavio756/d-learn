@@ -31,9 +31,9 @@ const TextSizeList: Record<TextSizes, string> = {
 
 const TextLineHeighList: Record<TextSizes, string | number> = {
   xs: theme.lineHeight.snug,
-  sm: theme.lineHeight[4],
-  md: theme.lineHeight[5],
-  lg: theme.lineHeight[6],
+  sm: theme.lineHeight[3],
+  md: theme.lineHeight[4],
+  lg: theme.lineHeight[5],
 };
 
 const TextWeightList: Record<TextWeights, number> = {

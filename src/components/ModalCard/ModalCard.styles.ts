@@ -91,8 +91,9 @@ export const NormalCardBodyContainer = styled.div`
 
   .img {
     img {
-      object-fit: cover;
-      height: 84px;
+      object-fit: none;
+      width: 76%;
+      height: auto;
     }
   }
 
