@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useEffect, useMemo, useRef } from 'react';
 import { FiArchive, FiLogOut } from 'react-icons/fi';
 import { RiNumbersFill } from 'react-icons/ri';
 
@@ -21,8 +21,12 @@ import { useAlert } from '../../hooks/useAlert';
 import { useCardsQuery } from '../../queries/useCards';
 import { usePlayerAuth } from '../../hooks/usePlayerAuth';
 import { useGame } from '../../hooks/useGame.hook';
+import api from '../../services/api';
+import { useToast } from '../../hooks/useToast';
 
 function Game() {
+  const healthCheckIntervalRef = useRef<NodeJS.Timer | null>(null);
+
   const {
     board,
     turnOf,
@@ -35,6 +39,8 @@ function Game() {
   const { isOpen: modalRankingIsOpen, toggleModal: toggleModalRanking } =
     useModal();
   const { showAlert } = useAlert();
+  const { addToast } = useToast();
+
   const { isFetching } = useCardsQuery();
   const { isLogged, mode, signOut } = usePlayerAuth();
 
@@ -85,6 +91,33 @@ function Game() {
       },
     });
   }
+
+  useEffect(() => {
+    healthCheckIntervalRef.current = setInterval(
+      () => {
+        api
+          .get('/health')
+          .then(() => {
+            console.log('Server is ok');
+          })
+          .catch(() => {
+            addToast({
+              title: 'Servidor indisponível',
+              description:
+                'Estamos tendo instabilidades no servidor, por favor, aguarde um momento',
+              type: 'info',
+            });
+          });
+      },
+      1000 * 60, // 1 minute
+    );
+
+    return () => {
+      if (healthCheckIntervalRef?.current) {
+        clearInterval(healthCheckIntervalRef?.current);
+      }
+    };
+  }, [addToast]);
 
   return (
     <Container>
