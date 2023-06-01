@@ -30,19 +30,18 @@ const Modal: React.FC<IModalProps> = ({
   const [modalStatus, setModalStatus] = useState(isOpen);
   const styles = useMemo(() => {
     const baseContentStyles = {
-      top: '50%',
-      left: '50%',
-      right: 'auto',
-      bottom: 'auto',
-      marginRight: '-50%',
-      transform: 'translate(-50%, -50%)',
+      left: 0,
+      right: 0,
+      bottom: 0,
+      top: 0,
+      margin: 'auto',
       background: '#fff',
       borderRadius: '8px',
       maxWidth: width,
       width: '96%',
       border: 'none',
       maxHeight: height,
-      height: 'auto',
+      height: 'fit-content',
       overflowY: 'auto',
     };
 

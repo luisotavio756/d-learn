@@ -111,7 +111,7 @@ export const Container = styled.button<ButtonProps>`
     props.size === 'md' &&
     css`
       height: 2.5rem; // 40px
-      font-size: ${props => props.theme.fontSize.sm};
+      font-size: ${props => props.theme.fontSize.base};
       padding: 0 0.75rem;
       border-radius: 6px;
     `}
@@ -120,7 +120,7 @@ export const Container = styled.button<ButtonProps>`
     props.size === 'sm' &&
     css`
       height: 1.875rem; // 30px
-      font-size: ${props => props.theme.fontSize.xs};
+      font-size: ${props => props.theme.fontSize.sm};
       padding: 0.5rem;
       border-radius: 4px;
     `}

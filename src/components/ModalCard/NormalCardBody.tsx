@@ -74,10 +74,12 @@ const NormalCardBody: React.FC = () => {
           <Text size="lg" weight="heavy">
             Descrição:
           </Text>
-          <Text family="mono">{description}</Text>
+          <Text size="lg" family="mono">
+            {description}
+          </Text>
         </Flex>
         <Flex className="question">
-          <Text weight="medium" family="mono">
+          <Text size="lg" weight="medium" family="mono">
             {question}
           </Text>
         </Flex>
@@ -93,7 +95,7 @@ const NormalCardBody: React.FC = () => {
           <Headline size="sm" type="success">
             Parabéns, você acertou! 🎉
           </Headline>
-          <Text type="success" family="mono" align="center">
+          <Text size="lg" type="success" family="mono" align="center">
             R: {solutionText}
           </Text>
         </Flex>
@@ -107,7 +109,7 @@ const NormalCardBody: React.FC = () => {
           <Headline size="sm" type="danger">
             Poxa, você errou! 😕
           </Headline>
-          <Text type="danger" family="mono" align="center">
+          <Text size="lg" type="danger" family="mono" align="center">
             R: {solutionText}
           </Text>
         </Flex>
@@ -119,7 +121,9 @@ const NormalCardBody: React.FC = () => {
               playerId={turnOf?.id as number}
               {...(turnOf as Player)}
             />
-            <Text weight="medium">{turnOf?.name}</Text>
+            <Text size="lg" weight="light">
+              {turnOf?.name}
+            </Text>
           </Flex>
           <ButtonGroup justifyContent="center" gap={10}>
             <Button

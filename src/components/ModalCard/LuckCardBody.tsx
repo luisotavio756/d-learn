@@ -49,6 +49,7 @@ const LuckCardBody: React.FC = () => {
         </div>
         <div className="info">
           <Text
+            size="lg"
             weight="medium"
             type={luckType === 'luck' ? 'success' : 'danger'}
             align="center"
@@ -58,13 +59,15 @@ const LuckCardBody: React.FC = () => {
         </div>
 
         <div className="actions">
-          <Flex gap={16} flexDirection="column">
+          <Flex gap={16} flexDirection="column" alignItems="center">
             <Flex justifyContent="center" gap={4}>
               <PlayerPin
                 playerId={turnOf?.id as number}
                 {...(turnOf as Player)}
               />
-              <Text weight="medium">{turnOf?.name}</Text>
+              <Text size="lg" weight="medium">
+                {turnOf?.name}
+              </Text>
             </Flex>
             <Button
               variant={luckType === 'luck' ? 'green' : 'red'}
