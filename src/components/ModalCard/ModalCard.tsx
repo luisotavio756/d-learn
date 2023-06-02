@@ -53,7 +53,7 @@ const ModalCard: React.FC<IModalCardProps> = ({
       toggleModal={toggleModal}
       style={{
         content: {
-          width: '412px',
+          maxWidth: '412px',
           padding: '0',
           background: 'unset',
         },

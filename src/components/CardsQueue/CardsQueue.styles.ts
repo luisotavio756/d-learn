@@ -33,8 +33,8 @@ const stackBackgroud: Record<CardTypes, StackStyle> = {
 
 export const Container = styled.div<ContainerProps>`
   display: flex;
-  width: 180px;
-  height: 258px;
+  width: 22%;
+  height: 88%;
   transition: filter 0.2s;
   position: relative;
   bottom: 0;

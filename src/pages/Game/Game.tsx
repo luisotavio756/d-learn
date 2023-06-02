@@ -1,4 +1,5 @@
-import { useEffect, useMemo, useRef } from 'react';
+/* eslint-disable no-alert */
+import { useEffect, useLayoutEffect, useMemo, useRef } from 'react';
 import { FiArchive, FiLogOut } from 'react-icons/fi';
 import { RiNumbersFill } from 'react-icons/ri';
 
@@ -11,17 +12,17 @@ import ModalCard from '../../components/ModalCard';
 import PlayerPin from '../../components/PlayerPin';
 import ModalRanking from '../../components/ModalRanking';
 import { Headline, Text, Button, ButtonGroup } from '../../components/UI';
-import { Flex } from '../../components/Layout';
+import { Box, Flex } from '../../components/Layout';
 import { ModalPlayerAuth } from '../../components/ModalPlayerAuth';
 import { Board, Container } from './Game.styles';
 
+import api from '../../services/api';
 import { CardTypes, PlayerMode, SquareTypes } from '../../types';
 import { useModal } from '../../hooks/useModal';
 import { useAlert } from '../../hooks/useAlert';
 import { useCardsQuery } from '../../queries/useCards';
 import { usePlayerAuth } from '../../hooks/usePlayerAuth';
 import { useGame } from '../../hooks/useGame.hook';
-import api from '../../services/api';
 import { useToast } from '../../hooks/useToast';
 
 function Game() {
@@ -119,6 +120,17 @@ function Game() {
     };
   }, [addToast]);
 
+  useLayoutEffect(() => {
+    const clientHeight = window.innerHeight;
+    const clientWidth = window.innerWidth;
+
+    if (clientHeight > clientWidth) {
+      window.alert(
+        'Percebemos que você está em um dispositivo de resolução baixa. Para uma melhor visualização, utilize o site com o dispositivo deitado 📱⤵️😁',
+      );
+    }
+  }, []);
+
   return (
     <Container>
       <Board
@@ -127,11 +139,11 @@ function Game() {
         }
       >
         <div className="top">
-          {board.slice(0, 14).map((item, i) => (
+          {board.slice(0, 14).map(item => (
             <BoardSquare key={item.id} id={item.id} type={item.type} />
           ))}
         </div>
-        <div className="main">
+        <Flex justifyContent="space-between">
           <div className="column1">
             {board.slice(34, 40).map(item => (
               <BoardSquare
@@ -142,17 +154,24 @@ function Game() {
               />
             ))}
           </div>
-          <div className="content-main">
-            <img src={LogoImg} alt="" />
-            <Flex flexDirection="column" className="info">
-              {turnOf && (
-                <Flex alignItems="center" gap={4} className="turnOf">
+          <Flex flexDirection="column" className="content-main">
+            <Box className="logo">
+              <img src={LogoImg} alt="" />
+            </Box>
+            <Flex flexDirection="column" className="info-and-queues" gap={16}>
+              <Flex flexDirection="column">
+                <Flex
+                  shouldShow={!!turnOf}
+                  alignItems="center"
+                  gap={4}
+                  className="turnOf"
+                >
                   <PlayerPin
-                    playerId={turnOf.id}
-                    color={turnOf.color}
-                    name={turnOf.name}
-                    score={turnOf.score}
-                    active={turnOf.active}
+                    playerId={turnOf?.id ?? 0}
+                    color={turnOf?.color ?? ''}
+                    name={turnOf?.name ?? ''}
+                    score={turnOf?.score ?? 0}
+                    active={turnOf?.active ?? false}
                   />
 
                   <Headline weight="light" size="sm">
@@ -160,34 +179,35 @@ function Game() {
                   </Headline>
                   <Headline>{turnOf?.name}</Headline>
                 </Flex>
-              )}
-              <Text type="neutral">Escolha uma carta abaixo</Text>
+
+                <Text type="neutral">Escolha uma carta abaixo</Text>
+              </Flex>
+              <Flex gap={32} className="queues">
+                <CardsQueue
+                  onClick={handleChooseCard}
+                  type={CardTypes.QualityAttributes}
+                  enabled={isQueueEnabled(SquareTypes.QualityAttributes)}
+                />
+                <CardsQueue
+                  onClick={handleChooseCard}
+                  type={CardTypes.ArchPattern}
+                  enabled={isQueueEnabled(SquareTypes.ArchPattern)}
+                />
+                <CardsQueue
+                  onClick={handleChooseCard}
+                  type={CardTypes.ArchDecisions}
+                  enabled={isQueueEnabled(SquareTypes.ArchDecisions)}
+                />
+                <CardsQueue
+                  onClick={handleChooseCard}
+                  type={CardTypes.LuckOrBadLuck}
+                  enabled={
+                    playerSquare?.type === SquareTypes.LuckOrBadLuck &&
+                    !gameIsBlocked
+                  }
+                />
+              </Flex>
             </Flex>
-            <div className="cards">
-              <CardsQueue
-                onClick={handleChooseCard}
-                type={CardTypes.QualityAttributes}
-                enabled={isQueueEnabled(SquareTypes.QualityAttributes)}
-              />
-              <CardsQueue
-                onClick={handleChooseCard}
-                type={CardTypes.ArchPattern}
-                enabled={isQueueEnabled(SquareTypes.ArchPattern)}
-              />
-              <CardsQueue
-                onClick={handleChooseCard}
-                type={CardTypes.ArchDecisions}
-                enabled={isQueueEnabled(SquareTypes.ArchDecisions)}
-              />
-              <CardsQueue
-                onClick={handleChooseCard}
-                type={CardTypes.LuckOrBadLuck}
-                enabled={
-                  playerSquare?.type === SquareTypes.LuckOrBadLuck &&
-                  !gameIsBlocked
-                }
-              />
-            </div>
             <div className="controls">
               <ButtonGroup gap={4}>
                 <Button
@@ -224,7 +244,7 @@ function Game() {
                 )}
               </ButtonGroup>
             </div>
-          </div>
+          </Flex>
           <div className="column2">
             {board.slice(14, 20).map(item => (
               <BoardSquare
@@ -235,7 +255,7 @@ function Game() {
               />
             ))}
           </div>
-        </div>
+        </Flex>
         <div className="bottom">
           {board.slice(20, 34).map(item => (
             <BoardSquare key={item.id} id={item.id} type={item.type} />

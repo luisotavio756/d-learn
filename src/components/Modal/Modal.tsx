@@ -21,7 +21,7 @@ const Modal: React.FC<IModalProps> = ({
   isOpen,
   title,
   width = '754px',
-  height = '698px',
+  height,
   showCloseButton = true,
   style = {},
   toggleModal,
@@ -40,7 +40,7 @@ const Modal: React.FC<IModalProps> = ({
       maxWidth: width,
       width: '96%',
       border: 'none',
-      maxHeight: height,
+      maxHeight: height ?? '96vh',
       height: 'fit-content',
       overflowY: 'auto',
     };
@@ -50,8 +50,8 @@ const Modal: React.FC<IModalProps> = ({
       zIndex: '9999',
     };
 
-    Object.assign(baseContentStyles, { ...(style?.content || {}) });
-    Object.assign(baseOverlayStyles, { ...(style?.overlay || {}) });
+    Object.assign(baseContentStyles, { ...(style?.content ?? {}) });
+    Object.assign(baseOverlayStyles, { ...(style?.overlay ?? {}) });
 
     return {
       content: baseContentStyles,

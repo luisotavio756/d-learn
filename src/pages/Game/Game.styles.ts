@@ -2,9 +2,10 @@ import styled from 'styled-components';
 
 import BackgroundImage from '../../assets/background.jpg';
 import { Box } from '../../components/Layout';
+import { breakpoints } from '../../styles/breakpoints';
 
 export const Container = styled.div`
-  height: 100%;
+  height: 100vh;
   width: 100%;
   background-image: url(${BackgroundImage});
 
@@ -21,6 +22,8 @@ export const Board = styled(Box)`
   display: flex;
   flex-direction: column;
   width: fit-content;
+  max-height: 100vh;
+  overflow: auto;
 
   .top,
   .bottom {
@@ -31,45 +34,63 @@ export const Board = styled(Box)`
     flex-direction: row-reverse;
   }
 
-  .main {
-    position: relative;
+  .column1,
+  .column2 {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+  }
 
-    .column1,
-    .column2 {
-      display: flex;
-      flex-direction: column;
-    }
+  .column1 {
+    flex-direction: column-reverse;
+  }
 
-    .column1 {
-      flex-direction: column-reverse;
-    }
+  .content-main {
+    position: relative;
+    width: 80%;
 
-    .content-main {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+    .logo {
+      width: 100%;
+      height: 200px;
 
       > img {
-        width: 700px;
-        height: auto;
-      }
-
-      .info {
+        object-fit: contain;
         width: 100%;
+        margin: 0px auto;
+        height: 100%;
+      }
+    }
+
+    .info-and-queues {
+      flex: 1;
+    }
+
+    .queues {
+      flex: 1;
+    }
+
+    .controls {
+      top: 1rem;
+      right: 1rem;
+      position: absolute;
+    }
+  }
+
+  @media screen and (max-width: ${breakpoints.lg}) {
+    .content-main {
+      .logo {
+        height: 80px;
       }
 
-      .cards {
-        margin-top: 1rem;
-        display: flex;
-        gap: 32px;
+      img {
+        display: none;
       }
+    }
+  }
 
-      .controls {
-        top: 1rem;
-        right: 8rem;
-        position: absolute;
+  @media screen and (max-width: ${breakpoints.sm}) {
+    .content-main {
+      .logo {
+        height: 0;
       }
     }
   }
