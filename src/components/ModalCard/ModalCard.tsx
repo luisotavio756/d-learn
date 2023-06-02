@@ -10,7 +10,7 @@ import NormalCardBody from './NormalCardBody';
 
 import { Flex } from '../Layout';
 import CardFront from '../CardFront/CardFront';
-import { Text } from '../UI';
+import { Headline } from '../UI';
 
 interface IModalCardProps {
   isOpen: boolean;
@@ -48,13 +48,12 @@ const ModalCard: React.FC<IModalCardProps> = ({
 
   return (
     <Modal
-      width="454px"
       isOpen={isOpen}
       showCloseButton={false}
       toggleModal={toggleModal}
       style={{
         content: {
-          width: '380px',
+          maxWidth: '412px',
           padding: '0',
           background: 'unset',
         },
@@ -73,9 +72,9 @@ const ModalCard: React.FC<IModalCardProps> = ({
               justifyContent="center"
               className="header"
             >
-              <Text size="lg" weight="heavy">
+              <Headline size="sm" weight="heavy">
                 {activeCard.title}
-              </Text>
+              </Headline>
             </Flex>
             <div className="body">
               {type === CardTypes.LuckOrBadLuck ? (

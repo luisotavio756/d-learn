@@ -1,31 +1,25 @@
 import styled, { css } from 'styled-components';
 import { CardTypes } from '../../types';
+import { Flex } from '../Layout';
+import { breakpoints } from '../../styles/breakpoints';
 
 interface ContainerProps {
   type: CardTypes;
 }
 
-export const Container = styled.div<ContainerProps>`
+export const Container = styled(Flex)<ContainerProps>`
   flex: 1;
   border-radius: 8px;
 
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
   cursor: pointer;
   position: relative;
   box-shadow: 2px 1px 1px rgba(0, 0, 0, 0.15);
 
   .icon {
     svg {
-      width: 64px;
-      height: 64px;
+      width: 4rem;
+      height: 4rem;
     }
-  }
-
-  .text {
-    margin-top: 12px;
   }
 
   ${props =>
@@ -50,9 +44,37 @@ export const Container = styled.div<ContainerProps>`
     props.type === CardTypes.LuckOrBadLuck &&
     css`
       background: ${props.theme.colors.ice[700]};
-
-      .text {
-        color: ${props.theme.colors.gray[900]};
-      }
     `}
+
+  @media screen and (max-width: ${breakpoints['2xl']}) {
+    .icon {
+      svg {
+        width: 3rem;
+        height: 3rem;
+      }
+    }
+
+    h2 {
+      font-size: ${props => props.theme.fontSize.base};
+    }
+  }
+
+  @media screen and (max-width: ${breakpoints.lg}) {
+    .icon {
+      svg {
+        width: 2rem;
+        height: 2rem;
+      }
+    }
+
+    h2 {
+      font-size: ${props => props.theme.fontSize.xs};
+    }
+  }
+
+  @media screen and (max-width: ${breakpoints.sm}) {
+    h2 {
+      font-size: ${props => props.theme.fontSize.xxs};
+    }
+  }
 `;

@@ -3,6 +3,7 @@ import styled, { css } from 'styled-components';
 import StartSquareImg from '../../assets/start-square.png';
 import LuckSquareImg from '../../assets/luck-square.png';
 import { Player, SquareTypes } from '../../types';
+import { breakpoints } from '../../styles/breakpoints';
 
 type BoardSquareProps = {
   type: SquareTypes;
@@ -14,8 +15,8 @@ type PlayerPinProps = Omit<Player, 'id' | 'square_id'> & {
 };
 
 export const Container = styled.div<BoardSquareProps>`
-  width: 7.125rem;
-  height: 7.125rem;
+  width: calc(80vw / 14);
+  height: calc(80vw / 14);
 
   display: flex;
   justify-content: center;
@@ -73,7 +74,7 @@ export const Container = styled.div<BoardSquareProps>`
     css`
       background-image: url(${StartSquareImg});
       background-repeat: no-repeat;
-      background-size: contain;
+      background-size: cover;
     `}
 
   ${props =>
@@ -83,6 +84,35 @@ export const Container = styled.div<BoardSquareProps>`
       background-repeat: no-repeat;
       background-size: contain;
     `}
+
+  @media screen and (max-width: ${breakpoints['2xl']}) {
+    width: calc(90vw / 14);
+    height: calc(90vw / 14);
+
+    > svg {
+      width: 2.25rem;
+      height: 2.25rem;
+    }
+  }
+
+  @media screen and (max-width: ${breakpoints.lg}) {
+    width: calc(100vw / 14);
+    height: calc(100vw / 14);
+
+    > svg {
+      width: 1.5rem;
+      height: 1.5rem;
+    }
+
+    .star {
+      width: 0.75rem;
+      height: 0.75rem;
+
+      svg {
+        font-size: ${props => props.theme.fontSize.xxs};
+      }
+    }
+  }
 `;
 
 export const PlayerPin = styled.div<PlayerPinProps>`
@@ -90,8 +120,8 @@ export const PlayerPin = styled.div<PlayerPinProps>`
   align-items: center;
   justify-content: center;
 
-  width: 30px;
-  height: 30px;
+  width: 2rem;
+  height: 2rem;
   border-radius: 50%;
   border: 2px solid ${props => props.theme.colors.gray[100]};
 
@@ -131,5 +161,23 @@ export const PlayerPin = styled.div<PlayerPinProps>`
 
   &:hover {
     filter: brightness(90%);
+  }
+
+  @media screen and (max-width: ${breakpoints['2xl']}) {
+    width: 1.75rem;
+    height: 1.75rem;
+
+    > svg {
+      font-size: 1rem;
+    }
+  }
+
+  @media screen and (max-width: ${breakpoints.lg}) {
+    width: 1.5rem;
+    height: 1.5rem;
+
+    > svg {
+      font-size: 0.75rem;
+    }
   }
 `;

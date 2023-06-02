@@ -87,6 +87,9 @@ export default createGlobalStyle`
     background-color: ${props => props.theme.colors.background};
     color: #fff;
     -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+
   }
 
   label, strong, h1, h2, h3, h4, h5, h6, button, input, textarea {

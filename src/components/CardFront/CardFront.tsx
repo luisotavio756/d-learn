@@ -8,6 +8,7 @@ import { ReactComponent as ArchPatternsIcon } from '../../assets/cards-icons/arc
 import { ReactComponent as LuckIcon } from '../../assets/luck-icon.svg';
 
 import { CardTypes } from '../../types';
+import { Headline } from '../UI';
 
 interface CardFrontProps {
   type: CardTypes;
@@ -34,11 +35,21 @@ const CardFront: React.FC<CardFrontProps> = ({ type }) => {
     [],
   );
   return (
-    <Container className="card-front" type={type}>
+    <Container
+      type={type}
+      className="card-front"
+      gap={12}
+      flexDirection="column"
+      alignItems="center"
+      justifyContent="center"
+    >
       <div className="icon">{icons[type]}</div>
-      <div className="text">
-        <strong>{text[type]}</strong>
-      </div>
+      <Headline
+        size="sm"
+        type={type === CardTypes.LuckOrBadLuck ? 'neutral' : 'light'}
+      >
+        {text[type]}
+      </Headline>
     </Container>
   );
 };
