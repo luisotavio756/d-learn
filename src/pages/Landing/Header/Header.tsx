@@ -60,6 +60,16 @@ export default function Header() {
                 RANKING GLOBAL
               </Text>
             </li>
+            <li
+              onClick={() => {
+                window.location.href = '/#contributors';
+              }}
+              aria-hidden="true"
+            >
+              <Text align="center" type="light">
+                CONTRIBUIDORES
+              </Text>
+            </li>
           </ul>
           <button onClick={() => setMenuIsOpen(false)} type="button">
             &times;
