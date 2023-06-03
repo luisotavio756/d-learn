@@ -52,6 +52,7 @@ export default function Header() {
             </li>
             <li
               onClick={() => {
+                setMenuIsOpen(false);
                 window.location.href = '/#ranking';
               }}
               aria-hidden="true"
@@ -62,6 +63,7 @@ export default function Header() {
             </li>
             <li
               onClick={() => {
+                setMenuIsOpen(false);
                 window.location.href = '/#contributors';
               }}
               aria-hidden="true"
