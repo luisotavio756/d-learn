@@ -8,6 +8,7 @@ import Footer from './Footer';
 
 import defaultBanner from '../../assets/banner.jpeg';
 import Ranking from './Ranking';
+import { Contributors } from './Contributors';
 
 const Landing: React.FC = () => {
   return (
@@ -17,6 +18,7 @@ const Landing: React.FC = () => {
       <Carousel />
       <Info />
       <Ranking />
+      <Contributors />
       <Footer />
     </Container>
   );

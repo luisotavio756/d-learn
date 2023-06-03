@@ -14,6 +14,7 @@ export interface GridProps {
   templateRows?: string;
   alignItems?: 'center' | 'flex-start' | 'flex-end';
   breakpoints?: {
+    xl?: GridTemplate;
     lg?: GridTemplate;
     md?: GridTemplate;
     sm?: GridTemplate;
@@ -31,6 +32,15 @@ export const Container = styled.div<GridProps>`
     css`
       gap: ${props.gap}px;
     `};
+
+  @media screen and (max-width: ${widthBreakpoints.xl}) {
+    ${({ breakpoints }) =>
+      breakpoints?.xl &&
+      css`
+        grid-template-columns: ${breakpoints?.xl.templateColumns};
+        grid-template-rows: ${breakpoints?.xl.templateRows};
+      `}
+  }
 
   @media screen and (max-width: ${widthBreakpoints.lg}) {
     ${({ breakpoints }) =>
