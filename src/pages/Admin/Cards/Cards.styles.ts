@@ -43,6 +43,14 @@ export const Container = styled(Flex)`
       }
     }
 
+    th.question,
+    td.question {
+      max-width: 200px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
     tr {
       height: 32px;
     }

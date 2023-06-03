@@ -155,6 +155,7 @@ const Cards: React.FC = () => {
           />
         </form>
         <Button
+          width="fit-content"
           size="sm"
           variant="blue-outline"
           onClick={toggleModalCreateCard}
@@ -185,7 +186,7 @@ const Cards: React.FC = () => {
               <th>Tipo</th>
               <th>Titulo</th>
               <th>Estrelas</th>
-              <th>Pergunta</th>
+              <th className="question">Pergunta</th>
               <th>Solução</th>
               <th>Ações</th>
             </tr>
@@ -200,7 +201,7 @@ const Cards: React.FC = () => {
                 <td>{item.type}</td>
                 <td>{item.title}</td>
                 <td>{item.stars}</td>
-                <td>{item.question}</td>
+                <td className="question">{item.question}</td>
                 <td>{item.solution}</td>
                 <td>
                   <ButtonGroup gap={6}>
@@ -211,6 +212,7 @@ const Cards: React.FC = () => {
                           variant="red-outline"
                           justIcon
                           onClick={() => handleDeleteCard(item._id)}
+                          width="fit-content"
                         >
                           <FiTrash />
                         </Button>
@@ -219,6 +221,7 @@ const Cards: React.FC = () => {
                           variant="yellow"
                           justIcon
                           onClick={() => handleEditCard(item)}
+                          width="fit-content"
                         >
                           <FiEdit />
                         </Button>
@@ -228,6 +231,7 @@ const Cards: React.FC = () => {
                       size="sm"
                       justIcon
                       onClick={() => handleOpenCardDetails(item)}
+                      width="fit-content"
                     >
                       <FiEye />
                     </Button>

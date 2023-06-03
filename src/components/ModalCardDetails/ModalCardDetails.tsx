@@ -142,14 +142,6 @@ const ModalCardDetails: React.FC<IModalCardDetailsProps> = ({
               max={6}
               disabled
             />
-            <TextArea
-              label="Pergunta"
-              placeholder="Crie uma pergunta de V ou F"
-              name="starsCalc"
-              register={register}
-              rows={3}
-              disabled
-            />
           </Flex>
         </form>
       </Container>
