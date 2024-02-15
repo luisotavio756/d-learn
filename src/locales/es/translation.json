@@ -1,4 +1,131 @@
 {
+  "admin": {
+    "cards": {
+      "pageTitle": "Tarjetas",
+      "newCard": "Nueva tarjeta",
+      "warningLuckOrBadLuck": "Las tarjetas de suerte o mala suerte no pueden editarse aquí. Solicita asistencia al desarrollador para realizar cambios.",
+      "table": {
+        "image": "Imagen",
+        "type": "Tipo",
+        "title": "Título",
+        "stars": "Estrellas",
+        "question": "Pregunta",
+        "solution": "Solución",
+        "actions": "Acciones",
+        "empty": "No hay tarjetas registradas"
+      },
+      "inputs": {
+        "selectCardType": {
+          "label": "Tipo",
+          "placeholder": "Selecciona un tipo",
+          "all": "Todos",
+          "archPattern": "Patrones arquitectónicos",
+          "archDecisions": "Decisiones arquitectónicas",
+          "qualityAttributes": "Atributos de calidad",
+          "luckOrBadLuck": "Suerte o mala suerte"
+        },
+        "inputTitle": {
+          "label": "Título",
+          "placeholder": "Ingresa un título"
+        },
+        "inputDescription": {
+          "label": "Descripción",
+          "placeholder": "Ingresa una descripción"
+        },
+        "inputQuestion": {
+          "label": "Pregunta",
+          "placeholder": "Crea una pregunta Verdadero o Falso"
+        },
+        "inputSolution": {
+          "label": "Respuesta",
+          "placeholder": "Selecciona una respuesta",
+          "true": "Verdadero",
+          "false": "Falso"
+        },
+        "inputSolutionText": {
+          "label": "Explicación de la Respuesta",
+          "placeholder": "Describe la respuesta"
+        },
+        "inputStars": {
+          "label": "Estrellas",
+          "placeholder": "Selecciona una calificación de estrellas"
+        }
+      },
+      "modals": {
+        "newCard": {
+          "title": "Nueva tarjeta",
+          "toastSuccess": {
+            "title": "¡Éxito!",
+            "description": "¡Tarjeta creada exitosamente!"
+          },
+          "toastInvalidData": {
+            "title": "Datos Inválidos",
+            "description": "Por favor asegúrate de completar todos los campos e intenta nuevamente"
+          },
+          "suggestion": "Sugerencia: 180px x 84px",
+          "remove": "Eliminar",
+          "wait": "Por favor espera...",
+          "createCard": "Crear tarjeta"
+        },
+        "deleteCard": {
+          "title": "Eliminar tarjeta",
+          "message": "¿Estás seguro de que deseas eliminar esta tarjeta? Esta acción es irreversible",
+          "toastSuccess": {
+            "title": "¡Éxito!",
+            "description": "¡Tarjeta eliminada exitosamente!"
+          },
+          "toastError": {
+            "title": "Error",
+            "description": "Se produjo un error al intentar eliminar la tarjeta, por favor inténtalo de nuevo más tarde"
+          },
+          "wait": "Por favor espera...",
+          "cancel": "Cancelar",
+          "confirm": "Confirmar"
+        },
+        "editCard": {
+          "title": "Editar tarjeta",
+          "toastSuccess": {
+            "title": "¡Éxito!",
+            "description": "¡Tarjeta editada exitosamente!"
+          },
+          "toastInvalidData": {
+            "title": "Datos Inválidos",
+            "description": "Por favor asegúrate de completar todos los campos e intenta nuevamente"
+          },
+          "suggestion": "Sugerencia: 180px x 84px",
+          "undo": "Deshacer",
+          "wait": "Por favor espera...",
+          "editCard": "Editar tarjeta"
+        },
+        "detailsCard": {
+          "title": "Detalles de tarjeta"
+        }
+      }
+    },
+    "dashboard": {
+      "cards": "Tarjetas",
+      "games": "Juegos",
+      "exit": "Salir",
+      "welcome": "Bienvenido,"
+    },
+    "history": {
+      "title": "Historial"
+    },
+    "signIn": {
+      "toastError": {
+        "title": "Error",
+        "description": "Verifica las credenciales e intenta nuevamente",
+        "fullDescription": "Error al iniciar sesión, verifica las credenciales e intenta nuevamente"
+      },
+      "form": {
+        "title": "Iniciar sesión",
+        "login": "Usuario",
+        "password": "Contraseña",
+        "wait": "Por favor espera...",
+        "enter": "Ingresar"
+      }
+    }
+  },
   "landing": {
     "header": {
       "play": "JUGAR",

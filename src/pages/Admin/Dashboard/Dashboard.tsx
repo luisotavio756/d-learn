@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from "react-i18next";
 
 import { FiAward, FiLogOut, FiTablet } from 'react-icons/fi';
 import { Route, Routes, useNavigate } from 'react-router-dom';
@@ -11,6 +12,8 @@ import Cards from '../Cards';
 import { Flex } from '../../../components/Layout';
 
 const Dashboard: React.FC = () => {
+  const { t } = useTranslation();
+
   const { signOut, user } = useAuthAdmin();
   const navigate = useNavigate();
 
@@ -27,19 +30,19 @@ const Dashboard: React.FC = () => {
           <li onClick={() => navigate('/admin/cards')} aria-hidden>
             <FiTablet />
             <Text type="light" weight="heavy">
-              Cartas
+              {t("admin.dashboard.cards")}
             </Text>
           </li>
           <li onClick={() => navigate('/admin/history')} aria-hidden>
             <FiAward />
             <Text type="light" weight="heavy">
-              Jogos
+              {t("admin.dashboard.games")}
             </Text>
           </li>
           <li onClick={handleLogout} aria-hidden>
             <FiLogOut />
             <Text type="light" weight="heavy">
-              Sair
+              {t("admin.dashboard.exit")}
             </Text>
           </li>
         </ul>
@@ -48,7 +51,7 @@ const Dashboard: React.FC = () => {
         <Header alignItems="center" justifyContent="space-between">
           <Headline type="light">D-LEARN</Headline>
           <Flex gap={4}>
-            <Text type="light">Bem vindo,</Text>
+            <Text type="light">{t("admin.dashboard.welcome")}</Text>
             <Text type="light" weight="heavy">
               {user.name}
             </Text>

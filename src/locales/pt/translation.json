@@ -1,4 +1,131 @@
 {
+  "admin": {
+    "cards": {
+      "pageTitle": "Cartas",
+      "newCard": "Nova carta",
+      "warningLuckOrBadLuck": "As cartas de sorte ou revés não podem ser editadas por aqui. Solicite ao desenvolvedor a alteração",
+      "table": {
+        "image": "Imagem",
+        "type": "Tipo",
+        "title": "Título",
+        "stars": "Estrelas",
+        "question": "Pergunta",
+        "solution": "Solução",
+        "actions": "Ações",
+        "empty": "Não há cartas cadastradas"
+      },
+      "inputs":{
+        "selectCardType": {
+          "label": "Tipo",
+          "placeholder": "Selecione um tipo",
+          "all": "Todos",
+          "archPattern": "Padrões arquiteturais",
+          "archDecisions": "Decisões arquiteturais",
+          "qualityAttributes": "Atributos de qualidade",
+          "luckOrBadLuck": "Sorte ou revés"
+        },
+        "inputTitle": {
+          "label": "Título",
+          "placeholder": "Digite um título"
+        },
+        "inputDescription": {
+          "label": "Descrição",
+          "placeholder": "Digite uma descrição"
+        },
+        "inputQuestion": {
+          "label": "Pergunta",
+          "placeholder": "Crie uma pergunta de V ou F"
+        },
+        "inputSolution": {
+          "label": "Resposta",
+          "placeholder": "Selecione uma resposta",
+          "true": "Verdadeiro",
+          "false": "Falso"
+        },
+        "inputSolutionText": {
+          "label": "Explicação da Resposta",
+          "placeholder": "Descreva a resposta"
+        },
+        "inputStars": {
+          "label": "Estrelas",
+          "placeholder": "Selecione uma quantidade de estrelas"
+        }
+      },
+      "modals": {
+        "newCard": {
+          "title": "Nova carta",
+          "toastSuccess": {
+            "title": "Sucesso!",
+            "description": "Carta criada com sucesso!"
+          },
+          "toastInvalidData": {
+            "title": "Dados inválidos",
+            "description": "Por favor, garanta que todos os campos estão preenchidos e tente novamente"
+          },
+          "suggestion": "Sugestão: 180px x 84px",
+          "remove": "Remover",
+          "wait": "Aguarde...",
+          "createCard": "Criar carta"
+        },
+        "deleteCard": {
+          "title": "Deletar carta",
+          "message": "Tem certeza que deseja deletar esta carta? Esta ação é irreversivel",
+          "toastSuccess": {
+            "title": "Sucesso!",
+            "description": "Carta deletada com sucesso!"
+          },
+          "toastError": {
+            "title": "Erro",
+            "description": "Ocorreu um erro ao tentar deletar a carta, tente novamente mais tarde"
+          },
+          "wait": "Aguarde...",
+          "cancel": "Cancelar",
+          "confirm": "Confirmar"
+        },
+        "editCard": {
+          "title": "Editar carta",
+          "toastSuccess": {
+            "title": "Sucesso!",
+            "description": "Carta editada com sucesso!"
+          },
+          "toastInvalidData": {
+            "title": "Dados inválidos",
+            "description": "Por favor, garanta que todos os campos estão preenchidos e tente novamente"
+          },
+          "suggestion": "Sugestão: 180px x 84px",
+          "undo": "Desfazer",
+          "wait": "Aguarde...",
+          "editCard": "Editar carta"
+        },
+        "detailsCard": {
+          "title": "Detalhes da carta"
+        }
+      }
+    },
+    "dashboard": {
+      "cards": "Cartas",
+      "games": "Jogos",
+      "exit": "Sair",
+      "welcome": "Bem vindo,"
+    },
+    "history": {
+      "title": "Histórico"
+    },
+    "signIn": {
+      "toastError": {
+        "title": "Erro",
+        "description": "Verifique as credenciais e tente novamente",
+        "fullDescription": "Erro ao logar, verifique as credenciais e tente novamente"
+      },
+      "form": {
+        "title": "Faça seu login",
+        "login": "Login",
+        "password": "Senha",
+        "wait": "Aguarde...",
+        "enter": "Entrar"
+      }
+    }
+  },
   "landing": {
     "header": {
       "play": "JOGAR",

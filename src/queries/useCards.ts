@@ -8,7 +8,7 @@ import luckOrBadLuckCards from '../cards/luckOrBadLuck';
 async function getCards() {
   const LUCK_AND_BAD_LUCK_CARDS = getShuffledCards(luckOrBadLuckCards);
 
-  const response = await api.get<Card[]>(`/cards`);
+  const response = await api.get<Card[]>(`/cards/en`); // COLOCAR DINAMICAMENTE
 
   return [...getShuffledCards(response.data), ...LUCK_AND_BAD_LUCK_CARDS].map(
     item => Object.assign(item, { used: false }),

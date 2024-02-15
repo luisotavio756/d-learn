@@ -18,7 +18,7 @@ i18n
   .init({
     supportedLngs: ["en", "pt", "es"],
     resources,
-    lng: "es", // DELETE
+    lng: "en", // DELETE
     fallbackLng: "pt",
     interpolation: {
       escapeValue: false,

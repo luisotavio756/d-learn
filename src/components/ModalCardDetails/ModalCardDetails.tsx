@@ -1,4 +1,5 @@
 import React, { useEffect, useMemo } from 'react';
+import { useTranslation } from "react-i18next";
 import { useForm } from 'react-hook-form';
 
 import Modal from '../Modal';
@@ -25,6 +26,7 @@ const ModalCardDetails: React.FC<IModalCardDetailsProps> = ({
   card,
   toggleModal,
 }) => {
+  const { t } = useTranslation();
   const { register, reset } = useForm<FormData>();
 
   const previewUrl = useMemo(() => {
@@ -45,7 +47,7 @@ const ModalCardDetails: React.FC<IModalCardDetailsProps> = ({
     <Modal
       width="540px"
       isOpen={isOpen}
-      title="Detalhes da carta"
+      title={t("admin.cards.modals.detailsCard.title")}
       toggleModal={toggleModal}
     >
       <Container>
@@ -55,25 +57,25 @@ const ModalCardDetails: React.FC<IModalCardDetailsProps> = ({
         <form>
           <Flex flexDirection="column" gap={16}>
             <Select
-              label="Tipo"
-              placeholder="Selecione um tipo"
+              label={t("admin.cards.inputs.selectCardType.label")}
+              placeholder={t("admin.cards.inputs.selectCardType.placeholder")}
               name="type"
               register={register}
               options={[
                 {
-                  label: 'Padrões arquiteturais',
+                  label: t("admin.cards.inputs.selectCardType.archPattern"),
                   value: CardTypes.ArchPattern,
                 },
                 {
-                  label: 'Decisões arquiteturais',
+                  label: t("admin.cards.inputs.selectCardType.archDecisions"),
                   value: CardTypes.ArchDecisions,
                 },
                 {
-                  label: 'Atributos de qualidade',
+                  label: t("admin.cards.inputs.selectCardType.qualityAttributes"),
                   value: CardTypes.QualityAttributes,
                 },
                 {
-                  label: 'Sorte ou revés',
+                  label: t("admin.cards.inputs.selectCardType.luckOrBadLuck"),
                   value: CardTypes.LuckOrBadLuck,
                 },
               ]}
@@ -81,15 +83,15 @@ const ModalCardDetails: React.FC<IModalCardDetailsProps> = ({
             />
             <Input
               type="text"
-              label="Título"
-              placeholder="Digite um título"
+              label={t("admin.cards.inputs.inputTitle.label")}
+              placeholder={t("admin.cards.inputs.inputTitle.placeholder")}
               name="title"
               register={register}
               disabled
             />
             <TextArea
-              label="Descrição"
-              placeholder="Digite uma descrição"
+              label={t("admin.cards.inputs.inputDescription.label")}
+              placeholder={t("admin.cards.inputs.inputDescription.placeholder")}
               name="description"
               register={register}
               rows={3}
@@ -98,33 +100,33 @@ const ModalCardDetails: React.FC<IModalCardDetailsProps> = ({
             {card.type !== CardTypes.LuckOrBadLuck && (
               <>
                 <TextArea
-                  label="Pergunta"
-                  placeholder="Crie uma pergunta de V ou F"
+                  label={t("admin.cards.inputs.inputQuestion.label")}
+                  placeholder={t("admin.cards.inputs.inputQuestion.placeholder")}
                   name="question"
                   register={register}
                   rows={3}
                   disabled
                 />
                 <Select
-                  label="Resposta"
-                  placeholder="Selecione uma resposta"
+                  label={t("admin.cards.inputs.inputSolution.label")}
+                  placeholder={t("admin.cards.inputs.inputSolution.placeholder")}
                   name="solution"
                   register={register}
                   options={[
                     {
-                      label: 'Verdadeiro',
+                      label: t("admin.cards.inputs.inputSolution.true"),
                       value: 'V',
                     },
                     {
-                      label: 'Falso',
+                      label: t("admin.cards.inputs.inputSolution.false"),
                       value: 'F',
                     },
                   ]}
                   disabled
                 />
                 <TextArea
-                  label="Explicação da Resposta"
-                  placeholder="Descreva a resposta"
+                  label={t("admin.cards.inputs.inputSolutionText.label")}
+                  placeholder={t("admin.cards.inputs.inputSolutionText.placeholder")}
                   name="solutionText"
                   register={register}
                   rows={3}
@@ -134,8 +136,8 @@ const ModalCardDetails: React.FC<IModalCardDetailsProps> = ({
             )}
             <Input
               type="number"
-              label="Estrelas"
-              placeholder="Selecione uma quantidade de estrelas"
+              label={t("admin.cards.inputs.inputStars.label")}
+              placeholder={t("admin.cards.inputs.inputStars.placeholder")}
               name="stars"
               register={register}
               min={1}
