@@ -1,0 +1,60 @@
+{
+  "landing": {
+    "header": {
+      "play": "PLAY",
+      "feedback": "GIVE FEEDBACK",
+      "ranking": "GLOBAL RANKING",
+      "contributors": "CONTRIBUTORS"
+    },
+    "carousel": {
+      "discoverDlearn": "Discover D-LEARN",
+      "dlearnOrigin": "D-LEARN (LEarning software ARchitecture fundameNtals) Board game is a digital game inspired by the non-digital game LEARN Board game, which is a game that uses cards and a board to assist in teaching Software Architecture.",
+      "dlearnGoals": "D-LEARN was created to address some challenges faced by the current non-digital format game, such as the use of paper for its construction, difficulty in making changes to the game dynamics, and a high amount of time/effort to create a new version with new rules, for example."
+    },
+    "info": {
+      "cards": {
+        "title": "cards",
+        "subtitle": "The cards are of quality attributes, architectural patterns, architectural decisions, and luck or setback."
+      },
+      "approval": {
+        "title": "80% approval rate",
+        "subtitle": "This is the current approval percentage among the game participants."
+      },
+      "matches": {
+        "title": "matches played",
+        "subtitle": "This is the number of matches played in D-LEARN."
+      },
+      "players": {
+        "title": "Approx. {{history_length}} players",
+        "subtitle": "Went through D-LEARN and had the experience of playing the game."
+      }
+    },
+    "ranking": {
+      "title": "🔥 Global Ranking",
+      "subtitle": "At the end of each game, we store the game log on our servers to encourage players to seek the top of the ranking."
+    },
+    "historyTable": {
+      "winner": "Winner",
+      "score": "Winner's Score",
+      "start": "Start",
+      "end": "End",
+      "gameTime": "Game Time",
+      "host": "Game Host"
+    },
+    "contributors": {
+      "title": "🔍 Contributors",
+      "person1": {
+        "name": "Ph.D. Teacher Ana Beatriz Marques",
+        "description": "Ph.D. Teacher at UFC Campus Russas, Advisor of LEARN and D-LEARN Board Game."
+      },
+      "person2": {
+        "name": "Luis Otávio Lima Caminha",
+        "description": "Software Engineering student at UFC Campus Russas and Developer of D-LEARN Board Game."
+      },
+      "person3": {
+        "name": "Tamires Ariane",
+        "description": "Graduated in Software Engineering at UFC Campus Russas and creator of the LEARN Board Game."
+      }
+    }
+  }
+}
