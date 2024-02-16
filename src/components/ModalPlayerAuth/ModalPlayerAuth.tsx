@@ -1,4 +1,5 @@
 import React, { useMemo } from 'react';
+import { useTranslation } from "react-i18next";
 
 import Modal from '../Modal';
 
@@ -14,19 +15,20 @@ interface IModalPlayerAuthProps {
 }
 
 const ModalPlayerAuth: React.FC<IModalPlayerAuthProps> = ({ isLoading }) => {
+  const { t } = useTranslation();
   const { isLogged, mode, setMode } = usePlayerAuth();
 
   const modalTitle = useMemo(() => {
     const titlesByMode = {
-      [PlayerMode.Authenticated]: 'Faça seu login',
-      [PlayerMode.CreateAccount]: 'Criar conta',
-      [PlayerMode.NoChoosen]: 'Como deseja entrar?',
+      [PlayerMode.Authenticated]: t("game.modals.playerAuth.login"),
+      [PlayerMode.CreateAccount]: t("game.modals.playerAuth.createAccount"),
+      [PlayerMode.NoChoosen]: t("game.modals.playerAuth.enterMode"),
       [PlayerMode.NoAuth]: null,
       [PlayerMode.Ok]: null,
     };
 
     if (isLoading) {
-      return 'Iniciar jogo';
+      return t("game.modals.playerAuth.startGame");
     }
 
     return titlesByMode[mode];
@@ -49,7 +51,7 @@ const ModalPlayerAuth: React.FC<IModalPlayerAuthProps> = ({ isLoading }) => {
       <Flex shouldShow={isLoading} flexDirection="column" alignItems="center">
         <div className="loaderContent" />
         <Text align="center" size="lg">
-          Aguarde um momento enquanto carregamos os recursos do jogo...
+          {t("game.modals.playerAuth.wait")}
         </Text>
       </Flex>
       <Flex
@@ -59,13 +61,13 @@ const ModalPlayerAuth: React.FC<IModalPlayerAuthProps> = ({ isLoading }) => {
       >
         <Flex flexDirection="column" gap={8}>
           <Button onClick={() => setMode(PlayerMode.Authenticated)}>
-            Quero me autenticar
+            {t("game.modals.playerAuth.authenticate")}
           </Button>
           <Button
             onClick={() => setMode(PlayerMode.NoAuth)}
             variant="blue-outline"
           >
-            Jogar como Guest
+            {t("game.modals.playerAuth.guest")}
           </Button>
         </Flex>
       </Flex>

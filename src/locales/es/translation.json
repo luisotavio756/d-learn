@@ -126,6 +126,140 @@
       }
     }
   },
+  "game": {
+    "cards": {
+      "archDecisions": "Decisiones Arquitectónicas",
+      "qualityAttributes": "Atributos de Calidad",
+      "archPattern": "Patrones Arquitectónicos",
+      "luckOrBadLuck": "Suerte o Desgracia",
+      "description": "Descripción:",
+      "congratulations": "¡Felicidades, lo has acertado! 🎉",
+      "acronymResponse": "R:",
+      "damn": "¡Vaya, te has equivocado! 😕",
+      "false": "Falso",
+      "true": "Verdadero",
+      "advance": "🚀 Avanzar {{absoluteStars}} casillas",
+      "pass": "Pasar al siguiente"
+    },
+    "turn": "turno de",
+    "chooseCard": "Elige una carta a continuación",
+    "ranking": "Clasificación",
+    "endGame": "Finalizar juego",
+    "exit": "Salir",
+    "toastServerStatus": {
+      "title": "Servidor no disponible",
+      "description": "Estamos experimentando inestabilidades en el servidor, por favor, espera un momento"
+    },
+    "alertMobileResolution": "Hemos notado que estás usando un dispositivo con baja resolución. Para una mejor experiencia de visualización, utiliza el sitio con el dispositivo en posición horizontal 📱⤵️😁",
+    "modals": {
+      "playerAuth": {
+        "startGame": "Iniciar juego",
+        "login": "Iniciar sesión",
+        "createAccount": "Crear cuenta",
+        "enterMode": "¿Cómo deseas ingresar?",
+        "wait": "Por favor, espera mientras cargamos los recursos del juego...",
+        "authenticate": "Autenticar",
+        "guest": "Jugar como invitado"
+      },
+      "signUp": {
+        "toastAllData": {
+          "title": "Error",
+          "description": "Completa todos los datos para continuar"
+        },
+        "toastMinimumCharacters": {
+          "title": "Error",
+          "description": "La contraseña debe tener al menos 6 caracteres"
+        },
+        "toastIncorrectPassword": {
+          "title": "Error",
+          "description": "¡La contraseña y la confirmación de la contraseña deben coincidir!"
+        },
+        "toastUserCreated": {
+          "title": "Usuario creado exitosamente",
+          "description": "¡Ahora puedes iniciar sesión para jugar autenticado!"
+        },
+        "toastUserNotCreated": {
+          "title": "Error",
+          "description": "No se pudo registrar, por favor, verifica tus credenciales e inténtalo de nuevo"
+        },
+        "inputs": {
+          "nickname": {
+            "label": "Nombre de usuario",
+            "placeholder": "Nombre de usuario"
+          },
+          "password": {
+            "label": "Contraseña",
+            "placeholder": "Contraseña"
+          },
+          "confirmPassword": {
+            "label": "Confirmar Contraseña",
+            "placeholder": "Confirmar Contraseña"
+          }
+        },
+        "wait": "Por favor, espera...",
+        "createAccount": "Crear cuenta",
+        "backToLogin": "Volver al inicio de sesión"
+      },
+      "playerAuthLogin": {
+        "toastWelcome": {
+          "title": "Bienvenido {{playerNickname}}",
+          "description": "¡Inicio de sesión exitoso!"
+        },
+        "toastError": {
+          "title": "Error",
+          "description": "No se pudo iniciar sesión, por favor, verifica tus credenciales e inténtalo de nuevo"
+        },
+        "inputs": {
+          "nickname": {
+            "label": "Nombre de usuario",
+            "placeholder": "Nombre de usuario"
+          },
+          "password": {
+            "label": "Contraseña",
+            "placeholder": "Contraseña"
+          }
+        },
+        "wait": "Por favor, espera...",
+        "enter": "Ingresar",
+        "register": "¿No tienes una cuenta? ¡Regístrate!",
+        "guest": "Jugar como invitado"
+      },
+      "startGame": {
+        "title": "Iniciar juego",
+        "wait": "Por favor, espera mientras cargamos los recursos del juego...",
+        "welcome": "Bienvenido al juego de mesa D-LEARN. ¡Agrega jugadores para comenzar el juego!",
+        "maxPlayers": "Máximo de 4 jugadores",
+        "inputs": {
+          "player": {
+            "label": "Jugador",
+            "placeholder": "Ingresa un nombre"
+          }
+        },
+        "removeLast": "Eliminar último",
+        "addPlayer": "Agregar jugador",
+        "startGame": "Iniciar juego",
+        "authenticate": "Autenticar"
+      },
+      "endGame": {
+        "title": "Cancelar juego",
+        "message": "¿Estás seguro de que quieres finalizar el juego ahora?"
+      },
+      "ranking": {
+        "title": "Clasificación del juego",
+        "name": "Nombre",
+        "score": "Puntuación",
+        "thanks": "¡Gracias por jugar D-LEARN!",
+        "logWarning": "El registro del juego se ha almacenado en nuestros servidores, puedes consultar tu posición en la Clasificación Global en la página de inicio, en la sección de Clasificación.",
+        "feedback": "Da tu opinión haciendo clic",
+        "here": "Aquí",
+        "restart": "Reiniciar juego"
+      },
+      "logout": {
+        "title": "Cerrar sesión",
+        "message": "¿Realmente deseas cerrar la sesión de la aplicación?"
+      }
+    }
+  },  
   "landing": {
     "header": {
       "play": "JUGAR",
