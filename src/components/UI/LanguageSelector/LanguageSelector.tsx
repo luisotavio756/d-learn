@@ -15,9 +15,10 @@ interface Language {
 
 export interface LanguageSelectorProps {
   size?: 'sm' | 'md' | 'lg';
+  openDirection?: 'left' | 'right';
 }
 
-const LanguageSelector: React.FC<LanguageSelectorProps> = ({ size = 'md' }) => {
+const LanguageSelector: React.FC<LanguageSelectorProps> = ({ size = 'md', openDirection = 'right' }) => {
   const { i18n } = useTranslation();
   const [isActiveMenu, setIsActiveMenu] = useState(false);
   let timeoutId; // Mudar de LET
@@ -45,7 +46,7 @@ const LanguageSelector: React.FC<LanguageSelectorProps> = ({ size = 'md' }) => {
   };
 
   return (
-    <Container size={size}>
+    <Container size={size} openDirection={openDirection}>
       <div
         className="dropdown-btn"
         onMouseEnter={handleMenuOpen}

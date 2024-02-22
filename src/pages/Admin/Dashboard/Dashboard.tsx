@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 import { FiAward, FiLogOut, FiTablet } from 'react-icons/fi';
 import { Route, Routes, useNavigate } from 'react-router-dom';
 import { Container, Sidebar, Content, Header, Main } from './Dashboard.styles';
-import { Headline, Text } from '../../../components/UI';
+import { Headline, Text, LanguageSelector } from '../../../components/UI';
 import { useAuthAdmin } from '../../../hooks/useAdminAuth';
 
 import History from '../History';
@@ -50,11 +50,14 @@ const Dashboard: React.FC = () => {
       <Content>
         <Header alignItems="center" justifyContent="space-between">
           <Headline type="light">D-LEARN</Headline>
-          <Flex gap={4}>
-            <Text type="light">{t("admin.dashboard.welcome")}</Text>
-            <Text type="light" weight="heavy">
-              {user.name}
+          <Flex gap={10}>
+            <Text type="light">
+              {t("admin.dashboard.welcome")}
+              <Text type="light" weight="heavy">
+                {user.name}
+              </Text>
             </Text>
+            <LanguageSelector size="sm" openDirection='left' />
           </Flex>
         </Header>
         <Main>

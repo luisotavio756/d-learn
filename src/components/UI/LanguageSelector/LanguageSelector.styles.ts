@@ -18,10 +18,11 @@ export const Container = styled.div<LanguageSelectorProps>`
       }
 
       .dropdown-content:after {
-        right: 65px;
+        ${props.openDirection}: 65px;
       }
 
       .dropdown-content {
+        ${props.openDirection === 'left' ? 'right' : 'left'}: 0;
         top: 70px;
         min-width: 100px;
       }
@@ -36,10 +37,11 @@ export const Container = styled.div<LanguageSelectorProps>`
       }
 
       .dropdown-content:after {
-        right: 75px;
+        ${props.openDirection}: 75px;
       }
 
       .dropdown-content {
+        ${props.openDirection === 'left' ? 'right' : 'left'}: 0;
         top: 50px;
         min-width: 100px;
       }
@@ -54,10 +56,11 @@ export const Container = styled.div<LanguageSelectorProps>`
       }
 
       .dropdown-content:after {
-        right: 85px;
+        ${props.openDirection}: 85px;
       }
 
       .dropdown-content {
+        ${props.openDirection === 'left' ? 'right' : 'left'}: 0;
         top: 30px;
         min-width: 100px;
       }
