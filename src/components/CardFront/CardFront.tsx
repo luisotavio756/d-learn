@@ -5,7 +5,7 @@ import { Container } from './CardFront.styles';
 import { ReactComponent as ArchDecisionIcon } from '../../assets/cards-icons/arch_decision.svg';
 import { ReactComponent as QualityAttrIcon } from '../../assets/cards-icons/quality_attr.svg';
 import { ReactComponent as ArchPatternsIcon } from '../../assets/cards-icons/arch_pattern.svg';
-import { ReactComponent as LuckIcon } from '../../assets/luck-icon.svg';
+import { ReactComponent as LuckOrBadLuckIcon } from '../../assets/cards-icons/luck_or_bad_luck.svg';
 
 import { CardTypes } from '../../types';
 import { Headline } from '../UI';
@@ -20,7 +20,7 @@ const CardFront: React.FC<CardFrontProps> = ({ type }) => {
       [CardTypes.ArchDecisions]: <ArchDecisionIcon />,
       [CardTypes.QualityAttributes]: <QualityAttrIcon />,
       [CardTypes.ArchPattern]: <ArchPatternsIcon />,
-      [CardTypes.LuckOrBadLuck]: <LuckIcon />,
+      [CardTypes.LuckOrBadLuck]: <LuckOrBadLuckIcon />,
     }),
     [],
   );
