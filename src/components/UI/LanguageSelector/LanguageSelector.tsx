@@ -3,9 +3,9 @@ import { useTranslation } from 'react-i18next';
 
 import { Container } from './LanguageSelector.styles';
 import { Text } from '..';
-import flagEN from '../../../../public/images/en.png';
-import flagES from '../../../../public/images/es.png';
-import flagPT from '../../../../public/images/pt.png';
+import flagEN from '../../../assets/flags/en.png';
+import flagES from '../../../assets/flags/es.png';
+import flagPT from '../../../assets/flags/pt.png';
 
 interface Language {
   code: string;
@@ -18,7 +18,10 @@ export interface LanguageSelectorProps {
   openDirection?: 'left' | 'right';
 }
 
-const LanguageSelector: React.FC<LanguageSelectorProps> = ({ size = 'md', openDirection = 'right' }) => {
+const LanguageSelector: React.FC<LanguageSelectorProps> = ({
+  size = 'md',
+  openDirection = 'right',
+}) => {
   const { i18n } = useTranslation();
   const [isActiveMenu, setIsActiveMenu] = useState(false);
   let timeoutId; // Mudar de LET
