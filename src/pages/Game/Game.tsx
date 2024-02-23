@@ -1,6 +1,6 @@
 /* eslint-disable no-alert */
 import { useEffect, useLayoutEffect, useMemo, useRef } from 'react';
-import { useTranslation } from "react-i18next";
+import { useTranslation } from 'react-i18next';
 import { FiArchive, FiLogOut } from 'react-icons/fi';
 import { RiNumbersFill } from 'react-icons/ri';
 
@@ -12,7 +12,13 @@ import ModalStartGame from '../../components/ModalStartGame';
 import ModalCard from '../../components/ModalCard';
 import PlayerPin from '../../components/PlayerPin';
 import ModalRanking from '../../components/ModalRanking';
-import { Headline, Text, Button, ButtonGroup } from '../../components/UI';
+import {
+  Headline,
+  Text,
+  Button,
+  ButtonGroup,
+  LanguageSelector,
+} from '../../components/UI';
 import { Box, Flex } from '../../components/Layout';
 import { ModalPlayerAuth } from '../../components/ModalPlayerAuth';
 import { Board, Container } from './Game.styles';
@@ -73,8 +79,8 @@ function Game() {
 
   function handleEndGame() {
     showAlert({
-      title: t("game.modals.endGame.title"),
-      message: t("game.modals.endGame.message"),
+      title: t('game.modals.endGame.title'),
+      message: t('game.modals.endGame.message'),
       confirmAction: closeModal => {
         forceEndGame();
         closeModal();
@@ -85,8 +91,8 @@ function Game() {
 
   function handleLogout() {
     showAlert({
-      title: t("game.modals.logout.title"),
-      message: t("game.modals.logout.message"),
+      title: t('game.modals.logout.title'),
+      message: t('game.modals.logout.message'),
       cancelAction: closeAlert => closeAlert(),
       confirmAction: closeAlert => {
         signOut();
@@ -105,8 +111,8 @@ function Game() {
           })
           .catch(() => {
             addToast({
-              title: t("game.toastServerStatus.title"),
-              description: t("game.toastServerStatus.description"),
+              title: t('game.toastServerStatus.title'),
+              description: t('game.toastServerStatus.description'),
               type: 'info',
             });
           });
@@ -126,9 +132,7 @@ function Game() {
     const clientWidth = window.innerWidth;
 
     if (clientHeight > clientWidth) {
-      window.alert(
-        t("game.alertMobileResolution"),
-      );
+      window.alert(t('game.alertMobileResolution'));
     }
   }, []);
 
@@ -176,12 +180,12 @@ function Game() {
                   />
 
                   <Headline weight="light" size="sm">
-                    {t("game.turn")}
+                    {t('game.turn')}
                   </Headline>
                   <Headline>{turnOf?.name}</Headline>
                 </Flex>
 
-                <Text type="neutral">{t("game.chooseCard")}</Text>
+                <Text type="neutral">{t('game.chooseCard')}</Text>
               </Flex>
               <Flex gap={32} className="queues">
                 <CardsQueue
@@ -219,7 +223,7 @@ function Game() {
                   disabled={gameIsBlocked}
                 >
                   <RiNumbersFill />
-                  {t("game.ranking")}
+                  {t('game.ranking')}
                 </Button>
                 <Button
                   width="fit-content"
@@ -229,7 +233,7 @@ function Game() {
                   disabled={gameIsBlocked}
                 >
                   <FiArchive />
-                  {t("game.endGame")}
+                  {t('game.endGame')}
                 </Button>
                 {isLogged && (
                   <Button
@@ -240,9 +244,10 @@ function Game() {
                     disabled={gameIsBlocked}
                   >
                     <FiLogOut />
-                    {t("game.exit")}
+                    {t('game.exit')}
                   </Button>
                 )}
+                <LanguageSelector size="md" openDirection="left" />
               </ButtonGroup>
             </div>
           </Flex>

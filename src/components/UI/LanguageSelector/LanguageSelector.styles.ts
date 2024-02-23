@@ -13,27 +13,8 @@ export const Container = styled.div<LanguageSelectorProps>`
     props.size === 'lg' &&
     css`
       .dropdown-btn img {
-        width: 60px;
-        height: 60px;
-      }
-
-      .dropdown-content:after {
-        ${props.openDirection}: 65px;
-      }
-
-      .dropdown-content {
-        ${props.openDirection === 'left' ? 'right' : 'left'}: 0;
-        top: 70px;
-        min-width: 100px;
-      }
-    `}
-
-  ${props =>
-    props.size === 'md' &&
-    css`
-      .dropdown-btn img {
-        width: 40px;
-        height: 40px;
+        width: 36px;
+        height: 36px;
       }
 
       .dropdown-content:after {
@@ -42,7 +23,26 @@ export const Container = styled.div<LanguageSelectorProps>`
 
       .dropdown-content {
         ${props.openDirection === 'left' ? 'right' : 'left'}: 0;
-        top: 50px;
+        top: 46px;
+        min-width: 100px;
+      }
+    `}
+
+  ${props =>
+    props.size === 'md' &&
+    css`
+      .dropdown-btn img {
+        width: 28px;
+        height: 28px;
+      }
+
+      .dropdown-content:after {
+        ${props.openDirection}: 80px;
+      }
+
+      .dropdown-content {
+        ${props.openDirection === 'left' ? 'right' : 'left'}: 0;
+        top: 38px;
         min-width: 100px;
       }
     `}
