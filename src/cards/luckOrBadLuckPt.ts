@@ -1,7 +1,7 @@
 import { v4 as uuid } from 'uuid';
 import { Card, CardTypes } from '../types';
 
-const luckOrBadLuckCards: Card[] = [
+const luckOrBadLuckCardsPt: Card[] = [
   {
     _id: uuid(),
     title: 'Sorte',
@@ -126,4 +126,4 @@ const luckOrBadLuckCards: Card[] = [
   },
 ];
 
-export default luckOrBadLuckCards;
+export default luckOrBadLuckCardsPt;

@@ -4,13 +4,13 @@ import { getShuffledCards } from './utils/cards';
 import archDecisionsCards from './cards/archDecisions';
 import qualityAttributesCards from './cards/qualityAttributes';
 import archPatternCards from './cards/archPattern';
-import luckOrBadLuckCards from './cards/luckOrBadLuck';
+import luckOrBadLuckCardsPt from './cards/luckOrBadLuckPt';
 
 const cards: Card[] = [
   ...getShuffledCards(archDecisionsCards),
   ...getShuffledCards(qualityAttributesCards),
   ...getShuffledCards(archPatternCards),
-  ...getShuffledCards(luckOrBadLuckCards),
+  ...getShuffledCards(luckOrBadLuckCardsPt),
 ];
 
 export default cards;
