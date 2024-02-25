@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from "react-i18next";
 
 import { FiEdit, FiEye, FiInfo, FiPlus, FiTrash } from 'react-icons/fi';
@@ -27,13 +27,13 @@ import LuckSquareImg from '../../../assets/luck-square.png';
 import ModalCardDetails from '../../../components/ModalCardDetails/ModalCardDetails';
 
 const Cards: React.FC = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
 
   const [selectedCardType, setSelectedCardType] = useState<CardTypes | string>(
     'ALL',
   );
 
-  const { data: cards = [], isFetching } = useCardsQuery();
+  const { data: cards = [], isFetching, refetch } = useCardsQuery();
   const { isOpen: modalCreateCardIsOpen, toggleModal: toggleModalCreateCard } =
     useModal();
 
@@ -119,6 +119,10 @@ const Cards: React.FC = () => {
         : cards,
     [selectedCardType, cards],
   );
+
+  useEffect(() => {
+    refetch();
+  }, [i18n.language, refetch]);
 
   return (
     <Container flexDirection="column" gap={24}>
