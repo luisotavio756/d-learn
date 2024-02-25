@@ -12,7 +12,13 @@
         "question": "Question",
         "solution": "Solution",
         "actions": "Actions",
-        "empty": "No cards registered"
+        "empty": "No cards registered",
+        "true": "True",
+        "false": "False",
+        "archPattern": "Patrones arquitectónicos",
+        "archDecisions": "Decisiones arquitectónicas",
+        "qualityAttributes": "Atributos de calidad",
+        "luckOrBadLuck": "Suerte o mala suerte"
       },
       "inputs": {
         "selectCardType": {
@@ -139,7 +145,10 @@
       "false": "False",
       "true": "True",
       "advance": "🚀 Advance {{absoluteStars}} spaces",
-      "pass": "Pass to the next"
+      "pass": "Pass to the next",
+      "luck": "You were lucky this time! 🎉",
+      "badLuck": "😅 Oh, what bad luck!",
+      "continue": "Continue"
     },
     "turn": "turn of",
     "chooseCard": "Choose a card below",

@@ -12,7 +12,13 @@
         "question": "Pergunta",
         "solution": "Solução",
         "actions": "Ações",
-        "empty": "Não há cartas cadastradas"
+        "empty": "Não há cartas cadastradas",
+        "true": "Verdadeiro",
+        "false": "Falso",
+        "archPattern": "Padrões arquiteturais",
+        "archDecisions": "Decisões arquiteturais",
+        "qualityAttributes": "Atributos de qualidade",
+        "luckOrBadLuck": "Sorte ou revés"
       },
       "inputs":{
         "selectCardType": {
@@ -139,7 +145,10 @@
       "false": "Falso",
       "true": "Verdadeiro",
       "advance": "🚀 Avançar {{absoluteStars}} casas",
-      "pass": "Passar para o próximo"
+      "pass": "Passar para o próximo",
+      "luck": "Você teve sorte dessa vez! 🎉",
+      "badLuck": "😅 Poxa que azar!",
+      "continue": "Continuar"
     },
     "turn": "vez de",
     "chooseCard": "Escolha uma carta abaixo",

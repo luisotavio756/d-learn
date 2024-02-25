@@ -203,11 +203,18 @@ const Cards: React.FC = () => {
                 <td>
                   <img src={item.imgUrl ?? LuckSquareImg} alt="Img" />
                 </td>
-                <td>{item.type}</td>
+                <td>
+                  {
+                    item.type === CardTypes.ArchPattern ? t("admin.cards.table.archPattern") : 
+                    item.type === CardTypes.ArchDecisions ? t("admin.cards.table.archDecisions"):
+                    item.type === CardTypes.QualityAttributes ? t("admin.cards.table.qualityAttributes"):
+                    t("admin.cards.table.luckOrBadLuck")
+                  }
+                </td>
                 <td>{item.title}</td>
                 <td>{item.stars}</td>
                 <td className="question">{item.question}</td>
-                <td>{item.solution}</td>
+                <td>{item.solution === "V" ? t("admin.cards.table.true") : t("admin.cards.table.false")}</td>
                 <td>
                   <ButtonGroup gap={6}>
                     {item.type !== CardTypes.LuckOrBadLuck && (

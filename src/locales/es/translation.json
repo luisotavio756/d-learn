@@ -12,7 +12,13 @@
         "question": "Pregunta",
         "solution": "Solución",
         "actions": "Acciones",
-        "empty": "No hay tarjetas registradas"
+        "empty": "No hay tarjetas registradas",
+        "true": "Verdadero",
+        "false": "Falso",
+        "archPattern": "Patrones arquitectónicos",
+        "archDecisions": "Decisiones arquitectónicas",
+        "qualityAttributes": "Atributos de calidad",
+        "luckOrBadLuck": "Suerte o mala suerte"
       },
       "inputs": {
         "selectCardType": {
@@ -139,7 +145,10 @@
       "false": "Falso",
       "true": "Verdadero",
       "advance": "🚀 Avanzar {{absoluteStars}} casillas",
-      "pass": "Pasar al siguiente"
+      "pass": "Pasar al siguiente",
+      "luck": "¡Tuviste suerte esta vez! 🎉",
+      "badLuck": "😅 ¡Oh, qué mala suerte!",
+      "continue": "Continuar"
     },
     "turn": "turno de",
     "chooseCard": "Elige una carta a continuación",
