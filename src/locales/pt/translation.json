@@ -152,6 +152,7 @@
     },
     "turn": "vez de",
     "chooseCard": "Escolha uma carta abaixo",
+    "history": "Histórico",
     "ranking": "Classificação",
     "endGame": "Finalizar jogo",
     "exit": "Sair",
@@ -252,6 +253,12 @@
       "endGame": {
         "title": "Cancelar jogo",
         "message": "Tem certeza que deseja encerrar o jogo agora?"
+      },
+      "history": {
+        "title": "Histórico de partidas",
+        "placing": "Colocação",
+        "date": "Data",
+        "score": "Pontuação"
       },
       "ranking": {
         "title": "Ranking do jogo",

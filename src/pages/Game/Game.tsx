@@ -3,6 +3,7 @@ import { useEffect, useLayoutEffect, useMemo, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FiArchive, FiLogOut } from 'react-icons/fi';
 import { RiNumbersFill } from 'react-icons/ri';
+import { FaHistory } from 'react-icons/fa';
 
 import LogoImg from '../../assets/logo.jpeg';
 
@@ -12,6 +13,7 @@ import ModalStartGame from '../../components/ModalStartGame';
 import ModalCard from '../../components/ModalCard';
 import PlayerPin from '../../components/PlayerPin';
 import ModalRanking from '../../components/ModalRanking';
+import ModalPlayerHistory from '../../components/ModalPlayerHistory';
 import {
   Headline,
   Text,
@@ -47,6 +49,10 @@ function Game() {
   } = useGame();
   const { isOpen: modalRankingIsOpen, toggleModal: toggleModalRanking } =
     useModal();
+  const {
+    isOpen: modalPlayerHistoryIsOpen,
+    toggleModal: toggleModalPlayerHistory,
+  } = useModal();
   const { showAlert } = useAlert();
   const { addToast } = useToast();
 
@@ -215,6 +221,17 @@ function Game() {
             </Flex>
             <div className="controls">
               <ButtonGroup gap={4}>
+                {/* Apenas se tiver logado */}
+                <Button
+                  width="fit-content"
+                  size="sm"
+                  variant="yellow-outline"
+                  onClick={toggleModalPlayerHistory}
+                  disabled={gameIsBlocked}
+                >
+                  <FaHistory />
+                  {t('game.history')}
+                </Button>
                 <Button
                   width="fit-content"
                   size="sm"
@@ -278,6 +295,10 @@ function Game() {
       <ModalRanking
         isOpen={modalRankingIsOpen}
         toggleModal={() => toggleModalRanking()}
+      />
+      <ModalPlayerHistory
+        isOpen={modalPlayerHistoryIsOpen}
+        toggleModal={() => toggleModalPlayerHistory()}
       />
     </Container>
   );
