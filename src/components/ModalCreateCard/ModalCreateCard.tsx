@@ -1,5 +1,5 @@
 import React, { ChangeEvent, useCallback, useMemo, useState } from 'react';
-import { useTranslation } from "react-i18next";
+import { useTranslation } from 'react-i18next';
 import { useForm } from 'react-hook-form';
 import { FiCamera, FiCheck, FiInfo, FiX } from 'react-icons/fi';
 import { ZodError, z } from 'zod';
@@ -86,8 +86,8 @@ const ModalCreateCard: React.FC<IModalCreateCardProps> = ({
       toggleModal();
 
       addToast({
-        title: t("admin.cards.modals.newCard.toastSuccess.title"),
-        description: t("admin.cards.modals.newCard.toastSuccess.description"),
+        title: t('admin.cards.modals.newCard.toastSuccess.title'),
+        description: t('admin.cards.modals.newCard.toastSuccess.description'),
         type: 'success',
       });
     } catch (error) {
@@ -95,8 +95,10 @@ const ModalCreateCard: React.FC<IModalCreateCardProps> = ({
 
       if (error instanceof ZodError) {
         addToast({
-          title: t("admin.cards.modals.newCard.toastInvalidData.title"),
-          description: t("admin.cards.modals.newCard.toastInvalidData.description"),
+          title: t('admin.cards.modals.newCard.toastInvalidData.title'),
+          description: t(
+            'admin.cards.modals.newCard.toastInvalidData.description',
+          ),
           type: 'error',
         });
       }
@@ -117,13 +119,13 @@ const ModalCreateCard: React.FC<IModalCreateCardProps> = ({
     <Modal
       width="540px"
       isOpen={isOpen}
-      title={t("admin.cards.modals.newCard.title")}
+      title={t('admin.cards.modals.newCard.title')}
       toggleModal={toggleModal}
     >
       <Container>
         <FileInput flexDirection="column">
           <Text size="sm" type="warning">
-            <FiInfo /> {t("admin.cards.modals.newCard.suggestion")}
+            <FiInfo /> {t('admin.cards.modals.newCard.suggestion')}
           </Text>
           <img src={previewUrl} alt="Avatar img" />
 
@@ -143,80 +145,84 @@ const ModalCreateCard: React.FC<IModalCreateCardProps> = ({
               variant="text"
               onClick={() => setSelectedImg(null)}
             >
-              <FiX /> {t("admin.cards.modals.newCard.remove")}
+              <FiX /> {t('admin.cards.modals.newCard.remove')}
             </Button>
           )}
         </FileInput>
         <form onSubmit={onSubmit}>
           <Flex flexDirection="column" gap={16}>
             <Select
-              label={t("admin.cards.inputs.selectCardType.label")}
-              placeholder={t("admin.cards.inputs.selectCardType.placeholder")}
+              label={t('admin.cards.inputs.selectCardType.label')}
+              placeholder={t('admin.cards.inputs.selectCardType.placeholder')}
               name="type"
               register={register}
               options={[
                 {
-                  label: t("admin.cards.inputs.selectCardType.archPattern"),
+                  label: t('admin.cards.inputs.selectCardType.archPattern'),
                   value: CardTypes.ArchPattern,
                 },
                 {
-                  label: t("admin.cards.inputs.selectCardType.archDecisions"),
+                  label: t('admin.cards.inputs.selectCardType.archDecisions'),
                   value: CardTypes.ArchDecisions,
                 },
                 {
-                  label: t("admin.cards.inputs.selectCardType.qualityAttributes"),
+                  label: t(
+                    'admin.cards.inputs.selectCardType.qualityAttributes',
+                  ),
                   value: CardTypes.QualityAttributes,
                 },
               ]}
             />
             <Input
               type="text"
-              label={t("admin.cards.inputs.inputTitle.label")}
-              placeholder={t("admin.cards.inputs.inputTitle.placeholder")}
+              label={t('admin.cards.inputs.inputTitle.label')}
+              placeholder={t('admin.cards.inputs.inputTitle.placeholder')}
               name="title"
               register={register}
             />
             <TextArea
-              label={t("admin.cards.inputs.inputDescription.label")}
-              placeholder={t("admin.cards.inputs.inputDescription.placeholder")}
+              label={t('admin.cards.inputs.inputDescription.label')}
+              placeholder={t('admin.cards.inputs.inputDescription.placeholder')}
               name="description"
               register={register}
               rows={3}
             />
             <TextArea
-              label={t("admin.cards.inputs.inputQuestion.label")}
-              placeholder={t("admin.cards.inputs.inputQuestion.placeholder")}
+              label={t('admin.cards.inputs.inputQuestion.label')}
+              placeholder={t('admin.cards.inputs.inputQuestion.placeholder')}
               name="question"
               register={register}
               rows={3}
             />
             <Select
-              label={t("admin.cards.inputs.inputSolution.label")}
-              placeholder={t("admin.cards.inputs.inputSolution.placeholder")}
+              label={t('admin.cards.inputs.inputSolution.label')}
+              placeholder={t('admin.cards.inputs.inputSolution.placeholder')}
               name="solution"
               register={register}
               options={[
                 {
-                  label: t("admin.cards.inputs.inputSolution.true"),
+                  label: t('admin.cards.inputs.inputSolution.true'),
                   value: 'V',
                 },
                 {
-                  label: t("admin.cards.inputs.inputSolution.false"),
+                  label: t('admin.cards.inputs.inputSolution.false'),
                   value: 'F',
                 },
               ]}
             />
             <TextArea
-              label={t("admin.cards.inputs.inputSolutionText.label")}
-              placeholder={t("admin.cards.inputs.inputSolutionText.placeholder")}
+              label={t('admin.cards.inputs.inputSolutionText.label')}
+              placeholder={t(
+                'admin.cards.inputs.inputSolutionText.placeholder',
+              )}
               name="solutionText"
               register={register}
               rows={3}
             />
             <Input
               type="number"
-              label={t("admin.cards.inputs.inputStars.label")}
-              placeholder={t("admin.cards.inputs.inputStars.placeholder")}
+              label={t('admin.cards.inputs.inputStars.label')}
+              placeholder={t('admin.cards.inputs.inputStars.placeholder')}
               name="stars"
               register={register}
               min={1}
@@ -229,10 +235,10 @@ const ModalCreateCard: React.FC<IModalCreateCardProps> = ({
             width="full"
             type="submit"
             loading={isLoading}
-            loadingText={t("admin.cards.modals.newCard.wait")}
+            loadingText={t('admin.cards.modals.newCard.wait')}
             disabled={isLoading}
           >
-            <FiCheck /> {t("admin.cards.modals.newCard.createCard")}
+            <FiCheck /> {t('admin.cards.modals.newCard.createCard')}
           </Button>
         </form>
       </Container>

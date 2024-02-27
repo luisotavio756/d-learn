@@ -1,7 +1,7 @@
 /* eslint-disable global-require */
 /* eslint-disable import/no-dynamic-require */
 import React, { useCallback, useMemo, useState } from 'react';
-import { useTranslation } from "react-i18next";
+import { useTranslation } from 'react-i18next';
 
 import Stars from '../Stars/Stars';
 
@@ -74,7 +74,7 @@ const NormalCardBody: React.FC = () => {
         </Flex>
         <Flex className="description">
           <Text size="lg" weight="heavy">
-            {t("game.cards.description")}
+            {t('game.cards.description')}
           </Text>
           <Text size="lg" family="mono">
             {description}
@@ -95,10 +95,10 @@ const NormalCardBody: React.FC = () => {
           className="answer correctly"
         >
           <Headline size="sm" type="success">
-            {t("game.cards.congratulations")}
+            {t('game.cards.congratulations')}
           </Headline>
           <Text size="lg" type="success" family="mono" align="center">
-            {t("game.cards.acronymResponse")} {solutionText}
+            {t('game.cards.acronymResponse')} {solutionText}
           </Text>
         </Flex>
 
@@ -109,10 +109,10 @@ const NormalCardBody: React.FC = () => {
           className="answer wrong"
         >
           <Headline size="sm" type="danger">
-            {t("game.cards.damn")}
+            {t('game.cards.damn')}
           </Headline>
           <Text size="lg" type="danger" family="mono" align="center">
-            {t("game.cards.acronymResponse")} {solutionText}
+            {t('game.cards.acronymResponse')} {solutionText}
           </Text>
         </Flex>
       </div>
@@ -134,7 +134,7 @@ const NormalCardBody: React.FC = () => {
               width="flex-fit"
               onClick={() => handleAnswer('F')}
             >
-              {t("game.cards.false")}
+              {t('game.cards.false')}
             </Button>
             <Button
               variant="green"
@@ -142,7 +142,7 @@ const NormalCardBody: React.FC = () => {
               width="flex-fit"
               onClick={() => handleAnswer('V')}
             >
-              {t("game.cards.true")}
+              {t('game.cards.true')}
             </Button>
           </ButtonGroup>
         </Flex>
@@ -154,7 +154,7 @@ const NormalCardBody: React.FC = () => {
               width="fit-content"
               onClick={handleEndPlay}
             >
-              {t("game.cards.advance", { absoluteStars: absoluteStars })}
+              {t('game.cards.advance', { absoluteStars })}
             </Button>
           </ButtonGroup>
         )}
@@ -166,7 +166,7 @@ const NormalCardBody: React.FC = () => {
               width="fit-content"
               onClick={handleEndPlay}
             >
-              {t("game.cards.pass")}
+              {t('game.cards.pass')}
             </Button>
           </ButtonGroup>
         )}

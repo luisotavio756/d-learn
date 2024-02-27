@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import { useTranslation } from "react-i18next";
+import { useTranslation } from 'react-i18next';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 
 import { Carousel as CarouselComponent } from 'react-responsive-carousel';
@@ -15,7 +15,7 @@ import { Flex, Grid } from '../../../components/Layout';
 
 const Carousel = () => {
   const { t } = useTranslation();
-  
+
   const images = useMemo(() => [banner1, banner2, banner3], []);
 
   return (
@@ -40,13 +40,13 @@ const Carousel = () => {
           ))}
         </CarouselComponent>
         <Flex flexDirection="column" gap={16}>
-          <Headline size="lg">{t("landing.carousel.discoverDlearn")}</Headline>
+          <Headline size="lg">{t('landing.carousel.discoverDlearn')}</Headline>
           <Flex flexDirection="column" gap={4}>
             <Text size="lg" align="justify">
-              {t("landing.carousel.dlearnOrigin")}
+              {t('landing.carousel.dlearnOrigin')}
             </Text>
             <Text size="lg" align="justify">
-              {t("landing.carousel.dlearnGoals")}
+              {t('landing.carousel.dlearnGoals')}
             </Text>
           </Flex>
         </Flex>

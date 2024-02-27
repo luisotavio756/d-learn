@@ -1,5 +1,5 @@
 import React from 'react';
-import { useTranslation } from "react-i18next";
+import { useTranslation } from 'react-i18next';
 import { FiMail } from 'react-icons/fi';
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
 
@@ -22,7 +22,7 @@ const Contributors: React.FC = () => {
     <Container id="contributors" flexDirection="column" gap={32}>
       <Flex alignItems="center" justifyContent="center" className="title">
         <Headline weight="heavy" type="light" size="lg">
-          {t("landing.contributors.title")}
+          {t('landing.contributors.title')}
         </Headline>
       </Flex>
       <Grid
@@ -38,10 +38,10 @@ const Contributors: React.FC = () => {
         <Contributor alignItems="center" flexDirection="column" gap={4}>
           <img src={BiaImg} alt="Foto Beatriz" />
           <Headline weight="heavy" type="light" size="md">
-            {t("landing.contributors.person1.name")}
+            {t('landing.contributors.person1.name')}
           </Headline>
           <Text align="center" type="light" size="lg">
-            {t("landing.contributors.person1.description")}
+            {t('landing.contributors.person1.description')}
           </Text>
           <Flex gap={8}>
             <FaLinkedin
@@ -61,10 +61,10 @@ const Contributors: React.FC = () => {
         <Contributor alignItems="center" flexDirection="column" gap={4}>
           <img src={LuisImg} alt="Foto Beatriz" />
           <Headline weight="heavy" type="light" size="md">
-            {t("landing.contributors.person2.name")}
+            {t('landing.contributors.person2.name')}
           </Headline>
           <Text align="center" type="light" size="lg">
-            {t("landing.contributors.person2.description")}
+            {t('landing.contributors.person2.description')}
           </Text>
           <Flex gap={8}>
             <FaGithub
@@ -89,10 +89,10 @@ const Contributors: React.FC = () => {
         <Contributor alignItems="center" flexDirection="column" gap={4}>
           <img src={TamiresImg} alt="Foto Beatriz" />
           <Headline weight="heavy" type="light" size="md">
-            {t("landing.contributors.person3.name")}
+            {t('landing.contributors.person3.name')}
           </Headline>
           <Text align="center" type="light" size="lg">
-            {t("landing.contributors.person3.description")}
+            {t('landing.contributors.person3.description')}
           </Text>
           <Flex gap={8}>
             <FaGithub

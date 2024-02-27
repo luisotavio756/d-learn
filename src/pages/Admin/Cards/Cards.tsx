@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { useTranslation } from "react-i18next";
+import { useTranslation } from 'react-i18next';
 
 import { FiEdit, FiEye, FiInfo, FiPlus, FiTrash } from 'react-icons/fi';
 
@@ -57,8 +57,8 @@ const Cards: React.FC = () => {
   const handleDeleteCard = useCallback(
     (id: string) => {
       showAlert({
-        title: t("admin.cards.modals.deleteCard.title"),
-        message: t("admin.cards.modals.deleteCard.message"),
+        title: t('admin.cards.modals.deleteCard.title'),
+        message: t('admin.cards.modals.deleteCard.message'),
         cancelAction: closeAlert => closeAlert(),
         confirmAction: (closeAlert, toggleLoading) => {
           toggleLoading();
@@ -69,14 +69,18 @@ const Cards: React.FC = () => {
               await queryClient.invalidateQueries(['cards']);
 
               addToast({
-                title: t("admin.cards.modals.deleteCard.toastSuccess.title"),
-                description: t("admin.cards.modals.deleteCard.toastSuccess.description"),
+                title: t('admin.cards.modals.deleteCard.toastSuccess.title'),
+                description: t(
+                  'admin.cards.modals.deleteCard.toastSuccess.description',
+                ),
               });
             })
             .catch(() => {
               addToast({
-                title: t("admin.cards.modals.deleteCard.toastError.title"),
-                description: t("admin.cards.modals.deleteCard.toastError.description"),
+                title: t('admin.cards.modals.deleteCard.toastError.title'),
+                description: t(
+                  'admin.cards.modals.deleteCard.toastError.description',
+                ),
                 type: 'error',
               });
             })
@@ -127,34 +131,34 @@ const Cards: React.FC = () => {
   return (
     <Container flexDirection="column" gap={24}>
       <Headline family="mono" weight="light">
-        {t("admin.cards.pageTitle")}
+        {t('admin.cards.pageTitle')}
       </Headline>
       <Flex alignItems="flex-end" justifyContent="space-between">
         <form action="">
           <Select
-            label={t("admin.cards.inputs.selectCardType.label")}
-            placeholder={t("admin.cards.inputs.selectCardType.placeholder")}
+            label={t('admin.cards.inputs.selectCardType.label')}
+            placeholder={t('admin.cards.inputs.selectCardType.placeholder')}
             name="type"
             onChange={e => handleOnChangeType(e.target.value)}
             options={[
               {
-                label: t("admin.cards.inputs.selectCardType.all"),
+                label: t('admin.cards.inputs.selectCardType.all'),
                 value: 'ALL',
               },
               {
-                label: t("admin.cards.inputs.selectCardType.archPattern"),
+                label: t('admin.cards.inputs.selectCardType.archPattern'),
                 value: CardTypes.ArchPattern,
               },
               {
-                label: t("admin.cards.inputs.selectCardType.archDecisions"),
+                label: t('admin.cards.inputs.selectCardType.archDecisions'),
                 value: CardTypes.ArchDecisions,
               },
               {
-                label: t("admin.cards.inputs.selectCardType.qualityAttributes"),
+                label: t('admin.cards.inputs.selectCardType.qualityAttributes'),
                 value: CardTypes.QualityAttributes,
               },
               {
-                label: t("admin.cards.inputs.selectCardType.luckOrBadLuck"),
+                label: t('admin.cards.inputs.selectCardType.luckOrBadLuck'),
                 value: CardTypes.LuckOrBadLuck,
               },
             ]}
@@ -166,7 +170,7 @@ const Cards: React.FC = () => {
           variant="blue-outline"
           onClick={toggleModalCreateCard}
         >
-          <FiPlus /> {t("admin.cards.newCard")}
+          <FiPlus /> {t('admin.cards.newCard')}
         </Button>
       </Flex>
       <Flex shouldShow={isFetching}>
@@ -180,20 +184,20 @@ const Cards: React.FC = () => {
       >
         <Flex shouldShow={selectedCardType === CardTypes.LuckOrBadLuck}>
           <Text type="warning">
-            <FiInfo /> {t("admin.cards.warningLuckOrBadLuck")}
+            <FiInfo /> {t('admin.cards.warningLuckOrBadLuck')}
           </Text>
         </Flex>
         <table>
           <thead>
             <tr>
               <th>#</th>
-              <th>{t("admin.cards.table.image")}</th>
-              <th>{t("admin.cards.table.type")}</th>
-              <th>{t("admin.cards.table.title")}</th>
-              <th>{t("admin.cards.table.stars")}</th>
-              <th className="question">{t("admin.cards.table.question")}</th>
-              <th>{t("admin.cards.table.solution")}</th>
-              <th>{t("admin.cards.table.actions")}</th>
+              <th>{t('admin.cards.table.image')}</th>
+              <th>{t('admin.cards.table.type')}</th>
+              <th>{t('admin.cards.table.title')}</th>
+              <th>{t('admin.cards.table.stars')}</th>
+              <th className="question">{t('admin.cards.table.question')}</th>
+              <th>{t('admin.cards.table.solution')}</th>
+              <th>{t('admin.cards.table.actions')}</th>
             </tr>
           </thead>
           <tbody>
@@ -204,17 +208,22 @@ const Cards: React.FC = () => {
                   <img src={item.imgUrl ?? LuckSquareImg} alt="Img" />
                 </td>
                 <td>
-                  {
-                    item.type === CardTypes.ArchPattern ? t("admin.cards.table.archPattern") : 
-                    item.type === CardTypes.ArchDecisions ? t("admin.cards.table.archDecisions"):
-                    item.type === CardTypes.QualityAttributes ? t("admin.cards.table.qualityAttributes"):
-                    t("admin.cards.table.luckOrBadLuck")
-                  }
+                  {item.type === CardTypes.ArchPattern
+                    ? t('admin.cards.table.archPattern')
+                    : item.type === CardTypes.ArchDecisions
+                    ? t('admin.cards.table.archDecisions')
+                    : item.type === CardTypes.QualityAttributes
+                    ? t('admin.cards.table.qualityAttributes')
+                    : t('admin.cards.table.luckOrBadLuck')}
                 </td>
                 <td>{item.title}</td>
                 <td>{item.stars}</td>
                 <td className="question">{item.question}</td>
-                <td>{item.solution === "V" ? t("admin.cards.table.true") : t("admin.cards.table.false")}</td>
+                <td>
+                  {item.solution === 'V'
+                    ? t('admin.cards.table.true')
+                    : t('admin.cards.table.false')}
+                </td>
                 <td>
                   <ButtonGroup gap={6}>
                     {item.type !== CardTypes.LuckOrBadLuck && (
@@ -259,7 +268,7 @@ const Cards: React.FC = () => {
         justifyContent="center"
       >
         <Text family="mono" size="lg">
-          {t("admin.cards.table.empty")}
+          {t('admin.cards.table.empty')}
         </Text>
       </Flex>
       <ModalCreateCard

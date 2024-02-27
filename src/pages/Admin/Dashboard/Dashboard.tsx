@@ -1,5 +1,5 @@
 import React from 'react';
-import { useTranslation } from "react-i18next";
+import { useTranslation } from 'react-i18next';
 
 import { FiAward, FiLogOut, FiTablet } from 'react-icons/fi';
 import { Route, Routes, useNavigate } from 'react-router-dom';
@@ -30,19 +30,19 @@ const Dashboard: React.FC = () => {
           <li onClick={() => navigate('/admin/cards')} aria-hidden>
             <FiTablet />
             <Text type="light" weight="heavy">
-              {t("admin.dashboard.cards")}
+              {t('admin.dashboard.cards')}
             </Text>
           </li>
           <li onClick={() => navigate('/admin/history')} aria-hidden>
             <FiAward />
             <Text type="light" weight="heavy">
-              {t("admin.dashboard.games")}
+              {t('admin.dashboard.games')}
             </Text>
           </li>
           <li onClick={handleLogout} aria-hidden>
             <FiLogOut />
             <Text type="light" weight="heavy">
-              {t("admin.dashboard.exit")}
+              {t('admin.dashboard.exit')}
             </Text>
           </li>
         </ul>
@@ -52,12 +52,12 @@ const Dashboard: React.FC = () => {
           <Headline type="light">D-LEARN</Headline>
           <Flex gap={10}>
             <Text type="light">
-              {t("admin.dashboard.welcome")}
+              {t('admin.dashboard.welcome')}
               <Text type="light" weight="heavy">
                 {user.name}
               </Text>
             </Text>
-            <LanguageSelector size="sm" openDirection='left' />
+            <LanguageSelector size="sm" openDirection="left" />
           </Flex>
         </Header>
         <Main>

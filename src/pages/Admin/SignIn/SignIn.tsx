@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useTranslation } from "react-i18next";
+import { useTranslation } from 'react-i18next';
 import { FiLogIn } from 'react-icons/fi';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
@@ -31,8 +31,8 @@ const SignIn: React.FC = () => {
   const onSubmit = handleSubmit(async (data: any) => {
     if (!data.login || !data.password) {
       addToast({
-        title: t("admin.signIn.toastError.title"),
-        description: t("admin.signIn.toastError.description"),
+        title: t('admin.signIn.toastError.title'),
+        description: t('admin.signIn.toastError.description'),
         type: 'error',
       });
 
@@ -47,8 +47,8 @@ const SignIn: React.FC = () => {
       navigate('/admin/cards');
     } catch (error) {
       addToast({
-        title: t("admin.signIn.toastError.title"),
-        description: t("admin.signIn.toastError.fullDescription"),
+        title: t('admin.signIn.toastError.title'),
+        description: t('admin.signIn.toastError.fullDescription'),
         type: 'error',
       });
 
@@ -69,21 +69,21 @@ const SignIn: React.FC = () => {
         <img src="/shortcut-icon.svg" alt="Logo" />
         <form onSubmit={onSubmit} autoComplete="off" autoCorrect="off">
           <Flex flexDirection="column" gap={16}>
-            <Headline type="neutral">{t("admin.signIn.form.title")}</Headline>
+            <Headline type="neutral">{t('admin.signIn.form.title')}</Headline>
 
             <Input
-              label={t("admin.signIn.form.login")}
+              label={t('admin.signIn.form.login')}
               name="login"
               type="text"
-              placeholder={t("admin.signIn.form.login")}
+              placeholder={t('admin.signIn.form.login')}
               register={register}
             />
 
             <Input
-              label={t("admin.signIn.form.password")}
+              label={t('admin.signIn.form.password')}
               name="password"
               type="password"
-              placeholder={t("admin.signIn.form.password")}
+              placeholder={t('admin.signIn.form.password')}
               register={register}
             />
 
@@ -92,9 +92,9 @@ const SignIn: React.FC = () => {
               width="full"
               loading={isLoading}
               disabled={isLoading}
-              loadingText={t("admin.signIn.form.wait")}
+              loadingText={t('admin.signIn.form.wait')}
             >
-              <FiLogIn /> {t("admin.signIn.form.enter")}
+              <FiLogIn /> {t('admin.signIn.form.enter')}
             </Button>
           </Flex>
         </form>

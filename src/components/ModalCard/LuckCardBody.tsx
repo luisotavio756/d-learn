@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useMemo } from 'react';
-import { useTranslation } from "react-i18next";
+import { useTranslation } from 'react-i18next';
 
 import { FiMeh, FiSmile } from 'react-icons/fi';
 import { Flex } from '../Layout';
@@ -45,8 +45,8 @@ const LuckCardBody: React.FC = () => {
         <div className="description">
           <Text size="lg" type="text" weight="heavy">
             {luckType === 'luck'
-              ? t("game.cards.luck")
-              : t("game.cards.badLuck")}
+              ? t('game.cards.luck')
+              : t('game.cards.badLuck')}
           </Text>
         </div>
         <div className="info">
@@ -77,7 +77,7 @@ const LuckCardBody: React.FC = () => {
               width="fit-content"
               onClick={handleEndPlay}
             >
-              {t("game.cards.continue")}
+              {t('game.cards.continue')}
             </Button>
           </Flex>
         </div>

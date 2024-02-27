@@ -1,5 +1,5 @@
 import React from 'react';
-import { useTranslation } from "react-i18next";
+import { useTranslation } from 'react-i18next';
 import { FiBox, FiPieChart, FiTablet, FiUsers } from 'react-icons/fi';
 import { Flex } from '../../../components/Layout';
 import { Headline, Text } from '../../../components/UI';
@@ -10,7 +10,7 @@ import { useHistoryQuery } from '../../../queries/useHistoryQuery';
 
 const Info: React.FC = () => {
   const { t } = useTranslation();
-  
+
   const { data = [] } = useCardsQuery();
   const { data: history = [] } = useHistoryQuery();
 
@@ -28,37 +28,39 @@ const Info: React.FC = () => {
       <Flex alignItems="center" flexDirection="column" gap={8}>
         <FiTablet />
         <Headline weight="heavy" type="light" size="md">
-          {data.length || 51} {t("landing.info.cards.title")}
+          {data.length || 51} {t('landing.info.cards.title')}
         </Headline>
         <Text align="center" type="light" size="lg">
-          {t("landing.info.cards.subtitle")}
+          {t('landing.info.cards.subtitle')}
         </Text>
       </Flex>
       <Flex alignItems="center" flexDirection="column" gap={8}>
         <FiPieChart />
         <Headline weight="heavy" type="light" size="md">
-          {t("landing.info.approval.title")}
+          {t('landing.info.approval.title')}
         </Headline>
         <Text align="center" type="light" size="lg">
-          {t("landing.info.approval.subtitle")}
+          {t('landing.info.approval.subtitle')}
         </Text>
       </Flex>
       <Flex alignItems="center" flexDirection="column" gap={8}>
         <FiBox />
         <Headline weight="heavy" type="light" size="md">
-          {history.length} {t("landing.info.matches.title")}
+          {history.length} {t('landing.info.matches.title')}
         </Headline>
         <Text align="center" type="light" size="lg">
-          {history.length} {t("landing.info.matches.subtitle")}
+          {history.length} {t('landing.info.matches.subtitle')}
         </Text>
       </Flex>
       <Flex alignItems="center" flexDirection="column" gap={8}>
         <FiUsers />
         <Headline weight="heavy" type="light" size="md">
-          {t("landing.info.players.title", {history_length: history.length * 3})}
+          {t('landing.info.players.title', {
+            history_length: history.length * 3,
+          })}
         </Headline>
         <Text align="center" type="light" size="lg">
-          {history.length} {t("landing.info.players.subtitle")}
+          {history.length} {t('landing.info.players.subtitle')}
         </Text>
       </Flex>
     </Container>

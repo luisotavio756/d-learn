@@ -62,8 +62,11 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
   const [startedAt, setStartedAt] = useState<Date | null>(null);
   const [endAt, setEndAt] = useState<Date | null>(null);
 
-  const { data: cardsFromServer = [], isFetching: isFetchingCards, refetch } =
-    useCardsQuery();
+  const {
+    data: cardsFromServer = [],
+    isFetching: isFetchingCards,
+    refetch,
+  } = useCardsQuery();
   const { isLogged, player: loggedUser } = usePlayerAuth();
 
   const turnOf = useMemo(() => players.find(item => item.active), [players]);
@@ -457,11 +460,14 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
   }, [isFetchingCards, cardsFromServer]);
 
   useEffect(() => {
-    refetch().then((translatedCards) => {
-      const usedCardsIds = cards.filter(card => card.used).map(card => card._id);
+    refetch().then(translatedCards => {
+      const usedCardsIds = cards
+        .filter(card => card.used)
+        .map(card => card._id);
 
       translatedCards.data?.forEach(translatedCard => {
-        if (usedCardsIds.includes(translatedCard._id)) translatedCard.used = true;
+        if (usedCardsIds.includes(translatedCard._id))
+          translatedCard.used = true;
       });
     });
   }, [i18n.language, refetch]);

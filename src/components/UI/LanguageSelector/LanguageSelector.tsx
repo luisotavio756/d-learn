@@ -24,7 +24,9 @@ const LanguageSelector: React.FC<LanguageSelectorProps> = ({
 }) => {
   const { i18n } = useTranslation();
   const [isActiveMenu, setIsActiveMenu] = useState(false);
-  const [timeoutId, setTimeoutId] = useState<NodeJS.Timeout | undefined>(undefined);
+  const [timeoutId, setTimeoutId] = useState<NodeJS.Timeout | undefined>(
+    undefined,
+  );
 
   const languages: Language[] = [
     { code: 'pt', name: 'Português', icon: flagPT },
@@ -41,7 +43,7 @@ const LanguageSelector: React.FC<LanguageSelectorProps> = ({
     setIsActiveMenu(true);
     clearTimeout(timeoutId);
   };
-  
+
   const handleMenuClose = () => {
     const id = setTimeout(() => {
       setIsActiveMenu(false);

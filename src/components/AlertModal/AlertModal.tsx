@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { useTranslation } from "react-i18next";
+import { useTranslation } from 'react-i18next';
 import { FiCheck, FiX } from 'react-icons/fi';
 import { useTheme } from 'styled-components';
 
@@ -106,10 +106,10 @@ const AlertModal: React.FC<IAlertModalProps> = ({
               variant="blue"
               onClick={handleCancel}
               loading={isLoading}
-              loadingText={t("admin.cards.modals.deleteCard.wait")}
+              loadingText={t('admin.cards.modals.deleteCard.wait')}
               disabled={isLoading}
             >
-              <FiX /> {closeText ?? t("admin.cards.modals.deleteCard.cancel")}
+              <FiX /> {closeText ?? t('admin.cards.modals.deleteCard.cancel')}
             </Button>
           )}
           {!!confirmAction && (
@@ -119,10 +119,10 @@ const AlertModal: React.FC<IAlertModalProps> = ({
               variant="blue-outline"
               onClick={handleConfirm}
               loading={isLoading}
-              loadingText={t("admin.cards.modals.deleteCard.wait")}
+              loadingText={t('admin.cards.modals.deleteCard.wait')}
               disabled={isLoading}
             >
-              <FiCheck /> {t("admin.cards.modals.deleteCard.confirm")}
+              <FiCheck /> {t('admin.cards.modals.deleteCard.confirm')}
             </Button>
           )}
         </ButtonGroup>

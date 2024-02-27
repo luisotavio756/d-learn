@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import { useTranslation } from "react-i18next";
+import { useTranslation } from 'react-i18next';
 
 import Modal from '../Modal';
 
@@ -20,15 +20,15 @@ const ModalPlayerAuth: React.FC<IModalPlayerAuthProps> = ({ isLoading }) => {
 
   const modalTitle = useMemo(() => {
     const titlesByMode = {
-      [PlayerMode.Authenticated]: t("game.modals.playerAuth.login"),
-      [PlayerMode.CreateAccount]: t("game.modals.playerAuth.createAccount"),
-      [PlayerMode.NoChoosen]: t("game.modals.playerAuth.enterMode"),
+      [PlayerMode.Authenticated]: t('game.modals.playerAuth.login'),
+      [PlayerMode.CreateAccount]: t('game.modals.playerAuth.createAccount'),
+      [PlayerMode.NoChoosen]: t('game.modals.playerAuth.enterMode'),
       [PlayerMode.NoAuth]: null,
       [PlayerMode.Ok]: null,
     };
 
     if (isLoading) {
-      return t("game.modals.playerAuth.startGame");
+      return t('game.modals.playerAuth.startGame');
     }
 
     return titlesByMode[mode];
@@ -51,7 +51,7 @@ const ModalPlayerAuth: React.FC<IModalPlayerAuthProps> = ({ isLoading }) => {
       <Flex shouldShow={isLoading} flexDirection="column" alignItems="center">
         <div className="loaderContent" />
         <Text align="center" size="lg">
-          {t("game.modals.playerAuth.wait")}
+          {t('game.modals.playerAuth.wait')}
         </Text>
       </Flex>
       <Flex
@@ -61,13 +61,13 @@ const ModalPlayerAuth: React.FC<IModalPlayerAuthProps> = ({ isLoading }) => {
       >
         <Flex flexDirection="column" gap={8}>
           <Button onClick={() => setMode(PlayerMode.Authenticated)}>
-            {t("game.modals.playerAuth.authenticate")}
+            {t('game.modals.playerAuth.authenticate')}
           </Button>
           <Button
             onClick={() => setMode(PlayerMode.NoAuth)}
             variant="blue-outline"
           >
-            {t("game.modals.playerAuth.guest")}
+            {t('game.modals.playerAuth.guest')}
           </Button>
         </Flex>
       </Flex>

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useTranslation } from "react-i18next";
+import { useTranslation } from 'react-i18next';
 
 import { useForm } from 'react-hook-form';
 import { FiArrowLeft, FiCheck } from 'react-icons/fi';
@@ -32,8 +32,8 @@ const PlayerSignUp: React.FC = () => {
     async ({ nickname, password, confirm_password }) => {
       if (!nickname.length || !password.length || !confirm_password.length) {
         addToast({
-          title: t("game.modals.signUp.toastAllData.title"),
-          description: t("game.modals.signUp.toastAllData.description"),
+          title: t('game.modals.signUp.toastAllData.title'),
+          description: t('game.modals.signUp.toastAllData.description'),
           type: 'error',
         });
 
@@ -42,8 +42,10 @@ const PlayerSignUp: React.FC = () => {
 
       if (password.length < 6) {
         addToast({
-          title: t("game.modals.signUp.toastMinimumCharacters.title"),
-          description: t("game.modals.signUp.toastMinimumCharacters.description"),
+          title: t('game.modals.signUp.toastMinimumCharacters.title'),
+          description: t(
+            'game.modals.signUp.toastMinimumCharacters.description',
+          ),
           type: 'error',
         });
 
@@ -52,8 +54,10 @@ const PlayerSignUp: React.FC = () => {
 
       if (password !== confirm_password) {
         addToast({
-          title: t("game.modals.signUp.toastIncorrectPassword.title"),
-          description: t("game.modals.signUp.toastIncorrectPassword.description"),
+          title: t('game.modals.signUp.toastIncorrectPassword.title'),
+          description: t(
+            'game.modals.signUp.toastIncorrectPassword.description',
+          ),
           type: 'error',
         });
 
@@ -69,21 +73,23 @@ const PlayerSignUp: React.FC = () => {
         });
 
         addToast({
-          title: t("game.modals.signUp.toastUserCreated.title"),
-          description: t("game.modals.signUp.toastUserCreated.description"),
+          title: t('game.modals.signUp.toastUserCreated.title'),
+          description: t('game.modals.signUp.toastUserCreated.description'),
           type: 'success',
         });
 
         setMode(PlayerMode.Authenticated);
       } catch (error) {
-        let responseMessage = t("game.modals.signUp.toastUserNotCreated.description");
+        let responseMessage = t(
+          'game.modals.signUp.toastUserNotCreated.description',
+        );
 
         if (error instanceof AxiosError) {
           responseMessage = error.response?.data?.message;
         }
 
         addToast({
-          title: t("game.modals.signUp.toastUserNotCreated.title"),
+          title: t('game.modals.signUp.toastUserNotCreated.title'),
           description: responseMessage,
           type: 'error',
         });
@@ -97,26 +103,28 @@ const PlayerSignUp: React.FC = () => {
     <FormContainer onSubmit={onSubmit}>
       <Flex gap={8} flexDirection="column">
         <Input
-          label={t("game.modals.signUp.inputs.nickname.label")}
+          label={t('game.modals.signUp.inputs.nickname.label')}
           name="nickname"
           type="text"
-          placeholder={t("game.modals.signUp.inputs.nickname.placeholder")}
+          placeholder={t('game.modals.signUp.inputs.nickname.placeholder')}
           register={register}
         />
 
         <Input
-          label={t("game.modals.signUp.inputs.password.label")}
+          label={t('game.modals.signUp.inputs.password.label')}
           name="password"
           type="password"
-          placeholder={t("game.modals.signUp.inputs.password.placeholder")}
+          placeholder={t('game.modals.signUp.inputs.password.placeholder')}
           register={register}
         />
 
         <Input
-          label={t("game.modals.signUp.inputs.confirmPassword.label")}
+          label={t('game.modals.signUp.inputs.confirmPassword.label')}
           name="confirm_password"
           type="password"
-          placeholder={t("game.modals.signUp.inputs.confirmPassword.placeholder")}
+          placeholder={t(
+            'game.modals.signUp.inputs.confirmPassword.placeholder',
+          )}
           register={register}
         />
 
@@ -126,9 +134,9 @@ const PlayerSignUp: React.FC = () => {
           width="full"
           loading={isLogging}
           disabled={isLogging}
-          loadingText={t("game.modals.signUp.wait")}
+          loadingText={t('game.modals.signUp.wait')}
         >
-          <FiCheck /> {t("game.modals.signUp.createAccount")}
+          <FiCheck /> {t('game.modals.signUp.createAccount')}
         </Button>
         <Button
           size="md"
@@ -136,7 +144,7 @@ const PlayerSignUp: React.FC = () => {
           type="submit"
           onClick={() => setMode(PlayerMode.Authenticated)}
         >
-          <FiArrowLeft /> {t("game.modals.signUp.backToLogin")}
+          <FiArrowLeft /> {t('game.modals.signUp.backToLogin')}
         </Button>
       </Flex>
     </FormContainer>

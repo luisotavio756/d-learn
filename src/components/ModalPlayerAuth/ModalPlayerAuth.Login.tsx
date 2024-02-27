@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useTranslation } from "react-i18next";
+import { useTranslation } from 'react-i18next';
 
 import { useForm } from 'react-hook-form';
 import { FiLogIn, FiUserMinus } from 'react-icons/fi';
@@ -32,8 +32,10 @@ const PlayerLogin: React.FC = () => {
       const player = await signIn(data);
 
       addToast({
-        title: t("game.modals.playerAuthLogin.toastWelcome.title", { playerNickname: player.nickname }),
-        description: t("game.modals.playerAuthLogin.toastWelcome.description"),
+        title: t('game.modals.playerAuthLogin.toastWelcome.title', {
+          playerNickname: player.nickname,
+        }),
+        description: t('game.modals.playerAuthLogin.toastWelcome.description'),
         type: 'success',
       });
 
@@ -42,8 +44,8 @@ const PlayerLogin: React.FC = () => {
       console.log(error);
 
       addToast({
-        title: t("game.modals.playerAuthLogin.toastError.title"),
-        description: t("game.modals.playerAuthLogin.toastError.description"),
+        title: t('game.modals.playerAuthLogin.toastError.title'),
+        description: t('game.modals.playerAuthLogin.toastError.description'),
         type: 'error',
       });
     } finally {
@@ -55,18 +57,22 @@ const PlayerLogin: React.FC = () => {
     <FormContainer onSubmit={onSubmit}>
       <Flex gap={8} flexDirection="column">
         <Input
-          label={t("game.modals.playerAuthLogin.inputs.nickname.label")}
+          label={t('game.modals.playerAuthLogin.inputs.nickname.label')}
           name="nickname"
           type="text"
-          placeholder={t("game.modals.playerAuthLogin.inputs.nickname.placeholder")}
+          placeholder={t(
+            'game.modals.playerAuthLogin.inputs.nickname.placeholder',
+          )}
           register={register}
         />
 
         <Input
-          label={t("game.modals.playerAuthLogin.inputs.password.label")}
+          label={t('game.modals.playerAuthLogin.inputs.password.label')}
           name="password"
           type="password"
-          placeholder={t("game.modals.playerAuthLogin.inputs.password.placeholder")}
+          placeholder={t(
+            'game.modals.playerAuthLogin.inputs.password.placeholder',
+          )}
           register={register}
         />
 
@@ -76,9 +82,9 @@ const PlayerLogin: React.FC = () => {
           width="full"
           loading={isLogging}
           disabled={isLogging}
-          loadingText={t("game.modals.playerAuthLogin.wait")}
+          loadingText={t('game.modals.playerAuthLogin.wait')}
         >
-          <FiLogIn /> {t("game.modals.playerAuthLogin.enter")}
+          <FiLogIn /> {t('game.modals.playerAuthLogin.enter')}
         </Button>
 
         <ButtonGroup>
@@ -88,7 +94,7 @@ const PlayerLogin: React.FC = () => {
             type="submit"
             onClick={() => setMode(PlayerMode.CreateAccount)}
           >
-            <FiLogIn /> {t("game.modals.playerAuthLogin.register")}
+            <FiLogIn /> {t('game.modals.playerAuthLogin.register')}
           </Button>
           <Button
             size="md"
@@ -96,7 +102,7 @@ const PlayerLogin: React.FC = () => {
             type="submit"
             onClick={() => setMode(PlayerMode.Ok)}
           >
-            <FiUserMinus /> {t("game.modals.playerAuthLogin.guest")}
+            <FiUserMinus /> {t('game.modals.playerAuthLogin.guest')}
           </Button>
         </ButtonGroup>
       </Flex>

@@ -20,7 +20,7 @@
         "qualityAttributes": "Atributos de qualidade",
         "luckOrBadLuck": "Sorte ou revés"
       },
-      "inputs":{
+      "inputs": {
         "selectCardType": {
           "label": "Tipo",
           "placeholder": "Selecione um tipo",

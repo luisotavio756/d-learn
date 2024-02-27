@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import { useTranslation } from "react-i18next";
+import { useTranslation } from 'react-i18next';
 import { FiRefreshCw } from 'react-icons/fi';
 import { RiNumbersFill } from 'react-icons/ri';
 
@@ -37,14 +37,14 @@ const ModalRanking: React.FC<ModalRankingProps> = ({ isOpen, toggleModal }) => {
       <Container>
         <div className="title">
           <RiNumbersFill size={28} />
-          <h2>{t("game.modals.ranking.title")}</h2>
+          <h2>{t('game.modals.ranking.title')}</h2>
         </div>
         <table>
           <thead>
             <tr>
               <th style={{ width: 40 }}>#</th>
-              <th>{t("game.modals.ranking.name")}</th>
-              <th style={{ width: 80 }}>{t("game.modals.ranking.score")}</th>
+              <th>{t('game.modals.ranking.name')}</th>
+              <th style={{ width: 80 }}>{t('game.modals.ranking.score')}</th>
             </tr>
           </thead>
           <tbody>
@@ -68,20 +68,20 @@ const ModalRanking: React.FC<ModalRankingProps> = ({ isOpen, toggleModal }) => {
           className="play-again"
           gap={8}
         >
-          <Headline>{t("game.modals.ranking.thanks")}</Headline>
+          <Headline>{t('game.modals.ranking.thanks')}</Headline>
           {isLogged && (
             <Text align="center" type="success">
-              {t("game.modals.ranking.logWarning")}
+              {t('game.modals.ranking.logWarning')}
             </Text>
           )}
           <Text>
-            {t("game.modals.ranking.feedback")}{' '}
+            {t('game.modals.ranking.feedback')}{' '}
             <a
               href="https://forms.gle/JzX6VLx3et8jwcgT7"
               target="_blank"
               rel="noreferrer"
             >
-              {t("game.modals.ranking.here")}
+              {t('game.modals.ranking.here')}
             </a>
           </Text>
           <ButtonGroup gap={8}>
@@ -91,7 +91,7 @@ const ModalRanking: React.FC<ModalRankingProps> = ({ isOpen, toggleModal }) => {
               size="sm"
               onClick={() => restartGame('hard')}
             >
-              <FiRefreshCw /> {t("game.modals.ranking.restart")}
+              <FiRefreshCw /> {t('game.modals.ranking.restart')}
             </Button>
           </ButtonGroup>
         </Flex>

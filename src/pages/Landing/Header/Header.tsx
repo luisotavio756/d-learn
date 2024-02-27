@@ -76,7 +76,7 @@ export default function Header() {
               </Text>
             </li>
             <li aria-hidden="true">
-              <LanguageSelector size="sm" openDirection='right' />
+              <LanguageSelector size="sm" openDirection="right" />
             </li>
           </ul>
           <button onClick={() => setMenuIsOpen(false)} type="button">
