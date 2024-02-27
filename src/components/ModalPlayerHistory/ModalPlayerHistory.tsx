@@ -3,11 +3,10 @@ import { useTranslation } from 'react-i18next';
 import { FaHistory } from 'react-icons/fa';
 import { format, parseISO } from 'date-fns';
 
-import { Flex } from '../Layout';
 import Modal from '../Modal';
 
 import { Container } from './ModalPlayerHistory.styles';
-import { useHistoryQuery } from '../../queries/useHistoryQuery';
+import { useHistoryByUserIdQuery } from '../../queries/useHistoryQuery';
 
 interface ModalPlayerHistoryProps {
   isOpen: boolean;
@@ -20,19 +19,11 @@ const ModalPlayerHistory: React.FC<ModalPlayerHistoryProps> = ({
 }) => {
   const { t } = useTranslation();
 
-  const { data: history, isFetching } = useHistoryQuery();
+  const { data: history } = useHistoryByUserIdQuery("65b7c2ea889859d3d5218433"); // MOCKADO
 
   function formatDate(date: string) {
     return format(parseISO(date), "dd/MM/YYY 'às' HH:mm");
   }
-
-  //   if (isFetching) {
-  //     return (
-  //       <Flex shouldShow={isFetching}>
-  //         <div className="loaderContent" />
-  //       </Flex>
-  //     );
-  //   }
 
   return (
     <Modal
@@ -55,33 +46,13 @@ const ModalPlayerHistory: React.FC<ModalPlayerHistoryProps> = ({
             </tr>
           </thead>
           <tbody>
-            {/* {history?.map((item, i) => (
+            {history?.map((item, i) => (
               <tr key={item._id}>
                 <td>{i + 1}</td>
                 <td>{formatDate(item.endAt)}</td>
                 <td>{item.winnerScore}</td>
               </tr>
-            ))} */}
-            <tr>
-              <td>{['🥇', '🥈', '🥉', ''][0]}</td>
-              <td>27/02/2024 ás 12:31</td>
-              <td>40</td>
-            </tr>
-            <tr>
-              <td>{['🥇', '🥈', '🥉', ''][1]}</td>
-              <td>27/02/2024 ás 12:31</td>
-              <td>30</td>
-            </tr>
-            <tr>
-              <td>{['🥇', '🥈', '🥉', ''][2]}</td>
-              <td>27/02/2024 ás 12:31</td>
-              <td>20</td>
-            </tr>
-            <tr>
-              <td>4</td>
-              <td>27/02/2024 ás 12:31</td>
-              <td>10</td>
-            </tr>
+            ))}
           </tbody>
         </table>
       </Container>

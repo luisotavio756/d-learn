@@ -56,6 +56,8 @@ export interface History {
   startedAt: string;
   endAt: string;
   ownerName: string;
+  ownerScore: number;
+  ownerPlacing: number;
 }
 
 export enum PlayerMode {

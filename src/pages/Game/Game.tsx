@@ -221,7 +221,7 @@ function Game() {
             </Flex>
             <div className="controls">
               <ButtonGroup gap={4}>
-                {/* Apenas se tiver logado */}
+                {isLogged && (
                 <Button
                   width="fit-content"
                   size="sm"
@@ -232,6 +232,7 @@ function Game() {
                   <FaHistory />
                   {t('game.history')}
                 </Button>
+                )}
                 <Button
                   width="fit-content"
                   size="sm"

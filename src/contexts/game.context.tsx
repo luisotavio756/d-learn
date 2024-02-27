@@ -213,6 +213,8 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
       endAt: new Date().toISOString(),
       ownerName: loggedUser.nickname,
       ownerId: loggedUser._id,
+      ownerScore: 5, // MOCKADO
+      ownerPlacing: 1 // MOCKADO
     } as History;
 
     api
