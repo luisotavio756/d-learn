@@ -35,7 +35,7 @@ const ModalStartGame: React.FC<IModalStartGameProps> = ({ isLoading }) => {
 
   const [playersQuantity, setPlayersQuantity] = useState(1);
 
-  const { register, unregister, handleSubmit } = useForm<FormData>();
+  const { register, unregister, handleSubmit, setValue } = useForm<FormData>();
   const { gameStarted, board, startGame } = useGame();
   const { mode, isLogged, setMode, player } = usePlayerAuth();
 
@@ -98,6 +98,11 @@ const ModalStartGame: React.FC<IModalStartGameProps> = ({ isLoading }) => {
     };
   }, []);
 
+  useEffect(() => {
+    if(isLogged && player.nickname)
+      setValue('player0', player.nickname)
+  }, [isLogged, player]);
+
   return (
     <Modal
       width="454px"
@@ -141,7 +146,6 @@ const ModalStartGame: React.FC<IModalStartGameProps> = ({ isLoading }) => {
                 )}
                 name={`player${i}`}
                 register={register}
-                defaultValue={i === 0 && isLogged ? player.nickname : ''}
                 readOnly={i === 0 && isLogged}
               />
             ))}
