@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { FiBox, FiPieChart, FiTablet, FiUsers } from 'react-icons/fi';
 import { Flex } from '../../../components/Layout';
 import { Headline, Text } from '../../../components/UI';
@@ -8,6 +9,8 @@ import { useCardsQuery } from '../../../queries/useCards';
 import { useHistoryQuery } from '../../../queries/useHistoryQuery';
 
 const Info: React.FC = () => {
+  const { t } = useTranslation();
+
   const { data = [] } = useCardsQuery();
   const { data: history = [] } = useHistoryQuery();
 
@@ -25,38 +28,39 @@ const Info: React.FC = () => {
       <Flex alignItems="center" flexDirection="column" gap={8}>
         <FiTablet />
         <Headline weight="heavy" type="light" size="md">
-          {data.length || 51} cartas
+          {data.length || 51} {t('landing.info.cards.title')}
         </Headline>
         <Text align="center" type="light" size="lg">
-          As cartas são de atributos de qualidade, padrões arquiteturais,
-          decisões arquiteturais e sorte ou revés
+          {t('landing.info.cards.subtitle')}
         </Text>
       </Flex>
       <Flex alignItems="center" flexDirection="column" gap={8}>
         <FiPieChart />
         <Headline weight="heavy" type="light" size="md">
-          80% de aprovação
+          {t('landing.info.approval.title')}
         </Headline>
         <Text align="center" type="light" size="lg">
-          Essa é a atual porcentagem de aprovação entre os participantes do jogo
+          {t('landing.info.approval.subtitle')}
         </Text>
       </Flex>
       <Flex alignItems="center" flexDirection="column" gap={8}>
         <FiBox />
         <Headline weight="heavy" type="light" size="md">
-          {history.length} partidas jogadas
+          {history.length} {t('landing.info.matches.title')}
         </Headline>
         <Text align="center" type="light" size="lg">
-          Esse é a quantidade de partidas jogadas no D-LEARN
+          {history.length} {t('landing.info.matches.subtitle')}
         </Text>
       </Flex>
       <Flex alignItems="center" flexDirection="column" gap={8}>
         <FiUsers />
         <Headline weight="heavy" type="light" size="md">
-          Aprox. {history.length * 3} jogadores
+          {t('landing.info.players.title', {
+            history_length: history.length * 3,
+          })}
         </Headline>
         <Text align="center" type="light" size="lg">
-          Passaram pelo D-LEARN e tiverem a experiência de jogar o jogo
+          {history.length} {t('landing.info.players.subtitle')}
         </Text>
       </Flex>
     </Container>

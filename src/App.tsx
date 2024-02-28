@@ -1,4 +1,5 @@
 import React from 'react';
+import './utils/i18n';
 import { ThemeProvider } from 'styled-components';
 
 import Routes from './routes';

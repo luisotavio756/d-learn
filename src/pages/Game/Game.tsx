@@ -1,5 +1,6 @@
 /* eslint-disable no-alert */
 import { useEffect, useLayoutEffect, useMemo, useRef } from 'react';
+import { useTranslation } from 'react-i18next';
 import { FiArchive, FiLogOut } from 'react-icons/fi';
 import { RiNumbersFill } from 'react-icons/ri';
 
@@ -11,7 +12,13 @@ import ModalStartGame from '../../components/ModalStartGame';
 import ModalCard from '../../components/ModalCard';
 import PlayerPin from '../../components/PlayerPin';
 import ModalRanking from '../../components/ModalRanking';
-import { Headline, Text, Button, ButtonGroup } from '../../components/UI';
+import {
+  Headline,
+  Text,
+  Button,
+  ButtonGroup,
+  LanguageSelector,
+} from '../../components/UI';
 import { Box, Flex } from '../../components/Layout';
 import { ModalPlayerAuth } from '../../components/ModalPlayerAuth';
 import { Board, Container } from './Game.styles';
@@ -26,6 +33,7 @@ import { useGame } from '../../hooks/useGame.hook';
 import { useToast } from '../../hooks/useToast';
 
 function Game() {
+  const { t } = useTranslation();
   const healthCheckIntervalRef = useRef<NodeJS.Timer | null>(null);
 
   const {
@@ -71,8 +79,8 @@ function Game() {
 
   function handleEndGame() {
     showAlert({
-      title: 'Cancelar jogo',
-      message: 'Tem certeza que deseja encerrar o jogo agora?',
+      title: t('game.modals.endGame.title'),
+      message: t('game.modals.endGame.message'),
       confirmAction: closeModal => {
         forceEndGame();
         closeModal();
@@ -83,8 +91,8 @@ function Game() {
 
   function handleLogout() {
     showAlert({
-      title: 'Logout',
-      message: 'Deseja realmente deslogar da aplicação?',
+      title: t('game.modals.logout.title'),
+      message: t('game.modals.logout.message'),
       cancelAction: closeAlert => closeAlert(),
       confirmAction: closeAlert => {
         signOut();
@@ -103,9 +111,8 @@ function Game() {
           })
           .catch(() => {
             addToast({
-              title: 'Servidor indisponível',
-              description:
-                'Estamos tendo instabilidades no servidor, por favor, aguarde um momento',
+              title: t('game.toastServerStatus.title'),
+              description: t('game.toastServerStatus.description'),
               type: 'info',
             });
           });
@@ -125,9 +132,7 @@ function Game() {
     const clientWidth = window.innerWidth;
 
     if (clientHeight > clientWidth) {
-      window.alert(
-        'Percebemos que você está em um dispositivo de resolução baixa. Para uma melhor visualização, utilize o site com o dispositivo deitado 📱⤵️😁',
-      );
+      window.alert(t('game.alertMobileResolution'));
     }
   }, []);
 
@@ -175,12 +180,12 @@ function Game() {
                   />
 
                   <Headline weight="light" size="sm">
-                    vez de
+                    {t('game.turn')}
                   </Headline>
                   <Headline>{turnOf?.name}</Headline>
                 </Flex>
 
-                <Text type="neutral">Escolha uma carta abaixo</Text>
+                <Text type="neutral">{t('game.chooseCard')}</Text>
               </Flex>
               <Flex gap={32} className="queues">
                 <CardsQueue
@@ -218,7 +223,7 @@ function Game() {
                   disabled={gameIsBlocked}
                 >
                   <RiNumbersFill />
-                  Ranking
+                  {t('game.ranking')}
                 </Button>
                 <Button
                   width="fit-content"
@@ -228,7 +233,7 @@ function Game() {
                   disabled={gameIsBlocked}
                 >
                   <FiArchive />
-                  Finalizar jogo
+                  {t('game.endGame')}
                 </Button>
                 {isLogged && (
                   <Button
@@ -239,9 +244,10 @@ function Game() {
                     disabled={gameIsBlocked}
                   >
                     <FiLogOut />
-                    Sair
+                    {t('game.exit')}
                   </Button>
                 )}
+                <LanguageSelector size="md" openDirection="left" />
               </ButtonGroup>
             </div>
           </Flex>

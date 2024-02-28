@@ -1,4 +1,5 @@
 import React, { useMemo } from 'react';
+import { useTranslation } from 'react-i18next';
 import { FiRefreshCw } from 'react-icons/fi';
 import { RiNumbersFill } from 'react-icons/ri';
 
@@ -17,6 +18,7 @@ interface ModalRankingProps {
 }
 
 const ModalRanking: React.FC<ModalRankingProps> = ({ isOpen, toggleModal }) => {
+  const { t } = useTranslation();
   const { players, gameEnd, restartGame } = useGame();
   const { isLogged } = usePlayerAuth();
 
@@ -35,14 +37,14 @@ const ModalRanking: React.FC<ModalRankingProps> = ({ isOpen, toggleModal }) => {
       <Container>
         <div className="title">
           <RiNumbersFill size={28} />
-          <h2>Ranking do jogo</h2>
+          <h2>{t('game.modals.ranking.title')}</h2>
         </div>
         <table>
           <thead>
             <tr>
               <th style={{ width: 40 }}>#</th>
-              <th>Nome</th>
-              <th style={{ width: 80 }}>Score</th>
+              <th>{t('game.modals.ranking.name')}</th>
+              <th style={{ width: 80 }}>{t('game.modals.ranking.score')}</th>
             </tr>
           </thead>
           <tbody>
@@ -66,22 +68,20 @@ const ModalRanking: React.FC<ModalRankingProps> = ({ isOpen, toggleModal }) => {
           className="play-again"
           gap={8}
         >
-          <Headline>Obrigado por jogarem o D-LEARN!</Headline>
+          <Headline>{t('game.modals.ranking.thanks')}</Headline>
           {isLogged && (
             <Text align="center" type="success">
-              O log do jogo foi armazenado em nossos servidores, você pode
-              consultar sua posição no Ranking Global na Landing Page, na seção
-              Ranking.
+              {t('game.modals.ranking.logWarning')}
             </Text>
           )}
           <Text>
-            Dê seu feedback clicando{' '}
+            {t('game.modals.ranking.feedback')}{' '}
             <a
               href="https://forms.gle/JzX6VLx3et8jwcgT7"
               target="_blank"
               rel="noreferrer"
             >
-              aqui
+              {t('game.modals.ranking.here')}
             </a>
           </Text>
           <ButtonGroup gap={8}>
@@ -91,7 +91,7 @@ const ModalRanking: React.FC<ModalRankingProps> = ({ isOpen, toggleModal }) => {
               size="sm"
               onClick={() => restartGame('hard')}
             >
-              <FiRefreshCw /> Reiniciar jogo
+              <FiRefreshCw /> {t('game.modals.ranking.restart')}
             </Button>
           </ButtonGroup>
         </Flex>

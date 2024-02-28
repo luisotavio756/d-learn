@@ -1,0 +1,330 @@
+{
+  "admin": {
+    "cards": {
+      "pageTitle": "Tarjetas",
+      "newCard": "Nueva tarjeta",
+      "warningLuckOrBadLuck": "Las tarjetas de suerte o mala suerte no pueden editarse aquí. Solicita asistencia al desarrollador para realizar cambios.",
+      "table": {
+        "image": "Imagen",
+        "type": "Tipo",
+        "title": "Título",
+        "stars": "Estrellas",
+        "question": "Pregunta",
+        "solution": "Solución",
+        "actions": "Acciones",
+        "empty": "No hay tarjetas registradas",
+        "true": "Verdadero",
+        "false": "Falso",
+        "archPattern": "Patrones arquitectónicos",
+        "archDecisions": "Decisiones arquitectónicas",
+        "qualityAttributes": "Atributos de calidad",
+        "luckOrBadLuck": "Suerte o mala suerte"
+      },
+      "inputs": {
+        "selectCardType": {
+          "label": "Tipo",
+          "placeholder": "Selecciona un tipo",
+          "all": "Todos",
+          "archPattern": "Patrones arquitectónicos",
+          "archDecisions": "Decisiones arquitectónicas",
+          "qualityAttributes": "Atributos de calidad",
+          "luckOrBadLuck": "Suerte o mala suerte"
+        },
+        "inputTitle": {
+          "label": "Título",
+          "placeholder": "Ingresa un título"
+        },
+        "inputDescription": {
+          "label": "Descripción",
+          "placeholder": "Ingresa una descripción"
+        },
+        "inputQuestion": {
+          "label": "Pregunta",
+          "placeholder": "Crea una pregunta Verdadero o Falso"
+        },
+        "inputSolution": {
+          "label": "Respuesta",
+          "placeholder": "Selecciona una respuesta",
+          "true": "Verdadero",
+          "false": "Falso"
+        },
+        "inputSolutionText": {
+          "label": "Explicación de la Respuesta",
+          "placeholder": "Describe la respuesta"
+        },
+        "inputStars": {
+          "label": "Estrellas",
+          "placeholder": "Selecciona una calificación de estrellas"
+        }
+      },
+      "modals": {
+        "newCard": {
+          "title": "Nueva tarjeta",
+          "toastSuccess": {
+            "title": "¡Éxito!",
+            "description": "¡Tarjeta creada exitosamente!"
+          },
+          "toastInvalidData": {
+            "title": "Datos Inválidos",
+            "description": "Por favor asegúrate de completar todos los campos e intenta nuevamente"
+          },
+          "suggestion": "Sugerencia: 180px x 84px",
+          "remove": "Eliminar",
+          "wait": "Por favor espera...",
+          "createCard": "Crear tarjeta"
+        },
+        "deleteCard": {
+          "title": "Eliminar tarjeta",
+          "message": "¿Estás seguro de que deseas eliminar esta tarjeta? Esta acción es irreversible",
+          "toastSuccess": {
+            "title": "¡Éxito!",
+            "description": "¡Tarjeta eliminada exitosamente!"
+          },
+          "toastError": {
+            "title": "Error",
+            "description": "Se produjo un error al intentar eliminar la tarjeta, por favor inténtalo de nuevo más tarde"
+          },
+          "wait": "Por favor espera...",
+          "cancel": "Cancelar",
+          "confirm": "Confirmar"
+        },
+        "editCard": {
+          "title": "Editar tarjeta",
+          "toastSuccess": {
+            "title": "¡Éxito!",
+            "description": "¡Tarjeta editada exitosamente!"
+          },
+          "toastInvalidData": {
+            "title": "Datos Inválidos",
+            "description": "Por favor asegúrate de completar todos los campos e intenta nuevamente"
+          },
+          "suggestion": "Sugerencia: 180px x 84px",
+          "undo": "Deshacer",
+          "wait": "Por favor espera...",
+          "editCard": "Editar tarjeta"
+        },
+        "detailsCard": {
+          "title": "Detalles de tarjeta"
+        }
+      }
+    },
+    "dashboard": {
+      "cards": "Tarjetas",
+      "games": "Juegos",
+      "exit": "Salir",
+      "welcome": "Bienvenido,"
+    },
+    "history": {
+      "title": "Historial"
+    },
+    "signIn": {
+      "toastError": {
+        "title": "Error",
+        "description": "Verifica las credenciales e intenta nuevamente",
+        "fullDescription": "Error al iniciar sesión, verifica las credenciales e intenta nuevamente"
+      },
+      "form": {
+        "title": "Iniciar sesión",
+        "login": "Usuario",
+        "password": "Contraseña",
+        "wait": "Por favor espera...",
+        "enter": "Ingresar"
+      }
+    }
+  },
+  "game": {
+    "cards": {
+      "archDecisions": "Decisiones Arquitectónicas",
+      "qualityAttributes": "Atributos de Calidad",
+      "archPattern": "Patrones Arquitectónicos",
+      "luckOrBadLuck": "Suerte o Desgracia",
+      "description": "Descripción:",
+      "congratulations": "¡Felicidades, lo has acertado! 🎉",
+      "acronymResponse": "R:",
+      "damn": "¡Vaya, te has equivocado! 😕",
+      "false": "Falso",
+      "true": "Verdadero",
+      "advance": "🚀 Avanzar {{absoluteStars}} casillas",
+      "pass": "Pasar al siguiente",
+      "luck": "¡Tuviste suerte esta vez! 🎉",
+      "badLuck": "😅 ¡Oh, qué mala suerte!",
+      "continue": "Continuar"
+    },
+    "turn": "turno de",
+    "chooseCard": "Elige una carta a continuación",
+    "ranking": "Clasificación",
+    "endGame": "Finalizar juego",
+    "exit": "Salir",
+    "toastServerStatus": {
+      "title": "Servidor no disponible",
+      "description": "Estamos experimentando inestabilidades en el servidor, por favor, espera un momento"
+    },
+    "alertMobileResolution": "Hemos notado que estás usando un dispositivo con baja resolución. Para una mejor experiencia de visualización, utiliza el sitio con el dispositivo en posición horizontal 📱⤵️😁",
+    "modals": {
+      "playerAuth": {
+        "startGame": "Iniciar juego",
+        "login": "Iniciar sesión",
+        "createAccount": "Crear cuenta",
+        "enterMode": "¿Cómo deseas ingresar?",
+        "wait": "Por favor, espera mientras cargamos los recursos del juego...",
+        "authenticate": "Autenticar",
+        "guest": "Jugar como invitado"
+      },
+      "signUp": {
+        "toastAllData": {
+          "title": "Error",
+          "description": "Completa todos los datos para continuar"
+        },
+        "toastMinimumCharacters": {
+          "title": "Error",
+          "description": "La contraseña debe tener al menos 6 caracteres"
+        },
+        "toastIncorrectPassword": {
+          "title": "Error",
+          "description": "¡La contraseña y la confirmación de la contraseña deben coincidir!"
+        },
+        "toastUserCreated": {
+          "title": "Usuario creado exitosamente",
+          "description": "¡Ahora puedes iniciar sesión para jugar autenticado!"
+        },
+        "toastUserNotCreated": {
+          "title": "Error",
+          "description": "No se pudo registrar, por favor, verifica tus credenciales e inténtalo de nuevo"
+        },
+        "inputs": {
+          "nickname": {
+            "label": "Nombre de usuario",
+            "placeholder": "Nombre de usuario"
+          },
+          "password": {
+            "label": "Contraseña",
+            "placeholder": "Contraseña"
+          },
+          "confirmPassword": {
+            "label": "Confirmar Contraseña",
+            "placeholder": "Confirmar Contraseña"
+          }
+        },
+        "wait": "Por favor, espera...",
+        "createAccount": "Crear cuenta",
+        "backToLogin": "Volver al inicio de sesión"
+      },
+      "playerAuthLogin": {
+        "toastWelcome": {
+          "title": "Bienvenido {{playerNickname}}",
+          "description": "¡Inicio de sesión exitoso!"
+        },
+        "toastError": {
+          "title": "Error",
+          "description": "No se pudo iniciar sesión, por favor, verifica tus credenciales e inténtalo de nuevo"
+        },
+        "inputs": {
+          "nickname": {
+            "label": "Nombre de usuario",
+            "placeholder": "Nombre de usuario"
+          },
+          "password": {
+            "label": "Contraseña",
+            "placeholder": "Contraseña"
+          }
+        },
+        "wait": "Por favor, espera...",
+        "enter": "Ingresar",
+        "register": "¿No tienes una cuenta? ¡Regístrate!",
+        "guest": "Jugar como invitado"
+      },
+      "startGame": {
+        "title": "Iniciar juego",
+        "wait": "Por favor, espera mientras cargamos los recursos del juego...",
+        "welcome": "Bienvenido al juego de mesa D-LEARN. ¡Agrega jugadores para comenzar el juego!",
+        "maxPlayers": "Máximo de 4 jugadores",
+        "inputs": {
+          "player": {
+            "label": "Jugador",
+            "placeholder": "Ingresa un nombre"
+          }
+        },
+        "removeLast": "Eliminar último",
+        "addPlayer": "Agregar jugador",
+        "startGame": "Iniciar juego",
+        "authenticate": "Autenticar"
+      },
+      "endGame": {
+        "title": "Cancelar juego",
+        "message": "¿Estás seguro de que quieres finalizar el juego ahora?"
+      },
+      "ranking": {
+        "title": "Clasificación del juego",
+        "name": "Nombre",
+        "score": "Puntuación",
+        "thanks": "¡Gracias por jugar D-LEARN!",
+        "logWarning": "El registro del juego se ha almacenado en nuestros servidores, puedes consultar tu posición en la Clasificación Global en la página de inicio, en la sección de Clasificación.",
+        "feedback": "Da tu opinión haciendo clic",
+        "here": "Aquí",
+        "restart": "Reiniciar juego"
+      },
+      "logout": {
+        "title": "Cerrar sesión",
+        "message": "¿Realmente deseas cerrar la sesión de la aplicación?"
+      }
+    }
+  },
+  "landing": {
+    "header": {
+      "play": "JUGAR",
+      "feedback": "DAR FEEDBACK",
+      "ranking": "RANKING GLOBAL",
+      "contributors": "CONTRIBUYENTES"
+    },
+    "carousel": {
+      "discoverDlearn": "Descubre D-LEARN",
+      "dlearnOrigin": "D-LEARN (LEarning software ARchitecture fundameNtals) Board game es un juego digital inspirado en el juego no digital LEARN Board game, que es un juego que utiliza cartas y un tablero para ayudar en la enseñanza de Arquitectura de Software.",
+      "dlearnGoals": "D-LEARN fue creado para abordar algunos desafíos enfrentados por el juego actual en formato no digital, como el uso de papel para su construcción, la dificultad para hacer cambios en la dinámica del juego y una gran cantidad de tiempo / esfuerzo para crear una nueva versión con nuevas reglas, por ejemplo."
+    },
+    "info": {
+      "cards": {
+        "title": "cartas",
+        "subtitle": "Las cartas son de atributos de calidad, patrones arquitectónicos, decisiones arquitectónicas y suerte o contratiempo."
+      },
+      "approval": {
+        "title": "Tasa de aprobación del 80%",
+        "subtitle": "Este es el porcentaje de aprobación actual entre los participantes del juego."
+      },
+      "matches": {
+        "title": "partidos jugados",
+        "subtitle": "Este es el número de partidos jugados en D-LEARN."
+      },
+      "players": {
+        "title": "Aprox. {{history_length}} jugadores",
+        "subtitle": "Pasaron por D-LEARN y tuvieron la experiencia de jugar el juego."
+      }
+    },
+    "ranking": {
+      "title": "🔥 Ranking global",
+      "subtitle": "Al final de cada juego, almacenamos el registro del juego en nuestros servidores para alentar a los jugadores a buscar el primer lugar en el ranking."
+    },
+    "historyTable": {
+      "winner": "Ganador",
+      "score": "Puntuación del ganador",
+      "start": "Inicio",
+      "end": "Fin",
+      "gameTime": "Tiempo de juego",
+      "host": "Anfitrión del juego"
+    },
+    "contributors": {
+      "title": "🔍 Contribuyentes",
+      "person1": {
+        "name": "Maestro Ph.D. Ana Beatriz Marques",
+        "description": "Maestro Ph.D. en UFC Campus Russas, Asesora de LEARN y D-LEARN Board Game."
+      },
+      "person2": {
+        "name": "Luis Otávio Lima Caminha",
+        "description": "Estudiante de Ingeniería de Software en UFC Campus Russas y Desarrollador de D-LEARN Board Game."
+      },
+      "person3": {
+        "name": "Tamires Ariane",
+        "description": "Graduada en Ingeniería de Software en UFC Campus Russas y creadora del juego de mesa LEARN."
+      }
+    }
+  }
+}

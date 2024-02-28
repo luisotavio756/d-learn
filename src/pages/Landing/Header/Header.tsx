@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { FaBars } from 'react-icons/fa';
 
@@ -6,10 +7,12 @@ import Logo from '../../../../public/shortcut-icon.svg';
 import './scroll.js';
 // Import Styleds;
 import { NavBar, NavContent, NavMenu } from './Header.styles';
-import { Headline, Text } from '../../../components/UI';
+import { Headline, Text, LanguageSelector } from '../../../components/UI';
 import { Flex } from '../../../components/Layout';
 
 export default function Header() {
+  const { t } = useTranslation();
+
   const [menuIsOpen, setMenuIsOpen] = useState(false);
   const navigate = useNavigate();
 
@@ -42,12 +45,12 @@ export default function Header() {
           <ul>
             <li onClick={() => handleNavigate('/game')} aria-hidden="true">
               <Text align="center" type="light">
-                JOGAR
+                {t('landing.header.play')}
               </Text>
             </li>
             <li onClick={goToFeeback} aria-hidden="true">
               <Text align="center" type="light">
-                DAR FEEDBACK
+                {t('landing.header.feedback')}
               </Text>
             </li>
             <li
@@ -58,7 +61,7 @@ export default function Header() {
               aria-hidden="true"
             >
               <Text align="center" type="light">
-                RANKING GLOBAL
+                {t('landing.header.ranking')}
               </Text>
             </li>
             <li
@@ -69,8 +72,11 @@ export default function Header() {
               aria-hidden="true"
             >
               <Text align="center" type="light">
-                CONTRIBUIDORES
+                {t('landing.header.contributors')}
               </Text>
+            </li>
+            <li aria-hidden="true">
+              <LanguageSelector size="sm" openDirection="right" />
             </li>
           </ul>
           <button onClick={() => setMenuIsOpen(false)} type="button">

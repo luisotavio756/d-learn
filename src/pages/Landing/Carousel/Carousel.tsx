@@ -1,4 +1,5 @@
 import React, { useMemo } from 'react';
+import { useTranslation } from 'react-i18next';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 
 import { Carousel as CarouselComponent } from 'react-responsive-carousel';
@@ -13,6 +14,8 @@ import { Headline, Text } from '../../../components/UI';
 import { Flex, Grid } from '../../../components/Layout';
 
 const Carousel = () => {
+  const { t } = useTranslation();
+
   const images = useMemo(() => [banner1, banner2, banner3], []);
 
   return (
@@ -37,20 +40,13 @@ const Carousel = () => {
           ))}
         </CarouselComponent>
         <Flex flexDirection="column" gap={16}>
-          <Headline size="lg">Conheça o D-LEARN</Headline>
+          <Headline size="lg">{t('landing.carousel.discoverDlearn')}</Headline>
           <Flex flexDirection="column" gap={4}>
             <Text size="lg" align="justify">
-              O D-LEARN (LEarning software ARchitecture fundameNtals) Board game
-              é um jogo digital inspirado no jogo não-digital LEARN Board game,
-              que é um jogo que faz uso de cartas e tabuleiro para auxiliar no
-              ensino de Arquitetura de Software.
+              {t('landing.carousel.dlearnOrigin')}
             </Text>
             <Text size="lg" align="justify">
-              O D-LEARN foi criado visando resolver alguns desafios enfrentados
-              pelo atual jogo em formato não-digital, tais como uso de papel
-              para sua construção, dificuldade para fazer alterações na dinâmica
-              do jogo e uma alta quantidade de tempo/esforço para confeccionar
-              uma nova versão com novas regras, por exemplo.
+              {t('landing.carousel.dlearnGoals')}
             </Text>
           </Flex>
         </Flex>
