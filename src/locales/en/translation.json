@@ -15,10 +15,10 @@
         "empty": "No cards registered",
         "true": "True",
         "false": "False",
-        "archPattern": "Patrones arquitectónicos",
-        "archDecisions": "Decisiones arquitectónicas",
-        "qualityAttributes": "Atributos de calidad",
-        "luckOrBadLuck": "Suerte o mala suerte"
+        "archPattern": "Architectural Patterns",
+        "archDecisions": "Architectural Decisions",
+        "qualityAttributes": "Quality Attributes",
+        "luckOrBadLuck": "Luck or Bad Luck"
       },
       "inputs": {
         "selectCardType": {
