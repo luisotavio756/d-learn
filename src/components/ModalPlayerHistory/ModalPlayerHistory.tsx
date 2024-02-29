@@ -6,7 +6,7 @@ import { format, parseISO } from 'date-fns';
 import Modal from '../Modal';
 
 import { Container } from './ModalPlayerHistory.styles';
-import { useHistoryByUserIdQuery } from '../../queries/useHistoryQuery'; // MUDAR PRA MAIS SIMPLES
+import { useHistoryQuery } from '../../queries/useHistoryQuery';
 
 interface ModalPlayerHistoryProps {
   isOpen: boolean;
@@ -19,7 +19,7 @@ const ModalPlayerHistory: React.FC<ModalPlayerHistoryProps> = ({
 }) => {
   const { t } = useTranslation();
 
-  const { data: history } = useHistoryByUserIdQuery("65b7c2ea889859d3d5218433"); // MOCKADO
+  const { data: history } = useHistoryQuery();
 
   function formatDate(date: string) {
     return format(parseISO(date), "dd/MM/YYY 'às' HH:mm");
@@ -46,7 +46,10 @@ const ModalPlayerHistory: React.FC<ModalPlayerHistoryProps> = ({
             </tr>
           </thead>
           <tbody>
-            {history?.map((item, i) => (
+            {history?.filter(log => log.ownerId === "65b7c2ea889859d3d5218433") // MOCKADO
+            .sort((a, b) => new Date(b.endAt).getTime() - new Date(a.endAt).getTime())
+            .slice(0, 10)
+            .map((item, i) => (
                 <tr key={item._id}>
                   <td>{item.ownerPlacing}º</td>
                   <td>{formatDate(item.endAt)}</td>

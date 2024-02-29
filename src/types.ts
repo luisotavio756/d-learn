@@ -56,6 +56,7 @@ export interface History {
   startedAt: string;
   endAt: string;
   ownerName: string;
+  ownerId: string;
   ownerScore: number;
   ownerPlacing: number;
 }
