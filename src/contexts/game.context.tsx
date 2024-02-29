@@ -202,19 +202,22 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
   const sendGameInfoReport = useCallback(() => {
     if (!isLogged) return;
 
-    const { name = 'Guest', score } = [...players].sort(
-      (a, b) => b.score - a.score,
-    )[0];
+    const orderedPlayers = [...players].sort((a, b) => b.score - a.score);
+
+    const ownerPlayerIndex = orderedPlayers.findIndex(player => player.id === 1);
+
+    const winnerPlayer = orderedPlayers[0];
+    const ownerPlayer = orderedPlayers[ownerPlayerIndex];
 
     const gameInfo = {
-      winnerName: name,
-      winnerScore: score,
+      winnerName: winnerPlayer.name,
+      winnerScore: winnerPlayer.score,
       startedAt: startedAt?.toISOString(),
       endAt: new Date().toISOString(),
       ownerName: loggedUser.nickname,
       ownerId: loggedUser._id,
-      ownerScore: 5, // MOCKADO
-      ownerPlacing: 1 // MOCKADO
+      ownerScore: ownerPlayer.score,
+      ownerPlacing: ownerPlayerIndex + 1
     } as History;
 
     api

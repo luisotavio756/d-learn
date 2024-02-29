@@ -6,7 +6,7 @@ import { format, parseISO } from 'date-fns';
 import Modal from '../Modal';
 
 import { Container } from './ModalPlayerHistory.styles';
-import { useHistoryByUserIdQuery } from '../../queries/useHistoryQuery';
+import { useHistoryByUserIdQuery } from '../../queries/useHistoryQuery'; // MUDAR PRA MAIS SIMPLES
 
 interface ModalPlayerHistoryProps {
   isOpen: boolean;
@@ -47,12 +47,12 @@ const ModalPlayerHistory: React.FC<ModalPlayerHistoryProps> = ({
           </thead>
           <tbody>
             {history?.map((item, i) => (
-              <tr key={item._id}>
-                <td>{i + 1}</td>
-                <td>{formatDate(item.endAt)}</td>
-                <td>{item.winnerScore}</td>
-              </tr>
-            ))}
+                <tr key={item._id}>
+                  <td>{item.ownerPlacing}º</td>
+                  <td>{formatDate(item.endAt)}</td>
+                  <td>{item.ownerScore}</td>
+                </tr>
+              ))}
           </tbody>
         </table>
       </Container>
