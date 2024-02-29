@@ -7,6 +7,7 @@ import Modal from '../Modal';
 
 import { Container } from './ModalPlayerHistory.styles';
 import { useHistoryQuery } from '../../queries/useHistoryQuery';
+import { usePlayerAuth } from '../../hooks/usePlayerAuth';
 
 interface ModalPlayerHistoryProps {
   isOpen: boolean;
@@ -20,6 +21,7 @@ const ModalPlayerHistory: React.FC<ModalPlayerHistoryProps> = ({
   const { t } = useTranslation();
 
   const { data: history } = useHistoryQuery();
+  const { isLogged, player } = usePlayerAuth();
 
   function formatDate(date: string) {
     return format(parseISO(date), "dd/MM/YYY 'às' HH:mm");
@@ -46,7 +48,7 @@ const ModalPlayerHistory: React.FC<ModalPlayerHistoryProps> = ({
             </tr>
           </thead>
           <tbody>
-            {history?.filter(log => log.ownerId === "65b7c2ea889859d3d5218433") // MOCKADO
+            {isLogged && history?.filter(log => log.ownerId === player._id)
             .sort((a, b) => new Date(b.endAt).getTime() - new Date(a.endAt).getTime())
             .slice(0, 10)
             .map((item, i) => (
