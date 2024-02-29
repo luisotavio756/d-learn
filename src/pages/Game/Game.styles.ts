@@ -81,7 +81,7 @@ export const Board = styled(Box)`
         height: 80px;
       }
 
-      img {
+      .logo {
         display: none;
       }
     }

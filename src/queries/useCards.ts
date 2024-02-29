@@ -1,14 +1,25 @@
 import { useQuery } from 'react-query';
+import { useTranslation } from 'react-i18next';
 
 import api from '../services/api';
 import { Card } from '../types';
 import { getShuffledCards } from '../utils/cards';
-import luckOrBadLuckCards from '../cards/luckOrBadLuck';
+import luckOrBadLuckCardsEn from '../cards/luckOrBadLuckEn';
+import luckOrBadLuckCardsEs from '../cards/luckOrBadLuckEs';
+import luckOrBadLuckCardsPt from '../cards/luckOrBadLuckPt';
 
-async function getCards() {
-  const LUCK_AND_BAD_LUCK_CARDS = getShuffledCards(luckOrBadLuckCards);
+async function getCards(language: string) {
+  const luckOrBadLuckCards: { [key: string]: Card[] } = {
+    en: luckOrBadLuckCardsEn,
+    es: luckOrBadLuckCardsEs,
+    pt: luckOrBadLuckCardsPt,
+  };
 
-  const response = await api.get<Card[]>(`/cards`);
+  const LUCK_AND_BAD_LUCK_CARDS = getShuffledCards(
+    luckOrBadLuckCards[language],
+  );
+
+  const response = await api.get<Card[]>(`/cards/${language}`);
 
   return [...getShuffledCards(response.data), ...LUCK_AND_BAD_LUCK_CARDS].map(
     item => Object.assign(item, { used: false }),
@@ -16,7 +27,9 @@ async function getCards() {
 }
 
 export function useCardsQuery() {
-  return useQuery<Card[]>('cards', async () => getCards(), {
+  const { i18n } = useTranslation();
+
+  return useQuery<Card[]>('cards', async () => getCards(i18n.language), {
     staleTime: 1000 * 60 * 30, // half hour,
   });
 }

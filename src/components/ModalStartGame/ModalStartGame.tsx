@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { v4 as uuid } from 'uuid';
 import { useForm } from 'react-hook-form';
 import {
@@ -29,6 +30,7 @@ interface IModalStartGameProps {
 }
 
 const ModalStartGame: React.FC<IModalStartGameProps> = ({ isLoading }) => {
+  const { t } = useTranslation();
   const theme = useTheme();
 
   const [playersQuantity, setPlayersQuantity] = useState(1);
@@ -107,24 +109,21 @@ const ModalStartGame: React.FC<IModalStartGameProps> = ({ isLoading }) => {
           PlayerMode.CreateAccount,
         ].includes(mode)
       }
-      title="Iniciar jogo"
+      title={t('game.modals.startGame.title')}
       showCloseButton={false}
       toggleModal={() => null}
     >
       <Flex shouldShow={isLoading} flexDirection="column" alignItems="center">
         <div className="loaderContent" />
         <Text align="center" size="lg">
-          Aguarde um momento enquanto carregamos os recursos do jogo...
+          {t('game.modals.startGame.wait')}
         </Text>
       </Flex>
       <Container shouldShow={!isLoading} flexDirection="column">
         <Flex flexDirection="column" className="welcome">
-          <Text size="lg">
-            Bem vindo ao D-LEARN Board Game. Adicione os jogadores para iniciar
-            o jogo!
-          </Text>
+          <Text size="lg">{t('game.modals.startGame.welcome')}</Text>
           <Text size="md" type="warning" weight="medium">
-            <FiInfo /> Máximo de 4 jogadores
+            <FiInfo /> {t('game.modals.startGame.maxPlayers')}
           </Text>
         </Flex>
         <form onSubmit={onSubmit}>
@@ -134,8 +133,12 @@ const ModalStartGame: React.FC<IModalStartGameProps> = ({ isLoading }) => {
                 key={uuid()}
                 type="text"
                 id={`player${i}`}
-                label={`Player ${i + 1}`}
-                placeholder="Digite um nome"
+                label={`${t('game.modals.startGame.inputs.player.label')} ${
+                  i + 1
+                }`}
+                placeholder={t(
+                  'game.modals.startGame.inputs.player.placeholder',
+                )}
                 name={`player${i}`}
                 register={register}
               />
@@ -149,7 +152,7 @@ const ModalStartGame: React.FC<IModalStartGameProps> = ({ isLoading }) => {
                 variant="red-outline"
                 onClick={removePlayer}
               >
-                <FiUserMinus /> Remover ultimo
+                <FiUserMinus /> {t('game.modals.startGame.removeLast')}
               </Button>
             )}
             {playersQuantity < 4 && (
@@ -159,17 +162,17 @@ const ModalStartGame: React.FC<IModalStartGameProps> = ({ isLoading }) => {
                 variant="blue-outline"
                 onClick={addPlayer}
               >
-                <FiUserPlus /> Adicionar jogador
+                <FiUserPlus /> {t('game.modals.startGame.addPlayer')}
               </Button>
             )}
           </div>
           <Button marginTop={1} width="full" type="submit">
-            <FiCheck /> Iniciar jogo
+            <FiCheck /> {t('game.modals.startGame.startGame')}
           </Button>
         </form>
         {!isLogged && (
           <Button marginTop={0.5} size="md" variant="text" onClick={goToAuth}>
-            <FiLogIn /> Quero me autenticar
+            <FiLogIn /> {t('game.modals.startGame.authenticate')}
           </Button>
         )}
       </Container>

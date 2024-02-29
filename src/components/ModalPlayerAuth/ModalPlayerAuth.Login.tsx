@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import { useForm } from 'react-hook-form';
 import { FiLogIn, FiUserMinus } from 'react-icons/fi';
@@ -17,6 +18,7 @@ type FormData = {
 };
 
 const PlayerLogin: React.FC = () => {
+  const { t } = useTranslation();
   const [isLogging, setIsLogging] = useState(false);
 
   const { register, handleSubmit } = useForm<FormData>();
@@ -30,8 +32,10 @@ const PlayerLogin: React.FC = () => {
       const player = await signIn(data);
 
       addToast({
-        title: `Bem vindo ${player.nickname}`,
-        description: 'Login realizado com sucesso!',
+        title: t('game.modals.playerAuthLogin.toastWelcome.title', {
+          playerNickname: player.nickname,
+        }),
+        description: t('game.modals.playerAuthLogin.toastWelcome.description'),
         type: 'success',
       });
 
@@ -40,9 +44,8 @@ const PlayerLogin: React.FC = () => {
       console.log(error);
 
       addToast({
-        title: 'Erro',
-        description:
-          'Não foi possível realizar o login, verifique as credencias e tente novamente',
+        title: t('game.modals.playerAuthLogin.toastError.title'),
+        description: t('game.modals.playerAuthLogin.toastError.description'),
         type: 'error',
       });
     } finally {
@@ -54,18 +57,22 @@ const PlayerLogin: React.FC = () => {
     <FormContainer onSubmit={onSubmit}>
       <Flex gap={8} flexDirection="column">
         <Input
-          label="Nickname"
+          label={t('game.modals.playerAuthLogin.inputs.nickname.label')}
           name="nickname"
           type="text"
-          placeholder="Nickname"
+          placeholder={t(
+            'game.modals.playerAuthLogin.inputs.nickname.placeholder',
+          )}
           register={register}
         />
 
         <Input
-          label="Senha"
+          label={t('game.modals.playerAuthLogin.inputs.password.label')}
           name="password"
           type="password"
-          placeholder="Senha"
+          placeholder={t(
+            'game.modals.playerAuthLogin.inputs.password.placeholder',
+          )}
           register={register}
         />
 
@@ -75,9 +82,9 @@ const PlayerLogin: React.FC = () => {
           width="full"
           loading={isLogging}
           disabled={isLogging}
-          loadingText="Aguarde..."
+          loadingText={t('game.modals.playerAuthLogin.wait')}
         >
-          <FiLogIn /> Entrar
+          <FiLogIn /> {t('game.modals.playerAuthLogin.enter')}
         </Button>
 
         <ButtonGroup>
@@ -87,7 +94,7 @@ const PlayerLogin: React.FC = () => {
             type="submit"
             onClick={() => setMode(PlayerMode.CreateAccount)}
           >
-            <FiLogIn /> Não tem uma conta? Cadastre-se!
+            <FiLogIn /> {t('game.modals.playerAuthLogin.register')}
           </Button>
           <Button
             size="md"
@@ -95,7 +102,7 @@ const PlayerLogin: React.FC = () => {
             type="submit"
             onClick={() => setMode(PlayerMode.Ok)}
           >
-            <FiUserMinus /> Jogar como Guest
+            <FiUserMinus /> {t('game.modals.playerAuthLogin.guest')}
           </Button>
         </ButtonGroup>
       </Flex>

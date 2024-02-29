@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useMemo } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import { FiMeh, FiSmile } from 'react-icons/fi';
 import { Flex } from '../Layout';
@@ -11,6 +12,7 @@ import { Text, Button } from '../UI';
 import { useAudio } from '../../hooks/useAudio';
 
 const LuckCardBody: React.FC = () => {
+  const { t } = useTranslation();
   const { activeCard, turnOf, endPlay } = useGame();
   const { audio: luckAudio } = useAudio('luck.flac');
   const { audio: badLuckAudio } = useAudio('bad-luck.mp3');
@@ -43,8 +45,8 @@ const LuckCardBody: React.FC = () => {
         <div className="description">
           <Text size="lg" type="text" weight="heavy">
             {luckType === 'luck'
-              ? 'Você teve sorte dessa vez! 🎉'
-              : '😅 Poxa que azar!'}
+              ? t('game.cards.luck')
+              : t('game.cards.badLuck')}
           </Text>
         </div>
         <div className="info">
@@ -75,7 +77,7 @@ const LuckCardBody: React.FC = () => {
               width="fit-content"
               onClick={handleEndPlay}
             >
-              Continuar
+              {t('game.cards.continue')}
             </Button>
           </Flex>
         </div>

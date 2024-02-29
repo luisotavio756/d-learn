@@ -1,0 +1,330 @@
+{
+  "admin": {
+    "cards": {
+      "pageTitle": "Cartas",
+      "newCard": "Nova carta",
+      "warningLuckOrBadLuck": "As cartas de sorte ou revés não podem ser editadas por aqui. Solicite ao desenvolvedor a alteração",
+      "table": {
+        "image": "Imagem",
+        "type": "Tipo",
+        "title": "Título",
+        "stars": "Estrelas",
+        "question": "Pergunta",
+        "solution": "Solução",
+        "actions": "Ações",
+        "empty": "Não há cartas cadastradas",
+        "true": "Verdadeiro",
+        "false": "Falso",
+        "archPattern": "Padrões arquiteturais",
+        "archDecisions": "Decisões arquiteturais",
+        "qualityAttributes": "Atributos de qualidade",
+        "luckOrBadLuck": "Sorte ou revés"
+      },
+      "inputs": {
+        "selectCardType": {
+          "label": "Tipo",
+          "placeholder": "Selecione um tipo",
+          "all": "Todos",
+          "archPattern": "Padrões arquiteturais",
+          "archDecisions": "Decisões arquiteturais",
+          "qualityAttributes": "Atributos de qualidade",
+          "luckOrBadLuck": "Sorte ou revés"
+        },
+        "inputTitle": {
+          "label": "Título",
+          "placeholder": "Digite um título"
+        },
+        "inputDescription": {
+          "label": "Descrição",
+          "placeholder": "Digite uma descrição"
+        },
+        "inputQuestion": {
+          "label": "Pergunta",
+          "placeholder": "Crie uma pergunta de V ou F"
+        },
+        "inputSolution": {
+          "label": "Resposta",
+          "placeholder": "Selecione uma resposta",
+          "true": "Verdadeiro",
+          "false": "Falso"
+        },
+        "inputSolutionText": {
+          "label": "Explicação da Resposta",
+          "placeholder": "Descreva a resposta"
+        },
+        "inputStars": {
+          "label": "Estrelas",
+          "placeholder": "Selecione uma quantidade de estrelas"
+        }
+      },
+      "modals": {
+        "newCard": {
+          "title": "Nova carta",
+          "toastSuccess": {
+            "title": "Sucesso!",
+            "description": "Carta criada com sucesso!"
+          },
+          "toastInvalidData": {
+            "title": "Dados inválidos",
+            "description": "Por favor, garanta que todos os campos estão preenchidos e tente novamente"
+          },
+          "suggestion": "Sugestão: 180px x 84px",
+          "remove": "Remover",
+          "wait": "Aguarde...",
+          "createCard": "Criar carta"
+        },
+        "deleteCard": {
+          "title": "Deletar carta",
+          "message": "Tem certeza que deseja deletar esta carta? Esta ação é irreversivel",
+          "toastSuccess": {
+            "title": "Sucesso!",
+            "description": "Carta deletada com sucesso!"
+          },
+          "toastError": {
+            "title": "Erro",
+            "description": "Ocorreu um erro ao tentar deletar a carta, tente novamente mais tarde"
+          },
+          "wait": "Aguarde...",
+          "cancel": "Cancelar",
+          "confirm": "Confirmar"
+        },
+        "editCard": {
+          "title": "Editar carta",
+          "toastSuccess": {
+            "title": "Sucesso!",
+            "description": "Carta editada com sucesso!"
+          },
+          "toastInvalidData": {
+            "title": "Dados inválidos",
+            "description": "Por favor, garanta que todos os campos estão preenchidos e tente novamente"
+          },
+          "suggestion": "Sugestão: 180px x 84px",
+          "undo": "Desfazer",
+          "wait": "Aguarde...",
+          "editCard": "Editar carta"
+        },
+        "detailsCard": {
+          "title": "Detalhes da carta"
+        }
+      }
+    },
+    "dashboard": {
+      "cards": "Cartas",
+      "games": "Jogos",
+      "exit": "Sair",
+      "welcome": "Bem vindo,"
+    },
+    "history": {
+      "title": "Histórico"
+    },
+    "signIn": {
+      "toastError": {
+        "title": "Erro",
+        "description": "Verifique as credenciais e tente novamente",
+        "fullDescription": "Erro ao logar, verifique as credenciais e tente novamente"
+      },
+      "form": {
+        "title": "Faça seu login",
+        "login": "Login",
+        "password": "Senha",
+        "wait": "Aguarde...",
+        "enter": "Entrar"
+      }
+    }
+  },
+  "game": {
+    "cards": {
+      "archDecisions": "Decisões arquiteturais",
+      "qualityAttributes": "Atributos de qualidade",
+      "archPattern": "Padrões arquiteturais",
+      "luckOrBadLuck": "Sorte ou revés",
+      "description": "Descrição:",
+      "congratulations": "Parabéns, você acertou! 🎉",
+      "acronymResponse": "R:",
+      "damn": "Poxa, você errou! 😕",
+      "false": "Falso",
+      "true": "Verdadeiro",
+      "advance": "🚀 Avançar {{absoluteStars}} casas",
+      "pass": "Passar para o próximo",
+      "luck": "Você teve sorte dessa vez! 🎉",
+      "badLuck": "😅 Poxa que azar!",
+      "continue": "Continuar"
+    },
+    "turn": "vez de",
+    "chooseCard": "Escolha uma carta abaixo",
+    "ranking": "Classificação",
+    "endGame": "Finalizar jogo",
+    "exit": "Sair",
+    "toastServerStatus": {
+      "title": "Servidor indisponível",
+      "description": "Estamos tendo instabilidades no servidor, por favor, aguarde um momento"
+    },
+    "alertMobileResolution": "Percebemos que você está em um dispositivo de resolução baixa. Para uma melhor visualização, utilize o site com o dispositivo deitado 📱⤵️😁",
+    "modals": {
+      "playerAuth": {
+        "startGame": "Iniciar jogo",
+        "login": "Faça seu login",
+        "createAccount": "Criar conta",
+        "enterMode": "Como deseja entrar?",
+        "wait": "Aguarde um momento enquanto carregamos os recursos do jogo...",
+        "authenticate": "Quero me autenticar",
+        "guest": "Jogar como convidado"
+      },
+      "signUp": {
+        "toastAllData": {
+          "title": "Erro",
+          "description": "Preencha todos os dados para continuar"
+        },
+        "toastMinimumCharacters": {
+          "title": "Erro",
+          "description": "A senha deve conter no mínimo 6 caracteres"
+        },
+        "toastIncorrectPassword": {
+          "title": "Erro",
+          "description": "A senha e confirmação de senha devem ser iguais!"
+        },
+        "toastUserCreated": {
+          "title": "Usuário criado com sucesso",
+          "description": "Agora você pode fazer o login para jogar autenticado!"
+        },
+        "toastUserNotCreated": {
+          "title": "Erro",
+          "description": "Não foi possível realizar o cadastro, verifique as credencias e tente novamente"
+        },
+        "inputs": {
+          "nickname": {
+            "label": "Usuário",
+            "placeholder": "Usuário"
+          },
+          "password": {
+            "label": "Senha",
+            "placeholder": "Senha"
+          },
+          "confirmPassword": {
+            "label": "Confirme a Senha",
+            "placeholder": "Confirme a Senha"
+          }
+        },
+        "wait": "Aguarde...",
+        "createAccount": "Criar conta",
+        "backToLogin": "Voltar para o login"
+      },
+      "playerAuthLogin": {
+        "toastWelcome": {
+          "title": "Bem vindo {{playerNickname}}",
+          "description": "Login realizado com sucesso!"
+        },
+        "toastError": {
+          "title": "Erro",
+          "description": "Não foi possível realizar o login, verifique as credencias e tente novamente"
+        },
+        "inputs": {
+          "nickname": {
+            "label": "Usuário",
+            "placeholder": "Usuário"
+          },
+          "password": {
+            "label": "Senha",
+            "placeholder": "Senha"
+          }
+        },
+        "wait": "Aguarde...",
+        "enter": "Entrar",
+        "register": "Não tem uma conta? Cadastre-se!",
+        "guest": "Jogar como convidado"
+      },
+      "startGame": {
+        "title": "Iniciar jogo",
+        "wait": "Aguarde um momento enquanto carregamos os recursos do jogo...",
+        "welcome": "Bem vindo ao D-LEARN Board Game. Adicione os jogadores para iniciar o jogo!",
+        "maxPlayers": "Máximo de 4 jogadores",
+        "inputs": {
+          "player": {
+            "label": "Jogador",
+            "placeholder": "Digite um nome"
+          }
+        },
+        "removeLast": "Remover ultimo",
+        "addPlayer": "Adicionar jogador",
+        "startGame": "Iniciar jogo",
+        "authenticate": "Quero me autenticar"
+      },
+      "endGame": {
+        "title": "Cancelar jogo",
+        "message": "Tem certeza que deseja encerrar o jogo agora?"
+      },
+      "ranking": {
+        "title": "Ranking do jogo",
+        "name": "Nome",
+        "score": "Pontuação",
+        "thanks": "Obrigado por jogarem o D-LEARN!",
+        "logWarning": "O log do jogo foi armazenado em nossos servidores, você pode consultar sua posição no Ranking Global na Landing Page, na seção Ranking.",
+        "feedback": "Dê seu feedback clicando",
+        "here": "Aqui",
+        "restart": "Reiniciar jogo"
+      },
+      "logout": {
+        "title": "Logout",
+        "message": "Deseja realmente deslogar da aplicação?"
+      }
+    }
+  },
+  "landing": {
+    "header": {
+      "play": "JOGAR",
+      "feedback": "DAR FEEDBACK",
+      "ranking": "RANKING GLOBAL",
+      "contributors": "CONTRIBUIDORES"
+    },
+    "carousel": {
+      "discoverDlearn": "Conheça o D-LEARN",
+      "dlearnOrigin": "O D-LEARN (LEarning software ARchitecture fundameNtals) Board game é um jogo digital inspirado no jogo não-digital LEARN Board game, que é um jogo que faz uso de cartas e tabuleiro para auxiliar no ensino de Arquitetura de Software.",
+      "dlearnGoals": "O D-LEARN foi criado visando resolver alguns desafios enfrentados pelo atual jogo em formato não-digital, tais como uso de papel para sua construção, dificuldade para fazer alterações na dinâmica do jogo e uma alta quantidade de tempo/esforço para confeccionar uma nova versão com novas regras, por exemplo."
+    },
+    "info": {
+      "cards": {
+        "title": "cartas",
+        "subtitle": "As cartas são de atributos de qualidade, padrões arquiteturais, decisões arquiteturais e sorte ou revés"
+      },
+      "approval": {
+        "title": "80% de aprovação",
+        "subtitle": "Essa é a atual porcentagem de aprovação entre os participantes do jogo"
+      },
+      "matches": {
+        "title": "partidas jogadas",
+        "subtitle": "Esse é a quantidade de partidas jogadas no D-LEARN"
+      },
+      "players": {
+        "title": "Aprox. {{history_length}} jogadores",
+        "subtitle": "Passaram pelo D-LEARN e tiverem a experiência de jogar o jogo"
+      }
+    },
+    "ranking": {
+      "title": "🔥 Ranking global",
+      "subtitle": "Ao fim de cada jogo, armazenamos o Log do jogo em nossos servidores, para incentivar os jogares a buscarem o topo do ranking"
+    },
+    "historyTable": {
+      "winner": "Vencedor",
+      "score": "Score do vencedor",
+      "start": "Início",
+      "end": "Fim",
+      "gameTime": "Tempo de jogo",
+      "host": "Host do jogo"
+    },
+    "contributors": {
+      "title": "🔍 Contribuidores",
+      "person1": {
+        "name": "Professora Dra. Ana Beatriz Marques",
+        "description": "Professora Dra. na UFC Campus Russas, Orientadora do LEARN e do D-LEARN Board Game"
+      },
+      "person2": {
+        "name": "Luis Otávio Lima Caminha",
+        "description": "Estudante de Engenharia de Software da UFC Campus Russas e Desenvolvedor do D-LEARN Board Game"
+      },
+      "person3": {
+        "name": "Tamires Ariane",
+        "description": "Graduada em Engenharia de Software na UFC Campus Russas e criadora do LEARN Board Game"
+      }
+    }
+  }
+}

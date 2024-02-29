@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 
 import { differenceInMinutes, format, parseISO } from 'date-fns';
 import { Flex } from '../Layout';
@@ -6,6 +7,8 @@ import { Container } from './HistoryTable.styles';
 import { useHistoryQuery } from '../../queries/useHistoryQuery';
 
 const HistoryTable: React.FC = () => {
+  const { t } = useTranslation();
+
   const { data: history, isFetching } = useHistoryQuery();
 
   function formatDate(date: string) {
@@ -26,12 +29,12 @@ const HistoryTable: React.FC = () => {
         <thead>
           <tr>
             <th>#</th>
-            <th>Vencedor</th>
-            <th>Score do vencedor</th>
-            <th>Inicio</th>
-            <th>Fim</th>
-            <th>Tempo de jogo</th>
-            <th>Host do jogo</th>
+            <th>{t('landing.historyTable.winner')}</th>
+            <th>{t('landing.historyTable.score')}</th>
+            <th>{t('landing.historyTable.start')}</th>
+            <th>{t('landing.historyTable.end')}</th>
+            <th>{t('landing.historyTable.gameTime')}</th>
+            <th>{t('landing.historyTable.host')}</th>
           </tr>
         </thead>
         <tbody>

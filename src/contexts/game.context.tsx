@@ -5,6 +5,7 @@ import {
   useMemo,
   useState,
 } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import {
   Card,
@@ -48,6 +49,7 @@ interface GameContextData {
 export const GameContext = createContext({} as GameContextData);
 
 export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
+  const { i18n } = useTranslation();
   const { audio: endGameSound } = useAudio('end-game.mp3');
   const [players, setPlayers] = useState<Player[]>([]);
 
@@ -60,8 +62,11 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
   const [startedAt, setStartedAt] = useState<Date | null>(null);
   const [endAt, setEndAt] = useState<Date | null>(null);
 
-  const { data: cardsFromServer = [], isFetching: isFetchingCards } =
-    useCardsQuery();
+  const {
+    data: cardsFromServer = [],
+    isFetching: isFetchingCards,
+    refetch,
+  } = useCardsQuery();
   const { isLogged, player: loggedUser } = usePlayerAuth();
 
   const turnOf = useMemo(() => players.find(item => item.active), [players]);
@@ -453,6 +458,19 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
       setCards(cardsFromServer);
     }
   }, [isFetchingCards, cardsFromServer]);
+
+  useEffect(() => {
+    refetch().then(translatedCards => {
+      const usedCardsIds = cards
+        .filter(card => card.used)
+        .map(card => card._id);
+
+      translatedCards.data?.forEach(translatedCard => {
+        if (usedCardsIds.includes(translatedCard._id))
+          translatedCard.used = true;
+      });
+    });
+  }, [i18n.language, refetch]);
 
   return <GameContext.Provider value={value}>{children}</GameContext.Provider>;
 };

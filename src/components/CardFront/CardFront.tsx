@@ -1,4 +1,5 @@
 import React, { useMemo } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import { Container } from './CardFront.styles';
 
@@ -15,6 +16,7 @@ interface CardFrontProps {
 }
 
 const CardFront: React.FC<CardFrontProps> = ({ type }) => {
+  const { t } = useTranslation();
   const icons = useMemo(
     () => ({
       [CardTypes.ArchDecisions]: <ArchDecisionIcon />,
@@ -27,10 +29,10 @@ const CardFront: React.FC<CardFrontProps> = ({ type }) => {
 
   const text = useMemo(
     () => ({
-      [CardTypes.ArchDecisions]: 'Decisões arquiteturais',
-      [CardTypes.QualityAttributes]: 'Atributos de qualidade',
-      [CardTypes.ArchPattern]: 'Padrões arquiteturais',
-      [CardTypes.LuckOrBadLuck]: 'Sorte ou revés',
+      [CardTypes.ArchDecisions]: t('game.cards.archDecisions'),
+      [CardTypes.QualityAttributes]: t('game.cards.qualityAttributes'),
+      [CardTypes.ArchPattern]: t('game.cards.archPattern'),
+      [CardTypes.LuckOrBadLuck]: t('game.cards.luckOrBadLuck'),
     }),
     [],
   );

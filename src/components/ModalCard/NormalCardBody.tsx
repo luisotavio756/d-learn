@@ -1,6 +1,7 @@
 /* eslint-disable global-require */
 /* eslint-disable import/no-dynamic-require */
 import React, { useCallback, useMemo, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import Stars from '../Stars/Stars';
 
@@ -14,6 +15,7 @@ import { Headline, Text, Button, ButtonGroup } from '../UI';
 import { useAudio } from '../../hooks/useAudio';
 
 const NormalCardBody: React.FC = () => {
+  const { t } = useTranslation();
   const [answered, setAnswered] = useState(false);
   const [answeredCorrectly, setAnsweredCorrectly] = useState(false);
 
@@ -72,7 +74,7 @@ const NormalCardBody: React.FC = () => {
         </Flex>
         <Flex className="description">
           <Text size="lg" weight="heavy">
-            Descrição:
+            {t('game.cards.description')}
           </Text>
           <Text size="lg" family="mono">
             {description}
@@ -93,10 +95,10 @@ const NormalCardBody: React.FC = () => {
           className="answer correctly"
         >
           <Headline size="sm" type="success">
-            Parabéns, você acertou! 🎉
+            {t('game.cards.congratulations')}
           </Headline>
           <Text size="lg" type="success" family="mono" align="center">
-            R: {solutionText}
+            {t('game.cards.acronymResponse')} {solutionText}
           </Text>
         </Flex>
 
@@ -107,10 +109,10 @@ const NormalCardBody: React.FC = () => {
           className="answer wrong"
         >
           <Headline size="sm" type="danger">
-            Poxa, você errou! 😕
+            {t('game.cards.damn')}
           </Headline>
           <Text size="lg" type="danger" family="mono" align="center">
-            R: {solutionText}
+            {t('game.cards.acronymResponse')} {solutionText}
           </Text>
         </Flex>
       </div>
@@ -132,7 +134,7 @@ const NormalCardBody: React.FC = () => {
               width="flex-fit"
               onClick={() => handleAnswer('F')}
             >
-              Falso
+              {t('game.cards.false')}
             </Button>
             <Button
               variant="green"
@@ -140,7 +142,7 @@ const NormalCardBody: React.FC = () => {
               width="flex-fit"
               onClick={() => handleAnswer('V')}
             >
-              Verdadeiro
+              {t('game.cards.true')}
             </Button>
           </ButtonGroup>
         </Flex>
@@ -152,7 +154,7 @@ const NormalCardBody: React.FC = () => {
               width="fit-content"
               onClick={handleEndPlay}
             >
-              🚀 Avançar {absoluteStars} casas
+              {t('game.cards.advance', { absoluteStars })}
             </Button>
           </ButtonGroup>
         )}
@@ -164,7 +166,7 @@ const NormalCardBody: React.FC = () => {
               width="fit-content"
               onClick={handleEndPlay}
             >
-              Passar para o próximo
+              {t('game.cards.pass')}
             </Button>
           </ButtonGroup>
         )}
