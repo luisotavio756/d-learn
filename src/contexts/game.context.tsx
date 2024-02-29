@@ -6,6 +6,7 @@ import {
   useState,
 } from 'react';
 import { useTranslation } from 'react-i18next';
+import { queryClient } from '../services/queryClient';
 
 import {
   Card,
@@ -228,6 +229,8 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
       .catch(error => {
         console.log(error);
       });
+
+    queryClient.invalidateQueries('history');
   }, [players, loggedUser, startedAt, isLogged]);
 
   const getCardOfType = useCallback(
