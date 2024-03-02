@@ -244,8 +244,14 @@
           "player": {
             "label": "Player",
             "placeholder": "Enter a name"
+          },
+          "timer": {
+            "label": "Timer",
+            "placeholder": "Enter the desired time in seconds"
           }
-        },
+        },    
+        "enableTimer": "Enable timer",
+        "disableTimer": "Disable timer",
         "removeLast": "Remove last",
         "addPlayer": "Add player",
         "startGame": "Start Game",

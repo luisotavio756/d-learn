@@ -244,8 +244,14 @@
           "player": {
             "label": "Jugador",
             "placeholder": "Ingresa un nombre"
+          },
+          "timer": {
+            "label": "Temporizador",
+            "placeholder": "Ingrese el tiempo deseado en segundos"
           }
         },
+        "enableTimer": "Activar temporizador",
+        "disableTimer": "Desactivar temporizador",
         "removeLast": "Eliminar último",
         "addPlayer": "Agregar jugador",
         "startGame": "Iniciar juego",

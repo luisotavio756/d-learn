@@ -38,7 +38,7 @@ interface GameContextData {
   turnOf: Player | undefined;
   gameIsBlocked: boolean;
   getCardOfType(type: CardTypes): Card | undefined;
-  startGame(data: Player[]): void;
+  startGame(data: Player[], timer: number): void;
   chooseCard(card: Card): void;
   answer(solution: string): boolean;
   passTurnToNextPlayer(): void;
@@ -190,7 +190,7 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
     }
   }, [players, setActivePlayer]);
 
-  const startGame = useCallback((data: Player[]) => {
+  const startGame = useCallback((data: Player[], timer: number) => {
     const playersWithActivePlayer = data.map((item, i) => ({
       ...item,
       active: i === 0,
@@ -199,7 +199,7 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
     setPlayers(playersWithActivePlayer);
     setGameStarted(true);
     setStartedAt(new Date());
-    setTimer(2); // MOCKADO
+    setTimer(timer);
   }, []);
 
   const sendGameInfoReport = useCallback(() => {

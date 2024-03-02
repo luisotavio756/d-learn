@@ -75,11 +75,11 @@ const NormalCardBody: React.FC = () => {
     setTimeIsOver(true);
     timerAudio.play();
   }, []);
-
+  
   return (
     <NormalCardBodyContainer>
       <div>
-        {timer !== null && (
+        {timer !== null && !isNaN(timer) && (
         <Flex className="timer" justifyContent="flex-end" >
           <Timer remainingTime={timer} timeIsOver={handleTimeIsOver} timeIsRunning={timeIsRunning} />
         </Flex>
