@@ -75,14 +75,18 @@ const NormalCardBody: React.FC = () => {
     setTimeIsOver(true);
     timerAudio.play();
   }, []);
-  
+
   return (
     <NormalCardBodyContainer>
       <div>
         {timer !== null && !isNaN(timer) && (
-        <Flex className="timer" justifyContent="flex-end" >
-          <Timer remainingTime={timer} timeIsOver={handleTimeIsOver} timeIsRunning={timeIsRunning} />
-        </Flex>
+          <Flex className="timer" justifyContent="flex-end">
+            <Timer
+              remainingTime={timer}
+              timeIsOver={handleTimeIsOver}
+              timeIsRunning={timeIsRunning}
+            />
+          </Flex>
         )}
         <Flex shouldShow={!!imgUrl} justifyContent="center" className="img">
           <img src={activeCard?.imgUrl} alt={title} />
@@ -146,7 +150,11 @@ const NormalCardBody: React.FC = () => {
         </Flex>
       </div>
       <div className="actions">
-        <Flex gap={16} shouldShow={!answered && !timeIsOver} flexDirection="column">
+        <Flex
+          gap={16}
+          shouldShow={!answered && !timeIsOver}
+          flexDirection="column"
+        >
           <Flex justifyContent="center" gap={4}>
             <PlayerPin
               playerId={turnOf?.id as number}
@@ -198,7 +206,7 @@ const NormalCardBody: React.FC = () => {
               {t('game.cards.pass')}
             </Button>
           </ButtonGroup>
-        ): null}
+        ) : null}
       </div>
     </NormalCardBodyContainer>
   );

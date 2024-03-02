@@ -9,7 +9,7 @@ import {
   FiUserMinus,
   FiUserPlus,
 } from 'react-icons/fi';
-import { BsClockHistory } from "react-icons/bs";
+import { BsClockHistory } from 'react-icons/bs';
 import { useTheme } from 'styled-components';
 
 import Modal from '../Modal';
@@ -45,25 +45,27 @@ const ModalStartGame: React.FC<IModalStartGameProps> = ({ isLoading }) => {
     if (Object.values(playersData).every(item => !item)) {
       return;
     }
-  
+
     const startSquare = board[0];
-  
+
     const colors = {
       0: theme.colors.red[500],
       1: theme.colors.green[500],
       2: theme.colors.gray[700],
       3: theme.colors.blue[300],
     };
-  
-    const updatedPlayers = Object.values(playersData).map<Player>((name, index) => ({
-      id: index + 1,
-      name,
-      score: 0,
-      color: colors[index as 0 | 1 | 2 | 3],
-      square_id: startSquare.id,
-      active: false,
-    }));
-  
+
+    const updatedPlayers = Object.values(playersData).map<Player>(
+      (name, index) => ({
+        id: index + 1,
+        name,
+        score: 0,
+        color: colors[index as 0 | 1 | 2 | 3],
+        square_id: startSquare.id,
+        active: false,
+      }),
+    );
+
     startGame(updatedPlayers, parseInt(timer, 10));
   });
 
@@ -154,7 +156,9 @@ const ModalStartGame: React.FC<IModalStartGameProps> = ({ isLoading }) => {
               <Input
                 type="number"
                 label={t('game.modals.startGame.inputs.timer.label')}
-                placeholder={t('game.modals.startGame.inputs.timer.placeholder')}
+                placeholder={t(
+                  'game.modals.startGame.inputs.timer.placeholder',
+                )}
                 name="timer"
                 register={register}
                 min={30}
@@ -166,10 +170,13 @@ const ModalStartGame: React.FC<IModalStartGameProps> = ({ isLoading }) => {
             <Button
               width="fit-content"
               size="sm"
-              variant={`${isActiveTimer ? "yellow" : "green" }-outline`}
+              variant={`${isActiveTimer ? 'yellow' : 'green'}-outline`}
               onClick={handleActiveTimer}
             >
-              <BsClockHistory /> {isActiveTimer ? t('game.modals.startGame.disableTimer') : t('game.modals.startGame.enableTimer') }
+              <BsClockHistory />{' '}
+              {isActiveTimer
+                ? t('game.modals.startGame.disableTimer')
+                : t('game.modals.startGame.enableTimer')}
             </Button>
             {playersQuantity > 1 && (
               <Button
