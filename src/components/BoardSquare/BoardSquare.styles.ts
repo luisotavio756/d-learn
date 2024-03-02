@@ -1,7 +1,5 @@
 import styled, { css } from 'styled-components';
 
-import StartSquareImg from '../../assets/start-square.png';
-import LuckSquareImg from '../../assets/luck-square.png';
 import { Player, SquareTypes } from '../../types';
 import { breakpoints } from '../../styles/breakpoints';
 
@@ -22,33 +20,35 @@ export const Container = styled.div<BoardSquareProps>`
   justify-content: center;
   align-items: center;
   position: relative;
+  border: 0.5px solid black;
 
   > svg {
     width: 3.25rem;
     height: 3.25rem;
   }
 
+  .star {
+    position: absolute;
+    right: 4px;
+    top: 4px;
+    z-index: 0;
+
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+    background: #fff;
+
+    svg {
+      font-size: ${props => props.theme.fontSize.xs};
+      color: ${props => props.theme.colors.blue[600]};
+      fill: ${props => props.theme.colors.blue[600]};
+    }
+  }
+
   ${props =>
-    props.type !== SquareTypes.Start &&
-    props.type !== SquareTypes.LuckOrBadLuck &&
+    props.type === SquareTypes.Start &&
     css`
-      .star {
-        position: absolute;
-        right: 4px;
-        top: 4px;
-        z-index: 0;
-
-        width: 1rem;
-        height: 1rem;
-        border-radius: 50%;
-        background: #fff;
-
-        svg {
-          font-size: ${props => props.theme.fontSize.xs};
-          color: ${props => props.theme.colors.blue[600]};
-          fill: ${props => props.theme.colors.blue[600]};
-        }
-      }
+      background: ${props.theme.colors.gray[100]};
     `}
 
   ${props =>
@@ -58,31 +58,21 @@ export const Container = styled.div<BoardSquareProps>`
     `}
 
   ${props =>
-    props.type === SquareTypes.ArchPattern &&
-    css`
-      background: ${props.theme.colors.red[600]};
-    `}
-
-  ${props =>
     props.type === SquareTypes.QualityAttributes &&
     css`
       background: ${props.theme.colors.yellow[500]};
     `}
 
   ${props =>
-    props.type === SquareTypes.Start &&
+    props.type === SquareTypes.ArchPattern &&
     css`
-      background-image: url(${StartSquareImg});
-      background-repeat: no-repeat;
-      background-size: cover;
+      background: ${props.theme.colors.red[600]};
     `}
 
   ${props =>
     props.type === SquareTypes.LuckOrBadLuck &&
     css`
-      background-image: url(${LuckSquareImg});
-      background-repeat: no-repeat;
-      background-size: contain;
+      background: ${props.theme.colors.ice[900]};
     `}
 
   @media screen and (max-width: ${breakpoints['2xl']}) {
