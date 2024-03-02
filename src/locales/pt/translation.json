@@ -142,6 +142,8 @@
       "congratulations": "Parabéns, você acertou! 🎉",
       "acronymResponse": "R:",
       "damn": "Poxa, você errou! 😕",
+      "timerIsOver": "Poxa, o tempo esgotou! 💤",
+      "beFaster": "Tente ser mais rápido da próxima vez!",
       "false": "Falso",
       "true": "Verdadeiro",
       "advance": "🚀 Avançar {{absoluteStars}} casas",

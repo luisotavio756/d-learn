@@ -142,6 +142,8 @@
       "congratulations": "¡Felicidades, lo has acertado! 🎉",
       "acronymResponse": "R:",
       "damn": "¡Vaya, te has equivocado! 😕",
+      "timerIsOver": "¡Ups, se acabó el tiempo! 💤",
+      "beFaster": "¡Intenta ser más rápido la próxima vez!",
       "false": "Falso",
       "true": "Verdadero",
       "advance": "🚀 Avanzar {{absoluteStars}} casillas",

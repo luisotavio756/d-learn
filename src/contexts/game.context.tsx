@@ -30,6 +30,7 @@ interface GameProviderProps {
 interface GameContextData {
   board: Square[];
   cards: Card[];
+  timer: number | null;
   activeCard: Card | null;
   players: Player[];
   gameStarted: boolean;
@@ -58,6 +59,7 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
   const [gameEnd, setGameEnd] = useState(false);
   const [board, setBoard] = useState<Square[]>(INITIAL_BOARD);
   const [cards, setCards] = useState<Card[]>(INITIAL_CARDS);
+  const [timer, setTimer] = useState<number | null>(null);
   const [activeCard, setActiveCard] = useState<Card | null>(null);
   const [startedAt, setStartedAt] = useState<Date | null>(null);
   const [endAt, setEndAt] = useState<Date | null>(null);
@@ -197,6 +199,7 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
     setPlayers(playersWithActivePlayer);
     setGameStarted(true);
     setStartedAt(new Date());
+    setTimer(2); // MOCKADO
   }, []);
 
   const sendGameInfoReport = useCallback(() => {
@@ -400,6 +403,7 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
         setBoard(INITIAL_BOARD);
         setActiveCard(null);
         setGameStarted(false);
+        setTimer(null);
       }
     },
     [setActivePlayer],
@@ -422,6 +426,7 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
       turnOf,
       board,
       cards,
+      timer,
       activeCard,
       gameIsBlocked,
       passTurnToNextPlayer,
@@ -440,6 +445,7 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
       turnOf,
       board,
       cards,
+      timer,
       activeCard,
       gameIsBlocked,
       passTurnToNextPlayer,

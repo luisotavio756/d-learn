@@ -142,6 +142,8 @@
       "congratulations": "Congratulations, you got it right! 🎉",
       "acronymResponse": "A:",
       "damn": "Oh no, you missed! 😕",
+      "timerIsOver": "Oops, time's up! 💤",
+      "beFaster": "Try to be faster next time!",
       "false": "False",
       "true": "True",
       "advance": "🚀 Advance {{absoluteStars}} spaces",
