@@ -142,6 +142,8 @@
       "congratulations": "Parabéns, você acertou! 🎉",
       "acronymResponse": "R:",
       "damn": "Poxa, você errou! 😕",
+      "timerIsOver": "Poxa, o tempo esgotou! 💤",
+      "beFaster": "Tente ser mais rápido da próxima vez!",
       "false": "Falso",
       "true": "Verdadeiro",
       "advance": "🚀 Avançar {{absoluteStars}} casas",
@@ -242,8 +244,14 @@
           "player": {
             "label": "Jogador",
             "placeholder": "Digite um nome"
+          },
+          "timer": {
+            "label": "Temporizador",
+            "placeholder": "Digite o tempo desejado em segundos"
           }
         },
+        "enableTimer": "Ativar temporizador",
+        "disableTimer": "Desativar temporizador",
         "removeLast": "Remover ultimo",
         "addPlayer": "Adicionar jogador",
         "startGame": "Iniciar jogo",

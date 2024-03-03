@@ -142,6 +142,8 @@
       "congratulations": "¡Felicidades, lo has acertado! 🎉",
       "acronymResponse": "R:",
       "damn": "¡Vaya, te has equivocado! 😕",
+      "timerIsOver": "¡Ups, se acabó el tiempo! 💤",
+      "beFaster": "¡Intenta ser más rápido la próxima vez!",
       "false": "Falso",
       "true": "Verdadero",
       "advance": "🚀 Avanzar {{absoluteStars}} casillas",
@@ -242,8 +244,14 @@
           "player": {
             "label": "Jugador",
             "placeholder": "Ingresa un nombre"
+          },
+          "timer": {
+            "label": "Temporizador",
+            "placeholder": "Ingrese el tiempo deseado en segundos"
           }
         },
+        "enableTimer": "Activar temporizador",
+        "disableTimer": "Desactivar temporizador",
         "removeLast": "Eliminar último",
         "addPlayer": "Agregar jugador",
         "startGame": "Iniciar juego",

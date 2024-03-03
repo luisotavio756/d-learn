@@ -9,6 +9,7 @@ import {
   FiUserMinus,
   FiUserPlus,
 } from 'react-icons/fi';
+import { BsClockHistory } from 'react-icons/bs';
 import { useTheme } from 'styled-components';
 
 import Modal from '../Modal';
@@ -34,13 +35,14 @@ const ModalStartGame: React.FC<IModalStartGameProps> = ({ isLoading }) => {
   const theme = useTheme();
 
   const [playersQuantity, setPlayersQuantity] = useState(1);
+  const [isActiveTimer, setIsActiveTimer] = useState(false);
 
   const { register, unregister, handleSubmit } = useForm<FormData>();
   const { gameStarted, board, startGame } = useGame();
   const { mode, isLogged, setMode } = usePlayerAuth();
 
-  const onSubmit = handleSubmit(data => {
-    if (Object.values(data).every(item => !item)) {
+  const onSubmit = handleSubmit(({ timer, ...playersData }) => {
+    if (Object.values(playersData).every(item => !item)) {
       return;
     }
 
@@ -53,16 +55,18 @@ const ModalStartGame: React.FC<IModalStartGameProps> = ({ isLoading }) => {
       3: theme.colors.blue[300],
     };
 
-    const updatedPlayers = Object.values(data).map<Player>((name, index) => ({
-      id: index + 1,
-      name,
-      score: 0,
-      color: colors[index as 0 | 1 | 2 | 3],
-      square_id: startSquare.id,
-      active: false,
-    }));
+    const updatedPlayers = Object.values(playersData).map<Player>(
+      (name, index) => ({
+        id: index + 1,
+        name,
+        score: 0,
+        color: colors[index as 0 | 1 | 2 | 3],
+        square_id: startSquare.id,
+        active: false,
+      }),
+    );
 
-    startGame(updatedPlayers);
+    startGame(updatedPlayers, parseInt(timer, 10));
   });
 
   const addPlayer = useCallback(() => {
@@ -82,6 +86,11 @@ const ModalStartGame: React.FC<IModalStartGameProps> = ({ isLoading }) => {
     setMode(PlayerMode.NoChoosen);
   }, [setMode]);
 
+  const handleActiveTimer = useCallback(() => {
+    unregister('timer');
+    setIsActiveTimer(!isActiveTimer);
+  }, [unregister, isActiveTimer]);
+
   useEffect(() => {
     window.addEventListener('keypress', event => {
       if (event.key === 'Enter') {
@@ -100,7 +109,7 @@ const ModalStartGame: React.FC<IModalStartGameProps> = ({ isLoading }) => {
 
   return (
     <Modal
-      width="454px"
+      width="550px"
       isOpen={
         !gameStarted &&
         ![
@@ -141,10 +150,36 @@ const ModalStartGame: React.FC<IModalStartGameProps> = ({ isLoading }) => {
                 )}
                 name={`player${i}`}
                 register={register}
+                required={true}
               />
             ))}
+            {isActiveTimer && (
+              <Input
+                type="number"
+                label={t('game.modals.startGame.inputs.timer.label')}
+                placeholder={t(
+                  'game.modals.startGame.inputs.timer.placeholder',
+                )}
+                name="timer"
+                register={register}
+                min={30}
+                max={90}
+                required={true}
+              />
+            )}
           </Flex>
           <div className="button-group">
+            <Button
+              width="fit-content"
+              size="sm"
+              variant={`${isActiveTimer ? 'yellow' : 'green'}-outline`}
+              onClick={handleActiveTimer}
+            >
+              <BsClockHistory />{' '}
+              {isActiveTimer
+                ? t('game.modals.startGame.disableTimer')
+                : t('game.modals.startGame.enableTimer')}
+            </Button>
             {playersQuantity > 1 && (
               <Button
                 width="fit-content"

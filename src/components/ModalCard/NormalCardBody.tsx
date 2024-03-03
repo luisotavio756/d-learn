@@ -6,6 +6,7 @@ import { useTranslation } from 'react-i18next';
 import Stars from '../Stars/Stars';
 
 import PlayerPin from '../PlayerPin';
+import Timer from '../Timer';
 import { NormalCardBodyContainer } from './ModalCard.styles';
 import { Card, Player } from '../../types';
 import { useGame } from '../../hooks/useGame.hook';
@@ -18,10 +19,13 @@ const NormalCardBody: React.FC = () => {
   const { t } = useTranslation();
   const [answered, setAnswered] = useState(false);
   const [answeredCorrectly, setAnsweredCorrectly] = useState(false);
+  const [timeIsOver, setTimeIsOver] = useState(false);
+  const [timeIsRunning, setTimeIsRunning] = useState(true);
 
-  const { activeCard, turnOf, answer, endPlay } = useGame();
+  const { timer, activeCard, turnOf, answer, endPlay } = useGame();
   const { audio: incorrectAudio } = useAudio('incorrect.mp3');
   const { audio: successAudio } = useAudio('success.mp3');
+  const { audio: timerAudio } = useAudio('timer.mp3');
 
   const {
     title,
@@ -51,6 +55,7 @@ const NormalCardBody: React.FC = () => {
       }
 
       setAnswered(true);
+      setTimeIsRunning(false);
     },
     [answer, incorrectAudio, successAudio],
   );
@@ -66,9 +71,23 @@ const NormalCardBody: React.FC = () => {
     }
   }, [answered, answeredCorrectly, activeCard, endPlay]);
 
+  const handleTimeIsOver = useCallback(() => {
+    setTimeIsOver(true);
+    timerAudio.play();
+  }, []);
+
   return (
     <NormalCardBodyContainer>
       <div>
+        {timer !== null && !isNaN(timer) && (
+          <Flex className="timer" justifyContent="flex-end">
+            <Timer
+              remainingTime={timer}
+              timeIsOver={handleTimeIsOver}
+              timeIsRunning={timeIsRunning}
+            />
+          </Flex>
+        )}
         <Flex shouldShow={!!imgUrl} justifyContent="center" className="img">
           <img src={activeCard?.imgUrl} alt={title} />
         </Flex>
@@ -115,9 +134,27 @@ const NormalCardBody: React.FC = () => {
             {t('game.cards.acronymResponse')} {solutionText}
           </Text>
         </Flex>
+
+        <Flex
+          shouldShow={timeIsOver}
+          alignItems="center"
+          flexDirection="column"
+          className="answer wrong"
+        >
+          <Headline size="sm" type="danger">
+            {t('game.cards.timerIsOver')}
+          </Headline>
+          <Text size="lg" type="danger" family="mono" align="center">
+            {t('game.cards.beFaster')}
+          </Text>
+        </Flex>
       </div>
       <div className="actions">
-        <Flex gap={16} shouldShow={!answered} flexDirection="column">
+        <Flex
+          gap={16}
+          shouldShow={!answered && !timeIsOver}
+          flexDirection="column"
+        >
           <Flex justifyContent="center" gap={4}>
             <PlayerPin
               playerId={turnOf?.id as number}
@@ -158,7 +195,7 @@ const NormalCardBody: React.FC = () => {
             </Button>
           </ButtonGroup>
         )}
-        {answered && !answeredCorrectly && (
+        {timeIsOver || (answered && !answeredCorrectly) ? (
           <ButtonGroup justifyContent="flex-end">
             <Button
               variant="red"
@@ -169,7 +206,7 @@ const NormalCardBody: React.FC = () => {
               {t('game.cards.pass')}
             </Button>
           </ButtonGroup>
-        )}
+        ) : null}
       </div>
     </NormalCardBodyContainer>
   );
