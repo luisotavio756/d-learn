@@ -109,7 +109,7 @@ const ModalStartGame: React.FC<IModalStartGameProps> = ({ isLoading }) => {
 
   return (
     <Modal
-      width="500px"
+      width="550px"
       isOpen={
         !gameStarted &&
         ![
@@ -150,6 +150,7 @@ const ModalStartGame: React.FC<IModalStartGameProps> = ({ isLoading }) => {
                 )}
                 name={`player${i}`}
                 register={register}
+                required={true}
               />
             ))}
             {isActiveTimer && (
@@ -163,6 +164,7 @@ const ModalStartGame: React.FC<IModalStartGameProps> = ({ isLoading }) => {
                 register={register}
                 min={30}
                 max={90}
+                required={true}
               />
             )}
           </Flex>
