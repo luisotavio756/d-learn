@@ -23,11 +23,13 @@ type FormData = {
 interface IModalCreateCardProps {
   isOpen: boolean;
   toggleModal(): void;
+  isSuggestion: boolean;
 }
 
 const ModalCreateCard: React.FC<IModalCreateCardProps> = ({
   isOpen,
   toggleModal,
+  isSuggestion,
 }) => {
   const { t } = useTranslation();
   const [isLoading, setIsLoading] = useState(false);
@@ -119,7 +121,11 @@ const ModalCreateCard: React.FC<IModalCreateCardProps> = ({
     <Modal
       width="540px"
       isOpen={isOpen}
-      title={t('admin.cards.modals.newCard.title')}
+      title={
+        isSuggestion
+          ? t('admin.cards.modals.newCard.titleSuggestion')
+          : t('admin.cards.modals.newCard.title')
+      }
       toggleModal={toggleModal}
     >
       <Container>

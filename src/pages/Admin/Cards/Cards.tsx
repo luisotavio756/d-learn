@@ -274,6 +274,7 @@ const Cards: React.FC = () => {
       <ModalCreateCard
         isOpen={modalCreateCardIsOpen}
         toggleModal={toggleModalCreateCard}
+        isSuggestion={false}
       />
       <ModalEditCard
         isOpen={modalEditCardIsOpen}

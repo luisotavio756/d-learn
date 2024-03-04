@@ -60,6 +60,7 @@
       "modals": {
         "newCard": {
           "title": "Nueva tarjeta",
+          "titleSuggestion": "Sugerencia de tarjeta",
           "toastSuccess": {
             "title": "¡Éxito!",
             "description": "¡Tarjeta creada exitosamente!"
@@ -279,6 +280,7 @@
   },
   "landing": {
     "header": {
+      "cardSuggestion": "SUGERENCIA DE TARJETA",
       "play": "JUGAR",
       "feedback": "DAR FEEDBACK",
       "ranking": "RANKING GLOBAL",

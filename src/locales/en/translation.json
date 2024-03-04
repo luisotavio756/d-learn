@@ -60,6 +60,7 @@
       "modals": {
         "newCard": {
           "title": "New card",
+          "titleSuggestion": "Card suggestion",
           "toastSuccess": {
             "title": "Success!",
             "description": "Card created successfully!"
@@ -249,7 +250,7 @@
             "label": "Timer",
             "placeholder": "Enter the desired time in seconds"
           }
-        },    
+        },
         "enableTimer": "Enable timer",
         "disableTimer": "Disable timer",
         "removeLast": "Remove last",
@@ -279,6 +280,7 @@
   },
   "landing": {
     "header": {
+      "cardSuggestion": "CARD SUGGESTION",
       "play": "PLAY",
       "feedback": "GIVE FEEDBACK",
       "ranking": "GLOBAL RANKING",
