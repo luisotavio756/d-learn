@@ -98,7 +98,9 @@ const Suggestions: React.FC = () => {
   const filteredCards = useMemo(
     () =>
       selectedCardType !== 'ALL'
-        ? cards.filter(item => item.type === selectedCardType && item.isSuggestion)
+        ? cards.filter(
+            item => item.type === selectedCardType && item.isSuggestion,
+          )
         : cards.filter(item => item.isSuggestion),
     [selectedCardType, cards],
   );

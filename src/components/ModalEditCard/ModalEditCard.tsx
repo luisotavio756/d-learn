@@ -262,7 +262,10 @@ const ModalEditCard: React.FC<IModalEditCardProps> = ({
             disabled={isLoading}
             variant={isSuggestion ? 'green' : 'blue'}
           >
-            <FiCheck /> {isSuggestion ? t('admin.cards.modals.editCard.editCardSuggestion') : t('admin.cards.modals.editCard.editCard')}
+            <FiCheck />{' '}
+            {isSuggestion
+              ? t('admin.cards.modals.editCard.editCardSuggestion')
+              : t('admin.cards.modals.editCard.editCard')}
           </Button>
         </form>
       </Container>

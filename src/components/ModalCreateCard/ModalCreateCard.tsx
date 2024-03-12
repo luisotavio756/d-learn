@@ -245,7 +245,10 @@ const ModalCreateCard: React.FC<IModalCreateCardProps> = ({
             loadingText={t('admin.cards.modals.newCard.wait')}
             disabled={isLoading}
           >
-            <FiCheck /> {isSuggestion ? t('admin.cards.modals.newCard.createCardSuggestion') : t('admin.cards.modals.newCard.createCard')}
+            <FiCheck />{' '}
+            {isSuggestion
+              ? t('admin.cards.modals.newCard.createCardSuggestion')
+              : t('admin.cards.modals.newCard.createCard')}
           </Button>
         </form>
       </Container>

@@ -2,11 +2,11 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { FiAward, FiLogOut, FiTablet } from 'react-icons/fi';
+import { TbCards } from 'react-icons/tb';
 import { Route, Routes, useNavigate } from 'react-router-dom';
 import { Container, Sidebar, Content, Header, Main } from './Dashboard.styles';
 import { Headline, Text, LanguageSelector } from '../../../components/UI';
 import { useAuthAdmin } from '../../../hooks/useAdminAuth';
-import { TbCards } from "react-icons/tb";
 
 import History from '../History';
 import Cards from '../Cards';
