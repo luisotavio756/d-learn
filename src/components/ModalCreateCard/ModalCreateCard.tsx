@@ -77,6 +77,7 @@ const ModalCreateCard: React.FC<IModalCreateCardProps> = ({
       formData.append('solution', solution);
       formData.append('solutionText', solutionText);
       formData.append('stars', stars);
+      formData.append('isSuggestion', isSuggestion.toString());
 
       if (selectedImg) {
         formData.append('img', selectedImg);
@@ -244,7 +245,7 @@ const ModalCreateCard: React.FC<IModalCreateCardProps> = ({
             loadingText={t('admin.cards.modals.newCard.wait')}
             disabled={isLoading}
           >
-            <FiCheck /> {t('admin.cards.modals.newCard.createCard')}
+            <FiCheck /> {isSuggestion ? t('admin.cards.modals.newCard.createCardSuggestion') : t('admin.cards.modals.newCard.createCard')}
           </Button>
         </form>
       </Container>

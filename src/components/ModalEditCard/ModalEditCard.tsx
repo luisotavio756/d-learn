@@ -29,12 +29,14 @@ interface IModalEditCardProps {
   card: Card;
   isOpen: boolean;
   toggleModal(): void;
+  isSuggestion: boolean;
 }
 
 const ModalEditCard: React.FC<IModalEditCardProps> = ({
   isOpen,
   card,
   toggleModal,
+  isSuggestion,
 }) => {
   const { t } = useTranslation();
   const [isLoading, setIsLoading] = useState(false);
@@ -85,6 +87,7 @@ const ModalEditCard: React.FC<IModalEditCardProps> = ({
       formData.append('solution', solution);
       formData.append('solutionText', solutionText);
       formData.append('stars', stars);
+      formData.append('isSuggestion', 'false');
 
       if (selectedImg) {
         formData.append('img', selectedImg);
@@ -135,7 +138,11 @@ const ModalEditCard: React.FC<IModalEditCardProps> = ({
     <Modal
       width="540px"
       isOpen={isOpen}
-      title={t('admin.cards.modals.editCard.title')}
+      title={
+        isSuggestion
+          ? t('admin.cards.modals.editCard.titleSuggestion')
+          : t('admin.cards.modals.editCard.title')
+      }
       toggleModal={toggleModal}
     >
       <Container>
@@ -253,8 +260,9 @@ const ModalEditCard: React.FC<IModalEditCardProps> = ({
             loading={isLoading}
             loadingText={t('admin.cards.modals.editCard.wait')}
             disabled={isLoading}
+            variant={isSuggestion ? 'green' : 'blue'}
           >
-            <FiCheck /> {t('admin.cards.modals.editCard.editCard')}
+            <FiCheck /> {isSuggestion ? t('admin.cards.modals.editCard.editCardSuggestion') : t('admin.cards.modals.editCard.editCard')}
           </Button>
         </form>
       </Container>

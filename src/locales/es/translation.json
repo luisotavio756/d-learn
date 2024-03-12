@@ -72,7 +72,8 @@
           "suggestion": "Sugerencia: 180px x 84px",
           "remove": "Eliminar",
           "wait": "Por favor espera...",
-          "createCard": "Crear tarjeta"
+          "createCard": "Crear tarjeta",
+          "createCardSuggestion": "Sugerir tarjeta"
         },
         "deleteCard": {
           "title": "Eliminar tarjeta",
@@ -91,6 +92,7 @@
         },
         "editCard": {
           "title": "Editar tarjeta",
+          "titleSuggestion": "Sugerencia de tarjeta",
           "toastSuccess": {
             "title": "¡Éxito!",
             "description": "¡Tarjeta editada exitosamente!"
@@ -102,16 +104,22 @@
           "suggestion": "Sugerencia: 180px x 84px",
           "undo": "Deshacer",
           "wait": "Por favor espera...",
-          "editCard": "Editar tarjeta"
+          "editCard": "Editar tarjeta",
+          "editCardSuggestion": "Aprobar sugerencia"
         },
         "detailsCard": {
           "title": "Detalles de tarjeta"
         }
       }
     },
+    "suggestions": {
+      "title": "Suggested cards",
+      "empty": "No hay sugerencias registradas"
+    },
     "dashboard": {
       "cards": "Tarjetas",
       "games": "Juegos",
+      "suggestions": "Sugerencias",
       "exit": "Salir",
       "welcome": "Bienvenido,"
     },
