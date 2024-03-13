@@ -39,7 +39,7 @@ export interface Card {
   solution?: 'V' | 'F';
   solutionText?: string;
   luckType?: 'luck' | 'bad-luck';
-  isSuggestion: boolean;
+  isSuggestion?: boolean;
   imgUrl?: string;
   starsCalcType?: number;
   starsCalc?(stars: number): number;
