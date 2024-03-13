@@ -1,5 +1,4 @@
 import React from 'react';
-import '../../utils/i18n';
 import { Route, Routes } from 'react-router-dom';
 
 import { AuthAdminProvider } from '../../contexts/authAdmin.context';

@@ -1,5 +1,4 @@
 import React from 'react';
-import '../../utils/i18n';
 
 import { Banner, Container } from './Landing.styles';
 import { Info } from './Info';
