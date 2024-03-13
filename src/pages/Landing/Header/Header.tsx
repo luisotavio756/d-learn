@@ -9,11 +9,16 @@ import './scroll.js';
 import { NavBar, NavContent, NavMenu } from './Header.styles';
 import { Headline, Text, LanguageSelector } from '../../../components/UI';
 import { Flex } from '../../../components/Layout';
+import ModalCreateCard from '../../../components/ModalCreateCard/ModalCreateCard';
+
+import { useModal } from '../../../hooks/useModal';
 
 export default function Header() {
   const { t } = useTranslation();
 
   const [menuIsOpen, setMenuIsOpen] = useState(false);
+  const { isOpen: modalCreateCardIsOpen, toggleModal: toggleModalCreateCard } =
+    useModal();
   const navigate = useNavigate();
 
   function handleNavigate(link: string) {
@@ -43,6 +48,11 @@ export default function Header() {
         <NavMenu isOpen={menuIsOpen}>
           <img src={Logo} alt="Logo" />
           <ul>
+            <li onClick={toggleModalCreateCard} aria-hidden="true">
+              <Text align="center" type="light">
+                {t('landing.header.cardSuggestion')}
+              </Text>
+            </li>
             <li onClick={() => handleNavigate('/game')} aria-hidden="true">
               <Text align="center" type="light">
                 {t('landing.header.play')}
@@ -84,6 +94,11 @@ export default function Header() {
           </button>
         </NavMenu>
       </NavContent>
+      <ModalCreateCard
+        isOpen={modalCreateCardIsOpen}
+        toggleModal={toggleModalCreateCard}
+        isSuggestion
+      />
     </NavBar>
   );
 }

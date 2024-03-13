@@ -23,11 +23,13 @@ type FormData = {
 interface IModalCreateCardProps {
   isOpen: boolean;
   toggleModal(): void;
+  isSuggestion: boolean;
 }
 
 const ModalCreateCard: React.FC<IModalCreateCardProps> = ({
   isOpen,
   toggleModal,
+  isSuggestion,
 }) => {
   const { t } = useTranslation();
   const [isLoading, setIsLoading] = useState(false);
@@ -75,6 +77,7 @@ const ModalCreateCard: React.FC<IModalCreateCardProps> = ({
       formData.append('solution', solution);
       formData.append('solutionText', solutionText);
       formData.append('stars', stars);
+      formData.append('isSuggestion', isSuggestion.toString());
 
       if (selectedImg) {
         formData.append('img', selectedImg);
@@ -119,7 +122,11 @@ const ModalCreateCard: React.FC<IModalCreateCardProps> = ({
     <Modal
       width="540px"
       isOpen={isOpen}
-      title={t('admin.cards.modals.newCard.title')}
+      title={
+        isSuggestion
+          ? t('admin.cards.modals.newCard.titleSuggestion')
+          : t('admin.cards.modals.newCard.title')
+      }
       toggleModal={toggleModal}
     >
       <Container>
@@ -238,7 +245,10 @@ const ModalCreateCard: React.FC<IModalCreateCardProps> = ({
             loadingText={t('admin.cards.modals.newCard.wait')}
             disabled={isLoading}
           >
-            <FiCheck /> {t('admin.cards.modals.newCard.createCard')}
+            <FiCheck />{' '}
+            {isSuggestion
+              ? t('admin.cards.modals.newCard.createCardSuggestion')
+              : t('admin.cards.modals.newCard.createCard')}
           </Button>
         </form>
       </Container>
