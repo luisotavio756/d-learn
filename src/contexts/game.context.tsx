@@ -31,6 +31,7 @@ interface GameProviderProps {
 interface GameContextData {
   board: Square[];
   cards: Card[];
+  timer: number | null;
   activeCard: Card | null;
   players: Player[];
   gameStarted: boolean;
@@ -38,7 +39,7 @@ interface GameContextData {
   turnOf: Player | undefined;
   gameIsBlocked: boolean;
   getCardOfType(type: CardTypes): Card | undefined;
-  startGame(data: Player[]): void;
+  startGame(data: Player[], timer: number): void;
   chooseCard(card: Card): void;
   answer(solution: string): boolean;
   passTurnToNextPlayer(): void;
@@ -59,6 +60,7 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
   const [gameEnd, setGameEnd] = useState(false);
   const [board, setBoard] = useState<Square[]>(INITIAL_BOARD);
   const [cards, setCards] = useState<Card[]>(INITIAL_CARDS);
+  const [timer, setTimer] = useState<number | null>(null);
   const [activeCard, setActiveCard] = useState<Card | null>(null);
   const [startedAt, setStartedAt] = useState<Date | null>(null);
   const [endAt, setEndAt] = useState<Date | null>(null);
@@ -189,7 +191,7 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
     }
   }, [players, setActivePlayer]);
 
-  const startGame = useCallback((data: Player[]) => {
+  const startGame = useCallback((data: Player[], timer: number) => {
     const playersWithActivePlayer = data.map((item, i) => ({
       ...item,
       active: i === 0,
@@ -198,6 +200,7 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
     setPlayers(playersWithActivePlayer);
     setGameStarted(true);
     setStartedAt(new Date());
+    setTimer(timer);
   }, []);
 
   const sendGameInfoReport = useCallback(() => {
@@ -408,6 +411,7 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
         setBoard(INITIAL_BOARD);
         setActiveCard(null);
         setGameStarted(false);
+        setTimer(null);
       }
     },
     [setActivePlayer],
@@ -430,6 +434,7 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
       turnOf,
       board,
       cards,
+      timer,
       activeCard,
       gameIsBlocked,
       passTurnToNextPlayer,
@@ -448,6 +453,7 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
       turnOf,
       board,
       cards,
+      timer,
       activeCard,
       gameIsBlocked,
       passTurnToNextPlayer,

@@ -150,13 +150,13 @@ function Game() {
         }
       >
         <div className="top">
-          {board.slice(0, 14).map(item => (
+          {board.slice(0, 16).map(item => (
             <BoardSquare key={item.id} id={item.id} type={item.type} />
           ))}
         </div>
         <Flex justifyContent="space-between">
           <div className="column1">
-            {board.slice(34, 40).map(item => (
+            {board.slice(38, 44).map(item => (
               <BoardSquare
                 key={item.id}
                 id={item.id}
@@ -270,7 +270,7 @@ function Game() {
             </div>
           </Flex>
           <div className="column2">
-            {board.slice(14, 20).map(item => (
+            {board.slice(16, 22).map(item => (
               <BoardSquare
                 key={item.id}
                 id={item.id}
@@ -281,7 +281,7 @@ function Game() {
           </div>
         </Flex>
         <div className="bottom">
-          {board.slice(20, 34).map(item => (
+          {board.slice(22, 38).map(item => (
             <BoardSquare key={item.id} id={item.id} type={item.type} />
           ))}
         </div>

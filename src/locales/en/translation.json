@@ -15,10 +15,10 @@
         "empty": "No cards registered",
         "true": "True",
         "false": "False",
-        "archPattern": "Patrones arquitectónicos",
-        "archDecisions": "Decisiones arquitectónicas",
-        "qualityAttributes": "Atributos de calidad",
-        "luckOrBadLuck": "Suerte o mala suerte"
+        "archPattern": "Architectural Patterns",
+        "archDecisions": "Architectural Decisions",
+        "qualityAttributes": "Quality Attributes",
+        "luckOrBadLuck": "Luck or Bad Luck"
       },
       "inputs": {
         "selectCardType": {
@@ -60,6 +60,7 @@
       "modals": {
         "newCard": {
           "title": "New card",
+          "titleSuggestion": "Card suggestion",
           "toastSuccess": {
             "title": "Success!",
             "description": "Card created successfully!"
@@ -71,7 +72,8 @@
           "suggestion": "Suggestion: 180px x 84px",
           "remove": "Remove",
           "wait": "Please wait...",
-          "createCard": "Create card"
+          "createCard": "Create card",
+          "createCardSuggestion": "Suggest card"
         },
         "deleteCard": {
           "title": "Delete card",
@@ -90,6 +92,7 @@
         },
         "editCard": {
           "title": "Edit card",
+          "titleSuggestion": "Card suggestion",
           "toastSuccess": {
             "title": "Success!",
             "description": "Card edited successfully!"
@@ -101,16 +104,22 @@
           "suggestion": "Suggestion: 180px x 84px",
           "undo": "Undo",
           "wait": "Please wait...",
-          "editCard": "Edit card"
+          "editCard": "Edit card",
+          "editCardSuggestion": "Approve suggestion"
         },
         "detailsCard": {
           "title": "Card details"
         }
       }
     },
+    "suggestions": {
+      "title": "Suggested cards",
+      "empty": "No suggestions registered"
+    },
     "dashboard": {
       "cards": "Cards",
       "games": "Games",
+      "suggestions": "Suggestions",
       "exit": "Exit",
       "welcome": "Welcome,"
     },
@@ -142,6 +151,8 @@
       "congratulations": "Congratulations, you got it right! 🎉",
       "acronymResponse": "A:",
       "damn": "Oh no, you missed! 😕",
+      "timerIsOver": "Oops, time's up! 💤",
+      "beFaster": "Try to be faster next time!",
       "false": "False",
       "true": "True",
       "advance": "🚀 Advance {{absoluteStars}} spaces",
@@ -243,8 +254,14 @@
           "player": {
             "label": "Player",
             "placeholder": "Enter a name"
+          },
+          "timer": {
+            "label": "Timer",
+            "placeholder": "Enter the desired time in seconds"
           }
         },
+        "enableTimer": "Enable timer",
+        "disableTimer": "Disable timer",
         "removeLast": "Remove last",
         "addPlayer": "Add player",
         "startGame": "Start Game",
@@ -278,6 +295,7 @@
   },
   "landing": {
     "header": {
+      "cardSuggestion": "CARD SUGGESTION",
       "play": "PLAY",
       "feedback": "GIVE FEEDBACK",
       "ranking": "GLOBAL RANKING",

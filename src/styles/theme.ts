@@ -72,6 +72,7 @@ export const theme = {
     ice: {
       500: '#E7FAEB',
       700: '#c4f3ce',
+      900: '#689E73',
     },
     yellow: {
       actual: '#F4B40A',

@@ -2,6 +2,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { FiAward, FiLogOut, FiTablet } from 'react-icons/fi';
+import { TbCards } from 'react-icons/tb';
 import { Route, Routes, useNavigate } from 'react-router-dom';
 import { Container, Sidebar, Content, Header, Main } from './Dashboard.styles';
 import { Headline, Text, LanguageSelector } from '../../../components/UI';
@@ -9,6 +10,7 @@ import { useAuthAdmin } from '../../../hooks/useAdminAuth';
 
 import History from '../History';
 import Cards from '../Cards';
+import Suggestions from '../Suggestions';
 import { Flex } from '../../../components/Layout';
 
 const Dashboard: React.FC = () => {
@@ -31,6 +33,12 @@ const Dashboard: React.FC = () => {
             <FiTablet />
             <Text type="light" weight="heavy">
               {t('admin.dashboard.cards')}
+            </Text>
+          </li>
+          <li onClick={() => navigate('/admin/suggestions')} aria-hidden>
+            <TbCards />
+            <Text type="light" weight="heavy">
+              {t('admin.dashboard.suggestions')}
             </Text>
           </li>
           <li onClick={() => navigate('/admin/history')} aria-hidden>
@@ -63,6 +71,7 @@ const Dashboard: React.FC = () => {
         <Main>
           <Routes>
             <Route path="/cards" element={<Cards />} />
+            <Route path="/suggestions" element={<Suggestions />} />
             <Route path="/history" element={<History />} />
           </Routes>
         </Main>

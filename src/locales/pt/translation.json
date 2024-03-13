@@ -60,6 +60,7 @@
       "modals": {
         "newCard": {
           "title": "Nova carta",
+          "titleSuggestion": "Sugestão de carta",
           "toastSuccess": {
             "title": "Sucesso!",
             "description": "Carta criada com sucesso!"
@@ -71,7 +72,8 @@
           "suggestion": "Sugestão: 180px x 84px",
           "remove": "Remover",
           "wait": "Aguarde...",
-          "createCard": "Criar carta"
+          "createCard": "Criar carta",
+          "createCardSuggestion": "Sugerir carta"
         },
         "deleteCard": {
           "title": "Deletar carta",
@@ -90,6 +92,7 @@
         },
         "editCard": {
           "title": "Editar carta",
+          "titleSuggestion": "Sugestão de carta",
           "toastSuccess": {
             "title": "Sucesso!",
             "description": "Carta editada com sucesso!"
@@ -101,16 +104,22 @@
           "suggestion": "Sugestão: 180px x 84px",
           "undo": "Desfazer",
           "wait": "Aguarde...",
-          "editCard": "Editar carta"
+          "editCard": "Editar carta",
+          "editCardSuggestion": "Aprovar sugestão"
         },
         "detailsCard": {
           "title": "Detalhes da carta"
         }
       }
     },
+    "suggestions": {
+      "title": "Cartas sugeridas",
+      "empty": "Não há sugestões cadastradas"
+    },
     "dashboard": {
       "cards": "Cartas",
       "games": "Jogos",
+      "suggestions": "Sugestões",
       "exit": "Sair",
       "welcome": "Bem vindo,"
     },
@@ -142,6 +151,8 @@
       "congratulations": "Parabéns, você acertou! 🎉",
       "acronymResponse": "R:",
       "damn": "Poxa, você errou! 😕",
+      "timerIsOver": "Poxa, o tempo esgotou! 💤",
+      "beFaster": "Tente ser mais rápido da próxima vez!",
       "false": "Falso",
       "true": "Verdadeiro",
       "advance": "🚀 Avançar {{absoluteStars}} casas",
@@ -243,8 +254,14 @@
           "player": {
             "label": "Jogador",
             "placeholder": "Digite um nome"
+          },
+          "timer": {
+            "label": "Temporizador",
+            "placeholder": "Digite o tempo desejado em segundos"
           }
         },
+        "enableTimer": "Ativar temporizador",
+        "disableTimer": "Desativar temporizador",
         "removeLast": "Remover ultimo",
         "addPlayer": "Adicionar jogador",
         "startGame": "Iniciar jogo",
@@ -278,6 +295,7 @@
   },
   "landing": {
     "header": {
+      "cardSuggestion": "SUGESTÃO DE CARTA",
       "play": "JOGAR",
       "feedback": "DAR FEEDBACK",
       "ranking": "RANKING GLOBAL",
