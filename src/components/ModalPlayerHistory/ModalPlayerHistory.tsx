@@ -48,16 +48,21 @@ const ModalPlayerHistory: React.FC<ModalPlayerHistoryProps> = ({
             </tr>
           </thead>
           <tbody>
-            {isLogged && history?.filter(log => log.ownerId === player._id)
-            .sort((a, b) => new Date(b.endAt).getTime() - new Date(a.endAt).getTime())
-            .slice(0, 10)
-            .map((item, i) => (
-                <tr key={item._id}>
-                  <td>{item.ownerPlacing}º</td>
-                  <td>{formatDate(item.endAt)}</td>
-                  <td>{item.ownerScore}</td>
-                </tr>
-              ))}
+            {isLogged &&
+              history
+                ?.filter(log => log.ownerId === player._id)
+                .sort(
+                  (a, b) =>
+                    new Date(b.endAt).getTime() - new Date(a.endAt).getTime(),
+                )
+                .slice(0, 10)
+                .map((item, i) => (
+                  <tr key={item._id}>
+                    <td>{item.ownerPlacing}º</td>
+                    <td>{formatDate(item.endAt)}</td>
+                    <td>{item.ownerScore}</td>
+                  </tr>
+                ))}
           </tbody>
         </table>
       </Container>

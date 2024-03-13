@@ -208,7 +208,9 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
 
     const orderedPlayers = [...players].sort((a, b) => b.score - a.score);
 
-    const ownerPlayerIndex = orderedPlayers.findIndex(player => player.id === 1);
+    const ownerPlayerIndex = orderedPlayers.findIndex(
+      player => player.id === 1,
+    );
 
     const winnerPlayer = orderedPlayers[0];
     const ownerPlayer = orderedPlayers[ownerPlayerIndex];
@@ -221,7 +223,7 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
       ownerName: loggedUser.nickname,
       ownerId: loggedUser._id,
       ownerScore: ownerPlayer.score,
-      ownerPlacing: ownerPlayerIndex + 1
+      ownerPlacing: ownerPlayerIndex + 1,
     } as History;
 
     api

@@ -222,16 +222,16 @@ function Game() {
             <div className="controls">
               <ButtonGroup gap={4}>
                 {isLogged && (
-                <Button
-                  width="fit-content"
-                  size="sm"
-                  variant="yellow-outline"
-                  onClick={toggleModalPlayerHistory}
-                  disabled={gameIsBlocked}
-                >
-                  <FaHistory />
-                  {t('game.history')}
-                </Button>
+                  <Button
+                    width="fit-content"
+                    size="sm"
+                    variant="yellow-outline"
+                    onClick={toggleModalPlayerHistory}
+                    disabled={gameIsBlocked}
+                  >
+                    <FaHistory />
+                    {t('game.history')}
+                  </Button>
                 )}
                 <Button
                   width="fit-content"

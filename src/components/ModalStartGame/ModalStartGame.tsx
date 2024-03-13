@@ -108,8 +108,7 @@ const ModalStartGame: React.FC<IModalStartGameProps> = ({ isLoading }) => {
   }, []);
 
   useEffect(() => {
-    if(isLogged && player.nickname)
-      setValue('player0', player.nickname)
+    if (isLogged && player.nickname) setValue('player0', player.nickname);
   }, [isLogged, player]);
 
   return (
@@ -155,7 +154,7 @@ const ModalStartGame: React.FC<IModalStartGameProps> = ({ isLoading }) => {
                 )}
                 name={`player${i}`}
                 register={register}
-                required={true}
+                required
                 readOnly={i === 0 && isLogged}
               />
             ))}
@@ -170,7 +169,7 @@ const ModalStartGame: React.FC<IModalStartGameProps> = ({ isLoading }) => {
                 register={register}
                 min={30}
                 max={90}
-                required={true}
+                required
               />
             )}
           </Flex>
