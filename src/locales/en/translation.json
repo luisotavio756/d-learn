@@ -163,6 +163,7 @@
     },
     "turn": "turn of",
     "chooseCard": "Choose a card below",
+    "history": "History",
     "ranking": "Ranking",
     "endGame": "End Game",
     "exit": "Exit",
@@ -269,6 +270,12 @@
       "endGame": {
         "title": "Cancel Game",
         "message": "Are you sure you want to end the game now?"
+      },
+      "history": {
+        "title": "Match History",
+        "placing": "Placing",
+        "date": "Date",
+        "score": "Score"
       },
       "ranking": {
         "title": "Game Ranking",

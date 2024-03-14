@@ -9,6 +9,10 @@ export const Container = styled.div`
     color: ${props => props.theme.colors.gray[900]};
   }
 
+  h2 {
+    margin-left: 8px;
+  }
+
   table {
     margin-top: 2rem;
 

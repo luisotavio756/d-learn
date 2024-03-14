@@ -37,9 +37,9 @@ const ModalStartGame: React.FC<IModalStartGameProps> = ({ isLoading }) => {
   const [playersQuantity, setPlayersQuantity] = useState(1);
   const [isActiveTimer, setIsActiveTimer] = useState(false);
 
-  const { register, unregister, handleSubmit } = useForm<FormData>();
+  const { register, unregister, handleSubmit, setValue } = useForm<FormData>();
   const { gameStarted, board, startGame } = useGame();
-  const { mode, isLogged, setMode } = usePlayerAuth();
+  const { mode, isLogged, setMode, player } = usePlayerAuth();
 
   const onSubmit = handleSubmit(({ timer, ...playersData }) => {
     if (Object.values(playersData).every(item => !item)) {
@@ -107,6 +107,10 @@ const ModalStartGame: React.FC<IModalStartGameProps> = ({ isLoading }) => {
     };
   }, []);
 
+  useEffect(() => {
+    if (isLogged && player.nickname) setValue('player0', player.nickname);
+  }, [isLogged, player]);
+
   return (
     <Modal
       width="550px"
@@ -150,7 +154,8 @@ const ModalStartGame: React.FC<IModalStartGameProps> = ({ isLoading }) => {
                 )}
                 name={`player${i}`}
                 register={register}
-                required={true}
+                required
+                readOnly={i === 0 && isLogged}
               />
             ))}
             {isActiveTimer && (
@@ -164,7 +169,7 @@ const ModalStartGame: React.FC<IModalStartGameProps> = ({ isLoading }) => {
                 register={register}
                 min={30}
                 max={90}
-                required={true}
+                required
               />
             )}
           </Flex>
