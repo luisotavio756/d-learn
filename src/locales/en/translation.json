@@ -349,6 +349,10 @@
       "person3": {
         "name": "Tamires Ariane",
         "description": "Graduated in Software Engineering at UFC Campus Russas and creator of the LEARN Board Game."
+      },
+      "person4": {
+        "name": "Mateus Fonseca Lima",
+        "description": "Software Engineering student at UFC Campus Russas and responsible for evaluating player experience, providing improvements for the D-LEARN Board Game."
       }
     }
   }
