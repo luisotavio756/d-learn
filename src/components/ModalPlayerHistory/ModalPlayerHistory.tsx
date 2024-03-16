@@ -18,13 +18,19 @@ const ModalPlayerHistory: React.FC<ModalPlayerHistoryProps> = ({
   isOpen,
   toggleModal,
 }) => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
 
   const { data: history } = useHistoryQuery();
   const { isLogged, player } = usePlayerAuth();
 
-  function formatDate(date: string) {
-    return format(parseISO(date), "dd/MM/YYY 'às' HH:mm");
+  function formatDate(date: string, language: string) {
+    const formatString = {
+        en: "MM/dd/yyyy 'at' HH:mm",
+        es: "dd/MM/yyyy 'a las' HH:mm",
+        pt: "dd/MM/yyyy 'às' HH:mm"
+    }[language] || "dd/MM/yyyy 'às' HH:mm";
+    
+    return format(parseISO(date), formatString);
   }
 
   return (
@@ -59,7 +65,7 @@ const ModalPlayerHistory: React.FC<ModalPlayerHistoryProps> = ({
                 .map((item, i) => (
                   <tr key={item._id}>
                     <td>{item.ownerPlacing}º</td>
-                    <td>{formatDate(item.endAt)}</td>
+                    <td>{formatDate(item.endAt, i18n.language)}</td>
                     <td>{item.ownerScore}</td>
                   </tr>
                 ))}
