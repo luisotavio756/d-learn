@@ -145,7 +145,7 @@ const NormalCardBody: React.FC = () => {
             {t('game.cards.timerIsOver')}
           </Headline>
           <Text size="lg" type="danger" family="mono" align="center">
-            {t('game.cards.beFaster')}
+            {t('game.cards.acronymResponse')} {solutionText}
           </Text>
         </Flex>
       </div>
