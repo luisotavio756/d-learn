@@ -38,23 +38,25 @@ const HistoryTable: React.FC = () => {
           </tr>
         </thead>
         <tbody>
-          {history?.map((item, i) => (
-            <tr key={item._id}>
-              <td>{i + 1}</td>
-              <td>{item.winnerName}</td>
-              <td>{item.winnerScore}</td>
-              <td>{formatDate(item.startedAt)}</td>
-              <td>{formatDate(item.endAt)}</td>
-              <td>
-                {differenceInMinutes(
-                  parseISO(item.endAt),
-                  parseISO(item.startedAt),
-                )}
-                m
-              </td>
-              <td>{item.ownerName}</td>
-            </tr>
-          ))}
+          {history
+            ?.slice(0, 30)
+            .map((item, i) => (
+              <tr key={item._id}>
+                <td>{i + 1}</td>
+                <td>{item.winnerName}</td>
+                <td>{item.winnerScore}</td>
+                <td>{formatDate(item.startedAt)}</td>
+                <td>{formatDate(item.endAt)}</td>
+                <td>
+                  {differenceInMinutes(
+                    parseISO(item.endAt),
+                    parseISO(item.startedAt),
+                  )}
+                  m
+                </td>
+                <td>{item.ownerName}</td>
+              </tr>
+            ))}
         </tbody>
       </table>
     </Container>
