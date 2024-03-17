@@ -349,7 +349,7 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
         }
       }
 
-      updatePlayerScore(player, card.stars);
+      updatePlayerScore(player, stars);
     },
     [
       board,
