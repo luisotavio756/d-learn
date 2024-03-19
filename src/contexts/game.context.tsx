@@ -101,12 +101,12 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
   );
 
   const updatePlayerScore = useCallback(
-    (player: Player, scoreToIncrement = 0) => {
+    (player: Player, score = 0) => {
       setPlayers(oldState =>
         oldState.map(item =>
           item.id === player.id
             ? Object.assign(item, {
-                score: item.score + scoreToIncrement,
+                score: score,
               })
             : item,
         ),
@@ -287,23 +287,19 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
 
   const handleEndPlayFromLuckCard = useCallback(
     (card: Card, player: Player, actualSquare: number) => {
-      let nextSquareIndex;
+      let nextSquareIndex = card.luckType === 'luck' 
+        ? actualSquare + card.stars 
+        : actualSquare - card.stars
 
-      if (card.luckType === 'luck') {
-        updatePlayerScore(player, card.stars);
-
-        nextSquareIndex = actualSquare + card.stars;
-      } else {
-        updatePlayerScore(player, -card.stars);
-
-        nextSquareIndex = actualSquare - card.stars;
-      }
+      if(nextSquareIndex < 0) nextSquareIndex = 0;
 
       const nextSquare = board[nextSquareIndex];
 
       addPlayersToSquare([player], nextSquare.id);
       passTurnToNextPlayer();
       setActiveCard(null);
+
+      updatePlayerScore(player, nextSquareIndex);
     },
     [board, updatePlayerScore, addPlayersToSquare, passTurnToNextPlayer],
   );
@@ -313,16 +309,18 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
       const stars = player.customStarsCalc
         ? player.customStarsCalc(card.stars)
         : card.stars;
+
       const nextSquareIndex = actualSquareIndex + stars;
 
-      if (nextSquareIndex >= board.length - 1) {
+      if (nextSquareIndex >= board.length) {
         setGameIsBlocked(true);
         endGameSound.play();
 
-        const nextSquare = board[board.length - 1];
+        const nextSquare = board[0];
 
         addPlayersToSquare([player], nextSquare.id);
         setActiveCard(null);
+        updatePlayerScore(player, board.length);
         sendGameInfoReport();
 
         setTimeout(() => {
@@ -347,9 +345,9 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
           setActiveCard(null);
           passTurnToNextPlayer();
         }
-      }
 
-      updatePlayerScore(player, stars);
+        updatePlayerScore(player, nextSquareIndex);
+      }
     },
     [
       board,
