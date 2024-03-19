@@ -286,7 +286,7 @@ function Game() {
           ))}
         </div>
       </Board>
-      <ModalStartGame isLoading={cardsFromServer.length === 0} />
+      <ModalStartGame isLoading={isFetching || cardsFromServer.length === 0} />
       <ModalPlayerAuth isLoading={isFetching} />
       <ModalCard
         isOpen={!!activeCard}

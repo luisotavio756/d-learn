@@ -316,7 +316,7 @@
       },
       "matches": {
         "title": "partidas jogadas",
-        "subtitle": "Esse é a quantidade de partidas jogadas no D-LEARN"
+        "subtitle": "Essa é a quantidade de partidas jogadas no D-LEARN"
       },
       "players": {
         "title": "Aprox. {{history_length}} jogadores",
