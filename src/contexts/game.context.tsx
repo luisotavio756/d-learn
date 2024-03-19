@@ -17,7 +17,6 @@ import {
   SquareTypes,
 } from '../types';
 import INITIAL_BOARD from '../initialBoard';
-import INITIAL_CARDS from '../cards';
 import { getRestoredCards } from '../utils/cards';
 import { useAudio } from '../hooks/useAudio';
 import { useCardsQuery } from '../queries/useCards';
@@ -59,7 +58,7 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
   const [gameStarted, setGameStarted] = useState(false);
   const [gameEnd, setGameEnd] = useState(false);
   const [board, setBoard] = useState<Square[]>(INITIAL_BOARD);
-  const [cards, setCards] = useState<Card[]>(INITIAL_CARDS);
+  const [cards, setCards] = useState<Card[]>([]);
   const [timer, setTimer] = useState<number | null>(null);
   const [activeCard, setActiveCard] = useState<Card | null>(null);
   const [startedAt, setStartedAt] = useState<Date | null>(null);
@@ -408,7 +407,7 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
         setPlayers([]);
         setActivePlayer(null);
         setGameEnd(false);
-        setCards(INITIAL_CARDS);
+        setCards(getRestoredCards(cards));
         setBoard(INITIAL_BOARD);
         setActiveCard(null);
         setGameStarted(false);
