@@ -313,6 +313,8 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
       const nextSquareIndex = actualSquareIndex + stars;
 
       if (nextSquareIndex >= board.length) {
+        updatePlayerScore(player, board.length);
+        
         setGameIsBlocked(true);
         endGameSound.play();
 
@@ -320,7 +322,6 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
 
         addPlayersToSquare([player], nextSquare.id);
         setActiveCard(null);
-        updatePlayerScore(player, board.length);
         sendGameInfoReport();
 
         setTimeout(() => {
