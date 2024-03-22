@@ -11,8 +11,16 @@ type LuckCardBodyContainerProps = {
   luckType?: 'luck' | 'bad-luck' | 'luck-or-bad-luck';
 };
 
+type NormalCardBodyContainerProps = {
+  type: CardTypes;
+};
+
 type HeaderStyle = {
   background: string;
+  color: string;
+};
+
+type BoxDescriptionStyle = {
   color: string;
 };
 
@@ -32,6 +40,21 @@ const headerStyles: Record<CardTypes, HeaderStyle> = {
   [CardTypes.LuckOrBadLuck]: {
     background: theme.colors.ice[700],
     color: theme.colors.gray[900],
+  },
+};
+
+const boxDescriptionStyles: Record<CardTypes, BoxDescriptionStyle> = {
+  [CardTypes.ArchDecisions]: {
+    color: theme.colors.blue[600],
+  },
+  [CardTypes.QualityAttributes]: {
+    color: theme.colors.yellow.actual,
+  },
+  [CardTypes.ArchPattern]: {
+    color: theme.colors.red[600],
+  },
+  [CardTypes.LuckOrBadLuck]: {
+    color: theme.colors.ice[700],
   },
 };
 
@@ -83,7 +106,7 @@ export const Container = styled.div<ContainerProps>`
     `}
 `;
 
-export const NormalCardBodyContainer = styled.div`
+export const NormalCardBodyContainer = styled.div<NormalCardBodyContainerProps>`
   display: flex;
   flex: 1;
   flex-direction: column;
@@ -109,8 +132,17 @@ export const NormalCardBodyContainer = styled.div`
     }
   }
 
+  .box-description {
+    margin-top: 0.5rem;
+    border: solid 1px ${props => boxDescriptionStyles[props.type].color};
+    border-radius: 6px; 
+    padding: 5px 10px;
+    width: 100%;
+    justify-content: center;
+  }
+
   .question {
-    margin-top: 2rem;
+    margin-top: 0.5rem;
   }
 
   .stars {
@@ -118,7 +150,8 @@ export const NormalCardBodyContainer = styled.div`
   }
 
   .answer {
-    margin-top: 2rem;
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
     text-align: center;
   }
 `;
