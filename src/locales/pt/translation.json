@@ -159,6 +159,8 @@
       "pass": "Passar para o próximo",
       "luck": "Você teve sorte dessa vez! 🎉",
       "badLuck": "😅 Poxa que azar!",
+      "luckOrBadLuckDescription": "🤔 Sorte ou azar ? Só depende de você!",
+      "canceledActions": "Suas ações de sorte ou revés ativas foram canceladas.",
       "continue": "Continuar"
     },
     "turn": "vez de",

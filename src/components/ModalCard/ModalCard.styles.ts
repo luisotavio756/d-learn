@@ -8,7 +8,7 @@ type ContainerProps = {
 };
 
 type LuckCardBodyContainerProps = {
-  luckType?: 'luck' | 'bad-luck';
+  luckType?: 'luck' | 'bad-luck' | 'luck-or-bad-luck';
 };
 
 type HeaderStyle = {
@@ -133,7 +133,13 @@ export const LuckCardBodyContainer = styled.div<LuckCardBodyContainerProps>`
     color: ${props =>
       props.luckType === 'luck'
         ? props.theme.colors.green[600]
-        : props.theme.colors.red[600]};
+        : props.luckType === 'bad-luck'
+        ? props.theme.colors.red[600]
+        : props.theme.colors.orange[600]};
+  }
+
+  .warning {
+    margin-top: 1.5rem;
   }
 
   .actions {

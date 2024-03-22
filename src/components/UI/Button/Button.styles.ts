@@ -43,6 +43,16 @@ const colors = {
     color: theme.colors.green[600],
     border: `1px solid ${theme.colors.green[600]}`,
   },
+  orange: {
+    background: theme.colors.orange[600],
+    color: theme.colors.orange[50],
+    border: '1px solid transparent',
+  },
+  'orange-outline': {
+    background: 'transparent',
+    color: theme.colors.orange[600],
+    border: `1px solid ${theme.colors.orange[600]}`,
+  },
   text: {
     background: 'transparent',
     color: theme.colors.gray[600],

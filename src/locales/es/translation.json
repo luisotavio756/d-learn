@@ -159,6 +159,8 @@
       "pass": "Pasar al siguiente",
       "luck": "¡Tuviste suerte esta vez! 🎉",
       "badLuck": "😅 ¡Oh, qué mala suerte!",
+      "luckOrBadLuckDescription": "🤔 ¿Suerte o mala suerte? ¡Depende de ti!",
+      "canceledActions": "Tus acciones de suerte o infortunio activas han sido canceladas.",
       "continue": "Continuar"
     },
     "turn": "turno de",

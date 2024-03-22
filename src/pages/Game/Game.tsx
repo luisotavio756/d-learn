@@ -26,7 +26,7 @@ import { ModalPlayerAuth } from '../../components/ModalPlayerAuth';
 import { Board, Container } from './Game.styles';
 
 import api from '../../services/api';
-import { CardTypes, PlayerMode, SquareTypes } from '../../types';
+import { CardTypes, LuckActions, PlayerMode, SquareTypes } from '../../types';
 import { useModal } from '../../hooks/useModal';
 import { useAlert } from '../../hooks/useAlert';
 import { useCardsQuery } from '../../queries/useCards';
@@ -78,7 +78,8 @@ function Game() {
 
     return (
       (playerSquareType === queueType ||
-        playerSquareType === SquareTypes.Start) &&
+        playerSquareType === SquareTypes.Start ||
+        turnOf?.customLuckAction === LuckActions.ChooseDeck) &&
       !gameIsBlocked
     );
   }
@@ -212,10 +213,7 @@ function Game() {
                 <CardsQueue
                   onClick={handleChooseCard}
                   type={CardTypes.LuckOrBadLuck}
-                  enabled={
-                    playerSquare?.type === SquareTypes.LuckOrBadLuck &&
-                    !gameIsBlocked
-                  }
+                  enabled={false}
                 />
               </Flex>
             </Flex>

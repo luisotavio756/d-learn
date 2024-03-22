@@ -1,7 +1,8 @@
 import React, { useCallback, useEffect, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { FiMeh, FiSmile } from 'react-icons/fi';
+import { FiMeh, FiSmile, FiInfo } from 'react-icons/fi';
+import { FaRegSurprise } from 'react-icons/fa';
 import { Flex } from '../Layout';
 
 import PlayerPin from '../PlayerPin';
@@ -29,7 +30,7 @@ const LuckCardBody: React.FC = () => {
   }, [activeCard, endPlay]);
 
   useEffect(() => {
-    if (luckType === 'luck') {
+    if (luckType === 'luck' || luckType === 'luck-or-bad-luck') {
       luckAudio.play();
     } else {
       badLuckAudio.play();
@@ -40,24 +41,50 @@ const LuckCardBody: React.FC = () => {
     <LuckCardBodyContainer luckType={luckType}>
       <Flex flexDirection="column" alignItems="center">
         <div className="icon">
-          {luckType === 'luck' ? <FiSmile size={60} /> : <FiMeh size={60} />}
+          {luckType === 'luck' ? (
+            <FiSmile size={60} />
+          ) : luckType === 'bad-luck' ? (
+            <FiMeh size={60} />
+          ) : (
+            <FaRegSurprise size={60} />
+          )}
         </div>
         <div className="description">
           <Text size="lg" type="text" weight="heavy">
             {luckType === 'luck'
               ? t('game.cards.luck')
-              : t('game.cards.badLuck')}
+              : luckType === 'bad-luck'
+              ? t('game.cards.badLuck')
+              : t('game.cards.luckOrBadLuckDescription')}
           </Text>
         </div>
         <div className="info">
           <Text
             size="lg"
             weight="medium"
-            type={luckType === 'luck' ? 'success' : 'danger'}
+            type={
+              luckType === 'luck'
+                ? 'success'
+                : luckType === 'bad-luck'
+                ? 'danger'
+                : 'warning'
+            }
             align="center"
           >
             {description}
           </Text>
+        </div>
+        <div className="warning">
+          <Flex
+            shouldShow={
+              turnOf?.customStarsCalc !== undefined ||
+              turnOf?.customLuckAction !== undefined
+            }
+          >
+            <Text size="md" type="neutral" weight="medium">
+              <FiInfo /> {t('game.cards.canceledActions')}
+            </Text>
+          </Flex>
         </div>
 
         <div className="actions">
@@ -72,7 +99,13 @@ const LuckCardBody: React.FC = () => {
               </Text>
             </Flex>
             <Button
-              variant={luckType === 'luck' ? 'green' : 'red'}
+              variant={
+                luckType === 'luck'
+                  ? 'green'
+                  : luckType === 'bad-luck'
+                  ? 'red'
+                  : 'orange'
+              }
               size="md"
               width="fit-content"
               onClick={handleEndPlay}
