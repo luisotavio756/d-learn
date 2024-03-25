@@ -242,7 +242,11 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
   );
 
   const decideActionForLuckActionChooseDeckByAnswered = useCallback(
-    (actualPlayer: Player, actualPlayerIndex: number, answeredCorrectly?: boolean) => {
+    (
+      actualPlayer: Player,
+      actualPlayerIndex: number,
+      answeredCorrectly?: boolean,
+    ) => {
       if (answeredCorrectly) {
         setActivePlayer(actualPlayer);
         removeCustomLuckActionFromPlayer(actualPlayer);
@@ -258,15 +262,15 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
 
         setActivePlayer(getNextPlayer(actualPlayerIndex));
       }
-    }, 
+    },
     [
-      setActivePlayer, 
-      removeCustomLuckActionFromPlayer, 
-      updatePlayerScore, 
-      board, 
-      addPlayersToSquare, 
-      getNextPlayer
-    ]
+      setActivePlayer,
+      removeCustomLuckActionFromPlayer,
+      updatePlayerScore,
+      board,
+      addPlayersToSquare,
+      getNextPlayer,
+    ],
   );
 
   const passTurnToNextPlayer = useCallback(
@@ -285,7 +289,11 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
         isActiveLuckActionThisTurn &&
         actualPlayer.customLuckAction === LuckActions.ChooseDeck
       ) {
-        decideActionForLuckActionChooseDeckByAnswered(actualPlayer, actualPlayerIndex, answeredCorrectly);
+        decideActionForLuckActionChooseDeckByAnswered(
+          actualPlayer,
+          actualPlayerIndex,
+          answeredCorrectly,
+        );
       } else if (
         isActiveLuckActionThisTurn &&
         actualPlayer.customLuckAction === LuckActions.ExtraRoundPlaying
