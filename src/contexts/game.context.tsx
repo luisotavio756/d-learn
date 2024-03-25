@@ -231,13 +231,13 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
         players[newActualPlayerIndex].customLuckAction ===
         LuckActions.OneRoundWithoutPlaying
       ) {
-        removeCustomLuckActionFromPlayer(players[newActualPlayerIndex]);
+        players[newActualPlayerIndex].customLuckAction = undefined;
         newActualPlayerIndex = getNextPlayerIndex(newActualPlayerIndex);
       }
 
       return players[newActualPlayerIndex];
     },
-    [players, getNextPlayerIndex, removeCustomLuckActionFromPlayer],
+    [players, getNextPlayerIndex],
   );
 
   const passTurnToNextPlayer = useCallback(
