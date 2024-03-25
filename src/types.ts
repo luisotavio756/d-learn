@@ -19,6 +19,12 @@ export enum LuckActions {
   OneRoundWithoutPlaying,
 }
 
+export enum LuckTypes {
+  Luck,
+  BadLuck,
+  LuckOrBadLuck,
+}
+
 export interface Player {
   id: number;
   name: string;
@@ -45,7 +51,7 @@ export interface Card {
   question?: string;
   solution?: 'V' | 'F';
   solutionText?: string;
-  luckType?: 'luck' | 'bad-luck' | 'luck-or-bad-luck';
+  luckType?: LuckTypes;
   isSuggestion?: boolean;
   imgUrl?: string;
   starsCalcType?: number;

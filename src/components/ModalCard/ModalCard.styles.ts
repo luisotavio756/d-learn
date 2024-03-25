@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 import { theme } from '../../styles/theme';
-import { CardTypes } from '../../types';
+import { CardTypes, LuckTypes } from '../../types';
 
 type ContainerProps = {
   type: CardTypes;
@@ -8,7 +8,7 @@ type ContainerProps = {
 };
 
 type LuckCardBodyContainerProps = {
-  luckType?: 'luck' | 'bad-luck' | 'luck-or-bad-luck';
+  luckType?: LuckTypes;
 };
 
 type NormalCardBodyContainerProps = {
@@ -57,6 +57,12 @@ const boxDescriptionStyles: Record<CardTypes, BoxDescriptionStyle> = {
     color: theme.colors.ice[700],
   },
 };
+
+function getColorByLuckType(luckType?: LuckTypes) {
+  if (luckType === LuckTypes.Luck) return theme.colors.green[600];
+  if (luckType === LuckTypes.BadLuck) return theme.colors.red[600];
+  return theme.colors.orange[600];
+}
 
 export const Container = styled.div<ContainerProps>`
   display: flex;
@@ -161,14 +167,9 @@ export const LuckCardBodyContainer = styled.div<LuckCardBodyContainerProps>`
   flex: 1;
   flex-direction: column;
   justify-content: center;
-
+  
   .icon {
-    color: ${props =>
-      props.luckType === 'luck'
-        ? props.theme.colors.green[600]
-        : props.luckType === 'bad-luck'
-        ? props.theme.colors.red[600]
-        : props.theme.colors.orange[600]};
+    color: ${props => getColorByLuckType(props.luckType)};
   }
 
   .warning {

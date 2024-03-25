@@ -7,7 +7,7 @@ import { Flex } from '../Layout';
 
 import PlayerPin from '../PlayerPin';
 import { LuckCardBodyContainer } from './ModalCard.styles';
-import { Card, Player } from '../../types';
+import { Card, LuckTypes, Player } from '../../types';
 import { useGame } from '../../hooks/useGame.hook';
 import { Text, Button } from '../UI';
 import { useAudio } from '../../hooks/useAudio';
@@ -29,8 +29,32 @@ const LuckCardBody: React.FC = () => {
     }
   }, [activeCard, endPlay]);
 
+  function renderIcon(luckType?: LuckTypes) {
+    if (luckType === LuckTypes.Luck) return <FiSmile size={60} />;
+    if (luckType === LuckTypes.BadLuck) return <FiMeh size={60} />;
+    return <FaRegSurprise size={60} />;
+  }
+
+  function renderDescription(luckType?: LuckTypes) {
+    if (luckType === LuckTypes.Luck) return t('game.cards.luck');
+    if (luckType === LuckTypes.BadLuck) return t('game.cards.badLuck');
+    return t('game.cards.luckOrBadLuckDescription');
+  }
+
+  function renderInfo(luckType?: LuckTypes) {
+    if (luckType === LuckTypes.Luck) return 'success';
+    if (luckType === LuckTypes.BadLuck) return 'danger';
+    return 'warning';
+  }
+
+  function renderButton(luckType?: LuckTypes) {
+    if (luckType === LuckTypes.Luck) return 'green';
+    if (luckType === LuckTypes.BadLuck) return 'red';
+    return 'orange';
+  }
+
   useEffect(() => {
-    if (luckType === 'luck' || luckType === 'luck-or-bad-luck') {
+    if (luckType === LuckTypes.Luck || luckType === LuckTypes.LuckOrBadLuck) {
       luckAudio.play();
     } else {
       badLuckAudio.play();
@@ -40,35 +64,17 @@ const LuckCardBody: React.FC = () => {
   return (
     <LuckCardBodyContainer luckType={luckType}>
       <Flex flexDirection="column" alignItems="center">
-        <div className="icon">
-          {luckType === 'luck' ? (
-            <FiSmile size={60} />
-          ) : luckType === 'bad-luck' ? (
-            <FiMeh size={60} />
-          ) : (
-            <FaRegSurprise size={60} />
-          )}
-        </div>
+        <div className="icon">{renderIcon(luckType)}</div>
         <div className="description">
           <Text size="lg" type="text" weight="heavy">
-            {luckType === 'luck'
-              ? t('game.cards.luck')
-              : luckType === 'bad-luck'
-              ? t('game.cards.badLuck')
-              : t('game.cards.luckOrBadLuckDescription')}
+            {renderDescription(luckType)}
           </Text>
         </div>
         <div className="info">
           <Text
             size="lg"
             weight="medium"
-            type={
-              luckType === 'luck'
-                ? 'success'
-                : luckType === 'bad-luck'
-                ? 'danger'
-                : 'warning'
-            }
+            type={renderInfo(luckType)}
             align="center"
           >
             {description}
@@ -76,10 +82,7 @@ const LuckCardBody: React.FC = () => {
         </div>
         <div className="warning">
           <Flex
-            shouldShow={
-              turnOf?.customStarsCalc !== undefined ||
-              turnOf?.customLuckAction !== undefined
-            }
+            shouldShow={!!turnOf?.customStarsCalc || !!turnOf?.customLuckAction}
           >
             <Text size="md" type="neutral" weight="medium">
               <FiInfo /> {t('game.cards.canceledActions')}
@@ -99,13 +102,7 @@ const LuckCardBody: React.FC = () => {
               </Text>
             </Flex>
             <Button
-              variant={
-                luckType === 'luck'
-                  ? 'green'
-                  : luckType === 'bad-luck'
-                  ? 'red'
-                  : 'orange'
-              }
+              variant={renderButton(luckType)}
               size="md"
               width="fit-content"
               onClick={handleEndPlay}

@@ -11,6 +11,7 @@ import { queryClient } from '../services/queryClient';
 import {
   Card,
   CardTypes,
+  LuckTypes,
   LuckActions,
   History,
   Player,
@@ -240,6 +241,34 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
     [players, getNextPlayerIndex],
   );
 
+  const decideActionForLuckActionChooseDeckByAnswered = useCallback(
+    (actualPlayer: Player, actualPlayerIndex: number, answeredCorrectly?: boolean) => {
+      if (answeredCorrectly) {
+        setActivePlayer(actualPlayer);
+        removeCustomLuckActionFromPlayer(actualPlayer);
+      } else {
+        const actualPlayerSquareIndex = board.findIndex(
+          item => item.id === actualPlayer.square_id,
+        );
+
+        updatePlayerScore(actualPlayer, -1);
+        const nextSquare = board[actualPlayerSquareIndex - 1];
+        addPlayersToSquare([actualPlayer], nextSquare.id);
+        removeCustomLuckActionFromPlayer(actualPlayer);
+
+        setActivePlayer(getNextPlayer(actualPlayerIndex));
+      }
+    }, 
+    [
+      setActivePlayer, 
+      removeCustomLuckActionFromPlayer, 
+      updatePlayerScore, 
+      board, 
+      addPlayersToSquare, 
+      getNextPlayer
+    ]
+  );
+
   const passTurnToNextPlayer = useCallback(
     (answeredCorrectly?: boolean) => {
       const actualPlayerIndex = players.findIndex(item => item.active);
@@ -256,21 +285,7 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
         isActiveLuckActionThisTurn &&
         actualPlayer.customLuckAction === LuckActions.ChooseDeck
       ) {
-        if (answeredCorrectly) {
-          setActivePlayer(actualPlayer);
-          removeCustomLuckActionFromPlayer(actualPlayer);
-        } else {
-          const actualPlayerSquareIndex = board.findIndex(
-            item => item.id === actualPlayer.square_id,
-          );
-
-          updatePlayerScore(actualPlayer, -1);
-          const nextSquare = board[actualPlayerSquareIndex - 1];
-          addPlayersToSquare([actualPlayer], nextSquare.id);
-          removeCustomLuckActionFromPlayer(actualPlayer);
-
-          setActivePlayer(getNextPlayer(actualPlayerIndex));
-        }
+        decideActionForLuckActionChooseDeckByAnswered(actualPlayer, actualPlayerIndex, answeredCorrectly);
       } else if (
         isActiveLuckActionThisTurn &&
         actualPlayer.customLuckAction === LuckActions.ExtraRoundPlaying
@@ -283,13 +298,11 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
     },
     [
       activeCard,
-      addPlayersToSquare,
-      board,
       getNextPlayer,
+      decideActionForLuckActionChooseDeckByAnswered,
       players,
       removeCustomLuckActionFromPlayer,
       setActivePlayer,
-      updatePlayerScore,
     ],
   );
 
@@ -391,7 +404,7 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
     (card: Card, player: Player, actualSquare: number) => {
       let nextSquareIndex;
 
-      if (card.luckType === 'luck') {
+      if (card.luckType === LuckTypes.Luck) {
         updatePlayerScore(player, card.stars);
 
         nextSquareIndex = actualSquare + card.stars;
