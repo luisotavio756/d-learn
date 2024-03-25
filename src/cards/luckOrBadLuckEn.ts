@@ -13,7 +13,8 @@ const luckOrBadLuckCardsEn: Card[] = [
   {
     _id: '1e0d3059-f171-4534-bd72-ff307f645c14',
     title: 'Luck',
-    description: 'With this letter you can consult some material before answering a question! Advance one space!',
+    description:
+      'With this letter you can consult some material before answering a question! Advance one space!',
     type: CardTypes.LuckOrBadLuck,
     luckType: 'luck',
     used: false,
@@ -40,7 +41,8 @@ const luckOrBadLuckCardsEn: Card[] = [
   {
     _id: '5e2cd4f8-03df-4ebc-96f4-a8f919545cb4',
     title: 'Bad luck',
-    description: 'Your next question will be worth half the stars! Come back one home!',
+    description:
+      'Your next question will be worth half the stars! Come back one home!',
     type: CardTypes.LuckOrBadLuck,
     luckType: 'bad-luck',
     used: false,
@@ -70,7 +72,8 @@ const luckOrBadLuckCardsEn: Card[] = [
   {
     _id: '6f74c018-74c7-4ed6-8439-402ddc1b8ff0',
     title: 'Luck',
-    description: 'Your next question will be worth double the stars! Advance one space!',
+    description:
+      'Your next question will be worth double the stars! Advance one space!',
     type: CardTypes.LuckOrBadLuck,
     luckType: 'luck',
     used: false,
@@ -102,7 +105,8 @@ const luckOrBadLuckCardsEn: Card[] = [
   {
     _id: '45190e1f-fbcf-4052-9efd-8432220ec915',
     title: 'Luck',
-    description: 'With this letter you can consult some material before answering the next question! Advance one space!',
+    description:
+      'With this letter you can consult some material before answering the next question! Advance one space!',
     type: CardTypes.LuckOrBadLuck,
     luckType: 'luck',
     used: false,
@@ -129,7 +133,8 @@ const luckOrBadLuckCardsEn: Card[] = [
   {
     _id: 'e2a97ca3-fb36-46cf-9f70-a3d20bb543e7',
     title: 'Bad luck',
-    description: 'Your next question will be worth half the stars! Come back one home!',
+    description:
+      'Your next question will be worth half the stars! Come back one home!',
     type: CardTypes.LuckOrBadLuck,
     luckType: 'bad-luck',
     used: false,
@@ -159,7 +164,8 @@ const luckOrBadLuckCardsEn: Card[] = [
   {
     _id: 'a00c3fa2-d23f-46bc-9fd3-d43961477950',
     title: 'Luck',
-    description: 'Your next question will be worth double the stars! Advance one space!',
+    description:
+      'Your next question will be worth double the stars! Advance one space!',
     type: CardTypes.LuckOrBadLuck,
     luckType: 'luck',
     used: false,
@@ -200,7 +206,8 @@ const luckOrBadLuckCardsEn: Card[] = [
   {
     _id: '00fd0468-b4da-4f02-86ae-a98e77e43048',
     title: 'Luck or bad luck?',
-    description: 'In the next round choose any of the content decks to respond. If you get it right: play again. If you make a mistake: go back one space!',
+    description:
+      'In the next round choose any of the content decks to respond. If you get it right: play again. If you make a mistake: go back one space!',
     type: CardTypes.LuckOrBadLuck,
     luckType: 'luck-or-bad-luck',
     used: false,
@@ -220,7 +227,7 @@ const luckOrBadLuckCardsEn: Card[] = [
   {
     _id: '4aca855e-fcb9-43d7-934e-5cb4fde6bb72',
     title: 'Bad luck',
-    description: 'Go back one space and don\'t play for a round!',
+    description: "Go back one space and don't play for a round!",
     type: CardTypes.LuckOrBadLuck,
     luckType: 'bad-luck',
     used: false,
@@ -231,7 +238,8 @@ const luckOrBadLuckCardsEn: Card[] = [
   {
     _id: '6d6dbd47-a279-47c3-a267-0fb4da7e7399',
     title: 'Luck or bad luck?',
-    description: 'In the next round choose any of the content decks to respond. If you get it right: play again. If you make a mistake: go back one space!',
+    description:
+      'In the next round choose any of the content decks to respond. If you get it right: play again. If you make a mistake: go back one space!',
     type: CardTypes.LuckOrBadLuck,
     luckType: 'luck-or-bad-luck',
     used: false,
@@ -251,7 +259,7 @@ const luckOrBadLuckCardsEn: Card[] = [
   {
     _id: '6fcae8d8-e04a-4601-8f78-500d890eea2a',
     title: 'Bad luck',
-    description: 'Go back one space and don\'t play for a round!',
+    description: "Go back one space and don't play for a round!",
     type: CardTypes.LuckOrBadLuck,
     luckType: 'bad-luck',
     used: false,
@@ -262,7 +270,8 @@ const luckOrBadLuckCardsEn: Card[] = [
   {
     _id: 'ebf9453a-86ed-4344-8b3f-833673a3a2be',
     title: 'Luck or bad luck?',
-    description: 'In the next round choose any of the content decks to respond. If you get it right: play again. If you make a mistake: go back one space!',
+    description:
+      'In the next round choose any of the content decks to respond. If you get it right: play again. If you make a mistake: go back one space!',
     type: CardTypes.LuckOrBadLuck,
     luckType: 'luck-or-bad-luck',
     used: false,

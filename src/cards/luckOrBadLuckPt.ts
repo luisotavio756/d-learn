@@ -13,7 +13,8 @@ const luckOrBadLuckCardsPt: Card[] = [
   {
     _id: '1e0d3059-f171-4534-bd72-ff307f645c14',
     title: 'Sorte',
-    description: 'Com esta carta você pode consultar algum material antes de responder a uma pergunta! Avance uma casa!',
+    description:
+      'Com esta carta você pode consultar algum material antes de responder a uma pergunta! Avance uma casa!',
     type: CardTypes.LuckOrBadLuck,
     luckType: 'luck',
     used: false,
@@ -40,7 +41,8 @@ const luckOrBadLuckCardsPt: Card[] = [
   {
     _id: '5e2cd4f8-03df-4ebc-96f4-a8f919545cb4',
     title: 'Revés',
-    description: 'A sua próxima pergunta valerá metade das estrelas! Volte uma casa!',
+    description:
+      'A sua próxima pergunta valerá metade das estrelas! Volte uma casa!',
     type: CardTypes.LuckOrBadLuck,
     luckType: 'bad-luck',
     used: false,
@@ -70,7 +72,8 @@ const luckOrBadLuckCardsPt: Card[] = [
   {
     _id: '6f74c018-74c7-4ed6-8439-402ddc1b8ff0',
     title: 'Sorte',
-    description: 'A sua próxima pergunta valerá o dobro das estrelas! Avance uma casa!',
+    description:
+      'A sua próxima pergunta valerá o dobro das estrelas! Avance uma casa!',
     type: CardTypes.LuckOrBadLuck,
     luckType: 'luck',
     used: false,
@@ -82,7 +85,8 @@ const luckOrBadLuckCardsPt: Card[] = [
   {
     _id: 'e72d60de-1a39-4d6a-82cc-f3f1bba655bd',
     title: 'Sorte',
-    description: 'Na próxima rodada jogue duas vezes consecutivas! Avance uma casa!',
+    description:
+      'Na próxima rodada jogue duas vezes consecutivas! Avance uma casa!',
     type: CardTypes.LuckOrBadLuck,
     luckType: 'luck',
     used: false,
@@ -102,7 +106,8 @@ const luckOrBadLuckCardsPt: Card[] = [
   {
     _id: '45190e1f-fbcf-4052-9efd-8432220ec915',
     title: 'Sorte',
-    description: 'Com esta carta você pode consultar algum material antes de responder a próxima pergunta! Avance uma casa!',
+    description:
+      'Com esta carta você pode consultar algum material antes de responder a próxima pergunta! Avance uma casa!',
     type: CardTypes.LuckOrBadLuck,
     luckType: 'luck',
     used: false,
@@ -129,7 +134,8 @@ const luckOrBadLuckCardsPt: Card[] = [
   {
     _id: 'e2a97ca3-fb36-46cf-9f70-a3d20bb543e7',
     title: 'Revés',
-    description: 'A sua próxima pergunta valerá metade das estrelas! Volte uma casa!',
+    description:
+      'A sua próxima pergunta valerá metade das estrelas! Volte uma casa!',
     type: CardTypes.LuckOrBadLuck,
     luckType: 'bad-luck',
     used: false,
@@ -159,7 +165,8 @@ const luckOrBadLuckCardsPt: Card[] = [
   {
     _id: 'a00c3fa2-d23f-46bc-9fd3-d43961477950',
     title: 'Sorte',
-    description: 'A sua próxima pergunta valerá o dobro das estrelas! Avance uma casa!',
+    description:
+      'A sua próxima pergunta valerá o dobro das estrelas! Avance uma casa!',
     type: CardTypes.LuckOrBadLuck,
     luckType: 'luck',
     used: false,
@@ -171,7 +178,8 @@ const luckOrBadLuckCardsPt: Card[] = [
   {
     _id: 'aacb2162-f5ba-4402-b7ad-43ef28ba82ad',
     title: 'Sorte',
-    description: 'Na próxima rodada jogue duas vezes consecutivas! Avance uma casa!',
+    description:
+      'Na próxima rodada jogue duas vezes consecutivas! Avance uma casa!',
     type: CardTypes.LuckOrBadLuck,
     luckType: 'luck',
     used: false,
@@ -200,7 +208,8 @@ const luckOrBadLuckCardsPt: Card[] = [
   {
     _id: '00fd0468-b4da-4f02-86ae-a98e77e43048',
     title: 'Sorte ou revés ?',
-    description: 'Na próxima rodada escolha qualquer um dos baralhos de conteúdo para responder. Se acertar: jogue novamente. Se errar: volte uma casa!',
+    description:
+      'Na próxima rodada escolha qualquer um dos baralhos de conteúdo para responder. Se acertar: jogue novamente. Se errar: volte uma casa!',
     type: CardTypes.LuckOrBadLuck,
     luckType: 'luck-or-bad-luck',
     used: false,
@@ -231,7 +240,8 @@ const luckOrBadLuckCardsPt: Card[] = [
   {
     _id: '6d6dbd47-a279-47c3-a267-0fb4da7e7399',
     title: 'Sorte ou revés ?',
-    description: 'Na próxima rodada escolha qualquer um dos baralhos de conteúdo para responder. Se acertar: jogue novamente. Se errar: volte uma casa!',
+    description:
+      'Na próxima rodada escolha qualquer um dos baralhos de conteúdo para responder. Se acertar: jogue novamente. Se errar: volte uma casa!',
     type: CardTypes.LuckOrBadLuck,
     luckType: 'luck-or-bad-luck',
     used: false,
@@ -262,7 +272,8 @@ const luckOrBadLuckCardsPt: Card[] = [
   {
     _id: 'ebf9453a-86ed-4344-8b3f-833673a3a2be',
     title: 'Sorte ou revés ?',
-    description: 'Na próxima rodada escolha qualquer um dos baralhos de conteúdo para responder. Se acertar: jogue novamente. Se errar: volte uma casa!',
+    description:
+      'Na próxima rodada escolha qualquer um dos baralhos de conteúdo para responder. Se acertar: jogue novamente. Se errar: volte uma casa!',
     type: CardTypes.LuckOrBadLuck,
     luckType: 'luck-or-bad-luck',
     used: false,

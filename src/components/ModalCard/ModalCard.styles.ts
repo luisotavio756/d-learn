@@ -135,7 +135,7 @@ export const NormalCardBodyContainer = styled.div<NormalCardBodyContainerProps>`
   .box-description {
     margin-top: 0.5rem;
     border: solid 1px ${props => boxDescriptionStyles[props.type].color};
-    border-radius: 6px; 
+    border-radius: 6px;
     padding: 5px 10px;
     width: 100%;
     justify-content: center;

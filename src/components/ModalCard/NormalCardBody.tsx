@@ -19,9 +19,7 @@ interface INormalCardBodyProps {
   type: CardTypes;
 }
 
-const NormalCardBody: React.FC<INormalCardBodyProps> = ({
-  type
-}) => {
+const NormalCardBody: React.FC<INormalCardBodyProps> = ({ type }) => {
   const { t } = useTranslation();
   const [answered, setAnswered] = useState(false);
   const [answeredCorrectly, setAnsweredCorrectly] = useState(false);
@@ -94,11 +92,20 @@ const NormalCardBody: React.FC<INormalCardBodyProps> = ({
             />
           </Flex>
         )}
-        <Flex className="description" flexDirection="column" alignItems="center">
+        <Flex
+          className="description"
+          flexDirection="column"
+          alignItems="center"
+        >
           <Text size="lg" weight="heavy">
             {t('game.cards.description')}
           </Text>
-          <Text size="lg" family="mono" align="center" className="box-description">
+          <Text
+            size="lg"
+            family="mono"
+            align="center"
+            className="box-description"
+          >
             {description}
           </Text>
         </Flex>
@@ -109,7 +116,13 @@ const NormalCardBody: React.FC<INormalCardBodyProps> = ({
           <Text size="lg" weight="heavy">
             {t('game.cards.question')}
           </Text>
-          <Text size="lg" weight="medium" family="mono" align="center" className="question">
+          <Text
+            size="lg"
+            weight="medium"
+            family="mono"
+            align="center"
+            className="question"
+          >
             {question}
           </Text>
         </Flex>

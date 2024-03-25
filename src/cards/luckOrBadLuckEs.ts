@@ -13,7 +13,8 @@ const luckOrBadLuckCardsEs: Card[] = [
   {
     _id: '1e0d3059-f171-4534-bd72-ff307f645c14',
     title: 'Suerte',
-    description: '¡Con esta carta podrás consultar algún material antes de responder una pregunta! ¡Avanza un espacio!',
+    description:
+      '¡Con esta carta podrás consultar algún material antes de responder una pregunta! ¡Avanza un espacio!',
     type: CardTypes.LuckOrBadLuck,
     luckType: 'luck',
     used: false,
@@ -40,7 +41,8 @@ const luckOrBadLuckCardsEs: Card[] = [
   {
     _id: '5e2cd4f8-03df-4ebc-96f4-a8f919545cb4',
     title: 'Mala suerte',
-    description: '¡Tu próxima pregunta valdrá la mitad de las estrellas! ¡Vuelve uno a casa!',
+    description:
+      '¡Tu próxima pregunta valdrá la mitad de las estrellas! ¡Vuelve uno a casa!',
     type: CardTypes.LuckOrBadLuck,
     luckType: 'bad-luck',
     used: false,
@@ -70,7 +72,8 @@ const luckOrBadLuckCardsEs: Card[] = [
   {
     _id: '6f74c018-74c7-4ed6-8439-402ddc1b8ff0',
     title: 'Suerte',
-    description: '¡Tu próxima pregunta valdrá el doble de estrellas! ¡Avanza un espacio!',
+    description:
+      '¡Tu próxima pregunta valdrá el doble de estrellas! ¡Avanza un espacio!',
     type: CardTypes.LuckOrBadLuck,
     luckType: 'luck',
     used: false,
@@ -82,7 +85,8 @@ const luckOrBadLuckCardsEs: Card[] = [
   {
     _id: 'e72d60de-1a39-4d6a-82cc-f3f1bba655bd',
     title: 'Suerte',
-    description: '¡En la siguiente ronda, juega dos veces seguidas! ¡Avanza un espacio!',
+    description:
+      '¡En la siguiente ronda, juega dos veces seguidas! ¡Avanza un espacio!',
     type: CardTypes.LuckOrBadLuck,
     luckType: 'luck',
     used: false,
@@ -102,7 +106,8 @@ const luckOrBadLuckCardsEs: Card[] = [
   {
     _id: '45190e1f-fbcf-4052-9efd-8432220ec915',
     title: 'Suerte',
-    description: '¡Con esta carta podrás consultar algún material antes de responder la siguiente pregunta! ¡Avanza un espacio!',
+    description:
+      '¡Con esta carta podrás consultar algún material antes de responder la siguiente pregunta! ¡Avanza un espacio!',
     type: CardTypes.LuckOrBadLuck,
     luckType: 'luck',
     used: false,
@@ -129,7 +134,8 @@ const luckOrBadLuckCardsEs: Card[] = [
   {
     _id: 'e2a97ca3-fb36-46cf-9f70-a3d20bb543e7',
     title: 'Mala suerte',
-    description: '¡Tu próxima pregunta valdrá la mitad de las estrellas! ¡Vuelve uno a casa!',
+    description:
+      '¡Tu próxima pregunta valdrá la mitad de las estrellas! ¡Vuelve uno a casa!',
     type: CardTypes.LuckOrBadLuck,
     luckType: 'bad-luck',
     used: false,
@@ -159,7 +165,8 @@ const luckOrBadLuckCardsEs: Card[] = [
   {
     _id: 'a00c3fa2-d23f-46bc-9fd3-d43961477950',
     title: 'Suerte',
-    description: '¡Tu próxima pregunta valdrá el doble de estrellas! ¡Avanza un espacio!',
+    description:
+      '¡Tu próxima pregunta valdrá el doble de estrellas! ¡Avanza un espacio!',
     type: CardTypes.LuckOrBadLuck,
     luckType: 'luck',
     used: false,
@@ -171,7 +178,8 @@ const luckOrBadLuckCardsEs: Card[] = [
   {
     _id: 'aacb2162-f5ba-4402-b7ad-43ef28ba82ad',
     title: 'Suerte',
-    description: '¡En la siguiente ronda, juega dos veces seguidas! ¡Avanza un espacio!',
+    description:
+      '¡En la siguiente ronda, juega dos veces seguidas! ¡Avanza un espacio!',
     type: CardTypes.LuckOrBadLuck,
     luckType: 'luck',
     used: false,
@@ -200,7 +208,8 @@ const luckOrBadLuckCardsEs: Card[] = [
   {
     _id: '00fd0468-b4da-4f02-86ae-a98e77e43048',
     title: '¿Suerte o mala suerte?',
-    description: 'En la siguiente ronda, elige cualquiera de los mazos de contenido para responder. Si lo haces bien: vuelve a jugar. Si te equivocas: ¡retrocede un espacio!',
+    description:
+      'En la siguiente ronda, elige cualquiera de los mazos de contenido para responder. Si lo haces bien: vuelve a jugar. Si te equivocas: ¡retrocede un espacio!',
     type: CardTypes.LuckOrBadLuck,
     luckType: 'luck-or-bad-luck',
     used: false,
@@ -231,7 +240,8 @@ const luckOrBadLuckCardsEs: Card[] = [
   {
     _id: '6d6dbd47-a279-47c3-a267-0fb4da7e7399',
     title: '¿Suerte o mala suerte?',
-    description: 'En la siguiente ronda, elige cualquiera de los mazos de contenido para responder. Si lo haces bien: vuelve a jugar. Si te equivocas: ¡retrocede un espacio!',
+    description:
+      'En la siguiente ronda, elige cualquiera de los mazos de contenido para responder. Si lo haces bien: vuelve a jugar. Si te equivocas: ¡retrocede un espacio!',
     type: CardTypes.LuckOrBadLuck,
     luckType: 'luck-or-bad-luck',
     used: false,
@@ -262,7 +272,8 @@ const luckOrBadLuckCardsEs: Card[] = [
   {
     _id: 'ebf9453a-86ed-4344-8b3f-833673a3a2be',
     title: '¿Suerte o mala suerte?',
-    description: 'En la siguiente ronda, elige cualquiera de los mazos de contenido para responder. Si lo haces bien: vuelve a jugar. Si te equivocas: ¡retrocede un espacio!',
+    description:
+      'En la siguiente ronda, elige cualquiera de los mazos de contenido para responder. Si lo haces bien: vuelve a jugar. Si te equivocas: ¡retrocede un espacio!',
     type: CardTypes.LuckOrBadLuck,
     luckType: 'luck-or-bad-luck',
     used: false,
