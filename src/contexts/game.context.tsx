@@ -26,6 +26,10 @@ import { useCardsQuery } from '../queries/useCards';
 import { usePlayerAuth } from '../hooks/usePlayerAuth';
 import api from '../services/api';
 
+type PassTurnToNextPlayer = {
+  answeredCorrectly?: boolean;
+};
+
 interface GameProviderProps {
   children: React.ReactNode;
 }
@@ -44,7 +48,7 @@ interface GameContextData {
   startGame(data: Player[], timer: number): void;
   chooseCard(card: Card): void;
   answer(solution: string): boolean;
-  passTurnToNextPlayer(): void;
+  passTurnToNextPlayer(data: PassTurnToNextPlayer): void;
   endPlay(card: Card, isCorrect?: boolean): void;
   restartGame(type: 'soft' | 'hard'): void;
   forceEndGame(): void;
@@ -274,7 +278,7 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
   );
 
   const passTurnToNextPlayer = useCallback(
-    (answeredCorrectly?: boolean) => {
+    ({ answeredCorrectly }: PassTurnToNextPlayer) => {
       const actualPlayerIndex = players.findIndex(item => item.active);
 
       if (actualPlayerIndex === -1) return;
@@ -425,7 +429,7 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
       const nextSquare = board[nextSquareIndex];
 
       addPlayersToSquare([player], nextSquare.id);
-      passTurnToNextPlayer(false);
+      passTurnToNextPlayer({});
       setActiveCard(null);
     },
     [board, updatePlayerScore, addPlayersToSquare, passTurnToNextPlayer],
@@ -468,7 +472,7 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
         } else {
           addPlayersToSquare([player], nextSquare.id);
           setActiveCard(null);
-          passTurnToNextPlayer(true);
+          passTurnToNextPlayer({ answeredCorrectly: true });
         }
       }
 
@@ -508,7 +512,7 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
           removeCustomCalcFromPlayer(turnOf);
           break;
         default:
-          passTurnToNextPlayer(false);
+          passTurnToNextPlayer({});
           setActiveCard(null);
 
           removeCustomCalcFromPlayer(turnOf);

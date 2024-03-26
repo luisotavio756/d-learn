@@ -41,13 +41,13 @@ const LuckCardBody: React.FC = () => {
     return t('game.cards.luckOrBadLuckDescription');
   }
 
-  function renderInfo(luckType?: LuckTypes) {
+  function getInfoType(luckType?: LuckTypes) {
     if (luckType === LuckTypes.Luck) return 'success';
     if (luckType === LuckTypes.BadLuck) return 'danger';
     return 'warning';
   }
 
-  function renderButton(luckType?: LuckTypes) {
+  function getButtonType(luckType?: LuckTypes) {
     if (luckType === LuckTypes.Luck) return 'green';
     if (luckType === LuckTypes.BadLuck) return 'red';
     return 'orange';
@@ -74,7 +74,7 @@ const LuckCardBody: React.FC = () => {
           <Text
             size="lg"
             weight="medium"
-            type={renderInfo(luckType)}
+            type={getInfoType(luckType)}
             align="center"
           >
             {description}
@@ -102,7 +102,7 @@ const LuckCardBody: React.FC = () => {
               </Text>
             </Flex>
             <Button
-              variant={renderButton(luckType)}
+              variant={getButtonType(luckType)}
               size="md"
               width="fit-content"
               onClick={handleEndPlay}
