@@ -8,14 +8,18 @@ import Stars from '../Stars/Stars';
 import PlayerPin from '../PlayerPin';
 import Timer from '../Timer';
 import { NormalCardBodyContainer } from './ModalCard.styles';
-import { Card, Player } from '../../types';
+import { Card, CardTypes, Player } from '../../types';
 import { useGame } from '../../hooks/useGame.hook';
 
 import { Flex } from '../Layout';
 import { Headline, Text, Button, ButtonGroup } from '../UI';
 import { useAudio } from '../../hooks/useAudio';
 
-const NormalCardBody: React.FC = () => {
+interface INormalCardBodyProps {
+  type: CardTypes;
+}
+
+const NormalCardBody: React.FC<INormalCardBodyProps> = ({ type }) => {
   const { t } = useTranslation();
   const [answered, setAnswered] = useState(false);
   const [answeredCorrectly, setAnsweredCorrectly] = useState(false);
@@ -77,7 +81,7 @@ const NormalCardBody: React.FC = () => {
   }, []);
 
   return (
-    <NormalCardBodyContainer>
+    <NormalCardBodyContainer type={type}>
       <div>
         {timer !== null && !isNaN(timer) && (
           <Flex className="timer" justifyContent="flex-end">
@@ -88,24 +92,42 @@ const NormalCardBody: React.FC = () => {
             />
           </Flex>
         )}
-        <Flex shouldShow={!!imgUrl} justifyContent="center" className="img">
-          <img src={activeCard?.imgUrl} alt={title} />
-        </Flex>
-        <Flex className="description">
+        <Flex
+          className="description"
+          flexDirection="column"
+          alignItems="center"
+        >
           <Text size="lg" weight="heavy">
             {t('game.cards.description')}
           </Text>
-          <Text size="lg" family="mono">
+          <Text
+            size="lg"
+            family="mono"
+            align="center"
+            className="box-description"
+          >
             {description}
           </Text>
         </Flex>
-        <Flex className="question">
-          <Text size="lg" weight="medium" family="mono">
+        <Flex shouldShow={!!imgUrl} justifyContent="center" className="img">
+          <img src={activeCard?.imgUrl} alt={title} />
+        </Flex>
+        <Flex flexDirection="column" alignItems="center">
+          <Text size="lg" weight="heavy">
+            {t('game.cards.question')}
+          </Text>
+          <Text
+            size="lg"
+            weight="medium"
+            family="mono"
+            align="center"
+            className="question"
+          >
             {question}
           </Text>
         </Flex>
         <Flex justifyContent="center" className="stars">
-          <Stars value={stars} size="lg" />
+          <Stars value={stars} type={type} size="lg" />
         </Flex>
         <Flex
           shouldShow={answered && answeredCorrectly}

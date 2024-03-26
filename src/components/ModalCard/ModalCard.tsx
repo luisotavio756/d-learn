@@ -80,7 +80,7 @@ const ModalCard: React.FC<IModalCardProps> = ({
               {type === CardTypes.LuckOrBadLuck ? (
                 <LuckCardBody />
               ) : (
-                <NormalCardBody />
+                <NormalCardBody type={type} />
               )}
             </div>
           </Flex>
