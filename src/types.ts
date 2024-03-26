@@ -13,6 +13,18 @@ export enum CardTypes {
   LuckOrBadLuck,
 }
 
+export enum LuckActions {
+  ExtraRoundPlaying,
+  ChooseDeck,
+  OneRoundWithoutPlaying,
+}
+
+export enum LuckTypes {
+  Luck,
+  BadLuck,
+  LuckOrBadLuck,
+}
+
 export interface Player {
   id: number;
   name: string;
@@ -21,6 +33,7 @@ export interface Player {
   active: boolean;
   square_id?: string;
   customStarsCalc?(stars: number): number;
+  customLuckAction?: LuckActions;
 }
 
 export interface Square {
@@ -38,11 +51,13 @@ export interface Card {
   question?: string;
   solution?: 'V' | 'F';
   solutionText?: string;
-  luckType?: 'luck' | 'bad-luck';
+  luckType?: LuckTypes;
   isSuggestion?: boolean;
   imgUrl?: string;
   starsCalcType?: number;
   starsCalc?(stars: number): number;
+  luckAction?: LuckActions;
+  activeLuckActionInTheSameTurn?: boolean;
 }
 
 export interface User {

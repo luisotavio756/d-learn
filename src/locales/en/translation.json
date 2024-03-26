@@ -147,7 +147,8 @@
       "qualityAttributes": "Quality Attributes",
       "archPattern": "Architectural Patterns",
       "luckOrBadLuck": "Luck or Misfortune",
-      "description": "Description:",
+      "description": "Definition:",
+      "question": "Question:",
       "congratulations": "Congratulations, you got it right! 🎉",
       "acronymResponse": "A:",
       "damn": "Oh no, you missed! 😕",
@@ -158,6 +159,8 @@
       "pass": "Pass to the next",
       "luck": "You were lucky this time! 🎉",
       "badLuck": "😅 Oh, what bad luck!",
+      "luckOrBadLuckDescription": "🤔 Luck or bad luck? It's all up to you!",
+      "canceledActions": "Your active luck or misfortune actions have been canceled.",
       "continue": "Continue"
     },
     "turn": "turn of",

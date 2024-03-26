@@ -16,6 +16,8 @@ export type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
     | 'yellow-outline'
     | 'green'
     | 'green-outline'
+    | 'orange'
+    | 'orange-outline'
     | 'text';
   width?: 'full' | 'fit-content' | 'flex-fit';
   justIcon?: boolean;
