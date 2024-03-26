@@ -105,20 +105,17 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
     [cards],
   );
 
-  const updatePlayerScore = useCallback(
-    (player: Player, score = 0) => {
-      setPlayers(oldState =>
-        oldState.map(item =>
-          item.id === player.id
-            ? Object.assign(item, {
-                score: score,
-              })
-            : item,
-        ),
-      );
-    },
-    [],
-  );
+  const updatePlayerScore = useCallback((player: Player, score = 0) => {
+    setPlayers(oldState =>
+      oldState.map(item =>
+        item.id === player.id
+          ? Object.assign(item, {
+              score: score,
+            })
+          : item,
+      ),
+    );
+  }, []);
 
   const setActivePlayer = useCallback(
     (player: Player | null) => {
@@ -413,11 +410,12 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
 
   const handleEndPlayFromLuckCard = useCallback(
     (card: Card, player: Player, actualSquare: number) => {
-      let nextSquareIndex = card.luckType === LuckTypes.Luck
-        ? actualSquare + card.stars 
-        : actualSquare - card.stars
+      let nextSquareIndex =
+        card.luckType === LuckTypes.Luck
+          ? actualSquare + card.stars
+          : actualSquare - card.stars;
 
-      if(nextSquareIndex < 0) nextSquareIndex = 0;
+      if (nextSquareIndex < 0) nextSquareIndex = 0;
 
       const nextSquare = board[nextSquareIndex];
 
@@ -440,7 +438,7 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
 
       if (nextSquareIndex >= board.length) {
         updatePlayerScore(player, board.length);
-        
+
         setGameIsBlocked(true);
         endGameSound.play();
 

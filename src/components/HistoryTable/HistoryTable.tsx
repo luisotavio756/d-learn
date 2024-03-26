@@ -12,12 +12,13 @@ const HistoryTable: React.FC = () => {
   const { data: history, isFetching } = useHistoryQuery();
 
   function formatDate(date: string, language: string) {
-    const formatString = {
+    const formatString =
+      {
         en: "MM/dd/yyyy 'at' HH:mm",
         es: "dd/MM/yyyy 'a las' HH:mm",
-        pt: "dd/MM/yyyy 'às' HH:mm"
-    }[language] || "dd/MM/yyyy 'às' HH:mm";
-    
+        pt: "dd/MM/yyyy 'às' HH:mm",
+      }[language] || "dd/MM/yyyy 'às' HH:mm";
+
     return format(parseISO(date), formatString);
   }
 
@@ -44,25 +45,23 @@ const HistoryTable: React.FC = () => {
           </tr>
         </thead>
         <tbody>
-          {history
-            ?.slice(0, 30)
-            .map((item, i) => (
-              <tr key={item._id}>
-                <td>{i + 1}</td>
-                <td>{item.winnerName}</td>
-                <td>{item.winnerScore}</td>
-                <td>{formatDate(item.startedAt, i18n.language)}</td>
-                <td>{formatDate(item.endAt, i18n.language)}</td>
-                <td>
-                  {differenceInMinutes(
-                    parseISO(item.endAt),
-                    parseISO(item.startedAt),
-                  )}
-                  m
-                </td>
-                <td>{item.ownerName}</td>
-              </tr>
-            ))}
+          {history?.slice(0, 30).map((item, i) => (
+            <tr key={item._id}>
+              <td>{i + 1}</td>
+              <td>{item.winnerName}</td>
+              <td>{item.winnerScore}</td>
+              <td>{formatDate(item.startedAt, i18n.language)}</td>
+              <td>{formatDate(item.endAt, i18n.language)}</td>
+              <td>
+                {differenceInMinutes(
+                  parseISO(item.endAt),
+                  parseISO(item.startedAt),
+                )}
+                m
+              </td>
+              <td>{item.ownerName}</td>
+            </tr>
+          ))}
         </tbody>
       </table>
     </Container>

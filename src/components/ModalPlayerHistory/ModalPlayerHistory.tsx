@@ -24,12 +24,13 @@ const ModalPlayerHistory: React.FC<ModalPlayerHistoryProps> = ({
   const { isLogged, player } = usePlayerAuth();
 
   function formatDate(date: string, language: string) {
-    const formatString = {
+    const formatString =
+      {
         en: "MM/dd/yyyy 'at' HH:mm",
         es: "dd/MM/yyyy 'a las' HH:mm",
-        pt: "dd/MM/yyyy 'às' HH:mm"
-    }[language] || "dd/MM/yyyy 'às' HH:mm";
-    
+        pt: "dd/MM/yyyy 'às' HH:mm",
+      }[language] || "dd/MM/yyyy 'às' HH:mm";
+
     return format(parseISO(date), formatString);
   }
 
