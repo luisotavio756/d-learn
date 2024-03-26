@@ -19,7 +19,7 @@ import {
   SquareTypes,
 } from '../types';
 import INITIAL_BOARD from '../initialBoard';
-import { getRestoredCards } from '../utils/cards';
+import { getRestoredCards, getRestoredCardsByType } from '../utils/cards';
 import { useAudio } from '../hooks/useAudio';
 import { useCardsQuery } from '../queries/useCards';
 import { usePlayerAuth } from '../hooks/usePlayerAuth';
@@ -97,7 +97,7 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
       if (!isAllCardsUsed) {
         setCards(updatedCards);
       } else {
-        const restoredCards = getRestoredCards(cards);
+        const restoredCards = getRestoredCardsByType(cards, lastUsedCard.type);
 
         setCards(restoredCards);
       }
