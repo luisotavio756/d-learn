@@ -153,7 +153,6 @@
       "acronymResponse": "R:",
       "damn": "Poxa, você errou! 😕",
       "timerIsOver": "Poxa, o tempo esgotou! 💤",
-      "beFaster": "Tente ser mais rápido da próxima vez!",
       "false": "Falso",
       "true": "Verdadeiro",
       "advance": "🚀 Avançar {{absoluteStars}} casas",
@@ -320,7 +319,7 @@
       },
       "matches": {
         "title": "partidas jogadas",
-        "subtitle": "Esse é a quantidade de partidas jogadas no D-LEARN"
+        "subtitle": "Essa é a quantidade de partidas jogadas no D-LEARN"
       },
       "players": {
         "title": "Aprox. {{history_length}} jogadores",
@@ -352,6 +351,10 @@
       "person3": {
         "name": "Tamires Ariane",
         "description": "Graduada em Engenharia de Software na UFC Campus Russas e criadora do LEARN Board Game"
+      },
+      "person4": {
+        "name": "Mateus Fonseca Lima",
+        "description": "Estudante de Engenharia de Software da UFC Campus Russas e Responsável por avaliar a experiência do jogador, provendo melhorias para o D-LEARN Board Game"
       }
     }
   }

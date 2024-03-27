@@ -153,7 +153,6 @@
       "acronymResponse": "R:",
       "damn": "¡Vaya, te has equivocado! 😕",
       "timerIsOver": "¡Ups, se acabó el tiempo! 💤",
-      "beFaster": "¡Intenta ser más rápido la próxima vez!",
       "false": "Falso",
       "true": "Verdadero",
       "advance": "🚀 Avanzar {{absoluteStars}} casillas",
@@ -352,6 +351,10 @@
       "person3": {
         "name": "Tamires Ariane",
         "description": "Graduada en Ingeniería de Software en UFC Campus Russas y creadora del juego de mesa LEARN."
+      },
+      "person4": {
+        "name": "Mateus Fonseca Lima",
+        "description": "Estudiante de Ingeniería de Software en UFC Campus Russas y responsable de evaluar la experiencia del jugador, proporcionando mejoras para el juego de mesa D-LEARN."
       }
     }
   }

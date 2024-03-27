@@ -28,7 +28,7 @@ const Info: React.FC = () => {
       <Flex alignItems="center" flexDirection="column" gap={8}>
         <FiTablet />
         <Headline weight="heavy" type="light" size="md">
-          {data.length || 51} {t('landing.info.cards.title')}
+          {data.length} {t('landing.info.cards.title')}
         </Headline>
         <Text align="center" type="light" size="lg">
           {t('landing.info.cards.subtitle')}
@@ -49,7 +49,7 @@ const Info: React.FC = () => {
           {history.length} {t('landing.info.matches.title')}
         </Headline>
         <Text align="center" type="light" size="lg">
-          {history.length} {t('landing.info.matches.subtitle')}
+          {t('landing.info.matches.subtitle')}
         </Text>
       </Flex>
       <Flex alignItems="center" flexDirection="column" gap={8}>
@@ -60,7 +60,7 @@ const Info: React.FC = () => {
           })}
         </Headline>
         <Text align="center" type="light" size="lg">
-          {history.length} {t('landing.info.players.subtitle')}
+          {t('landing.info.players.subtitle')}
         </Text>
       </Flex>
     </Container>

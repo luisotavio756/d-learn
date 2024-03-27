@@ -10,6 +10,7 @@ import { Container, Contributor } from './Contributors.styles';
 import BiaImg from '../../../assets/contributors/bia.jpeg';
 import LuisImg from '../../../assets/contributors/luis.jpeg';
 import TamiresImg from '../../../assets/contributors/tamires.jpeg';
+import MateusImg from '../../../assets/contributors/mateus.jpg';
 
 const Contributors: React.FC = () => {
   const { t } = useTranslation();
@@ -27,7 +28,7 @@ const Contributors: React.FC = () => {
       </Flex>
       <Grid
         alignItems="center"
-        templateColumns="1fr 1fr 1fr"
+        templateColumns="1fr 1fr 1fr 1fr"
         gap={24}
         breakpoints={{
           xl: {
@@ -110,6 +111,32 @@ const Contributors: React.FC = () => {
             <FiMail
               onClick={() =>
                 handleOnclickOnBadges('mailto:eng.soft.tamires@gmail.com')
+              }
+            />
+          </Flex>
+        </Contributor>
+        <Contributor alignItems="center" flexDirection="column" gap={4}>
+          <img src={MateusImg} alt="Foto Beatriz" />
+          <Headline weight="heavy" type="light" size="md">
+            {t('landing.contributors.person4.name')}
+          </Headline>
+          <Text align="center" type="light" size="lg">
+            {t('landing.contributors.person4.description')}
+          </Text>
+          <Flex gap={8}>
+            <FaGithub
+              onClick={() =>
+                handleOnclickOnBadges('https://github.com/mateusxfl')
+              }
+            />
+            <FaLinkedin
+              onClick={() =>
+                handleOnclickOnBadges('https://www.linkedin.com/in/mateusxfl/')
+              }
+            />
+            <FiMail
+              onClick={() =>
+                handleOnclickOnBadges('mailto:mateus.xfl@gmail.com')
               }
             />
           </Flex>

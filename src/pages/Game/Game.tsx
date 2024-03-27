@@ -56,7 +56,7 @@ function Game() {
   const { showAlert } = useAlert();
   const { addToast } = useToast();
 
-  const { isFetching } = useCardsQuery();
+  const { data: cardsFromServer = [], isFetching } = useCardsQuery();
   const { isLogged, mode, signOut } = usePlayerAuth();
 
   const playerSquare = useMemo(() => {
@@ -284,7 +284,7 @@ function Game() {
           ))}
         </div>
       </Board>
-      <ModalStartGame isLoading={isFetching} />
+      <ModalStartGame isLoading={isFetching || cardsFromServer.length === 0} />
       <ModalPlayerAuth isLoading={isFetching} />
       <ModalCard
         isOpen={!!activeCard}
