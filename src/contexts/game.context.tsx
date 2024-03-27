@@ -255,7 +255,7 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
           item => item.id === actualPlayer.square_id,
         );
 
-        updatePlayerScore(actualPlayer, -1);
+        updatePlayerScore(actualPlayer, actualPlayerSquareIndex-1);
         const nextSquare = board[actualPlayerSquareIndex - 1];
         addPlayersToSquare([actualPlayer], nextSquare.id);
         removeCustomLuckActionFromPlayer(actualPlayer);

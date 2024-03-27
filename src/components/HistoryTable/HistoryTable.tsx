@@ -1,26 +1,16 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { differenceInMinutes, format, parseISO } from 'date-fns';
+import { differenceInMinutes, parseISO } from 'date-fns';
 import { Flex } from '../Layout';
 import { Container } from './HistoryTable.styles';
 import { useHistoryQuery } from '../../queries/useHistoryQuery';
+import { formatDate } from '../../utils/dates';
 
 const HistoryTable: React.FC = () => {
   const { t, i18n } = useTranslation();
 
   const { data: history, isFetching } = useHistoryQuery();
-
-  function formatDate(date: string, language: string) {
-    const formatString =
-      {
-        en: "MM/dd/yyyy 'at' HH:mm",
-        es: "dd/MM/yyyy 'a las' HH:mm",
-        pt: "dd/MM/yyyy 'às' HH:mm",
-      }[language] || "dd/MM/yyyy 'às' HH:mm";
-
-    return format(parseISO(date), formatString);
-  }
 
   if (isFetching) {
     return (
