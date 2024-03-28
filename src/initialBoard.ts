@@ -60,7 +60,42 @@ const board: Square[] = [
   {
     id: uuid(),
     players: [],
+    type: SquareTypes.ArchDecisions,
+  },
+  {
+    id: uuid(),
+    players: [],
+    type: SquareTypes.ArchPattern,
+  },
+  {
+    id: uuid(),
+    players: [],
+    type: SquareTypes.QualityAttributes,
+  },
+  {
+    id: uuid(),
+    players: [],
+    type: SquareTypes.ArchDecisions,
+  },
+  {
+    id: uuid(),
+    players: [],
+    type: SquareTypes.QualityAttributes,
+  },
+  {
+    id: uuid(),
+    players: [],
     type: SquareTypes.LuckOrBadLuck,
+  },
+  {
+    id: uuid(),
+    players: [],
+    type: SquareTypes.QualityAttributes,
+  },
+  {
+    id: uuid(),
+    players: [],
+    type: SquareTypes.ArchPattern,
   },
   {
     id: uuid(),
@@ -80,11 +115,6 @@ const board: Square[] = [
   {
     id: uuid(),
     players: [],
-    type: SquareTypes.QualityAttributes,
-  },
-  {
-    id: uuid(),
-    players: [],
     type: SquareTypes.LuckOrBadLuck,
   },
   {
@@ -96,36 +126,6 @@ const board: Square[] = [
     id: uuid(),
     players: [],
     type: SquareTypes.ArchPattern,
-  },
-  {
-    id: uuid(),
-    players: [],
-    type: SquareTypes.ArchPattern,
-  },
-  {
-    id: uuid(),
-    players: [],
-    type: SquareTypes.QualityAttributes,
-  },
-  {
-    id: uuid(),
-    players: [],
-    type: SquareTypes.ArchDecisions,
-  },
-  {
-    id: uuid(),
-    players: [],
-    type: SquareTypes.LuckOrBadLuck,
-  },
-  {
-    id: uuid(),
-    players: [],
-    type: SquareTypes.QualityAttributes,
-  },
-  {
-    id: uuid(),
-    players: [],
-    type: SquareTypes.LuckOrBadLuck,
   },
   {
     id: uuid(),
@@ -220,7 +220,7 @@ const board: Square[] = [
   {
     id: uuid(),
     players: [],
-    type: SquareTypes.LuckOrBadLuck,
+    type: SquareTypes.QualityAttributes,
   },
 ].map((item, i) => Object.assign(item, { id: String(i + 1) }));
 

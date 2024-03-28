@@ -1,4 +1,4 @@
-import { Card } from '../types';
+import { Card, CardTypes } from '../types';
 
 export const getShuffledCards = (cards: Card[]) => {
   const shuffledCards = cards;
@@ -15,6 +15,15 @@ export const getRestoredCards = (cards: Card[]) => {
   const restoredCards = cards.map(item => ({
     ...item,
     used: false,
+  }));
+
+  return getShuffledCards(restoredCards);
+};
+
+export const getRestoredCardsByType = (cards: Card[], type: CardTypes) => {
+  const restoredCards = cards.map(item => ({
+    ...item,
+    used: item.type === type ? false : item.used,
   }));
 
   return getShuffledCards(restoredCards);

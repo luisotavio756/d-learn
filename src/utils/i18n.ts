@@ -23,8 +23,8 @@ i18n
       escapeValue: false,
     },
     detection: {
-      order: ['cookie', 'htmlTag', 'localStorage', 'path', 'subdomain'],
-      caches: ['cookie', 'localStorage'],
+      order: ['localStorage', 'htmlTag', 'path', 'subdomain'],
+      caches: ['localStorage'],
     },
   });
 

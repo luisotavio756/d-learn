@@ -19,8 +19,7 @@ import {
   SquareTypes,
 } from '../types';
 import INITIAL_BOARD from '../initialBoard';
-import INITIAL_CARDS from '../cards';
-import { getRestoredCards } from '../utils/cards';
+import { getRestoredCards, getRestoredCardsByType } from '../utils/cards';
 import { useAudio } from '../hooks/useAudio';
 import { useCardsQuery } from '../queries/useCards';
 import { usePlayerAuth } from '../hooks/usePlayerAuth';
@@ -65,7 +64,7 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
   const [gameStarted, setGameStarted] = useState(false);
   const [gameEnd, setGameEnd] = useState(false);
   const [board, setBoard] = useState<Square[]>(INITIAL_BOARD);
-  const [cards, setCards] = useState<Card[]>(INITIAL_CARDS);
+  const [cards, setCards] = useState<Card[]>([]);
   const [timer, setTimer] = useState<number | null>(null);
   const [activeCard, setActiveCard] = useState<Card | null>(null);
   const [startedAt, setStartedAt] = useState<Date | null>(null);
@@ -98,7 +97,7 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
       if (!isAllCardsUsed) {
         setCards(updatedCards);
       } else {
-        const restoredCards = getRestoredCards(cards);
+        const restoredCards = getRestoredCardsByType(cards, lastUsedCard.type);
 
         setCards(restoredCards);
       }
@@ -106,20 +105,17 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
     [cards],
   );
 
-  const updatePlayerScore = useCallback(
-    (player: Player, scoreToIncrement = 0) => {
-      setPlayers(oldState =>
-        oldState.map(item =>
-          item.id === player.id
-            ? Object.assign(item, {
-                score: item.score + scoreToIncrement,
-              })
-            : item,
-        ),
-      );
-    },
-    [],
-  );
+  const updatePlayerScore = useCallback((player: Player, score = 0) => {
+    setPlayers(oldState =>
+      oldState.map(item =>
+        item.id === player.id
+          ? Object.assign(item, {
+              score,
+            })
+          : item,
+      ),
+    );
+  }, []);
 
   const setActivePlayer = useCallback(
     (player: Player | null) => {
@@ -259,7 +255,7 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
           item => item.id === actualPlayer.square_id,
         );
 
-        updatePlayerScore(actualPlayer, -1);
+        updatePlayerScore(actualPlayer, actualPlayerSquareIndex - 1);
         const nextSquare = board[actualPlayerSquareIndex - 1];
         addPlayersToSquare([actualPlayer], nextSquare.id);
         removeCustomLuckActionFromPlayer(actualPlayer);
@@ -414,23 +410,20 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
 
   const handleEndPlayFromLuckCard = useCallback(
     (card: Card, player: Player, actualSquare: number) => {
-      let nextSquareIndex;
+      let nextSquareIndex =
+        card.luckType === LuckTypes.Luck
+          ? actualSquare + card.stars
+          : actualSquare - card.stars;
 
-      if (card.luckType === LuckTypes.Luck) {
-        updatePlayerScore(player, card.stars);
-
-        nextSquareIndex = actualSquare + card.stars;
-      } else {
-        updatePlayerScore(player, -card.stars);
-
-        nextSquareIndex = actualSquare - card.stars;
-      }
+      if (nextSquareIndex < 0) nextSquareIndex = 0;
 
       const nextSquare = board[nextSquareIndex];
 
       addPlayersToSquare([player], nextSquare.id);
       passTurnToNextPlayer({});
       setActiveCard(null);
+
+      updatePlayerScore(player, nextSquareIndex);
     },
     [board, updatePlayerScore, addPlayersToSquare, passTurnToNextPlayer],
   );
@@ -440,13 +433,16 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
       const stars = player.customStarsCalc
         ? player.customStarsCalc(card.stars)
         : card.stars;
+
       const nextSquareIndex = actualSquareIndex + stars;
 
-      if (nextSquareIndex >= board.length - 1) {
+      if (nextSquareIndex >= board.length) {
+        updatePlayerScore(player, board.length);
+
         setGameIsBlocked(true);
         endGameSound.play();
 
-        const nextSquare = board[board.length - 1];
+        const nextSquare = board[0];
 
         addPlayersToSquare([player], nextSquare.id);
         setActiveCard(null);
@@ -474,9 +470,9 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
           setActiveCard(null);
           passTurnToNextPlayer({ answeredCorrectly: true });
         }
-      }
 
-      updatePlayerScore(player, card.stars);
+        updatePlayerScore(player, nextSquareIndex);
+      }
     },
     [
       board,
@@ -541,7 +537,7 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
         setPlayers([]);
         setActivePlayer(null);
         setGameEnd(false);
-        setCards(INITIAL_CARDS);
+        setCards(getRestoredCards(cards));
         setBoard(INITIAL_BOARD);
         setActiveCard(null);
         setGameStarted(false);
