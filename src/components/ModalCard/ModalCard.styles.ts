@@ -120,9 +120,9 @@ export const NormalCardBodyContainer = styled.div<NormalCardBodyContainerProps>`
 
   .img {
     img {
-      object-fit: none;
+      object-fit: scale-down;
       width: 76%;
-      height: auto;
+      height: 150px;
     }
   }
 
